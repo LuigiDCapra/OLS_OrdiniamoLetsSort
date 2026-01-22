@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Esempio 1</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Ripulitura dei dati (Data Cleaning)." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>Esempio 1</h1>
+          <section>
+            <h2>Ripulitura dei dati (Data Cleaning).</h2>
+            <br>
+            Consideriamo una tabella di dati in formato <a href="formati.html#Id_CSV">CSV</a>:<br>
+            <br>
+            <pre><span style="font-family: monospace;"> seq, Duration,          Date,  Pulse,  Maxpulse,  Calories
+   0,       60,  '2020/12/01',    110,       130,     409.1
+   1,       60,  '2020/12/02',    117,       145,     479.0
+   2,       60,  '2020/12/03',    103,       135,     340.0
+   3,       45,  '2020/12/04',    109,       175,     282.4
+   4,       45,  '2020/12/05',    117,       148,     406.0
+   5,       60,  '2020/12/06',    102,       127,     300.0
+   6,       60,  '2020/12/07',    110,       136,     374.0
+   7,      450,  '2020/12/08',    104,       134,     253.3
+   8,       30,  '2020/12/09',    109,       133,     195.1
+   9,       60,  '2020/12/10',     98,       124,     269.0
+  10,       60,  '2020/12/11',    103,       147,     329.3
+  11,       60,  '2020/12/12',    100,       120,     250.7
+  12,       60,  '2020/12/12',    100,       120,     250.7
+  13,       60,  '2020/12/13',    106,       128,     345.3
+  14,       60,  '2020/12/14',    104,       132,     379.3
+  15,       60,  '2020/12/15',     98,       123,     275.0
+  16,       60,  '2020/12/16',     98,       120,     215.2
+  17,       60,  '2020/12/17',    100,       120,     300.0
+  18,       45,  '2020/12/18',     90,       112,       NaN
+  19,       60,  '2020/12/19',    103,       123,     323.0
+  20,       45,  '2020/12/20',     97,       125,     243.0
+  21,       60,  '2020/12/21',    108,       131,     364.2
+  22,       45,           NaN,    100,       119,     282.0
+  23,       60,  '2020/12/23',    130,       101,     300.0
+  24,       45,  '2020/12/24',    105,       132,     246.0
+  25,       60,  '2020/12/25',    102,       126,     334.5
+  26,       60,    2020/12/26,    100,       120,     250.0
+  27,       60,  '2020/12/27',     92,       118,     241.0
+  28,       60,  '2020/12/28',    103,       132,       NaN
+  29,       60,  '2020/12/29',    100,       132,     280.0
+  30,       60,  '2020/12/30',    102,       129,     380.3
+  31,       60,  '2020/12/31',     92,       115,     243.0</span></pre>
+            E' evidente che la tabella presenta alcune anomalie. <br>
+            In particolare sono presenti tre valori <span style="font-weight: bold;">NaN</span>. La dicitura <em>not a number</em> <span style="font-weight: bold;">NaN</span> viene comunemente
+            impiegata nell'ambito dell'informatica numerica per indicare un valore che non può essere rappresentato (ad esempio il risultato del calcolo 0/0). Nell'ambito della <span style="font-style: italic;">data
+              science</span> la sigla <span style="font-weight: bold;">NaN</span> viene talvolta utilizzata in alternativa a <span style="font-weight: bold;">NA</span> (<em>not available</em>) per
+            indicare la mancanza di dati.<br>
+            Nella colonna <code>Duration</code> riga 7 compare il valore 450 che è assolutamente anomalo in quanto una deina di volte più grande del valore medio.<br>
+            Date queste premesse si pone il problema di individuare gli errori e di correggerli attività che prende il nome di <strong>data cleaning</strong>.<br>
+            La ripulitura dei dati può essere eseguita in vari modi avvalendosi di procedure automatizzate o esaminando i dati manualmente.<br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </section>
+          <section>
+            <h2>Ricerca delle anomalie mediante ispezione manuale.</h2>
+            <br>
+            La tabella di dati in formato <a href="formati.html#Id_CSV">CSV</a> mostrata all'inizio può essere caricata procedendo nel seguente modo.<br>
+            1) Cliccando sull'icona <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> della barra dei menu si aprirà una finestra di dialogo che vi offrirà varie
+            opzioni.<br>
+            2) Selezionate <code>Source: <span style="font-weight: bold;">URL</span></code>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_00.jpg">&nbsp;<figcaption>Figura 1 - Selezionate <code>Source: <span style="font-weight: bold;">URL</span></code>..</figcaption>
+            </figure>
+            3) Usando il cursore del mouse selezionate la casella di input <code><span style="font-weight: bold;">URL</span></code>,<br>
+            4) cliccate il tasto freccia in giù<br>
+            5) selezionate il file: <code>https://tuisys.altervista.org/ols/dbase/dirty.csv</code><br>
+            6) Selezionate <code>kind: CSV</code>.<br>
+            7) Disabilitate l'opzione Read Only (RO) togliendo il segno di spunta.<br>
+            8) Aggiungete il segno di spunta a <span id="Id_Span_fLine1"><code>Field names in the first line</code>.</span><br>
+            )) Confermate cliccando sul bottone <code>confirm</code>.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_01.jpg">&nbsp;<figcaption>Figura 2 -&nbsp; Selezionate il file dirty.csv.</figcaption>
+            </figure>
+            Il programma OLS scaricherà dal server di TUISys il file contenente la tabella, lo convertirà in una struttura dati JavaScript e lo mostrerà sullo schermo sotto forma di tabella.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_02.jpg">&nbsp;<figcaption>Figura 3 - Il contenuto del file <code>dirty.csv</code>.</figcaption>
+            </figure>
+            Esaminando la tabella emergono subito alcuni difetti, ad esempio scorgiamo una data indefinita ("undefined date"), per cui l'idea sembrerebbe funzionare.<br>
+            Sfortunatamente la ricerca delle anomalie mediante ispezione manuale diventa presto noiosa e faticosa. Occorrono pertanto delle soluzioni alternative,&nbsp; per fortuna il programma OLS ci
+            viene in soccorso proponendoci alcune soluzioni alternative.<br>
+            Clicchiamo il tasto destro del mouse si apre un popup menu. Selezioniamo la voce: <code>toggle type color</code><br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_03.jpg">&nbsp;<figcaption>Figura 4 - Popup menu.</figcaption> </figure>
+            Le celle della tabella verranno colorate in base al tipo della voce corrispondente per cui se il dato presente in un certo campo di un record è di tipo <span style="font-style: italic;">stringa</span>
+            anziché <span style="font-style: italic;">data</span> la casella corrispondente verrà colorata di verde anziché di giallo facilitando l'individuazione dei valori anomali.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_04.jpg">&nbsp;<figcaption>Figura 5 - toggle type color.</figcaption> </figure>
+            In alternativa si può cliccare sulla voce <code>toggle Diagnostic</code> del popup menu che fornisce delle indicazioni più precise colorando solo le celle in cui si riscontrano delle
+            anomalie.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_05.jpg">&nbsp;<figcaption>Figura 6 - toggle Diagnostic.</figcaption> </figure>
+            Le procedure di colorazione dei tipi e di diagnostica automatica pur essendo migliorative rispetto all'esame visivo da cui siamo partiti costringono ancora all'ispezione manuale
+            dell'intera collezione.<br>
+            Si può evitare l'esame completo dell'intera collezione osservando che i valori anomali dei singoli <a href="glossario.html#Id_Campo">campi</a> emergono solitamente quando si riordina la
+            collezione in base al campo in cui si trovano poiché le anomalie tendono a raggrupparsi all'inizio oppure al fondo della <a href="glossario.html#Id_Collezione">collezion<span style="color: black;">e</span></a>..<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_06.jpg">&nbsp;<figcaption>Figura 7 - Riordinare i campi fa emergere le anomalie.</figcaption>
+            </figure>
+            L'immagine precedente mostra che le anomalie presenti nella colonna <code>2 - Date</code> emergono quando si riordinano i dati cliccando sull'intestazione della stessa colonna.<br>
+            Le celle evidenziate in grigio nella colonna più a sinistra non sono delle "vere" anomalie. Il colore grigio indica semplicemente il mancato rispetto di una condizione di monotonicità non
+            decrescente.<br>
+            <br>
+            In certi casi, ma non in questo, si potrebbe anche ricorrere ad uno strumento completamente automatico. Cliccando su <code>update data type</code> si richiede al programma OLS di
+            esaminare una per una tutte le celle e di provare a convertire i valori anomali nel <a href="glossario.html#Id_Tipo">tipo</a> del <a href="glossario.html#Id_Campo">campo</a> selezionato.<br>
+          </section>
+          <section>
+            <h2>Correzione delle anomalie</h2>
+            Individuate le anomalie ci si pongono fondamentalmente due alternative: cancellare le righe che le contengono o provare a correggere i dati anomali o mancanti.<br>
+          </section>
+          <section>
+            <h3>Cancellazione delle righe che contengono anomalie.</h3>
+            Cancellare le righe che contengono dei dati anomali è sicuramente la soluzione più sicura e conservativa, spesso però non è praticabile poiché si rischia di ritrovarsi con una tabella
+            vuota. Ad esempio nel caso della collezione di Figura 7 se si interpretassero anche le celle grigie come anomale resteremmo con una sola riga!<br>
+            In ogni caso volendo cancellare un record basta selezionare la riga corrispondente cliccandoci sopra e poi cliccare sull'icona di cancellazione <img class="Cl_Ico_TBM" src="../../../ico/delete_tuple.svg"><code>.</code><br>
+          </section>
+          <section>
+            <h3>Correzione delle righe che contengono anomalie.</h3>
+            Per correggere le anomalie bisogna innanzitutto selezionare la cella corrispondente al dato anomalo e poi sostituire il dato difettoso con un nuovo valore.<br>
+            Questa strategia comporta la necessità di determinare il valore che dovrà rimpiazzare il dato errato. A questo proposito si prospettano diverse possibilità.<br>
+            Possedendo delle informazioni circa la sequenza di dati che compaiono in una colonna, come nel caso della colonna 2 della Figura 6 che riporta una lista di date in sequenza, si potrebbero
+            semplicemente inserire i valori delle date mancanti compresi fra il valore della data della riga precedente e seguente.<br>
+            Tale operazione può essere compiuta direttamente nella <a href="glossario.html#Id_Vista_Tabelle">vista tabelle</a>, selezionando la cella contente il dato che si desidera correggere
+            cliccandoci sopra e poi rimpiazzando il valore anomalo con quello che si ritiene corretto.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_07.jpg">&nbsp;<figcaption>Figura 8 - Selezionare la casella contenente i dato
+                anomalo.</figcaption> </figure>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_08.jpg">&nbsp;<figcaption>Figura 9 - Sostituire il dato errato con il nuovo valore.</figcaption>
+            </figure>
+            In alternativa, dopo aver selezionato il valore che si desidera modifica, si può cliccare sull'icona <code>change value</code> <img class="Cl_Ico_TBM" src="../../../ico/edit_value.svg"><code></code>
+            che aprirà una finestra di dialogo che ci offrirà la possibilità di intervenire sul valore della cella selezionata usando degli strumenti avanzati e delle procedure assistite. Le
+            informazioni mostrate nella finestra di dialogo dipendono dal tipo di valore editato cambiano quindi in funzione del fatto che il campo considerato sia di tipo numerico oppure una data
+            come nel caso di Figura 9.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_09.jpg">&nbsp;<figcaption>Figura 10 - Finestra <code>change value</code>.</figcaption>
+            </figure>
+            <br>
+            In ogni caso la finestra riporterà tutte le informazioni circa il tipo di dato corrispondente al campo selezionato e gli eventuali vincoli cui è soggetto in modo da aiutare l'utente ad
+            inserire un valore valido.<br>
+            Vi è poi una terza possibilità. Si può cliccare sull'icona <code>edit record</code> <img class="Cl_Ico_TBM" src="../../../ico/edit_value.svg"><code></code> che aprirà la <a href="glossario.html#Id_Vista_Schede">scheda</a>
+            che permette di prendere visione dei valori di tutte le voci del <a href="glossario.html#Id_Record">record</a> considerato.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex01_10.jpg">&nbsp;<figcaption>Figura 11 - Finestra edit record.</figcaption> </figure>
+            Si osservi che nella Figura 11 il valore corretto, cioè la data che dovrà essere sostituita, è rappresentata secondo il cosiddetto formato giapponese anno-mese-giorno anziché il formato in
+            uso nei paesi latini che prevede che le date siano scritte nell'ordine giorno/mese/anno. Le date vengono registrate nei database utilizzando il formato giapponese poiché tale soluzione
+            facilita l'ordinamento consentendo di ricorrere al normale ordinamento <span style="font-style: italic;">lessicografico</span>.<br>
+            <br>
+          </section>
+          <section>
+            <h3> Salvataggio delle modifiche.</h3>
+            Al termine del lavoro si potrebbero volere salvare i risultati ottenuti.<br>
+            Per salvare i valori della tabella corrente bisogna cliccare sull'icona <code>salva con nome</code> <img class="Cl_Ico_TBM" src="../../../ico/save_as.svg"> che aprirà la finestra di
+            salvataggio.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/qk_04.jpg">&nbsp;<figcaption>Figura 4 - Finestra di salvataggio.</figcaption> </figure>
+            La finestra di salvataggio offre la possibilità di selezionare la tipologia di supporto su sui si desiderano salvare i dati (ad esempio <code>file</code>), di assegnare un nome alla
+            collezione (ad esempio <code>S_aRcd.aRcd</code>), ma sopratutto di scegliere il <a href="glossario.html#Id_Formato">formato</a> in cui si desidera salvare la collezione di dati.<br>
+            <br>
+            NOTA:<br>
+            Si osservi che specificando <code>Destination: file</code> (come in figura 4) la collezione di dati verrà salvata nella cartella di <code>Download</code>. Questo&nbsp; fatto si deve alle
+            specifiche del linguaggio JavaScript che limitano l'accesso al filesystem per ragioni di sicurezza, per cui è possibile salvare i file in <code>Download</code>, ma non altrove.<br>
+            Per maggiori informazioni circa questo argomento si rimanda a <a href="../OutData.html">Salvataggio di una Collezione di Dati</a>. <br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

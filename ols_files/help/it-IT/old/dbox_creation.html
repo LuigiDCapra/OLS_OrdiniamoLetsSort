@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>DBox Creation</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>DBox Creation</h1>
+        <section>
+          <h2>Premise</h2>
+          Let's assume we want to introduce a new <a href="glossario.html#Id_DialogBox">dialog box</a> (DBox) in <code>MyModule.js</code> file, which corresponds to the <code style="color: #009900;">$MyModule</code>
+          object.<br>
+          The work required to create and manage a new dialog box panel, usually a difficult task, will be simplified and reduced to the insertion of four simple pieces of code in our program<br>
+          <br>
+          We should, at first, define the look and feel of the DBox panel inserting three fragments of code like the following in our source file.<br>
+          <br>
+        </section>
+        <section>
+          <h3>1) HTML code displayed inside the DBox.</h3>
+          <pre>var <span style="color: red;">S_szHTML_DBox_MyDBox</span> = `&lt;div&gt;
+&lt;br&gt;&lt;br&gt; 
+&lt;div id="Id_Div_DBox1" style="visibility:visible;"&gt;
+&lt;label for="Id_ClearTags"&gt;Clear Tags &lt;/label&gt; &lt;input id="Id_ClearTags" type="checkbox"&gt;&lt;br&gt;&lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;`;</pre>
+          <h3>2) Buttons showed in the dialog box's Tool Bar.</h3>
+          <pre>var <span style="color: #ff6600;">S_aMnEntry_MyDBOX</span><span style="color: #ff6600;"></span> = [
+["Clear","$DDJ.U_Clear();","Clear current Card"],
+["Copy","$DDJ.U_Copy();","Copy current Card data"],
+["Paste","$DDJ.U_Paste();","Paste in current Card"],
+["Help","$DDJ.U_Help('filter_qbe');","Help file"]
+];</pre>
+        </section>
+        <h3>3) User defined DBox Object.</h3>
+        <pre>var <span style="color: #cc33cc;">S_DBox_MyDBox</span> = (function(){
+  var _Cond = {};
+  _Cond.U_Open          = U_Open;        // function U_Open(P_Bag);
+  _Cond.U_Cancel        = U_Close;       // function U_Close(P_Bag);
+  _Cond.U_Confirm       = U_Confirm;     // function U_Confirm(P_Bag);
+    
+/*-----U_Open --------------------------------------------------------
+*
+*/ 
+function U_Open(P_Bag)
+{
+} /* U_Open */
+
+/*-----U_Close --------------------------------------------------------
+*
+*/ 
+function U_Close(P_Bag)
+{
+} /* U_Close */
+
+/*-----U_Confirm --------------------------------------------------------
+*
+*/ 
+function U_Confirm(P_Bag)
+{
+} /* U_Confirm */
+
+  return(_Cond);
+})(); /* # END - S_DBox_Concatenate Object */</pre>
+        <h3> Rationale.</h3>
+        <h3> </h3>
+        <section>
+          <ol>
+            <li>The first piece of code (<code>S_szHTML_DBox_MyDBox</code>) consists of the HTML code that will be displayed in the window when the dialog box (DBox) will be open.<br>
+              JavaScript programmers may find that the code in question is very similar to the contents of a typical <code>&lt;form&gt;</code>, save for the lack of the <code>&lt;input&gt;</code> <code>submi</code>t
+              tag. <br>
+              Note that the HTML code corresponding to the DBox content could be written using a graphic tools like an HTML editor and the pasted inside the JavaScript program.</li>
+            <li><code>S_aMnEntry_MyDBOX</code> data structure defines the list of the active commands which will appear in the <a href="glossario.html#Id_ToolBarMenu">tool bar menu</a>. <br>
+              Note that since the <code>DBox</code> object provides the standard controls, i.e. the <code>X</code> button used for closing the window and the <code>confirm</code> button, the
+              application programmer can limit him/herself to drafting&nbsp; the HTML code of the controls corresponding to application specific functions.</li>
+            <li>The user defined DBox object provides three method that should be initialized by the programmer corresponding to the actions:<br>
+              <ul>
+                <li><code>open</code>: forces the opening of DBox panel writing the proper contents in it;</li>
+                <li><code>close</code>: forces the DBox panel to close by canceling operator entries;</li>
+                <li><code>confirm</code>: close DBox panel submitting the inputs entered by the operator.</li>
+              </ul>
+            </li>
+          </ol>
+          <p><br>
+          </p>
+        </section>
+        <section>
+          <h2>4) Creation of the object corresponding to the Dialog Box.</h2>
+          The fourth piece of code that should be inserted consists of the instruction required to create the object corresponding to the DBox using the <code>new CL_DBox</code> constructor.
+          <pre><br> <span style="color: #3333ff;">_</span><span style="color: #3333ff;"><code style="color: #009900;">MyModule</code>.DBox_MyDBox_Example</span> = new CL_DBox ("Id_Div_DBox0", "<span style="color: #3333ff;"><code
+style="color: #009900;">$MyModule</code>.DBox_MyDBo_Example</span>", "My_DBox Title", <span style="color: red;">S_szHTML_DBox_MyDBox</span>, <br> <span style="color: #cc33cc;">S_DBox_MyDBox</span>.U_Open, <span
+style="color: #cc33cc;">S_DBox_MyDBox</span>.U_Cancel, <span style="color: #cc33cc;">S_DBox_MyDBox</span>.U_Confirm, <span style="color: #ff6600;">S_aMnEntry_MyDBOX</span>);
+&nbsp; </pre>
+          <ul>
+            <li> <code>"Id_Div_DBox0"</code>: string corresponding to the HTML's <code>id</code> identifying uniquely the HTML element used to display the DBox.</li>
+            <li><code>"<span style="color: #009900;">$MyModule</span>.<span style="color: #3333ff;">DBox_MyDBo_Example</span>"</code>: reference to the object corresponding to the DBox (used
+              internally by DBox object).</li>
+            <li> "<code>My_DBox Title</code>": title of the dialog box.</li>
+            <li> <code><span style="color: red;">S_szHTML_DBox_MyDBox</span></code>: variable containing the HTML code displayed inside the DBox.</li>
+            <li> <code style="color: #cc33cc;">S_DBox_MyDBox</code>: variable containing the HTML code displayed inside the DBox.</li>
+            <li><code style="color: #ff6600;">S_aMnEntry_MyDBOX</code>: data structure describing the buttons that will be displayed in the <a href="glossario.html#Id_ToolBarMenu">tool bar menu</a>.
+            </li>
+          </ul>
+          <br>
+          The object created by the constructor <code>CL_DBox</code> will be assigned as an attribute (<span style="color: #3333ff;">DBox_MyDBox_Example</span>)&nbsp; to a more general object (<span
+            style="color: #009900;">$MyModule</span>), that is to <code><span style="color: #33cc00;">_MyModule</span>.<span style="color: #3333ff;">DBox_MyDBox</span></code>, which at the end will
+          be returned ad assigned to <code style="color: #009900;">$MyModule</code>.<br>
+          <br>
+        </section>
+        <section>
+          <h2>Calling up/opening the DBox.</h2>
+          The dialog box could be displayed (<code>open</code>) invoking the <code>DBox</code> object using the following code:<br>
+          <br>
+          <code><span style="color: #009900;">$MyModule</span>.<span style="color: #3333ff;">DBox_MyDBox_Example</span>.U_Hub(C_JPnl_Open); </code><br>
+          <br>
+          DBox <code>open</code> method calls the user defined U_Open() function which initializes and DBox panel contents calling the user defined method U_Open(), then shows the corresponding
+          panel.<br>
+        </section>
+        <section>
+          <h2>Closing.</h2>
+          Done the editing work the operator has two options: cancel the entries or confirm the values entries.<br>
+          The first case usually doesn't need user defined code, the other require some work to validate the inputs and store them in the appropriate data structure. This work is let to the method
+          U_Confirm().<br>
+          <br>
+          <br>
+          <br>
+        </section>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

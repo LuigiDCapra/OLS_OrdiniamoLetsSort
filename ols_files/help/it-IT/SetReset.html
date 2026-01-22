@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>OLS HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_SetReset_HardCoded">
+          <h1>SetReset</h1>
+          <section>
+            <h2>Toolbar di "Data Set/Reset".</h2>
+            <p><br>
+            </p>
+            <p>La funzione Data Set/Reset consente di modificare i valori delle celle della colonna selezionata delle righe selezionate cambiandone il valore.</p>
+            <p>La procedura richiede innanzitutto che venga selezionata una colonna cliccando una qualsiasi cella della stessa.</p>
+            <p>Cliccando sulla voce Data Set/Reset della <a href="std/glossario.html#Id_ToolBar">barra dei menu</a> si aprirà una <a href="std/glossario.html#Id_DialogBox">finestra di dialogo</a>
+              che consentirà di introdurre il valore che si desidera introdurre nelle celle.</p>
+            <p>Premendo il tasto "Confirm" si chiuderà la finestra rendendo le modifiche effettive.</p>
+            <p><br>
+            </p>
+            <p>Nomenclatura:</p>
+            <p><br>
+            </p>
+            <p>$ : rappresenta la <a href="std/glossario.html#tupla">tupla</a>;</p>
+            <p>i&nbsp;&nbsp; : rappresenta la riga (<a href="std/glossario.html#record">record</a>);</p>
+            <p>j&nbsp;&nbsp; : rappresenta la colonna (<a href="std/glossario.html#campo">camp</a><a href="std/glossario.html#campo">o</a>).</p>
+            <p><br>
+            </p>
+            <p><span style="font-weight: bold;">NOTA:</span></p>
+            <p>Le modalità operative differiscono a seconda del <a href="formati.html">formato</a> della collezione poiché nei formati semplici (<span style="font-weight: bold;">Arr</span> e <span style="font-weight: bold;">Obj</span>)
+              campi e tuple coincidono mentre in quelli strutturati facendo è sempre necessario specificare il riferimento al campo cui si fa riferimento.</p>
+            <p><br>
+            </p>
+            <p><span style="font-weight: bold;">NOTA:</span></p>
+            <p>Le modifiche si applicano solo alle celle selezionate cioè a quelle appartenenti ai <a href="std/glossario.html#record">record</a> selezionati con il filtro e ai <a href="std/glossario.html#campo">campi</a>
+              visibili.</p>
+            <p><br>
+            </p>
+            <p><span style="font-weight: bold;">NOTA:</span></p>
+            <p>La funzione SetReset non si applica alle collezioni aventi <a href="formati.html">formato</a> <span style="font-weight: bold;">Obj</span>.</p>
+            <p><br>
+            </p>
+            <p>Esempio:</p>
+            <p><br>
+            </p>
+            <p>Per i <a href="formati.html">format<span style="color: black;">i</span></a> <span style="font-weight: bold;">aRcd, aObj, asRcd, asObj<br>
+              </span></p>
+            <p><br>
+            </p>
+            <p>Formula</p>
+            <p><br>
+            </p>
+            <p>(($[j]/100) +1).toFixed(4)</p>
+            <p><br>
+            </p>
+            <p>Esempio</p>
+            <p>Per il&nbsp; <a href="formati.html">formato</a> <span style="font-weight: bold;">Arr</span></p>
+            <p><br>
+            </p>
+            <p>La formula</p>
+            <p><br>
+            </p>
+            <p>$ * 10</p>
+            <p><br>
+            </p>
+            <p>moltiplica per dieci il precedente valore delle celle selezionate.</p>
+            <p><br>
+            </p>
+            <p><span style="font-weight: bold;">NOTA:</span></p>
+            <p>Le formule non sono righe di comando JavaScript bensì espressioni per cui non è richiesto l'inserimento del terminatore di riga ';' al fondo della formula.</p>
+          </section>
+          <section>
+            <h2>Esempi di formule.</h2>
+            <br>
+            <table style="width: 100%" border="1">
+              <tbody>
+                <tr>
+                  <td width="20%"><br>
+                  </td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>i<br>
+                  </td>
+                  <td>Inserisce nella cella selezionata il numero di riga (facendo riferimento alla posizione del record nell'ordine selezionato).<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>j<br>
+                  </td>
+                  <td>Inserisce nella cella selezionata il numero il numero di colonna (facendo riferimento alla posizione del campo nella user view). </td>
+                </tr>
+                <tr>
+                  <td>$[0]<br>
+                  </td>
+                  <td>Copia nella cella selezionata il valore del campo in colonna zero.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td> ($[j] == "cane")? "gatto": $[j] </td>
+                  <td>Se nella cella selezionata $[j] è presente la parola "cane" sostituiscila con la parola gatto, altrimenti mantieni il contenuto precedente.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>($[3][0] == "(")? $[3]: $[j] </td>
+                  <td>Modifica il contenuto della cella $[j] in funzione dei valori della terza colonna $[3]. Se la stringa presente nella terza colonna comincia con il carattere '(' copia il valore
+                    della terza colonna nella cella selezionata altrimenti preserva il valore precedente.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PAD(i,5,'0')<br>
+                  </td>
+                  <td>Inserisci nella colonna selezionata i numeri di linea, sotto forma di una sequenza di cinque cifre, introducendo se serve degli '0' a sinistra.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>(IO($[2], ",") &gt;= 0)?1:0<br>
+                  </td>
+                  <td>Setta il valore 1 nella cella della colonna selezionata se una carattere virgola (",") è presente nella stringa $[2], altrimenti 0.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>(!$[1])? 0: $[1]<br>
+                  </td>
+                  <td>Se il valore del campo 1 è "undefined" inizializzalo con il valore zero altrimenti lascialo com'è.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>(i &gt;0)? H[i -1][2] + H[i][1]:0<br>
+                  </td>
+                  <td>Data una Collezione H contenente in H[i][0] i valori della distribuzione e in H[i][1] le densità di probabilità costruisci la funzione di ripartizione cumulativa. </td>
+                </tr>
+                <tr>
+                  <td>($[j] == null)? "": $[j]<br>
+                  </td>
+                  <td>Intutte le celle della tabella aventi valore null sostituisci null con stringa vuota "".<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><br>
+                  </td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td><br>
+                  </td>
+                  <td><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            La formula<br>
+            ((0 &lt; $$[i][j]) &amp;&amp; ($$[i][j] &lt; 0.8))?&nbsp; "&lt;span style=' color:red;' &gt;" + $$[i][j] + "&lt;/span&gt;": ""<br>
+            (($$[i][j] &lt; 0.8) &amp;&amp; ($$[i][j] &gt; 0))?&nbsp; COLOR("red", $$[i][j]): ''<br>
+            consente di colorare di rosso tutti i valori compresi fra zero e 0.8.<br>
+            Abilitando il flag "<code>Apply to the whole table/selected field:</code>" la suddetta formula può operare sull'intera tabella.<br>
+          </section>
+          <section>
+            <h2>Barra delle icone.</h2>
+          </section>
+          <section id="SetReset_Toggle RO">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/toggle_ro.svg"> commuta scrittura<br>
+              Toggle RO</h2>
+            <p>Abilita/disabilita le modifiche.</p>
+          </section>
+          <section id="SetReset_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/help.svg"> aiuto<br>
+              Help file</h2>
+            <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+          <section>
+            <h2>Comandi della finestra di dialogo</h2>
+            <h3>Confirm.</h3>
+            <p>Cliccando sul bottone "Confirm" disegnato nell'area verde in basso si chiude la scheda e si procede con il caricamento della Collezione selezionata.</p>
+            <h3>X.</h3>
+            <p>Cliccando sul simbolo "X" che appare nell'angolo in alto a destra si chiude la scheda annullando tutte le impostazioni. </p>
+          </section>
+        </article>
+        <article id="Id_SetReset">
+          <section id="SetReset_Toggle RO">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../../ico/toggle_ro.svg"> commuta scrittura<br>
+              Toggle RO</h2>
+            <p>Abilita/disabilita le modifiche.</p>
+          </section>
+          <section id="SetReset_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../../ico/help.svg"> aiuto<br>
+              Help file</h2>
+            <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

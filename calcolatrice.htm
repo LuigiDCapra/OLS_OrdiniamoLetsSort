@@ -1,0 +1,320 @@
+<!-- ---------------------------------------------------------------------
+* Project     : CL-Eidos Viola ex Anna ex NIC
+* Description : Viola Voice Assistant ex Anna
+* Revision    : 0.021
+* File        : calcolatrice.html
+* Function    : Web Calculator.
+* FirstEdit   : 30/04/2015
+* LastEdit    : 19/01/2025
+* Author      : Luigi D. Capra
+* Copyright(c): Luigi D. Capra 2006, 2025
+* System      : Mozilla FireFox 80+
+
+----- LICENSE -----
+
+  This file is part of TUISys' Open-DDJ.
+  
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+  
+---------------------------------------------------------------------- -->
+
+<!DOCTYPE html>
+<html style="height:100%;">
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Viola - Calc  (10).</title>
+    <meta content="Luigi D. CAPRA" name="author">
+    <meta content="Viola - calcolatrice." name="description">
+    <meta content="" name="keywords">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="shortcut icon" href="calcolatrice_files/favicon.ico">
+    <link rel="stylesheet" href="basic/dbox.css">
+    <link rel="stylesheet" href="basic/mrmenu.css">
+    <link rel="stylesheet" href="appx_files/appx.css">
+    <link rel="stylesheet" href="calcolatrice_files/calcolatrice.css">
+</head>
+<body style=" height: 100%;" id="Prova">
+  <header id="Id_Hdr"> 
+  <noscript>
+     <div style="background-color:yellow; color:magenta;">WARNING: your browser does not support JavaScript or JavaScript is disabled!</div>
+  </noscript>
+  OLS' Calculator
+  </header>
+  <hr>
+
+  <!-- Navigator's Menu Bar --> 
+  <nav class="Cl_Nav" id="Id_Nav">NAV&nbsp;
+  </nav>
+  <!-- Aside -->
+  <aside id="Id_Aside">ASIDE</aside>
+  <!-- PopUp Menu --> 
+  <div id="Id_RMenu" onclick="$MRMenu.U_Close();" hidden>POPUP&nbsp;   
+  </div>
+  <!-- Dialogue-Box -->    
+  <div>
+    <section class="Cl_DBox_BG" id="Id_Div_DBox0">DBOX<br>
+    </section>
+  </div>
+  <br><br>
+<main id="Id_Main"> 
+<form style="width: 100%; height: 100%;" name="Nm_Form">
+  <fieldset style="width: 100%; height: 100%;" name="Field1"><legend>Calculator</legend>
+    <table id="Id_Tab_0" style="width: 100%; height: 80%;" border="1">
+      <tbody>
+        <tr>
+          <th colspan="4">
+             <textarea id="Id_Txt_1" name="Nm_Txt_1" style="width: 90%;" rows="1" readonly>
+             </textarea>
+          </th>
+          <th colspan="2" style="text-align: center;">
+             <span style="font-weight: bold;">LCD's </span>Calculator
+          </th>
+        </tr>
+        <tr>
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('7')">7 </td>
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('8')">8 </td>
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('9')">9 </td>
+          <td onclick="$Calcolatrice.U_Operand('(')">( </td>
+          <td onclick="$Calcolatrice.U_Operand(')')">) </td>
+          <td onclick="$Calcolatrice.U_Operand('&amp;')">AND</td>
+        </tr>     
+        <tr>      
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('4')">4 </td>
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('5')">5 </td>
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('6')">6 </td>
+          <td onclick="$Calcolatrice.U_Operand('*')">* </td>
+          <td onclick="$Calcolatrice.U_Operand('/')">/ </td>
+          <td onclick="$Calcolatrice.U_Operand('|')">OR </td>
+        </tr>     
+        <tr>      
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('1')">1 </td>
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('2')">2 </td>
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('3')">3 </td>
+          <td onclick="$Calcolatrice.U_Operand('+')">+ </td>
+          <td onclick="$Calcolatrice.U_Operand('-')">- </td>
+          <td onclick="$Calcolatrice.U_Operand('^')">XOR </td>
+        </tr>     
+        <tr>      
+          <td class="Cl_Num" onclick="$Calcolatrice.U_AddCh('0')">0 </td>
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddCh('00')">00 </td>
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddCh('000')">000 </td>
+          <td onclick="$Calcolatrice.U_Point()">, </td>
+          <td class="Cl_EQ" onclick="$Calcolatrice.U_Evaluate()">= </td>
+          <td onclick="$Calcolatrice.U_Operand('')">NOT </td>
+        </tr>     
+        <tr>      
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddChHex('a')">A </td>
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddChHex('b')">B </td>
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddChHex('c')">C </td>
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddChHex('d')">D </td>
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddChHex('e')">E </td>
+          <td class="Cl_Hex" onclick="$Calcolatrice.U_AddChHex('f')">F </td>
+        </tr>     
+        <tr>      
+          <td id="Id_Base_10" onclick="$Calcolatrice.U_Base(10)">dec </td>
+          <td id="Id_Base_8"  onclick="$Calcolatrice.U_Base(8)">oct </td>
+          <td id="Id_Base_16" onclick="$Calcolatrice.U_Base(16)">hex </td>
+          <td id="Id_Base_2"  onclick="$Calcolatrice.U_Base(2)">bin </td>
+          <td id="Id_Char"    onclick="$Calcolatrice.U_Char()">char</td>
+          <td onclick="$Calcolatrice.U_Delete()">CLR </td>
+        </tr> 
+      </tbody>
+    </table>
+    <br>
+    <textarea id="Id_Txt_2" name="Nm_Txt_2" style="width: 100%;"></textarea>
+  </fieldset>
+</form>
+<script src="basic/code2.js"></script>
+<script src="basic/root.js"></script>
+<script src="basic/uti.js"></script>
+<script src="basic/log.js"></script>
+<script src="basic/error.js"></script>
+<script src="basic/nation.js"></script>
+<script src="basic/ipcf.js"></script>
+<script src="basic/dbox.js"></script>
+<script src="basic/mrmenu.js"></script>
+<script src="basic/pers.js"></script>
+<script src="basic/vconfig.js"></script>
+<script src="basic/vdebug.js"></script>
+<script src="basic/tts.js"></script>
+<script src="basic/stt.js"></script>
+<script src="basic/semctx.js"></script>
+
+<script src="calcolatrice_files/calcolatrice.js"></script>
+<script>
+
+const C_jCd_Cur = C_jCd_HTML;
+const C_szApp = "Calc";
+const C_fMain = C_szApp;     /* flag: Enable HTML page Update */
+
+var G_aMnEntry_Calc = [ 
+["Insert",   'U_Insert',   "Insert",   "ols_files/ico/help.svg",      "inserisci"], 
+["Help",     'U_Help',     "Help",     "ols_files/ico/help.svg",      "aiuto"],
+["Configure","U_Config",   "Config",   "ols_files/ico/config.svg",    "configura"],
+["About",    'U_About',    "About",    "ols_files/ico/about.svg",     "about"],
+["License",  'U_License',  "Licenza",  "ols_files/ico/licence.svg",   "licenza"]
+];
+
+var G_aMnEntry_Cfg = [
+["Reset",    "$VConfig.U_Reset", "Reset", "ols_files/ico/reset.svg", "reset"],
+["Help file","$VConfig.U_Help", "Help", "ols_files/ico/help.svg", "aiuto"]
+];
+
+var G_aaMnEntry = {
+  "Calc":G_aMnEntry_Calc,
+  "DDJ_Cfg":G_aMnEntry_Cfg,
+};
+
+/*
+* The following declarations overcome problems due to Modules not loaded!
+*/
+var G_asaMnEntry = G_aaMnEntry;
+var $DDJ = {};
+var G_DBox_About = {};
+
+/*----- Local Variables ----------------------------------------------*/
+
+/*
+*  About.
+*/
+var S_szHTML_DBox_About = `<div style="padding:10%;">
+  <br><br><br><br>
+  Program: <b>OLS' Calculator.</b><br>
+  Date: ${C_szDate_EdtLst} <br>
+  Rel.: <b>${C_szRel_EdtLst}</b><br>
+  Author: Luigi D. CAPRA<br>
+  <br>
+  ${C_szCopyright}<br><br><hr><br><h3 style="text-align:center;">License</h3><br>
+  This program comes with ABSOLUTELY NO WARRANTY; for details see <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a>.<br>
+  This is free software, and you are welcome to redistribute it under certain conditions;<br>
+  type <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a> for details.<br>  
+  The library files could be redistribute at LGLP conditions. Type <a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU LGPL v. 3.0</a> for details.<br>
+  <br><br><br><br>
+</div>`;
+
+/*-----U_Help --------------------------------------------------------
+*
+*/ 
+function U_Help()
+{
+  window.open(`ols_files/help/std/calc.html`);   
+} /* U_Help */
+
+/*-----U_Config --------------------------------------------------------
+*
+*/ 
+function U_Config()
+{
+  $VConfig.DBox_Config.U_Hub(C_JPnl_Open);
+} /* U_Config */
+
+/*-----U_About --------------------------------------------------------
+*
+*/ 
+function U_About()
+{
+  G_DBox_About.DBox_About.U_Hub(C_JPnl_Open);
+} /* U_About */
+
+/*-----U_License --------------------------------------------------------
+*
+*/ 
+function U_License()
+{
+  window.open(`ols_files/help/std/gpl-3.0.txt`);
+} /* U_License */
+
+/*-----U_Insert --------------------------------------------------------
+*
+*/ 
+function U_Insert()
+{
+  if (window.opener && (window.opener !== window)) {
+     var szCode = "";
+     var szRes = window.opener.U_RPC_Exec(szCode);
+  } /* if */
+} /* U_Insert */
+
+/*-----U_Button --------------------------------------------------------
+*
+* Events manager.
+* Translate user events executing the corresponding routines.
+* $NOTE: the menus and their respective icons have been initialized in $SemCtx.F_szHTML_TBM();
+*
+* P_szCmd JS  command or function called.
+* P_szCaller  ID of the routine that called U_Button.
+* P_szPar     allows to pass parameters to the routine specified in P_szCmd.
+*/ 
+function U_Button(P_szCmd, P_szCaller, P_szPar="")
+{
+  try {
+      var szCmd = P_szCmd + `("${P_szPar}")`;
+      eval(szCmd);      
+  } catch (P_Err) {
+      var szErr = F_szErr_Catch.F_szErr_Catch(P_Err);
+      $Error.U_Error(C_jCd_Cur, 1, "U_Button command: " + szCmd + "\n", szErr);
+  } /* try catch */
+} /* U_Button */
+
+/*-----U_Init --------------------------------------------------------
+*
+* Initialization of Modules.
+*/ 
+function U_Init()
+{
+  var DDJSts = {};
+  DDJSts.iRel_KNS        = 20240706;          /* Cfg. release number. */
+  DDJSts.szUser          = "";                // Luigi
+  DDJSts.szURL_Relay     = "";                // https://canavesehub.altervista.org/Big/LCD/irc/
+  DDJSts.szjDate         = "YYYYMMDD";
+  DDJSts.szURL_Srv       = "localhost";
+  DDJSts.szSrv_Knd       = "PHP-DDJ";
+  DDJSts.iWdt_Tab        = screen.width;
+  DDJSts.szLanguage      = "it-IT";
+  DDJSts.fHalt_Debug     = true;
+  DDJSts.iDebug          = C_iDebug_Dflt_Cfg; // Initial Debug Level
+  
+  $VConfig.U_Init_DDJSts(C_szApp, DDJSts, $VConfig.U_CB_Update_Default);
+
+  var apF_Init = [$Root.U_Init, $Log.U_Init, $Error.U_Init, $Nation.U_Init, $IPCF.U_Init, $MRMenu.U_Init, $TTS.U_Init, $Pers.U_Init, $VDebug.U_Init];
+  var i;
+    
+  try {
+      for (i = 0; i < apF_Init.length; i++) {
+          var pF = apF_Init[i];
+          pF();
+      } /* for */
+  } catch (P_Err) {
+      debugger;
+      $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+  } /* try catch */
+  
+  $DDJ.U_Button = U_Button; 
+  $SemCtx.U_Sel_TBM("Id_Nav", "Calc", false);
+  G_DBox_About.DBox_About = new CL_DBox("Id_Div_DBox0", "G_DBox_About.DBox_About", "About", S_szHTML_DBox_About, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, G_DBox_Null.U_Cancel, null);
+
+  
+  $Calcolatrice.U_Init();
+} /* U_Init */
+
+U_Init();
+
+
+</script>
+</main>
+  </body>
+</html>

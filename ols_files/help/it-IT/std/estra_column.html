@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Estrazione di una Colonna</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>Estrazione di una Colonna di una collezione.</h1>
+        <section>
+          <h2>Problema.</h2>
+          <p>Considerata una generica collezione di dati in uno dei formati supportati dal programma OLS ci si pone il problema di creare una nuova collezione costituita dai valori delle celle di una
+            colonna selezionata.</p>
+          <p><br>
+          </p>
+          <p>Ad esempio: data la collezione</p>
+          <pre>var S_Prova4 = [
+["cinque","&gt;=",null,"NA",0.123,256," ","boolean"],
+["dieci","&lt;=",6,"6",48.653,255," ","omega"],
+["due","&gt;",null,"null",3.123,19," ","text"],
+["nove","&lt;=",16,"16",12.438,27," ","canguro"],
+["otto","&lt;=",111,"111",75.777,1023," ","hex"],
+["quattro","&lt;=",56,"56",200.385,0," ","string"],
+["sei","&lt;=",null,"NA",412.952,64," ","undefined"],
+["sette","&lt;=",0,"+86",234,32," ","int"],
+["tre","==",45,"45",23.729,1020," ","date"],
+["uno","&lt;",25,"25",123.456,253,"45.3105, 7.9807","int"]
+];</pre>
+          <p>Potremmo essere interessati ai valori dei campi della colonna 4 (partendo da zero).</p>
+          <p>Per estrarre i valori della suddetta colonna si dovrà intervenire sul <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> inibendo la visualizzazione dei campi indesiderati
+            per poi salvare la collezione dati risultante. </p>
+        </section>
+        <section>
+          <h3>Salvataggio dei valori di una colonna sotto forma di array.</h3>
+          <p>La selezione dei campi della collezione cui si è interessati deve essere fatta in negativo editando il tracciato record e inibendo la visualizzazione dei campi cui non si è interessati.</p>
+          <ul>
+            <li>cliccate il bottone <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> della barra dei comandi,</li>
+            <li>selezionare <code>Collection Loaded</code> usando il menu a tendina <code>Source</code>;</li>
+            <li>selezionare <code>Layout UsrView.aFld</code> usando il menu a tendina <code>Show Collection</code>;</li>
+            <li>abilitare la modifica togliendo il segno di spunta alla casella <code>Read Only [RO]</code>.</li>
+            <li>confermare premendo il bottone <code>Confirm</code>.</li>
+          </ul>
+          <div class="Cl_Note"> NOTA:<br>
+            Volendo deselezionare tutti i campi togliendo il segno di spunta alle corrispondenti caselle <code>fVisible</code> conviene<br>
+            <ul>
+              <li>selezionare la colonna <code>fVisible</code> cliccando su di una qualsiasi casella della stessa,</li>
+              <li>cliccare sulla voce <code>Data/set/reset</code> della barra dei menu,</li>
+              <li>togliere la spunta e confermare.</li>
+            </ul>
+            Tolta la spunta ai campi <code>fVisible</code> di tutte le righe del tracciato record basterà rimettere la spunta al campo corrispondente alla colonna cui si è interessati.</div>
+          <br>
+          Per inibire la visualizzazione dei campi indesiderati basta togliere il segno di spunta corrispondente al campo <code>fVisible</code> nelle righe associate ai campi considerati e
+          confermare.<br>
+          <br>
+          Consideriamo ad esempio la collezione Prova4.<br>
+          Posto il problema di estrarre i valori del la colonna 4 <code>RealVal</code>, operando in negativo, occorrerà deselezionare le tutte caselle di spunta della colonna 2 <code>fVisible</code>
+          ad eccezione di quella corrispondente alla colonna che vogliamo estrarre.<br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/estra_column1.jpg">&nbsp;<figcaption>Figura&nbsp; 1 -<span style="font-family: monospace;">La collezione Prova4</span><code></code>.</figcaption>
+          </figure>
+          Cliccate il bottone <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> della barra dei comandi,<br>
+          selezionate "<code>Collection Loaded</code>"<br>
+          e quindi "<code>Show Collection</code>" "<code>Layout UsrView aFld</code>".<br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/estra_column2.jpg">&nbsp;<figcaption>Figura 2 - <span style="font-family: monospace;">Selezioniamo il tracciato record
+                cioè il Layout della Collezione</span><code></code>.</figcaption> </figure>
+          Verrà visualizzata la Collezione corrispondente al tracciato record <code>aFld_Prova4</code>.<br>
+          <br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/estra_column3.jpg">&nbsp;<figcaption>Figura 3 - <span style="font-family: monospace;">Tracciato record della
+                collezione di dati</span><code></code>.</figcaption> </figure>
+          Togliete il segno di spunta a tutti i campi ad eccezione di quello che si vuole estrarre.<br>
+          <br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/estra_column4.jpg">&nbsp;<figcaption>Figura 4 -<span style="font-family: monospace;">Togliamo il segno di spunta</span><code></code>.</figcaption>
+          </figure>
+          Cliccate sull'icona e <img class="Cl_Ico_TBM" src="../../../ico/prev.svg"> per tornare indietro alla collezione di partenza si vedrà che è rimasta solo una colonna.<br>
+          <br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/estra_column5.jpg">&nbsp;<figcaption>Figura 5 - E' rimasta selezionata solo la colonna RealVal.</figcaption> </figure>
+          <br>
+          <br>
+          Per completare l'estrazione non resta che salvare la tabella ormai consistente di una sola colonna sotto forma di array attribuendo un nome al file.<br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/estra_column6.jpg">&nbsp;<figcaption>Figura 5 - E' rimasta selezionata solo la colonna RealVal.</figcaption> </figure>
+          Il contenuto del file consisterà di una matrice costituita da una sola colonna.<br>
+          <pre>[
+[0.123],
+[48.653],
+[3.123],
+[12.438],
+[75.777],
+[200.385],
+[412.952],
+[234],
+[23.729],
+[123.456]
+]</pre>
+        </section>
+        <br>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>LCD's Windows and Video Test</title>
+    <meta content="Luigi D. CAPRA" name="author">
+    <style type="text/css"></style>
+  </head>
+  <body>
+  <header id="Id_header0"></header>
+  <nav id="Id_nav0"></nav>
+  <aside id="Id_aside0"></aside>
+  <article id="Id_article0">
+    <br>
+    <header>
+      <h1>LCD's Windows and Video Test</h1>
+    </header>
+    <br>
+    <fieldset><legend>File che si desidera provare</legend> <input id="Id_FlNm" onchange="S_szURL = F_szFlNm(Id_FlNm.value)" type="file"> </fieldset>
+    <br>
+    <br>
+    <br>
+    <b>width</b>
+    <select id="Id_iWdt" width="100px" size="1" onchange="S_iWdt = F_szCopy(Id_iWdt.value)">
+      <option value="1920">1920</option>
+      <option value="1600">1600</option>
+      <option value="1366">1366</option>
+      <option value="1280">1280</option>
+      <option value="1200">1200</option>
+      <option value="1024">1024</option>
+      <option value="800" selected="selected">800</option>
+      <option value="600">600</option>
+      <option value="533">533</option>
+      <option value="480">480</option>
+      <option value="400">400</option>
+      <option value="320">320</option>
+      <option value="200">200</option>
+    </select>
+    <br>
+    <br>
+    <b>height</b>
+    <select id="Id_iHgt" width="100px" size="1" onchange="S_iHgt = F_szCopy(Id_iHgt.value)">
+      <option value="1920">1920</option>
+      <option value="1600">1600</option>
+      <option value="1366">1366</option>
+      <option value="1280">1280</option>
+      <option value="1200">1200</option>
+      <option value="1024">1024</option>
+      <option value="800" selected="selected">800</option>
+      <option value="600">600</option>
+      <option value="533">533</option>
+      <option value="480">480</option>
+      <option value="400">400</option>
+      <option value="320">320</option>
+      <option value="200">200</option>
+    </select>
+    <br>
+    <br>
+    <input value="0" id="Id_fMB" name="check" onchange="S_szMB  = F_szMap(Id_fMB.checked)" type="checkbox"> <label for="Id_fMB">MenuBar</label><br>
+    <input value="0" id="Id_fSB" name="check" onchange="S_szSB  = F_szMap(Id_fSB.checked)" type="checkbox"> <label for="Id_fSB">ScrollBar</label><br>
+    <input value="0" id="Id_fSts" name="check" onchange="S_szSts = F_szMap(Id_fSts.checked)" type="checkbox"> <label for="Id_fSts">Status</label><br>
+    <input value="0" id="Id_fTiB" name="check" onchange="S_szTiB = F_szMap(Id_fTiB.checked)" type="checkbox"> <label for="Id_fTiB">TitleBar</label><br>
+    <input value="0" id="Id_fTB" name="check" onchange="S_szTB  = F_szMap(Id_fTB.checked)" type="checkbox"> <label for="Id_fTB">ToolBar</label><br>
+    <br>
+    <button id="Id_Launch" onclick="U_Launcher()">Prova</button><br><br>
+
+          </article>
+   
+    <script type="text/javascript">//<![CDATA[
+"use strict";
+////
+var S_szURL = "facciamo.htm";
+var S_iWdt=1024;
+var S_iHgt=768;
+var S_szMB=0;
+var S_szSB=0;
+var S_szSts=0;
+var S_szTiB=0;
+var S_szTB=0;
+
+/*-----F_szFlNm --------------------------------------------------------
+*
+* $Note: due to security limitation F_szFlNm() returns only the filename but NOT the path, then VideoTest works only with the webpages located in the parent directory.
+*/ 
+function F_szFlNm()
+{
+debugger;
+var oName = document.getElementById('Id_FlNm').files[0];
+return(oName.name);
+} /* F_szFlNm */
+
+function U_Launcher()
+{
+var szCmd = "width=" + S_iWdt + ", height=" + S_iHgt + ", toolbar=" + S_szTB + ", menubar=" + S_szMB + ", status=" + S_szSts + ", titlebar=" + S_szTiB + ", scrollbar=" + S_szSB;
+
+window.open("../" + S_szURL, "", szCmd);
+     
+} /* U_Launcher */
+
+function F_szCopy(P_szVyl)
+{
+  return(P_szVyl);      
+} /* F_szCopy */
+
+function F_szMap(P_szVyl)
+{
+  var iNum = (P_szVyl)? 1: 0;
+  return(iNum);      
+} /* F_szMap */
+
+function U_Init()
+{
+document.write("<br>");
+document.write("<br><b>Document</b><br>");
+document.write("document.title " + document.title + "<br>");
+document.write("document.URL " + document.URL + "<br>");
+document.write("document.baseURL " + document.baseURL + "<br>");
+document.write("document.documentURL " + document.documentURL + "<br>");
+document.write("document.documentMode  " + document.documentMode + "<br>");
+document.write("document.domain '" + document.domain + "' (used in Same Origin Test)<br>");
+document.write("document.currentScript.src " + document.currentScript.src + "<br>");
+document.write("<br>");
+document.write("<br><b>Screen</b><br>");
+document.write("Screen width is " + screen.width + "<br>");
+document.write("Screen height is " + screen.height  + "<br>");
+document.write("Screen width available is " + screen.availWidth + "<br>");
+document.write("Screen height available is " + screen.availHeight  + "<br>");
+document.write("window width is " + window.innerWidth + " " +  document.body.clientWidth +  " " +  document.documentElement.clientWidth +"<br>");
+document.write("window height is " + window.innerHeight+ " " +  document.body.clientHeight +  " " +  document.documentElement.clientHeight  +"<br>");
+document.write("Available Screen Width: " + screen.availWidth + "<br>");
+document.write("Available Screen Height: " + screen.availHeight + "<br>");
+document.write("<br>");
+document.write("<br><b>Window</b><br>");
+document.write("Page location is " + window.location.href + "<br>");
+document.write("Page hostname is " + window.location.hostname + "<br>");
+document.write("Page path is " + window.location.pathname+ "<br>");
+document.write("Page protocol is " + window.location.protocol + "<br>");
+document.write("<br>");
+document.write("<br><b>Navigator</b><br>");
+document.write("navigator.oscpu " + navigator.oscpu + "<br>");
+document.write("navigator.connection " + navigator.connection);
+document.write("navigator.onLine " + navigator.onLine);
+document.write("navigator.cookieEnabled " + navigator.cookieEnabled + "<br>");
+document.write("navigator.language " + navigator.language + "<br>");
+document.write("Name is " + navigator.appName + " Code name is " + navigator.appCodeName + "<br>");
+document.write("navigator.product " + navigator.product +  " navigator.appVersion " + navigator.appVersion + "<br>"); 
+document.write("navigator.userAgent " +  navigator.userAgent + "  navigator.platform " +  navigator.platform + "<br>");
+document.write("navigator.language " + navigator.language + " navigator.javaEnabled(); " + navigator.javaEnabled() + "<br>");
+document.write("<br><br>");
+} /* U_Init */
+
+U_Init();
+//]]></script>
+ <footer id="Id_footer0"></footer>
+  <script src="file:///F:/AAA/siti/res/lcd_boot.js"></script>
+  <script src="/home/luigi/Links/win_D/AAA/siti/res/lcd_boot.js"></script>
+  </body>
+</html>

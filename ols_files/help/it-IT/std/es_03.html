@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Esempio 3</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Statistiche" name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>Esempio 3</h1>
+          <section>
+            <h2>Statistiche.</h2>
+            <br>
+            Consideriamo la seguente&nbsp; tabella di dati in formato <a href="formati.html#Id_JSON">JSON</a> tratta da Alfredo Rizzi, 'Analisi dei dati', NIS 1985, Tabella 1, p. 14.<br>
+            <pre><span style="font-family: monospace;">"Italia":[
+[1,"Abruzzo",3764768,344082,309246,188412,625341],
+[2,"Basilicata",1279800,119518,111887,66028,249481],
+[3,"Calabria",3661017,390215,434038,217834,963411],
+[4,"Campania",14335092,1067686,1416538,788751,3118403],
+[5,"Emilia-Rom",28555170,1565670,1211137,807389,2358014],
+[6,"Friuli VG",6624036,440662,356821,242780,878309],
+[7,"Lazio",28186429,1705867,2079322,1194604,3646884],
+[8,"Liguria",11769471,616437,763925,552634,1061267],
+[9,"Lombardia",66455047,3156254,3114106,1962865,5076657],
+[10,"Marche",5861897,512094,337033,213761,724098],
+[11,"Molise",659039,73326,67482,41586,144558],
+[12,"Piemonte",29950973,1758184,1412662,1014680,2815368],
+[13,"Puglia",10470234,810119,850067,493729,2215074],
+[14,"Sardegna",3952510,368920,333884,211445,964649],
+[15,"Sicilia",12137581,1230978,1401911,769567,2861128],
+[16,"Toscana",21961578,1382041,1287707,827753,2437425],
+[17,"Trentino AA",3458809,282471,216163,134252,577696],
+[18,"Umbria",3462762,290925,211952,140638,466720],
+[19,"Val D'Aosta",611356,50612,37529,26327,82620],
+[20,"Veneto",21389911,1417020,1044656,658422,2528269],
+[21,"Italia",278547480,17583081,16998066,10553457,33795372]
+]</span></pre>
+            Per scaricare la collezione usiamo ancora una volta la procedura degli esercizi precedenti inserendo nella casella di input <code>URL</code> l'indirizzo:<br>
+            <code>https://tuisys.altervista.org/ols/dbase/italia.OLS</code><br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex03_00.jpg">&nbsp;<figcaption>Figura 1 - <span style="font-family: monospace;"><span style="font-weight: bold;">Carichiamo
+                    la tabella Italia.OLS</span></span><code><span style="font-weight: bold;"></span></code>.</figcaption> </figure>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex03_01.jpg">&nbsp;<figcaption>Figura 2 - La tabella Italia.</figcaption> </figure>
+            <br>
+          </section>
+          <section>Caricata la tabella verifichiamo che non contenga anomalie utilizzando la funzione di colorazione dei tipi.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex03_02.jpg">&nbsp;<figcaption>Figura 3 - Verifichiamo che la tabella non contenga
+                anomalie..</figcaption> </figure>
+            Verificata la correttezza dei dati clicchiamo il tasto destro del mouse e selezioniamo la voce <code>Table Statistics</code>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex03_03.jpg">&nbsp;<figcaption>Figura 4 - Richiediamo il calcolo delle statistiche.</figcaption> </figure>
+            <br>
+            Il programma OLS calcolerà automaticamente le statistiche per ogni campo (colonna) della tabella e le renderà disponibili creando una nuova tabella (Statistics_Italia). <br>
+            Si noti che la tabella originale non è stata distrutta può essere riselezionata usando il tasto di selezione e caricamento <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load
+              Collection</code> oppure la freccia indietro <img class="Cl_Ico_TBM" src="../../../ico/prev.svg">.<br>
+            Tornando alla collezione relativa alle statistiche poiché queste ultime sono molte e superano di gran lunga il numero dei campi clicchiamo sull'icona <img class="Cl_Ico_TBM" src="../../../ico/transpose.svg">
+            <code></code> <code>Transpose</code> per scambiare le righe con le colonne ottenendo una rappresentazione più comoda.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex03_05.jpg">&nbsp;<figcaption>Figura 5 - Update Data Type.</figcaption> </figure>
+            <br>
+            <br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

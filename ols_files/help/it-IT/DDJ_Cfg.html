@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>OLS HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_DDJ_Cfg_HardCoded">
+          <h1>DDJ_Cfg<br>
+            Menu di Configurazione</h1>
+          <section>
+            <h2>Voci del modulo "Config".</h2>
+          </section>
+          <section>
+            <h3>szUser</h3>
+            <p>Nome utente che verrà inviato al server al momento del login.</p>
+          </section>
+          <section>
+            <h3>szURL_Relay</h3>
+            <p>URL corrispondente al server dal quale è possibile ricaricare l'applicativo in modo da soddisfare le condizioni <a href="std/glossario.html#Id_SOP">SOP</a>.</p>
+          </section>
+          <section>
+            <h3>szjDate</h3>
+            <p>Formato delle date.</p>
+            <p>Possibili valori:</p>
+            <ul>
+              <li>YYYYMMDD: formato standard usato per rappresentare le date nei database.</li>
+              <li>DDMMYYYY: formato delle date usate nell'Europa continentale.</li>
+              <li>MMDDYYYY: formato date usate nei paesi anglosassoni.</li>
+            </ul>
+          </section>
+          <section>
+            <h3> szURL_Srv</h3>
+            <p>URL corrispondente al server usato per caricare le <a href="std/glossario.html#Id_Collezione">Collezioni</a> di dati.</p>
+          </section>
+          <section>
+            <h3> szSrv_Knd</h3>
+            <p>Tipo di server.</p>
+          </section>
+          <section>
+            <h3> szDir_Data</h3>
+            <p>In riferimento a <span style="font-weight: bold;">szURL_Srv</span> directory in cui risiedono le <a href="std/glossario.html#Id_Collezione">Collezioni</a> di dati per default.</p>
+          </section>
+          <section>
+            <h3> iWdt_Tab</h3>
+            Dimensioni della finestra virtuale. Il parametro <code>iWdt_Tab</code> consente di adattare le dimensioni della finestra a quelle del <a href="glossario#Id_Tracciato_Record">tracciato
+              record</a>.<br>
+          </section>
+          <section>
+            <h3> iSmpl_Step</h3>
+            <p>Seleziona il passo per la visualizzazione di righe/tuple.<br>
+              <br>
+              Impostando "iSmpl_Step" = 1 verranno mostrate tutte le tuple (righe) presenti nella raccolta (filtrata).<br>
+              Impostando "iSmpl_Step" = 2 verrà mostrata una riga sì e una no.<br>
+              " " " "<br>
+              Impostando "iSmpl_Step" = 10 verrà mostrata una riga ogni dieci.<br>
+              Ecc.</p>
+          </section>
+          <section>
+            <h3> iNnRow_Page</h3>
+            <p>Numero di righe per pagina.</p>
+          </section>
+          <section>
+            <h3> szLanguage: Language</h3>
+            <p>Lingua selezionata.</p>
+            <p>it-IT italiano;</p>
+            <p>en-US: inglese USA.</p>
+          </section>
+          <section>
+            <h3> iWdt_Icon</h3>
+            <p>Larghezza delle icone in pixel.</p>
+            <p>Modificando il valore del parametro <code>iWdt_Icon</code> è possibile cambiare la dimensione delle icone.</p>
+            <p>La modifica diventerà operativa dopo il ricaricamento del programma.</p>
+          </section>
+          <section>
+            <h3> iNn_Col</h3>
+            Numero di colonne usate per mostrare le immagini nella "vista icone". </section>
+          <section>
+            <h3> iDebug</h3>
+            <p>Soglia di segnalazione delle eccezioni.</p>
+            <p>Ad ogni eccezione riscontrata (errore, <code>warning</code>, evento di <code>debug</code>) è associato un livello di priorità che per default è 5.</p>
+            <p>Abbassando la soglia di segnalazione si riduce il numero degli eventi segnalati e quindi il disturbo per l'utente.</p>
+            <p>Alzando la soglia si aumentano le capacità diagnostiche del sistema, ma anche il fastidio per l'utente.</p>
+            <p><br>
+            </p>
+            <p>0 = Maschera tutte le segnalazioni.</p>
+            <p>5 = valore di default.</p>
+            <p>10 = abilitazione completa delle funzioni di debug.</p>
+            <p><br>
+            </p>
+            <p>Gli eventi con priorità 0, come gli errori, non sono mascherabili per cui vengono sempre segnalati.</p>
+          </section>
+          <section>
+            <h3> fHalt_Debug</h3>
+            <p>Flag che abilita/disabilita le funzioni di debug condizionali.</p>
+          </section>
+          <section>
+            <h3> fSend_DebugInfo</h3>
+            <p>Flag che abilita/disabilita l'invio automatico delle informazioni diagnostiche al server.</p>
+          </section>
+          <section>
+            <h3> fChk_OnLine</h3>
+            <p>Flag che abilita/disabilita il controllo della connessione.</p>
+          </section>
+          <section>
+            <h3> fDtStru</h3>
+            <p>Flag che abilita/disabilita la dichiarazione delle strutture dati ausiliarie per fini diagnostici.</p>
+          </section>
+          <section>
+            <h3> fLoadExamples</h3>
+            <p>Flag che abilita/disabilita il caricamento degli esempi.</p>
+          </section>
+          <section>
+            <h3> fLoadRemarks</h3>
+            <p>Flag che abilita/disabilita il caricamento delle annotazioni.</p>
+          </section>
+          <section>
+            <h3> fInitialize</h3>
+            <p>Flag che abilita/disabilita il caricamento del file di inizializzazione.</p>
+          </section>
+          <section>
+            <h3> fEnaPeriodic</h3>
+            <p>Flag che abilita/disabilita l'esecuzione delle funzioni periodiche.</p>
+          </section>
+          <section>
+            <h3> fIcons</h3>
+            <p>Flag che abilita/disabilita l'utilizzo delle icone invece dei bottoni con il nome delle funzioni.</p>
+          </section>
+          <section>
+            <h3>fVoice_Error</h3>
+            <p>Flag che abilita/disabilita la lettura ad alta voce dei messaggi di errore.</p>
+          </section>
+          <section>
+            <h2>Comandi della finestra di dialogo.</h2>
+          </section>
+          <section>
+            <h3>X.</h3>
+            <p>Cliccando sul simbolo "X" che compare in alto a destra si chiude la finestra di dialogo, annullando tutte le modifiche.</p>
+          </section>
+          <section>
+            <h3>Confirm.</h3>
+            <p>Cliccando sul pulsante "Confirm" nella fascia verde sottostante si chiude la finestra di dialogo tornando alla rappresentazione della Collezione selezionata.</p>
+          </section>
+          <section>
+            <h2>Comandi della barra delle icone.</h2>
+          </section>
+        </article>
+        <article id="Id_DDJ_Cfg">
+          <section id="DDJ_Cfg_Reset">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../../ico/reset.svg"> reset<br>
+              Reset</h2>
+            <p>Ripristina i valori iniziali dei flag.</p>
+          </section>
+          <section id="DDJ_Cfg_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../../ico/help.svg"> aiuto<br>
+              Help file</h2>
+            <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

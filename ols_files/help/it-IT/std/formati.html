@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Formati</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>Schemi e Formati.</h1>
+        <section>
+          <h2>Rappresentazioni dei dati in memoria.</h2>
+          Il linguaggio di programmazione JavaScript consente di rappresentare le strutture dati con una varietà di schemi diversi, molti dei quali possono essere salvati in formato JSON senza alcuna
+          modifica.<br>
+          La nomenclatura che ci accingiamo ad introdurre ha lo scopo di distinguere fra i diversi schemi/ formati supportati da OLS.<br>
+        </section>
+        <section>
+          <h3 id="Id_Null">Null.</h3>
+          <br>
+          <p>Formato <strong>nullo</strong> o illegale.</p>
+        </section>
+        <section>
+          <h3 id="Id_Arr">Arr.</h3>
+          <br>
+          <p><strong>Array</strong> di valori di tipo omogeneo.</p>
+          <p>Diremo <span style="font-weight: bold;">array</span> delle collezioni ordinate, di dati semplici, omogenei cui è possibile accedere utilizzando l'<span style="font-weight: bold;">operatore
+              parentesi quadre []</span>, specificando l'<a href="glossario.html#Id_Indice">indice</a> corrispondente alla posizione degli elementi all'interno della struttura dati. </p>
+          <p><br>
+          </p>
+          <p>Esempio:</p>
+          <p><br>
+          </p>
+          <p><code>var S_ai&nbsp;&nbsp; = [41,70,53,19,37,21,6,115,84,72];</code></p>
+          <code> </code>
+          <p><code>var S_asz&nbsp; = ["rosso", "verde", "blu"];</code></p>
+        </section>
+        <section>
+          <h3 id="Id_as_">as_</h3>
+          <strong>Array associativi.</strong><br>
+          Diremo <span style="font-weight: bold;">array associativi</span> delle collezioni non ordinate, di dati semplici, omogenei cui è possibile accedere utilizzando la <span style="font-weight: bold;">notazione
+            puntata</span> o l'<span style="font-weight: bold;">operatore parentesi quadre []</span>, specificando il valore numerico una <a href="glossario.html#Id_Chiave">chiave</a> costituita da
+          una stringa di caratteri.<br>
+          <br>
+          Esempio:<br>
+          <br>
+          <code>var S_Settimana = {"lunedì": 1, "martedì":2, "mercoledì":3,&nbsp; "giovedì":4, "venerdì":5, "sabato":6, "domenica":7};</code></section>
+        <section>
+          <h3 id="Id_Obj">Obj.</h3>
+          <br>
+          <p><strong>Oggetti</strong>.</p>
+          <p>Diremo <span style="font-weight: bold;">oggetti definiti dall'utente</span> (<span style="font-style: italic;">user defined object</span>) delle collezioni non ordinate, di dati di tipo
+            arbitrario cui è possibile accedere utilizzando la <span style="font-weight: bold;">notazione puntata</span> o l'<span style="font-weight: bold;">operatore parentesi quadre []</span>,
+            specificando una <a href="glossario.html#Id_Chiave">chiave</a> costituita da una stringa di caratteri.</p>
+          <p><br>
+          </p>
+          <p>Esempio:</p>
+          <p><br>
+          </p>
+          <p><code>var S_Obj = {sz0:"S_Obj", iNum1:111, sz2:"due", iNum3:33, Date4:"2022-09-21", fBool5F:false, fBool6T:true, szImg7:"file://D:/Prove_JS/_Viola/Res/image0.jpg", Arr8:[1,2,3]};</code></p>
+        </section>
+        <section>
+          <h3 id="Id_aRcd">aRcd.</h3>
+          <br>
+          <p><strong>Array di Record.</strong></p>
+          <p><br>
+            Diremo <span style="font-weight: bold;">array</span> delle collezioni&nbsp; ordinate, di dati strutturati, omogenei, cui è possibile accedere utilizzando l'<span style="font-weight: bold;">operatore
+              parentesi quadre []</span>, specificando il valore numerico corrispondente alla posizione degli elementi all'interno della struttura dati. In seconda battuta si potrà accedere ad un
+            particolare <a href="glossario.html#Id_Campo">campo</a> del <a href="glossario.html#Id_Record">record</a> specificando l'<a href="glossario.html#Id_Indice">indice</a> corrispondente.</p>
+          <pre>var S_aRcd  =
+[
+["anatra_0",41,false,"duck_3","2009-09-01","S_aRcd_5"],
+["cane",70,0,"dog","2021-01-02",""],
+["cavallo",53,true,"horse","2004-04-03",""],
+["foca",19,true,"seal","2000-10-04",""],
+["gallo",37,1,"cock","1988-08-05",""],
+["gatto",21,1,"cat","2017-02-06",""],
+["lupo",6,0,"wolf","2007-07-07",""],
+["oca",115,true,"goose","1996-06-08",""],
+["rana",84,false,"frog","2015-05-09",""],
+["topo",72,false,"mouse","2023-03-10",""]
+];</pre>
+        </section>
+        <section>
+          <h3 id="Id_aObj">aObj.</h3>
+          <br>
+          <p><strong>Array di Oggetti.</strong></p>
+          <p><br>
+          </p>
+          <p>Diremo <span style="font-weight: bold;">array di Oggetti</span> delle collezioni ordinate, di dati strutturati, omogenei, cui è possibile accedere utilizzando l'<span style="font-weight: bold;">operatore
+              parentesi quadre []</span>, specificando il valore numerico corrispondente alla posizione degli elementi all'interno della struttura dati. In seconda battuta si potrà accedere ad un
+            particolare elemento (<a href="glossario.html#Id_Campo">campo</a>) dell'oggetto specificando una <a href="glossario.html#Id_Chiave">chiave</a> costituita da una stringa di caratteri.</p>
+          <p>Esempio:</p>
+          <pre>var S_aObj  = 
+[
+{"sz0":"anatra_0","iNum1":41,"Bool2":false,"sz3":"duck_3","Date4":"2009-09-01","Str5":"S_aObj_5"},
+{"sz0":"cane","iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Str5":""},
+{"sz0":"cavallo","iNum1":53,"Bool2":true,"sz3":"horse","Date4":"2004-04-03","Str5":""},
+{"sz0":"foca","iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Str5":""},
+{"sz0":"gallo","iNum1":37,"Bool2":1,"sz3":"cock","Date4":"1988-08-05","Str5":""},
+{"sz0":"gatto","iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Str5":""},
+{"sz0":"lupo","iNum1":6,"Bool2":0,"sz3":"wolf","Date4":"2007-07-07","Str5":""},
+{"sz0":"oca","iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Str5":""},
+{"sz0":"rana","iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Str5":""},
+{"sz0":"topo","iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Str5":""}
+];</pre>
+        </section>
+        <section>
+          <h3 id="Id_asRcd">asRcd.</h3>
+          <br>
+          <p><strong>Array associativo di Record.</strong></p>
+          <p><br>
+          </p>
+          <p>Diremo <span style="font-weight: bold;">array associativo di record</span> delle collezioni non ordinate, di dati strutturati, omogenei, che consentono di accedere ai <a href="glossario.html#Id_Record">record</a>
+            utilizzando la <span style="font-weight: bold;">notazione puntata</span> o l'<span style="font-weight: bold;">operatore parentesi quadre []</span>, specificando una <a href="glossario.html#Id_Chiave">chiave</a>
+            costituita da una stringa di caratteri. In seconda battuta si può accedere ad un particolare <a href="glossario.html#Id_Campo">campo</a> del <a href="glossario.html#Id_Record">record</a>
+            specificando l'<a href="glossario.html#Id_Indice">indice</a> corrispondente.</p>
+          <p>Esempio:</p>
+          <pre>var S_asRcd = 
+{
+"anatra_0":[41,false,"duck_3","2009-09-01","S_asRcd_5"],
+"cane":[70,0,"dog","2021-01-02",""],
+"cavallo":[53,true,"horse","2004-04-03",""],
+"foca":[19,true,"seal","2000-10-04",""],
+"gallo":[37,1,"cock","1988-08-05",""],
+"gatto":[21,1,"cat","2017-02-06",""],
+"lupo":[6,0,"wolf","2007-07-07",""],
+"oca":[115,true,"goose","1996-06-08",""],
+"rana":[84,false,"frog","2015-05-09",""],
+"topo":[72,false,"mouse","2023-03-10",""]
+};</pre>
+        </section>
+        <section>
+          <h3 id="Id_asObj">asObj.</h3>
+          <br>
+          <p><strong>Array associativo di Oggetti.</strong></p>
+          <p><br>
+          </p>
+          <p>Diremo <span style="font-weight: bold;">array associativo di oggetti</span> delle collezioni non ordinate, di dati strutturati, omogenei, che consentono di accedere agli oggetti (<a href="glossario.html#Id_Record">record</a>)
+            utilizzando la <span style="font-weight: bold;">notazione puntata</span> o l'<span style="font-weight: bold;">operatore parentesi quadre []</span>, specificando una <a href="glossario.html#Id_Chiave">chiave</a>
+            costituita da una stringa di caratteri. In seconda battuta si potrà accedere ad un particolare elemento (<a href="glossario.html#Id_Campo">campo</a>) dell'oggetto specificando una <a href="glossario.html#Id_Chiave">chiave</a>
+            costituita da una stringa di caratteri.</p>
+          <p><br>
+          </p>
+          <p>Esempio:</p>
+          <pre>var S_asObj = 
+{
+"anatra_0":{"iNum1":41,"Bool2":false,"sz3":"duck_3","Date4":"2009-09-01","Str5":"S_asObj_5"},
+"cane":{"iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Str5":""},
+"cavallo":{"iNum1":53,"Bool2":true,"sz3":"horse","Date4":"2004-04-03","Str5":""},
+"foca":{"iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Str5":""},
+"gallo":{"iNum1":37,"Bool2":1,"sz3":"cock","Date4":"1988-08-05","Str5":""},
+"gatto":{"iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Str5":""},
+"lupo":{"iNum1":6,"Bool2":0,"sz3":"wolf","Date4":"2007-07-07","Str5":""},
+"oca":{"iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Str5":""},
+"rana":{"iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Str5":""},
+"topo":{"iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Str5":""}
+};</pre>
+        </section>
+        <section>
+          <h2>Formati File.</h2>
+          La nomenclatura seguente non concerne la rappresentazione dei dati nella memoria RAM, ma quella degli stessi sotto forma di file su disco.<br>
+          <h3 id="Id_JSON">JSON</h3>
+          I file in formato JSON sono costituiti da stringhe di testo come quelle degli esempi precedenti (vedi <a href="#Id_Arr">Arr</a>, <a href="#Id_as_">as_</a>, <a href="#Id_Obj">Obj</a>, <a
+            href="#Id_aRcd">aRcd</a>, <a href="#Id_aObj">aObj</a>, <a href="#Id_asRcd">asRcd</a>, <a href="#Id_asObj">asObj</a>) con due importanti differenze:<br>
+          <ul>
+            <li>l'omissione della dichiarazione del nome della variabile,</li>
+            <li>l'omissione del punto e virgola finale.</li>
+          </ul>
+          <br>
+          Esempio:<br>
+          Immaginando di volere salvare in un file esterno i valori della struttura dati <a href="#Id_aRcd">S_asRcd</a> bisognerà inserire semplicemente<br>
+          <pre>{
+"anatra_0":[41,false,"duck_3","2009-09-01","S_asRcd_5"],
+"cane":[70,0,"dog","2021-01-02",""],
+"cavallo":[53,true,"horse","2004-04-03",""],
+"foca":[19,true,"seal","2000-10-04",""],
+"gallo":[37,1,"cock","1988-08-05",""],
+"gatto":[21,1,"cat","2017-02-06",""],
+"lupo":[6,0,"wolf","2007-07-07",""],
+"oca":[115,true,"goose","1996-06-08",""],
+"rana":[84,false,"frog","2015-05-09",""],
+"topo":[72,false,"mouse","2023-03-10",""]
+}</pre>
+          omettendo il nome della variabile che non fa parte dei dati e il punto e vergola finale.<br>
+        </section>
+        <section>
+          <h3 id="Id_CSV">CSV.</h3>
+          <br>
+          <p><strong>Comma Separated Values (CSV).</strong></p>
+          <p><br>
+          </p>
+          <p>File di testo costituito da liste di valori separate da virgole (o da altri caratteri convenzionali).</p>
+          <div><br>
+          </div>
+          <div> </div>
+          <div class="Cl_Note">NOTA:<br>
+            Il formato CSV è il tipico risultato che si ottiene stampando una lista di valori&nbsp; in linguaggio C utilizzando una <code>printf</code> in un ciclo <code>for</code>.</div>
+          <p><br>
+          </p>
+          <p>Esempio:</p>
+          <pre>1583403450,      1,   0,   0,   0,   1,      0,      0
+1583403451,      2,   0,   0,   0,   2,   2141,   2141
+1583403452,      3,   0,   0,   0,   3,   5469,   5469
+1583403453,      4,   0,   0,   0,   4,   2492,   2492
+1583403454,      5,   0,   0,   0,   5,   2230,   2230
+1583403455,      6,   0,   0,   0,   6,   1827,   1827
+1583403456,      7,   0,   0,   0,   7,   1493,   1493
+1583403457,      8,   0,   0,   0,   8,   1462,   1462</pre>
+        </section>
+        <section>
+          <h3 id="Id_FLR">Fixed Length Records (FLR).</h3>
+          Nei record di lunghezza fissa ciascun campo occupa sempre lo stesso numero di caratteri per cui stampando i record uno per riga i campi risultano perfettamente incolonnati.<br>
+          Le funzioni <code>printf/fprintf</code> del C-Language (e degli altri linguaggi compatibili <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a>) sono ottimizzate per la
+          stampa/salvataggio di dati sotto forma di record di lunghezza fissa.<br>
+          <br>
+          Ad esempio l'istruzione<br>
+          <br>
+          <code>printf("%10d %6d %3d %3d %3d %3d %6d %6d\n", x1, x2, x3, x4, x5, x6, x7, x8);</code><br>
+          <br>
+          potrebbe produrre un tabulato come quello sottostante.<br>
+          <pre>1583403450      1   0   0   0   1      0      0
+1583403451      2   0   0   0   2   2141   2141
+1583403452      3   0   0   0   3   5469   5469
+1583403453      4   0   0   0   4   2492   2492
+1583403454      5   0   0   0   5   2230   2230
+1583403455      6   0   0   0   6   1827   1827
+1583403456      7   0   0   0   7   1493   1493
+1583403457      8   0   0   0   8   1462   1462</pre>
+          Si osservi che nel caso suddetto è superfluo separare i campi usando virgole "," o altri segni di punteggiatura perché i valori corrispondenti ai diversi campi sono facilmente individuabili
+          poiché occupano una posizione fissa nel tabulato.<br>
+          Il campo "<code>iLen</code>" del tracciato record consente di specificare il numero di caratteri riservati per i valori di ciascun campo quando viene impiegato il formato <code>FLR</code>.<br>
+          <br>
+          NOTA.<br>
+          La routine di <a href="glossario.html#Id_AutoDetect">AutoDetect</a> richiede che le intestazioni corrispondenti ai nomi delle colonne dei file in formato FLR siano allineate con l'inizio
+          del campo.<br>
+          <br>
+          Il seguente allineamento è <span style="font-weight: bold;">corretto</span>:<br>
+          <pre><span style="font-weight: bold;">seq  Duration Date          Pulse   Maxpulse Calories </span>
+   0       60  '2020/12/01'    110       130     409.1
+   1       60  '2020/12/02'    117       145     479.0
+   2       60  '2020/12/03'    103       135     340.0
+   3       45  '2020/12/04'    109       175     282.4
+   4       45  '2020/12/05'    117       148     406.0
+   5       60  '2020/12/06'    102       127     300.0
+   6       60  '2020/12/07'    110       136     374.0</pre>
+          <pre>
+Il seguente allineamento è <span style="font-weight: bold;">sbagliato</span>!<br><pre> seq, Duration,          Date,  Pulse,  Maxpulse,  Calories
+   0,       60,  '2020/12/01',    110,       130,     409.1
+   1,       60,  '2020/12/02',    117,       145,     479.0
+   2,       60,  '2020/12/03',    103,       135,     340.0
+   3,       45,  '2020/12/04',    109,       175,     282.4
+   4,       45,  '2020/12/05',    117,       148,     406.0
+   5,       60,  '2020/12/06',    102,       127,     300.0
+   6,       60,  '2020/12/07',    110,       136,     374.0 </pre></pre>
+        </section>
+        <section>
+          <h3 id="Id_Text">Text.</h3>
+          <p>Generico file di testo <span style="font-style: italic;">non formattato</span>.</p>
+          <p>La suddetta opzione, elencata nella lista dei possibili formati dei file che si possono caricare, fa si che il testo selezionato venga caricato e quindi elaborato conteggiando le parole
+            ivi contenute.</p>
+          <p>La routine di caricamento restituisce quindi la tabella delle frequenze delle parole contenute nel testo.</p>
+        </section>
+        <section>
+          <h3 id="Id_BLOB">Blob.</h3>
+          <p>Il termine BLOB, dall'inglese <span style="font-weight: bold;">Binary Large Object Block</span>, designa un generico file in formato binario. </p>
+          <p>L'opzione BLOB consente di caricare il contenuto di immagini o altri tipi di file trasformandole in tabelle di dati a <a href="#Id_FLR">campi di lunghezza fissa</a>.</p>
+        </section>
+        <section>
+          <h3 id="Id_OLS">OLS.</h3>
+          <p>Il formato OLS prevede la possibilità di salvare nello stesso file sia i dati della collezione che il corrispondente <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> (<span
+              style="font-style: italic;">layout</span>).</p>
+          <p><br>
+          </p>
+          <p>NOTA:</p>
+          <p>Poiché i file OLS contengono al loro interno più collezioni di dati, per siscurezza, queste vengono sempre caricate in modalità Read Only. Nel caso in cui l'operatore desideri modificare
+            il contenuto di una collezioni di dati dovrà selezionarla individualmente e disabilitare il flag abilitando le modifiche.</p>
+        </section>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

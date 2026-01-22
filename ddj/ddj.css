@@ -1,0 +1,254 @@
+/* License : https://www.gnu.org/licenses/lgpl-3.0.txt */
+
+body { 
+  background-color: var(--background);
+  color: var(--foreground);
+}
+    
+header {
+  position:fixed;
+  top:0;
+  text-align:center;
+  background-color:var(--Hdr);  
+  color: black;
+  font-size:200%;
+  width:100%;
+  height:5vh;
+}
+
+nav {
+  position:fixed;
+  top:5vh;
+  width:100%;
+}
+
+footer {
+  position:fixed;
+  bottom:0;
+  text-align:center;
+  background-color:var(--Hdr);  
+  color: black;
+  width:100%;
+}
+
+.Cl_TBM {
+  text-align: left;
+}
+
+.CL_StdMenu {
+  text-align: left;
+}
+
+#Id_Div00 {
+  position:fixed;
+  top:10vh;
+  width:100%;
+}
+
+#Id_Div01 {
+  background-color: var(--bg_tbl);
+  top:10vh;
+  width:100%;
+}
+
+#Id_Tab_Fld {
+  width:100%;
+  background-color:yellow;
+}
+#Id_Tbl0_H, #Id_Tbl0_B {
+  font-family: monospace;
+}
+#Id_Tbl3 {
+}
+
+/* Table Scrolling */
+
+.Cl_TabFix table {
+	table-layout:auto;
+}
+.Cl_TabFix thead {
+	background:var(--THead);
+	display:table;
+	width:calc(100% - 18px);     /* 18px because the elevator. */
+}
+.Cl_TabFix tfoot {
+	background:var(--THead);
+	display:table;
+	width:calc(100% - 18px);
+}
+.Cl_TabFix tbody {
+	height:80vh;
+	overflow:scroll;             /* enable text overflow scrolling (if required) */
+	overflow-x:scroll;           /* disable horizontal scrolling */
+	display:block;
+}
+.Cl_TabFix th {
+	padding:5px 10px;
+	border:1px solid #000;
+}
+.Cl_TabFix td {
+	padding:5px 10px;
+	border:1px solid #000;
+}
+.Cl_TabFix tr {
+	display:table;
+	width:100%;
+        min-width: 100px;
+	table-layout:fixed;
+}
+
+/* SVG */
+#x__line {
+   stroke:red;
+   stroke-width:6;
+}
+
+#Id_Hdr_szApp{
+text-align:left;
+width:30%;
+}
+#Id_Hdr_szFlNm {
+text-align:left;
+width:60%;
+}
+#Id_Hdr_szRO {
+text-align:left;
+width:8%;
+}
+                                                                  
+@media all and (max-width: 1400px) {
+header {
+  position:fixed;
+  top:0;
+  text-align:center;
+  background-color:red;  
+  color: black;
+  font-size:150%;
+  width:100%;
+  height:5vh;
+}
+#Id_Hdr_szApp{
+text-align:left;
+width:30%;
+color:red;
+}
+#Id_Hdr_szFlNm {
+text-align:left;
+width:60%;
+}
+#Id_Hdr_szRO {
+text-align:left;
+width:8%;
+}
+
+}
+
+@media all and (max-width: 1000px) {
+header {
+  position:fixed;
+  top:0;
+  text-align:center;
+  background-color:red;  
+  color: black;
+  font-size:100%;
+  width:100%;
+  height:5vh;
+}
+#Id_Hdr_szApp{
+text-align:left;
+width:30%;
+color:magenta;
+}
+#Id_Hdr_szFlNm {
+text-align:left;
+width:60%;
+}
+#Id_Hdr_szRO {
+text-align:left;
+width:8%;
+}
+
+}
+
+.Cl_In_6ch {
+ width:12ch;
+}
+
+.Cl_input_Image_Button {
+width:20px;
+}
+
+.Cl_Error {
+color:red;
+}
+
+.Cl_HL_1 {
+color:blue;
+background-color:yellow;
+}
+.Cl_HL_2 {
+color:red;
+background-color:lime;
+}
+
+.Cl_HL_3 {
+color:magenta;
+background-color:var(--Hdr);
+}
+.Cl_HL_4 {
+color:yellow;
+background-color:magenta;
+}
+
+.Cl_HL_5 {
+color:white;
+background-color:red;
+}
+.Cl_HL_6 {
+color:white;
+background-color:black;
+}
+.Cl_HL_7 {
+color:green;
+background-color:black;
+}
+.Cl_HL_8 {
+color:white;
+background-color:grey;
+}
+
+hili {   /* HighLight */
+  display: inline;
+  background-color:var(--Hdr);
+}
+
+ClrSmpl { /* Color Sample */
+  display: inline;
+  background-color:var(--Hdr);
+}
+
+.Cl_Note {
+  color:blue;
+}
+
+.Cl_Input {
+  width:60%;
+}
+
+.Cl_TextArea {
+  width:100%;
+}
+
+.Cl_ReadOnly {
+  color:#f300f3;
+  background-color:var(--Hdr);
+}
+
+.Cl_LcdLcd { 
+  display: none;
+} 
+
+a:link { color: blue; }      /* text-decoration: underline;  */                               
+a:visited { color: magenta; }                                         
+a:hover { color: red; }                                           
+a:active { color: #ff4040; text-decoration:none; font-weight:normal; } 

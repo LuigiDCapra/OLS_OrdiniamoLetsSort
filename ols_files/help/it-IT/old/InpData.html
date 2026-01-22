@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpData" class="Cl_Extra"> <br>
+          <h1>Select Collection</h1>
+          <section>
+            <h2>Toolbar di "Select Collection".</h2>
+            <br>
+            <p>La finestra di dialogo "Select Collection" consente di selezionare una <em>collezione di dati</em> già in memoria o di caricarla dall'esterno.</p>
+            <p>Il <em>modulo</em> (<em>form</em>) presentato all'utente dipende dalla <em>sorgente</em> (<em>Source</em>) selezionata.</p>
+            <p>Le possibili <em>sorgenti</em> delle <em>collezioni di dati</em> sono le seguenti:</p>
+            <ul>
+              <li><code>Collection Loaded</code>: seleziona una Collezione già caricata nella memoria del programma.</li>
+              <li><code>New</code>: crea una nuova collezione di dati partendo da zero.</li>
+              <li><code>File</code>: carica una collezione precedentemente salvata in un file esterno.</li>
+              <li><code>FileDDJ: </code>dato il path del file contenente i dati o la URL del sito su cui risiede scarica la collezione di dati indicata.</li>
+              <li><code>Local Storage</code>: carica una collezione precedentemente salvata nel <em>Local Storage</em>.</li>
+              <li><code>Session Storage</code>: carica una collezione precedentemente salvata nel <em>Session Storage</em>.</li>
+              <li><code>URL</code>: carica una collezione da un sito Web compatibile.</li>
+              <li><code>Global Variable</code>: carica i valori contenuti in una variabile di memoria globale (allo scopo di debuggare un altro programma).</li>
+              <li><code>Function</code>: crea una nuova collezione che verrà inizializzata con dei valori generati artificialmente specificando le corrispondenti funzioni.</li>
+              <li><code>TextArea</code>: crea una nuova collezione a partire dai dati copiati nella TextArea.</li>
+            </ul>
+          </section>
+          <section>
+            <h2>- Collection Loaded</h2>
+            <section>
+              <h3>Select collection</h3>
+              <p>Cliccando sul corrispondente bottone di input si apre un menu a tendina che mostra l'elenco delle collezioni di dati già presenti in memoria consentendo di selezionarla per la
+                visualizzazione e l'eventuale modifica.</p>
+              <p>NB: Le collezioni corrispondenti ai tracciati record (layout) delle collezioni o delle User View non vengono elencate.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.<br>
+            </section>
+            <section>
+              <h3>Show collection's</h3>
+              <p>Cliccando sul corrispondente bottone di input si apre un menu a tendina che mostra l'elenco delle strutture dati associate alla collezione selezionata:</p>
+              <br>
+              <ul>
+                <li><code>tuples</code>: mostra gli elementi (Tuple) della collezione sotto forma di <em>tabella</em>.</li>
+                <li><code>Layout XDB.aFld</code>: mostra il tracciato record (Layout) della <em>collezione originale</em> (<span style="font-weight: bold;">Read Only</span>).</li>
+                <li><code>Layout UsrView.aFld</code>: mostra il tracciato record (Layout) della <em>vista utente</em> (<em>User View</em>) consentendo eventualmente di modificarlo.</li>
+                <li><code>XDB</code>. mostra il descrittore XDB associato alla collezione ovvero i valori degli attributi e dei metodi del corrispondente oggetto (<span style="font-weight: bold;">Read
+                    Only</span>).</li>
+                <li><code>UsrView</code>: mostra il descrittore UsrView associato alla collezione ovvero i valori degli attributi e dei metodi del corrispondente oggetto (<span style="font-weight: bold;">Read
+                    Only</span>).</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Read Only</h3>
+              <p>Il Flag ReadOnly consente, quando è permesso, di abilitare/disabilitare la modifica delle voci del modulo che verrà aperto.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- New</h2>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato JSON della nuova collezione.</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- File</h2>
+            <section>
+              <h3>File</h3>
+              <p>Cliccando sul bottone di input si aprirà una finestra che consentirà di selezionare il file che contiene la collezione di dati che si desidera caricare.</p>
+            </section>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato della nuova collezione (vedi <a href="formati.html">Formati</a>).</p>
+              <p><br>
+              </p>
+              <div class="Cl_Note">NOTA: Volendo caricare le voci costituite dalle <span style="font-style: italic;">righe</span> di un file di testo non <span style="font-style: italic;">separato
+                  da virgole</span> potete ricorrere comunque alla opzione <span style="font-weight: bold;">CSV</span>.</div>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il <strong>tracciato record</strong> (<em>layout</em>) della nuova collezione fra quelli disponibili, in alternativa si può
+                ricorrere all'opzione AutoDetect lasciando al programma il compito di ricostruire il <strong>tracciato record</strong> (<em>layout</em>) della collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Embed</h3>
+              <p>Il formato JSON prevede che tutte le strutture dati siano contenute all'interno di una coppia di parentesi quadre ("[]") o graffe ("{}"), quando si editano i file è però prassi comune
+                cancellarle. La funzione <em>embed</em> tenta di ripristinare automaticamente le parentesi cancellate.</p>
+            </section>
+            <section>
+              <h3>Transpose</h3>
+              <p>Flag abilita/disabilita la rappresentazione dei dati della collezione in modalità trasposta scambiando le righe con le colonne e viceversa.</p>
+            </section>
+            <section>
+              <h3>Field name in the first line</h3>
+              <p>L'opzione considerata viene impiegata in combinazione con l'opzione <strong>AutoDetect</strong>.</p>
+              <p>Memorizzando i dati di una collezione in un file di testo sotto forma di tabella (kind <span style="font-weight: bold;">aRcd</span>) si usa spesso scrivere i nomi dei campi nella
+                prima riga da usarsi come didascalia.</p>
+              <p>Il flag considerato abilita/disabilita l'utilizzo dei valori dei campi presenti nella prima riga come nomi dei campi.</p>
+              <p><br>
+              </p>
+              <p>NOTA:</p>
+              <p>questa opzione è utilizzabile solo nel caso di collezioni di tipo <span style="font-weight: bold;">aRcd</span> o <span style="font-weight: bold;">asRcd</span>.</p>
+              <p><br>
+              </p>
+              <p>NOTA:</p>
+              <p>Nel caso di asRcd il record contenente i nomi dei campi deve corrispondere alla chiave: <span style="font-weight: bold;">_szKey_</span></p>
+              <p><span style="font-weight: bold;"><br>
+                </span></p>
+              <p><span style="font-weight: bold;">Esempio:<br>
+                </span></p>
+              <pre>{
+"<span style="font-weight: bold;">_szKey_</span>":["szNm1", "iNum2", "fBool3"],
+"key0":["asRcd", 100, true],
+"key1":["bbb", 101, true],
+"key2":["ccc", 102, true], 
+"key3":["ddd", 103, true]
+}</pre>
+            </section>
+            <section>
+              <h3>Manage "undefined fields"</h3>
+              <p>Il linguaggio JavaScript consente di inizializzare array e record compilando solo le voci essenziali per cui è possibile che molti campi risultino indefiniti.</p>
+              <p>Il Flag considerato abilita/disabilita la gestione automatica dei campi "<code>undefined</code>".</p>
+            </section>
+            <section>
+              <h3>Read Only</h3>
+              <p>Il Flag ReadOnly consente, quando è permesso, di abilitare/disabilitare la modifica delle voci del modulo che verrà aperto.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- File DDJ</h2>
+            <section>
+              <h3>File DDJ</h3>
+              <p>URL della risorsa che si desidera scaricare o PATH del file esterno contenente i dati che si vogliono caricare.</p>
+            </section>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato JSON della nuova collezione.</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- Local Storage</h2>
+            <section>
+              <h3>Local</h3>
+              <p>Nome della stringa JSON salvata nel Local Storage che si desidera caricare.</p>
+            </section>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato della nuova collezione (vedi <a href="formati.html">Formati</a>).</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+            </section>
+            <section>
+              <h3>Read Only</h3>
+              <p>Il Flag ReadOnly consente, quando è permesso, di abilitare/disabilitare la modifica delle voci del modulo che verrà aperto.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- Session Storage</h2>
+            <section>
+              <h3>Session</h3>
+              <p>Nome della stringa JSON salvata nel Session Storage che si desidera caricare.</p>
+            </section>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato della nuova collezione (vedi <a href="formati.html">Formati</a>).</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+            </section>
+            <section>
+              <h3>Read Only</h3>
+              <p>Il Flag ReadOnly consente, quando è permesso, di abilitare/disabilitare la modifica delle voci del modulo che verrà aperto.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- URL</h2>
+            <section>
+              <h3>URL</h3>
+              <p>URL del file contenente la collezione di dati che si desidera caricare.</p>
+            </section>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato della nuova collezione (vedi <a href="formati.html">Formati</a>).</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+            </section>
+            <section>
+              <h3>Read Only</h3>
+              <p>Il Flag ReadOnly consente, quando è permesso, di abilitare/disabilitare la modifica delle voci del modulo che verrà aperto.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- Global Variable</h2>
+            <section>
+              <h3>Global Variable</h3>
+              <p>Cliccando sul bottone di input si aprirà un menu a tendina che offrirà di scegliere la variabile da visualizzare fra quelle standard, in alternativa selezionare "<code>other</code>" e
+                scrivere esplicitamente il nome della variabile che si desidera caricare nella cella "<code>Collection name</code>".</p>
+            </section>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato della nuova collezione (vedi <a href="formati.html">Formati</a>).</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+            </section>
+            <section>
+              <h3>Read Only</h3>
+              <p>Il Flag ReadOnly consente, quando è permesso, di abilitare/disabilitare la modifica delle voci del modulo che verrà aperto.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- Function</h2>
+            <section>
+              <h3>Function</h3>
+              <p>La voce Function consente di creare ed inizializzare una collezione di dati inserendo i valori di una funzione.</p>
+              <p>Ad esempio impostate:</p>
+              <ul>
+                <li>min = 0</li>
+                <li>Max = 100</li>
+                <li>Step = 1</li>
+                <li>Collection Name = prova</li>
+                <li>Kind = a Rcd</li>
+                <li>Record Layout (aFld) = <code>G_aFld_Func</code></li>
+                <li>e Confermate.</li>
+              </ul>
+              <p><br>
+              </p>
+              <p>Il programma creerà automaticamente una collezione di 100 record i cui valori sono indefiniti (<code>undefined</code>).</p>
+              <p><br>
+              </p>
+              <p>Per inizializzare gli elementi della collezione basterà impostare le voci <code>szCode</code> del <a href="glossario.html#Id_Tracciato_Record">tracciato record</a>.</p>
+              <ul>
+                <li>Cliccate sulla voce <code>Select Collection</code> della barra dei menu.</li>
+                <li>Selezionate la voce <code>Collection Loaded</code> nella lista <code>Source</code>.</li>
+                <li>Selezionate la collezione corrispondente alla funzione nella lista <code>Select Collection</code>.</li>
+                <li>Selezionate la voce <code>Layout UsrView.aFld</code> nella lista <code>Show Collection</code>.</li>
+                <li>Confermate.</li>
+              </ul>
+              Apparirà una tabella consistente di due righe.<br>
+              Editate le due rughe spuntando le caselle del campo fRecalc.<br>
+              <br>
+              Cliccate nuovamente su <code>Select Collection</code>e confermate.<br>
+              Il programma inizializzerà automaticamente i 100 record della collezione inserendo i valori della funzione y = x<sup>2</sup> + 3x + 5.<br>
+              Volendo tabulare un'altra funzione basta modificare la formula nel campo <code>szCode</code> del <a href="glossario.html#Id_Tracciato_Record">tracciato record</a>.<br>
+              <br>
+              NOTA: si osservi che la variabile <code>j</code> cui si fa riferimento nella formula corrisponde all'indice posizionale dell'elemento (riga) all'interno della collezione pertanto il
+              valore della variabile indipendente <code>x</code>, che compare nella prima colonna, dovrà essere espresso (calcolato) in funzione di <code>j</code>.<br>
+              <br>
+              <h3>Per visualizzare la funzione.</h3>
+              Cliccare sulla voce Plot della barra dei menu.<br>
+              impostare i valori:<br>
+              width = 100<br>
+              height = 480<br>
+              -1 1 100 10000 verde nero 2.</section>
+            <section>
+              <h3>min</h3>
+              <p>Valore minimo della funzione tabulata.</p>
+            </section>
+            <section>
+              <h3>Max</h3>
+              <p>Valore massimo della funzione tabulata.</p>
+            </section>
+            <section>
+              <h3>Step</h3>
+              <p>Passo di incremento di tabulazione.</p>
+            </section>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato della nuova collezione (vedi <a href="formati.html">Formati</a>).</p>
+              <p>Ad esempio: <code>aRcd</code>.</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+              <p>Ad esempio: <code>G_aFld_Func</code>.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- Text Area</h2>
+            <section>
+              <h3>Area di testo</h3>
+              Inserire nella casella di testo il codice JavaScript della funzione che dovrà essere eseguita.</section>
+            <br>
+            <section>
+              <h3>Collection Name</h3>
+              <p>Nome che verrà attribuito alla nuova collezione.</p>
+            </section>
+            <section>
+              <h3>AS</h3>
+              <p>Imposta l'abbreviazione (solitamente costituita da una singola lettera maiuscola) per la collezione selezionata.</p>
+            </section>
+            <section>
+              <h3>Kind</h3>
+              <p>Formato della nuova collezione (vedi <a href="formati.html">Formati</a>).</p>
+            </section>
+            <section>
+              <h3>Record Layout (aFld)</h3>
+              <p>Cliccando sul bottone di input si può selezionare il tracciato record della nuova collezione fra quelli disponibili.</p>
+            </section>
+          </section>
+          <section>
+            <h2>- Comandi della finestra di dialogo</h2>
+          </section>
+          <section>
+            <h3>X.</h3>
+            <p>Cliccando sul simbolo "X" che appare nell'angolo in alto a destra si chiude la scheda annullando tutte le impostazioni. </p>
+          </section>
+          <section>
+            <h3>Confirm.</h3>
+            <p>Cliccando sul bottone "Confirm" disegnato nell'area verde in basso si chiude la scheda e si procede con il caricamento della Collezione selezionata.</p>
+          </section>
+          <section id="InpData_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/help.svg"> Help file</h2>
+            <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

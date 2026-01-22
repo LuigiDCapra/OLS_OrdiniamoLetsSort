@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Esempio 5</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="La console di programmazione JavaScript." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>Esempio 5</h1>
+          <section>
+            <h2>La console di programmazione JavaScript.</h2>
+            <br>
+            Pur disponendo di una ricca dotazione di funzioni per l'esplorazione e la manipolazione dei dati non si può escludere che l'utente si ritrovi con una esigenza del tutto imprevista che non
+            si può soddisfare ricorrendo agli strumenti grafici in dotazione del programma Ordiniamo/Let's Sort (OLS), resta però ancora una possibilità: conoscendo il linguaggio di programmazione
+            JavaScript l'utente potrebbe tentare di risolvere il problema scrivendo del codice usando la Console JS.<br>
+            Per aprire la Console dell'interprete JavaScript bisogna cliccare sull'icona <img class="Cl_Ico_TBM" src="../../../ico/js-int.svg"> <code>JS-Int</code>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex05_01.jpg">&nbsp;<figcaption>Figura 1 - Apertura della Console di programmazione
+                JavaScript.</figcaption> </figure>
+            <br>
+            In risposta alla richiesta il programma OLS aprirà una seconda finestra (mantenendo aperta la prima) mettendo a disposizione un ambiente un interprete JavaScript che potrà essere
+            utilizzato per operare sulle collezioni di dati caricate in memoria.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex05_02.jpg">&nbsp;<figcaption>Figura 2 - Console di programmazione JavaScript.</figcaption>
+            </figure>
+            <br>
+            La console di programmazione JavaScript consiste di due pannelli denominati <code>Programming Window</code> e <code>Output Window</code>.<br>
+            Il programmatore scriverà il suo codice nella finestra di sinistra (<code>Programming Window</code>). Al termine per eseguire il codice cliccherà su uno dei bottoni <code>Run Text</code>
+            o <code>Run HTML</code> che si trovano nella barra dei menu.<br>
+            Il risultato verrà mostrato nella finestra di destra.<br>
+            Il fatto di cliccare sul bottone <code>Run Text</code> o <code>Run HTML</code> non incide sul risultato dell'elaborazione, la differenza consiste nel formato impiegato per la
+            presentazione del risultato che nel primo caso sarà un puro testo mentre nel secondo del codice HTML formattato.<br>
+            <br>
+            A differenza di OLS la Console di programmazione JavaScript NON lavora in modalità <code>strict</code>, fatto che consente all'operatore di omettere la dichiarazione delle variabili
+            scrivendo il codice.<br>
+            L'interprete JavaScript mette inoltre a disposizione dell'operatore una panoplia di funzioni dal nome abbreviato ad esempio SUB (P_sz0, P_iStart, P_iLen) al posto di P_sz0.substr(P_iStart,
+            P_iLen) eccetera.<br>
+            I pulsanti "New" e "ClearOutput" consentono rispettivamente di ripulire i pannelli di programmazione e di output.<br>
+            Il pulsante "Load" consente di caricare un file contenente del codice JavaScript in alternativa all'utilizzo del copia e incolla.<br>
+            <h2>Esercizio 1.</h2>
+            <br>
+            Un primo esempio di utilizzo della Console di programmazione potrebbe consistere nell'esecuzione del codice:<br>
+            <pre>Sum = 0;
+for (i = 0; i &lt;= 10; i++) {
+    Sum += i;<br>} /* for */<br>
+Val0 = Sum;</pre>
+            Consistente di un semplice ciclo che calcola la somma dei numeri interi compresi fra 0 e 10.<br>
+            Si osservi che il risultato viene restituito nella variabile <code>Var0</code>.<br>
+            <br>
+            Il risultato deve essere restituito <span style="text-decoration: underline;">sempre</span> nella variabile <code>Var0</code> poiché la Console si aspetta di trovarlo lì.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex05_03.jpg">&nbsp;<figcaption>Figura 3 - Esito di una elaborazione.</figcaption> </figure>
+            <br>
+            <h2> Esercizio 2.</h2>
+            Vediamo un esempio più complesso.<br>
+            <br>
+            Generate l'array di date nell'intervallo "2020-01-15", "2020-01-25",<br>
+            <ul>
+              <li>creare la matrice aRcd0 composta da 4 colonne, inserendo nella colonna 0 i valori delle date generate in precedenza,</li>
+              <li>restituire la matrice aRcd0 all'ambiente chiamante tramite Var0,</li>
+              <li>registrare la struttura dati aRcd0, nell'elenco delle collezioni, con il nome "Calendar1"</li>
+              <li>selezionare e visualizzare la nuova collezione.</li>
+            </ul>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex05_04.jpg">&nbsp;<figcaption>Figura 4 - Un esempio più complesso.</figcaption> </figure>
+            <br>
+            Eseminiamo il codice.
+            <pre>Arr1 = F_Arr_Range("date", "2020-01-15", "2020-01-25", 1 * C_ims_Day);<br>aRcd0 = [];<br>for (i = 0; i &lt; Arr1.length; i++) {<br>    Rcd0 = [];<br>    Rcd0[0] = Arr1[i];<br>    Rcd0[1] = i;<br>    Rcd0[2] = 2*i^2 + 1;<br>    Rcd0[3] = "test";<br>   <br>    aRcd0[i] = Rcd0;<br>}<br>Val0 = aRcd0;<br>GenColl("Calendar1", aRcd0, true);</pre>
+            L'istruzione <code>Arr1 = F_Arr_Range("date", "2020-01-15", "2020-01-25", 1 * C_ims_Day); </code>genera un array contenente l'elenco delle date comprese fra il giorno 15/05/2020
+            (espresso in notazione giapponese) e il giorno 25/01/2020.<br>
+            Si ricorda che il formato giapponese viene impiegato per le date in tutti i database poiché semplifica l'ordinamento.<br>
+            L'istruzione <code>aRcd0 = [];</code> crea un array di record vuoto.&nbsp; <br>
+            Il ciclo <code>for (i = 0; i &lt; Arr1.length; i++) {</code> genera in successione tutti i valori compresi fra 0 e la lunghezza dell'array <code>Arr1</code>.<br>
+            All'interno del ciclo si provvede all'inizializzazione dei campi del record <code>Rcd0</code>, <br>
+            <ul>
+              <li>il primo dei quali avrà come valore la data contenuta in <code>Arr1[i];</code></li>
+              <li>nel secondo campo inseriremo il valore della variabile i,</li>
+              <li>nel terzo campo il valore della funzione y = 2 · x<sup>2</sup> + 1 avendo posto <code>x = i</code>.</li>
+              <li>Infine nel quarto e ultimo campo inseriremo la stringa "test".</li>
+            </ul>
+            <br>
+            Segue l'assegnazione dell'array di record <code>aRcd0</code> alla variabile di ritorno <code>Var0</code>.<br>
+            Infine "salviamo" il contenuto dell'array di record <code>aRcd0</code> generando la collezione di dati <code>"Calendar1"</code>.<br>
+            <pre>GenColl("Calendar1", aRcd0, true);</pre>
+            La trasformazione della struttura dati JavaScript <code>aRcd0</code> in una Collezione&nbsp; di OLS cosicché d'ora in poi sarà possibile operare sulla struttura dati <code>aRcd0</code>
+            alias <code>Calendar1</code> utilizzando gli strumenti grafici di OLS.<br>
+            <br>
+            La Figura 5 riporta il risultato dell'elaborazione.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex05_05.jpg">&nbsp;<figcaption>Figura 5 - Esito della elaborazione.</figcaption> </figure>
+            <br>
+            La Figura 6 mostra la collezione <code>Calendar1</code> corrispondente alla struttura dati <code>aRcd0</code>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex05_06.jpg">&nbsp;<figcaption>Figura 6 - la collezione Calendar1 corrispondente alla
+                struttura dati aRcd0..</figcaption> </figure>
+            <br>
+            <h2> Esercizio 3.</h2>
+            Considerata la Collezione attualmente selezionata (UsrView0), modificare i valori della colonna 3 assegnando il valore 123.<br>
+            <br>
+            Ricarichiamo la collezione <code>Italia.OLS</code> già utilizzata nell'<a href="es_03.html">Esempio 3</a>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex03_01.jpg">&nbsp;<figcaption>Figura 7 - La tabella Italia.</figcaption> </figure>
+            Eseguendo il codice:<br>
+            <br>
+            <pre>var UsrView0 = CL_UsrView0.F_UsrView_Selected(); 
+var XDB0 = UsrView0.XDB0;
+var Coll0 = XDB0.Coll0;
+var aNdx  = UsrView0.aNdx;
+var iCard_aNdx = aNdx.length;
+var i, k;
+
+for (i = 0; i &lt; iCard_aNdx; i++) {
+    k = aNdx[i];
+    Coll0[k][3] = 123;
+} /* for */
+$Table.U_Display_Table();</pre>
+            si ottiene il risultato riportato in Figura 8.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex05_07.jpg">&nbsp;<figcaption>Figura 8 - Esito della elaborazione.</figcaption> </figure>
+            Esaminando il codice precedente si osserva che le istruzioni<br>
+            <pre>var UsrView0 = CL_UsrView0.F_UsrView_Selected(); 
+var XDB0 = UsrView0.XDB0;</pre>
+            selezionano rispettivamente le strutture dati contenenti i parametri caratterizzanti la <span style="font-style: italic;">vista utente</span> (<code>UsrView0</code>) e il <span style="font-style: italic;">tracciato
+              record della Collezione fisica</span> (<code>XDB0</code>).<br>
+            L'istruzione<br>
+            <pre>var Coll0 = XDB0.Coll0;</pre>
+            seleziona la struttura dati corrispondente alle righe della Collezione.<br>
+            NOTA: l'organizzazione della struttura dipende dallo schema (<code>XDB0.JKndTup0</code>) della Collezione.<br>
+            <br>
+            Alla variabile <code>aNdx</code> è assegnato l'<span style="font-weight: bold;">array indice</span> che determina l'ordine con cui le righe vengono visualizzate.<br>
+            <pre>var aNdx  = UsrView0.aNdx;</pre>
+            La variabile <code>iCard_aNdx</code> è assegnato il valore della cardinalità dell'<span style="font-weight: bold;">array indice</span> <code>aNdx</code> che determinerà il numero di
+            iterazioni che debbono essere eseguite <br>
+            <pre>var iCard_aNdx = aNdx.length;</pre>
+            e l'elenco delle righe che saranno modificate.<br>
+            <pre>for (i = 0; i &lt; iCard_aNdx; i++) {
+    k = aNdx[i];
+    Coll0[k][3] = 123;
+} /* for */</pre>
+            E' importante che il lettore comprenda il modo in cui l'<span style="font-weight: bold;">array indice</span> <code>aNdx</code> viene utilizzato dal programma OLS.<br>
+            <br>
+            Il contenuto dell'<span style="font-weight: bold;">array indice</span> riflette non solo i <span style="font-style: italic;">criteri di ordinamento</span> specificati dall'utente, ma
+            anche le <span style="font-style: italic;">condizioni di filtro</span>, pertanto verranno visualizzate solo le righe corrispondenti ai record specificati nell'array indice nell'ordine
+            indicato in <code>aNdx</code> tenendo conto del valore del flag di direzione.<br>
+            <br>
+            Infine la funzione<br>
+            <br>
+            <code>$Table.U_Display_Table();</code><br>
+            <br>
+            Forza l'aggiornamento dello schermo del programma OLS mostrando i contenuti della tabella selezionata.<br>
+            <br>
+            <h2> Funzioni Utilizzabili.</h2>
+            <br>
+            <table style="width: 100%;" border="1">
+              <thead>
+                <tr>
+                  <th>Istruzione<br>
+                  </th>
+                  <th>Note<br>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView("Log", true);</td>
+                  <td>Restituisce il descrittore della vista utente specificata come parametro.</td>
+                </tr>
+                <tr>
+                  <td>Val0 = GetColl("Log");</td>
+                  <td>Mostra nella Console il contenuto della collezione specificata (senza selezionarla).</td>
+                </tr>
+                <tr>
+                  <td>SelColl("Log");</td>
+                  <td>Seleziona in OLS la Collezione specificata.</td>
+                </tr>
+                <tr>
+                  <td>Val0 = CollName();</td>
+                  <td>Restituisce il nome della collezione selezionata</td>
+                </tr>
+                <tr>
+                  <td>Val0 = UsrView();</td>
+                  <td>Restituisce il descrittore della vista utente della collezione selezionata..</td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().XDB0; </td>
+                  <td>Restituisce il descrittore del tracciato record fisico della collezione selezionata.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 20px;">Val0 = CL_UsrView0.F_UsrView_Selected().XDB0.aFld0; </td>
+                  <td>Restituisce il tracciato record fisico della collezione selezionata.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().aFld1; </td>
+                  <td>Restituisce il tracciato record della vista utente della collezione selezionata. </td>
+                </tr>
+                <tr>
+                  <td>Val0&nbsp; = CL_UsrView0.F_UsrView_Selected().aNdx; </td>
+                  <td>Restituisce l'indice attivo.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().XDB0.Coll0; </td>
+                  <td>Restituisce i dati della collezione selezionata.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().XDB0.Tup_Sel; </td>
+                  <td>Restituisce i valori del record selezionato.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().Val_Sel; </td>
+                  <td>Restituisce il valore della cella selezionata.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().F_szNm_Fld_Sel(); </td>
+                  <td>Restituisce il nome del campo selezionato.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().F_szKey_Sort(); </td>
+                  <td>Restituisce il nome del campo che è stato precedentemente utilizzato per ordinare la collezione.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().KeyTup; </td>
+                  <td>Restituisce l'indice (o la chiave) corrispondente al record selezionato.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Val0 = CL_UsrView0.F_UsrView_Selected().Fld_Sel; </td>
+                  <td style="height: 18px;">Restituisce il descrittore del campo corrispondente alla cella selezionata.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EdtTup(); </td>
+                  <td>Edita il record selezionato in una scheda.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EdtVal(); </td>
+                  <td>Edita il valore della cella selezionata in una scheda.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>$LdFile.U_DownLoad_URL("http://localhost/Relay/irc/read.php/?szTopic=D:/dbase/spectrum.OLS"); </td>
+                  <td>Scarica la collezione selezionata da un sito Web per mezzo di un Web server.<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>$LdFile.U_UpLoad_URL("http://localhost/Relay/irc/write.php/?szTopic=D:/dbase/drago.arcd"); </td>
+                  <td>Invia la collezione selezionata ad un Web server.<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

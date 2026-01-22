@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Esempio 4</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Dati e Tipi." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>Esempio 4</h1>
+          <section>
+            <h2>Dati e Tipi.</h2>
+            Diremo <strong>dato</strong> una generica osservazione che sia stata in qualche modo registrata sulla carta o in formato elettronico.<br>
+            Nel caso più semplice i dati sono costituiti da valori numerici: la temperatura della mia stanza oggi alle 13:00, il numero di penne che sono sul tavolo, il costo di un caffè che ho preso
+            al bar questa mattina, eccetera.<br>
+            I dati degli esempi sono indipendenti fra di loro. Non si riesce ad immaginare che relazione possa esserci presenti sul tavolo, la temperatura e il costo del caffè, per cui non ha senso
+            confrontarli.<br>
+            In altri casi, però, le registrazioni potrebbero presentare una certa affinità, ad esempio potrebbero essere le annotazioni della temperature registrate ogni giorno per un mese alla stessa
+            ora. Diremo allora che i dati annotati sono dello <span style="font-style: italic;">stesso tipo</span> nel senso che si riferiscono alla stessa tipologia di fenomeno.<br>
+            Chi si occupa di statistica si concentra sullo studio di collezioni di dati numerici sotto forma di tabelle prestando un'attenzione relativa al significato fisico dei dati riportati.<br>
+            Mentre l'attenzione degli statistici è concentrata sui numeri l'atteggiamento degli informatici è un poco diverso poiché agli informatici interessa innanzitutto sapere come sono stati
+            rappresentati i dati e solo dopo i loro valori.<br>
+            Dal punto di vista matematico scrivere il numero "uno" utilizzando il simbolo 1 oppure 1,0000 o impiegare la notazione scientifica 1E0=1 · 10<sup>0</sup> è indifferente poiché valgono le
+            identità:<br>
+            <br>
+            <div style="text-align: center;">1 = 1,0000 = 1E0 = "uno" </div>
+            <br>
+            per cui le precedenti rappresentazioni sono equivalenti, ma per la <span style="font-style: italic;">central process uni</span>t (CPU) non lo è poiché a ciascuna delle rappresentazioni
+            del numero "uno" precedenti potrebbe corrispondere un codice differente che richiede l'utilizzo di un numero di bit diverso per la sua rappresentazione<br>
+            .<br>
+            Ad esempio:<br>
+            1<br>
+            00000001<br>
+            0000000000000001<br>
+            00000000000000000000000000000001<br>
+            <br>
+            Per eseguire l'addizione di due numeri interi a 8, 16, 32 bit la CPU dovrà utilizzare configurazioni circuitali differenti.<br>
+            Nel caso in cui si trattasse di sommare due nomeri in virgola mobile (ad esempio 1.0 e 3.14) entrerebbero in gioco ancora altri circuiti.<br>
+            Il processore ha pertanto la necessità di conoscere le caratteristiche dei pacchetti di dati manipolati, fatto che si traduce nell'utilizzo di codici differenti per le istruzioni in
+            linguaggio macchina corrispondenti alla stessa operazione aritmetica, ma facenti riferimento a pacchetti di diversa dimensione, da ciò discende la necessità per i compilatori di tenere
+            traccia delle caratteristiche dei dati manipolati, fatto che giustifica l'introduzione del concetto di <strong>tipo</strong>.<br>
+            <br>
+          </section>
+          <section>
+            <h2>Tipi semplici.</h2>
+            In informatica vengono detti <strong>tipi macchina </strong>le tipologie di pacchetti di bit che possono essere manipolati da un certo processore utilizzando le istruzioni macchina.<br>
+            Fra i principali tipi di dato nativo ricordiamo <br>
+            <ul>
+              <li>i numeri interi senza segno a 8, 16, 32 o 64 bit, </li>
+              <li>i numeri interi con segno a 8, 16, 32 o 64 bit,</li>
+              <li>i numeri in virgola mobile a 32 o 64 bit,</li>
+              <li>gli indirizzi.</li>
+            </ul>
+            <br>
+            I tipi macchina vengono anche detti <strong>tipi semplici</strong> poiché sono gli unici dati che possono essere manipolati usando una singola istruzione della CPU.<br>
+            Tutte le altre tipologie di dato vengono ricondotte ad uno dei tipi macchina ciò vale in particolare per i <strong>tipi nativi</strong> che sono i tipi di base forniti dal linguaggio di
+            programmazione.<br>
+            <br>
+            Ad esempio nel caso del linguaggio di programmazione C (<span style="font-style: italic;">C-Language</span>) e dell'Assembly valgono le seguenti corrispondenze fra tipi macchina e tipi
+            nativi:<br>
+            <br>
+            <table style="width: 100%" border="1">
+              <thead>
+                <tr>
+                  <th width="33%">Tipo macchina (<span style="font-weight: normal;">descrizione</span>)<br>
+                  </th>
+                  <th width="33%">C-Language</th>
+                  <th width="33%">ASM</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>caratteri</td>
+                  <td>char</td>
+                  <td>BYTE</td>
+                </tr>
+                <tr>
+                  <td>interi senza segno a 8 bit</td>
+                  <td>unsigned char</td>
+                  <td>BYTE</td>
+                </tr>
+                <tr>
+                  <td>interi con segno a 8 bit</td>
+                  <td>short</td>
+                  <td>SIGNED BYTE</td>
+                </tr>
+                <tr>
+                  <td>interi senza segno a 16 bit</td>
+                  <td>unsigned short</td>
+                  <td>WORD</td>
+                </tr>
+                <tr>
+                  <td>interi con segno a 16 bit</td>
+                  <td>int</td>
+                  <td>SIGNED WORD</td>
+                </tr>
+                <tr>
+                  <td>interi senza segno a 32 bit</td>
+                  <td>unsigned int</td>
+                  <td>DWORD</td>
+                </tr>
+                <tr>
+                  <td>interi con segno a 32 bit</td>
+                  <td>char</td>
+                  <td>SIGNED DWORD</td>
+                </tr>
+                <tr>
+                  <td>interi senza segno a 64 bit</td>
+                  <td>unsigned char</td>
+                  <td>QWORD</td>
+                </tr>
+                <tr>
+                  <td>interi con segno a 64 bit</td>
+                  <td>char</td>
+                  <td>SIGNED QWORD</td>
+                </tr>
+                <tr>
+                  <td>numeri in virgola mobile a 32 bit<br>
+                  </td>
+                  <td>float<br>
+                  </td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>numeri in virgola mobile a 64 bit </td>
+                  <td>double<br>
+                  </td>
+                  <td><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>puntatori<br>
+                  </td>
+                  <td>* (<span style="font-style: italic;">type</span>)<br>
+                  </td>
+                  <td>ADDRESS<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <span style="font-weight: bold;">NOTA:</span><br>
+            Il linguaggio di programmazione JavaScript essendo orientato alla manipolazione delle stringhe, cioè di sequenze di caratteri, prevede dei tipi nativi abbastanza differenti.<br>
+            Come vedremo meglio in seguito il formato JSON supporta un sottoinsieme dei tipi nativi di JavaScript costituito da: Numeri (in virgola mobile) Stringhe di caratteri, valori booleani,
+            array, oggetti cui si aggiunge il valore null.<br>
+            <br>
+            Le specifiche dei tipi di <span style="font-weight: bold;">dato nativo</span> definiscono tre proprietà:<br>
+            <ul>
+              <li>l'occupazione di memoria (8, 16, 32 o 64 bit ovvero 1, 2, 4 o 8 byte);</li>
+              <li>la possibilità di rappresentare valori numerici negativi;</li>
+              <li>la possibilità di rappresentare i numeri con la virgola.</li>
+            </ul>
+            <br>
+            Alcuni linguaggi consentono all'utente di estendere il novero dei <span style="font-weight: bold;">tipi semplici</span> definendo dei nuovi tipi (<span style="font-style: italic;">user
+              defined type</span>) come alias dei <span style="font-weight: bold;">tipi nativi</span>.<br>
+            Questa prassi consente di aggiungere alle tre proprietà viste in precedenza una quarta concernente l'<strong>interpretazione</strong> ovvero il <strong>valore semantico</strong> del dato
+            considerato.<br>
+            Consideriamo ad esempio il numero 7. In mancanza di un contesto il fatto di sapere che un certo dato ha valore 7 ci dice ben poco.<br>
+            Sette sono i giorni della settimana, sette sono le note musicali, i mari, i nani di Biancaneve eccetera.<br>
+            Dati due numeri 7 e 5 ci potremmo sentire autorizzati a sommarli ottenendo il numero 12, salvo poi scoprire che 5 sono le merendine che abbiamo in casa e 7 sono i bimbi invitati alla festa
+            di compleanno di nostro figlio...<br>
+            Negli anni '70 quando i linguaggi di programmazioni imponevano delle limitazioni circa la lunghezza dei nomi delle variabili (<span style="font-style: italic;">identificatori</span>) si
+            risolveva il problema utilizzando la documentazione cioè scrivendo dei dizionari (<span style="font-style: italic;">codebook</span>) che riportavano per ogni variabile una descrizione
+            degli scopi per i quali era stata creata e dei valori che le potevano essere assegnati, demandando ai programmatori la responsabilità di assicurare la coerenza nell'utilizzo dei dati.<br>
+            L'introduzione dei tipi di dato definiti dall'utente ha permesso di spostare la responsabilità e l'onere del mantenimento della coerenza dalle spalle dei programmatori ai programmi <span
+              style="font-style: italic;">compilatori</span>&nbsp; ed in particolare agli strumenti incaricati di eseguire la cosiddetta <span style="font-style: italic;">analisi statica</span>.<br>
+            I moderni strumenti di <span style="font-style: italic;">type checking</span> sono in grado non solo di impedire che si sommino le mele con le pere, ma di accorgersi se ad una certa
+            variabile si tenta di assegnare un valore imprevisto, segnalando ad esempio in tentativo di assegnare un valore negativo ad una variabile di tipo <code>unsigned</code>.<br>
+            Cliccando sulla icona <img class="Cl_Ico_TBM" src="../../../ico/layout.svg"> dopo aver selezionato una colonna si aprirà una finestra che mostra il <a href="glossario.html#Id_Tracciato_Record">tracciato
+              record</a> del campo corrispondente.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_01.jpg">&nbsp;<figcaption>Figura 1 - Mostra il Tracciato Record della colonna <code>1-Duration</code>.</figcaption>
+            </figure>
+            <br>
+            Il programma OLS fra le proprietà del <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> include non solo l'indicazione del tipo di dato dei diversi <a href="glossario.html#Id_Campo">campi</a>,
+            proprietà <code>szType</code>,&nbsp; ma prevede anche la possibilità di indicare i valori minimo e massimo che possono essere assegnati alle celle di una certa colonna o in alternativa di
+            specificare una routine di controllo. <br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_02.jpg">&nbsp;<figcaption>Figura 2 - Minimo e massimo dei valori ammessi per il campo considerato.</figcaption>
+            </figure>
+            E' interessante osservare che molte delle proprietà che compaiono nel diagramma precedente possono essere modificate in particolare possono essere cambiate le proprietà concernenti i
+            valori minimo e massimo allo scopo di evidenziare i <span style="font-weight: bold;">valori estremali</span> (<span style="font-style: italic;">outlier</span>) come anomalie.<br>
+            Questo risultato può essere osservato cliccando sul tasto destro del mouse e cliccando sulla voce <code>Toggle Diagnostic</code> del <a href="glossario.html#Id_PopUp">popup menu</a>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_04.jpg">&nbsp;<figcaption>Figura 3 - Colorazione delle celle previa esecuzione della funzione Diagnostica.</figcaption>
+            </figure>
+            Esaminando la Figura 3 che riporta il risultato della colorazione si individua la presenza del valore 450 evidenziato dallo sfondo celeste che eccede il valore massimo precedentemente
+            impostato per i valori della colonna 1.</section>
+          <section>
+            <h2>I tipi supportati da OLS.</h2>
+            Il programma Ordiniamo/Let's Sort (OLS) supporta numerosi tipi di dato: quasi tutti i tipi macchina, i tipi nativi di JavaScript e buona parte dei tipi di input di HTML, consentendo
+            inoltre all'utente di aggiungere nuovi tipi di sua invenzione (<span style="font-style: italic;">user defined types</span>).<br>
+            Volendo prendere visione dei tipi attualmente supportati cliccate sull'icona <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> della barra dei menu.<br>
+            Selezionate <code>Collection Loaded</code> e quindi <code>G_asRcd_Type</code>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_05.jpg">&nbsp;<figcaption>Figura 4 - Selezionate la collezione dei tipi supportati.</figcaption> </figure>
+            <br>
+            Apparirà una tabella che mostra l'elenco dei tipi attualmente supportati che attualmente sono un'ottantina.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_06.jpg">&nbsp;<figcaption>Figura 5 - Elenco dei tipi supportati.</figcaption> </figure>
+            Volendo esplorare i tipi supportati potete scaricare il contenuto del file <code>Prova_All.OLS</code>.<br>
+            Cliccate sull'icona <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code>.<br>
+            Selezionate <code>URL</code>.<br>
+            Scrivere o copiate nella casella di input <code>URL</code> la stringa:&nbsp; <code>https://tuisys.altervista.org/ols/dbase/Prova_all.OLS</code><br>
+            Confermate.<br>
+            Il programma OLS caricherà una ventina di collezioni di prova diverse che consentono di prendere visione delle caratteristiche dei principali tipi di dato supportati.<br>
+            Per esaminare le collezioni di prova cliccate sull'icona <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code>.<br>
+            Nella casella <code>Source</code> selezionate <code>collection loaded</code>. e quindi cliccate su <code>Select Collection</code>.<br>
+            Le collezioni Prova0, .., Prova18 contengono esempi di vari tipi di dati.<br>
+            Potete ottenere informazioni circa i contenuti delle collezioni posizionando il cursore del mouse sul nome della collezione come si vede in Figura 6.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_07.jpg">&nbsp;<figcaption>Figura 7 -Lista delle collezioni caricate in memoria che si possono selezionare.</figcaption>
+            </figure>
+            <br>
+            Ad esempio selezionando la collezione <code>Prova1</code> e si può prendere visione dei tipi multimediali supportati da HTML.<br>
+            Poiché sarebbe poco pratico memorizzare le risorse multimediali all'interno di un file di database anziché memorizzare i valori dei pixel componenti le immagini o i filmati si memorizza il
+            percorso (URL o path all'interno del disco) per raggiungere il file che le contengono.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_08.jpg">&nbsp;<figcaption>Figura 8 Collezione Prova1. -Selezionate la voce Toggle Resourse loading.</figcaption>
+            </figure>
+            &nbsp;<br>
+            Quando viene caricata una collezione di dati multimediali inizialmente OLS mostrerà i percorsi per raggiungere le risorse anziché le risorse vere e proprie (vedi Figura 8).<br>
+            Volendo prendere visione delle risorse collegate bisogna abilitarne il caricamento cliccando sul tasto destro del mouse e selezionare la voce <code>Toggle Resourse loading</code>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_09.jpg">&nbsp;<figcaption>Figura 9 -Abilitazione del caricamento delle risorse multimediali.</figcaption> </figure>
+            <br>
+            Il browser caricherà le immagini e le risorse audio e video offrendo la possibilità di vederle o di ascoltarle.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_10.jpg">&nbsp;<figcaption>Figura 10 -Risorse multimediali caricate.</figcaption> </figure>
+            <br>
+            Fra le collezioni di prova l'utente potrebbe trovare interessanti Prova3 e Prova5.<br>
+            La collezione Prova3 illustra le possibilità offerte da HTML di memorizzare in una tabella testi multimediali.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_11.jpg">&nbsp;<figcaption>Figura 11 -Prova3 dimostra le capacità ipertestuali di HTML.</figcaption> </figure>
+            <br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_12.jpg">&nbsp;<figcaption>Figura 12 -La collezione Prova5 mostra la capacita di OLS di supportare le date in
+                vari formati.</figcaption> </figure>
+            <br>
+            La funzione <code>Change Value</code> offre una serie di opzioni che facilitano l'editing dei valori presenti nelle celle.<br>
+            Ad esempio cliccando sull'icona <img class="Cl_Ico_TBM" src="../../../ico/edit_value.svg"> dopo aver selezionato una data si aprirà una finestra di dialogo come quella di Figura 13 che
+            consente non solo di gestire separatamente l'impostazione di giorno, mese ed anno, ma di scegliere fra la rappresentazione delle date in formato europeo DD/MM/YYYY, anglosassone MM.DD.YYYY
+            o giapponese YYYY-MM-DD.<br>
+            E' possibile inoltre convertire una data nel corrispondente timestamp (numero di milliseconti trascorsi a partire dalle 00:00 del 01/01/1970) o introdurre la data attuale cliccando sul
+            bottone NOW.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/ex04_13.jpg">&nbsp;<figcaption>Figura 13 -La collezione Prova5 mostra la capacita di OLS di supportare le date in
+                vari formati.</figcaption> </figure>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            .<br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+{
+"_Hdr0_":{"iRel":1.0, "szAutoExec":"autoexec"},
+"_aaFld_":[["Italia_aFld", 4]],
+"_aColl_":[["Italia", 3, "Italia_aFld", "'Alfredo Rizzi', 'Analisi dei dati', NIS 1985, Tabella 1, p. 14"]],
+
+"Italia_aFld":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"iSeq","szCaption":"iSeq","szType":"number","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Regione","szCaption":"Regione","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"depositi","szCaption":"depositi","szType":"number","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"autovetture","szCaption":"autovetture","szType":"number","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"scatti","szCaption":"scatti","szType":"number","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"utenze tel","szCaption":"utenze tel","szType":"number","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"MW","szCaption":"MW","szType":"number","iLen":8,"fRecalc":false,"szCode":""}
+],
+
+"Italia":[
+[1,"Abruzzo",3764768,344082,309246,188412,625341],
+[2,"Basilicata",1279800,119518,111887,66028,249481],
+[3,"Calabria",3661017,390215,434038,217834,963411],
+[4,"Campania",14335092,1067686,1416538,788751,3118403],
+[5,"Emilia-Rom",28555170,1565670,1211137,807389,2358014],
+[6,"Friuli VG",6624036,440662,356821,242780,878309],
+[7,"Lazio",28186429,1705867,2079322,1194604,3646884],
+[8,"Liguria",11769471,616437,763925,552634,1061267],
+[9,"Lombardia",66455047,3156254,3114106,1962865,5076657],
+[10,"Marche",5861897,512094,337033,213761,724098],
+[11,"Molise",659039,73326,67482,41586,144558],
+[12,"Piemonte",29950973,1758184,1412662,1014680,2815368],
+[13,"Puglia",10470234,810119,850067,493729,2215074],
+[14,"Sardegna",3952510,368920,333884,211445,964649],
+[15,"Sicilia",12137581,1230978,1401911,769567,2861128],
+[16,"Toscana",21961578,1382041,1287707,827753,2437425],
+[17,"Trentino AA",3458809,282471,216163,134252,577696],
+[18,"Umbria",3462762,290925,211952,140638,466720],
+[19,"Val D'Aosta",611356,50612,37529,26327,82620],
+[20,"Veneto",21389911,1417020,1044656,658422,2528269],
+[21,"Italia",278547480,17583081,16998066,10553457,33795372]
+]
+}

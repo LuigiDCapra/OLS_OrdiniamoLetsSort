@@ -1,0 +1,95 @@
+/* DBox Background used to implement the "Modal Panel"  */
+.Cl_DBox_BG {
+  display: none;      /* Hidden by default */
+  position: fixed;    /* Stay in place */
+  z-index: 1;         /* Sit on top */
+  left: 0;
+  top: 0;
+  width:  100%;       /* Area where the user may click for close the window */
+  height: 90%;
+  padding-top: 10vh;  /* Location of the DBox */
+  overflow: auto;     /* Enable the scroll of the text of the document in background. */
+  background-color: rgb(0,0,0);      /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black, opacity 0.4 */  
+}
+
+.Cl_DBox {  
+  position: relative;  
+  margin: auto; 
+  padding: 0px; 
+  border-width: 1px;   
+  border-style: solid;   
+  border-color: #888888;   
+  width: 80%;                  /* DBox width */
+  box-shadow: 20px 20px gray;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  background-color: white;
+}
+
+@keyframes animatetop {
+0% { top: -300px; opacity: 0; }
+100% { top: 0px; opacity: 1; }
+}
+
+.Cl_Btn_Canc {
+  font-family: Arial; 
+  color: white;  
+  float: right;  
+  font-size: 150%;
+  font-weight: lighter;
+}
+
+.Cl_Btn_Canc:hover, .Cl_Btn_Canc:focus {  
+  color: #000000;  
+  text-decoration: none;  
+  cursor: pointer;
+}
+
+.Cl_DBox_Header {  
+  padding-top: 16px;  
+  padding-right: 16px;  
+  padding-bottom: 16px;  
+  padding-left: 16px;  
+  background-color: #5cb85c;  
+  color: white;
+}
+
+.Cl_DBox_Nav {  
+  background-color: var(--bg_tbl);  
+  padding-top: 2px;  
+  padding-right: 5px;  
+  padding-bottom: 2px;  
+  padding-left: 5px;
+}
+
+.Cl_DBox_HdrDiv {  
+  color: red;  
+  font-size: 150%;  
+  font-weight: bold;  
+  padding-top: 10px;
+}
+
+.Cl_DBox_Body {  
+  background-color: var(--bg_tbl);  
+  padding-top: 2px;  
+  padding-right: 5px;  
+  padding-bottom: 2px;  
+  padding-left: 5px;
+}
+
+.Cl_DBox_Footer {  
+  padding-top: 16px;  
+  padding-right: 16px;  
+  padding-bottom: 15px;  
+  padding-left: 16px;  
+  background-color: #5cb85c;  
+  color: white;
+}
+
+.Cl_DBox_Inp {
+}
+
+.Cl_DBox_Lbl {
+   width: 20%;
+}

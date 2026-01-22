@@ -1,0 +1,426 @@
+<!-- ---------------------------------------------------------------------
+Project     : CL-Eidos Viola ex Anna ex NIC
+Description : Viola Voice Assistant ex Anna
+Revision    : 0.021
+File        : vls.html
+Function    : Pictures grabbing
+FirstEdit   : 03/01/2021
+LastEdit    : 23/09/2025
+Author      : Luigi D. CAPRA
+Copyright(c): Luigi D. CAPRA 2025
+System      : Mozilla FireFox 80+
+
+----- LICENSE -----
+
+  This file is part of TUISys' Open-DDJ.
+  
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+----------------------------------------------------------------------  
+* ### Needs
+*     Data Browsing Environment.
+*     GUI functions shared by different applications.
+* 
+* ### Requirements
+* ### Specifications
+* ### Functional Requirements
+* ### Non Functional Requirements
+*   
+---------------------------------------------------------------------- -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Vediamo/Let's See (VLS-2).</title>
+    <meta content="Luigi D. CAPRA" name="author">
+    <meta content="Vediamo/Let's See (VLS-2)." name="description">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="shortcut icon" href="vls_files/favicon.ico">
+    <link rel="stylesheet" href="basic/dbox.css">
+    <link rel="stylesheet" href="basic/mrmenu.css">
+    <link rel="stylesheet" href="vls_files/vls.css">
+    <link rel="shortcut icon" href="vls_files/ico/vls.svg">
+    <link rel="stylesheet" href="vls_files/camera.css" type="text/css" media="all">
+    <style>
+      .Cl_Canvas {
+         display:block;
+      }
+    </style>
+    <style id="Id_Style_0"></style>   <!-- CSS styles set by JS code --->
+  </head>  
+  <body>
+  <header id="Id_Hdr"> 
+  <noscript>
+     <div style="background-color:yellow; color:magenta;">WARNING: your browser does not support JavaScript or JavaScript is disabled!</div>
+  </noscript>
+  Vediamo/Let's See (VLS-2).
+  </header>
+  <hr>
+    <!-- PopUp Menu -->
+    <div id="Id_RMenu" onclick="$MRMenu.U_Close();">&nbsp; </div>
+    <!-- Dialogue-Box -->
+    <div>
+      <section class="Cl_DBox_BG" id="Id_Div_DBox0">&nbsp;<br>
+      </section>
+    </div>
+
+    <!-- Navigator's Menu Bar -->
+    <nav class="Cl_Nav" id="Id_Nav">&nbsp; </nav>
+    <!-- Aside -->
+    <aside id="Id_Aside"></aside>
+    <br>
+    <br>
+    <br>
+  <main id="Id_Main">
+    <br><div id="Id_Monitor"> -- 5 -- </div>Id_szSCtx: <span id="Id_szSCtx">&nbsp;</span> Id_Msg_00: <span id="Id_Msg_00">&nbsp;</span> 
+    <div class="Cl_ContentArea"><br>
+
+      <div>
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Live Video</span></div>
+        <p class="Cl_Camera"> <video id="Id_Video">Video stream not available.</video> <button id="Id_StartButton">Take photo</button> </p>
+        <p><button id="Id_Button_Snap0xx" onclick="$TUISys.Grab(C_JRg0, G_JConv)">Take photo</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas0">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-0</span></div>
+        <p><canvas id="Id_Canvas00"></canvas></p>
+        <p><button id="Id_Button_Snap0" onclick="$TUISys.Grab(C_JRg0, G_JConv)">Grab in Reg0</button><button onclick="$Camera.U_UpLoad(C_JRg0)">Upload Reg0</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas1">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-1</span></div>
+        <p><canvas id="Id_Canvas01"></canvas></p>
+        <p><button id="Id_Button_Snap1" onclick="$TUISys.Grab(C_JRg1, G_JConv)">Grab in Reg1</button><button onclick="$Camera.U_UpLoad(C_JRg1)">Upload Reg1</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas2">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-2</span></div>
+        <p><canvas id="Id_Canvas02"></canvas></p>
+        <p><button id="Id_Button_Snap2" onclick="$TUISys.Grab(C_JRg2, G_JConv)">Grab in Reg2</button><button onclick="$Camera.U_UpLoad(C_JRg2)">Upload Reg2</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas3">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-3</span></div>
+        <p><canvas id="Id_Canvas03"></canvas></p>
+        <p><button id="Id_Button_Snap3" onclick="$TUISys.Grab(C_JRg3, G_JConv)">Grab in Reg3</button><button onclick="$Camera.U_UpLoad(C_JRg3)">Upload Reg3</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas4">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-4</span></div>
+        <p><canvas id="Id_Canvas04"></canvas></p>
+        <p><button id="Id_Button_Snap4" onclick="$TUISys.Grab(C_JRg4, G_JConv)">Grab in Reg4</button><button onclick="$Camera.U_UpLoad(C_JRg4)">Upload Reg4</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas5">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-5</span></div>
+        <p><canvas id="Id_Canvas05"></canvas></p>
+        <p><button id="Id_Button_Snap5" onclick="$TUISys.Grab(C_JRg5, G_JConv)">Grab in Reg5</button><button onclick="$Camera.U_UpLoad(C_JRg5)">Upload Reg5</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas6">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-6</span></div>
+        <p><canvas id="Id_Canvas06"></canvas></p>
+        <p><button id="Id_Button_Snap6" onclick="$TUISys.Grab(C_JRg6, G_JConv)">Grab in Reg6</button><button onclick="$Camera.U_UpLoad(C_JRg6)">Upload Reg6</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas7">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-7</span></div>
+        <p><canvas id="Id_Canvas07"></canvas></p>
+        <p><button id="Id_Button_Snap7" onclick="$TUISys.Grab(C_JRg7, G_JConv)">Grab in Reg7</button><button onclick="$Camera.U_UpLoad(C_JRg7)">Upload Reg7</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas8">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-8</span></div>
+        <p><canvas id="Id_Canvas08"></canvas></p>
+        <p><button id="Id_Button_Snap8" onclick="$TUISys.Grab(C_JRg8, G_JConv)">Grab in Reg8</button><button onclick="$Camera.U_UpLoad(C_JRg8)">Upload Reg8</button></p>
+        <br>
+        <hr> 
+      </div>
+
+      <div class="Cl_Canvas" id="Id_DivCanvas9">
+        <div style="text-align: center;"><span class="Cl_TitCanvas">Reg-9</span></div>
+        <p><canvas id="Id_Canvas09"></canvas></p>
+        <p><button id="Id_Button_Snap9" onclick="$TUISys.Grab(C_JRg9, G_JConv)">Grab in Reg9</button><button onclick="$Camera.U_UpLoad(C_JRg9)">Upload Reg9</button></p>
+        <br>
+        <hr> 
+      </div>
+    </div>
+  </main>
+  <footer id="Id_Foot">
+    <div>Copyright (c) Luigi D. CAPRA 2023 - 2025</div>
+  </footer>
+  <form method="post" accept-charset="utf-8" name="Nm_Form1">
+    <input name="Nm_Hidden_Data"   id='Id_Hidden_Data'   type="hidden"/>
+    <input name="Nm_Hidden_Format" id='Id_Hidden_Format' type="hidden"/>
+  </form>
+</body>
+<script src="vls_files/data/mnentry.js"></script>
+
+<script src="basic/code2.js"></script>
+<script src="basic/root.js"></script>
+<script src="basic/uti.js"></script>
+<script src="basic/log.js"></script>
+<script src="basic/error.js"></script>
+<script src="basic/nation.js"></script>
+<script src="basic/ipcf.js"></script>
+<script src="basic/dbox.js"></script>
+<script src="basic/mrmenu.js"></script>
+<script src="basic/pers.js"></script>
+<script src="basic/vconfig.js"></script>
+<script src="basic/vdebug.js"></script>
+<script src="basic/tts.js"></script>
+<script src="basic/stt.js"></script>
+<script src="basic/help.js"></script>
+<script src="basic/semctx.js"></script>
+
+<script src="ddj/ddj.js"></script>
+<script src="ddj/ndu.js"></script>
+<script src="ddj/style.js"></script>
+<script src="ddj/periodic.js"></script>
+
+<script src="vls_files/camera.js"></script>
+<script src="vls_files/vediamo.js"></script>
+<script src="vls_files/vip.js"></script>
+<script src="vls_files/tuilib.js"></script>
+<script src="vls_files/custom.js"></script>
+<script src="vls_files/ipc.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+"use strict";
+////
+
+const C_jCd_Cur = C_jCd_HTML;
+
+const C_szApp  = "VLS  ";
+const C_szFlNm = "vls.html";
+const C_fMain  = C_szApp;     /* flag: Enable DDJ's page Update */
+
+var G_DBox_About = {};
+
+//////////////////////////
+
+/* Program's Variables */
+
+var G_szNmTab = "Engine";
+
+/* Local Variables */
+var S_elem_mouse;
+var S_szRGBA_Mouse = "";
+
+//////////////////////////////////
+
+/*----- Local Variables ----------------------------------------------*/
+
+/*
+*  About.
+*/
+var S_szHTML_DBox_About = `<div style="padding:10%;">
+  <br><br><br><br>
+  Program: <b>OLS' Camera.</b><br>
+  Date: ${C_szDate_EdtLst} <br>
+  Rel.: <b>${C_szRel_EdtLst}</b><br>
+  Author: Luigi D. CAPRA<br>
+  <br>
+  ${C_szCopyright}<br><br><hr><br><h3 style="text-align:center;">License</h3><br>
+  This program comes with ABSOLUTELY NO WARRANTY; for details see <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a>.<br>
+  This is free software, and you are welcome to redistribute it under certain conditions;<br>
+  type <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a> for details.<br>  
+  The library files could be redistribute at LGLP conditions. Type <a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU LGPL v. 3.0</a> for details.<br>
+  <br><br><br><br>
+</div>`;
+
+/*-----U_Help --------------------------------------------------------
+*
+*/ 
+function U_Help()
+{
+  window.open(`ols_files/help/std/Camera.html`);   
+} /* U_Help */
+
+/*-----U_Config --------------------------------------------------------
+*
+*/ 
+function U_Config()
+{
+  $VConfig.DBox_Config.U_Hub(C_JPnl_Open);
+} /* U_Config */
+
+/*-----U_About --------------------------------------------------------
+*
+*/ 
+function U_About()
+{
+  G_DBox_About.DBox_About.U_Hub(C_JPnl_Open);
+} /* U_About */
+
+/*-----U_License --------------------------------------------------------
+*
+*/ 
+function U_License()
+{
+  window.open(`ols_files/help/std/gpl-3.0.txt`);
+} /* U_License */
+
+/*-----U_Button --------------------------------------------------------
+*
+* Events manager.
+* Translate user events executing the corresponding routines.
+* $NOTE: the menus and their respective icons have been initialized in $SemCtx.F_szHTML_TBM();
+*
+* P_szCmd JS  command or function called.
+* P_szCaller  ID of the routine that called U_Button.
+* P_szPar     allows to pass parameters to the routine specified in P_szCmd.
+*/ 
+function U_Button(P_szCmd, P_szCaller, P_szPar="")
+{
+  try {
+      var szCmd = P_szCmd + `("${P_szPar}")`;
+      eval(szCmd);      
+  } catch (P_Err) {
+      var szErr = $Error.F_szErr_Catch(P_Err);
+      $Error.U_Error(C_jCd_Cur, 1, "U_Button command: " + szCmd + "\n", szErr);
+  } /* try catch */
+} /* U_Button */
+
+/*----- U_SetFormat --------------------------------------------------------
+*
+*/ 
+function U_SetFormat(P_Par0)
+{
+  $VConfig.U_Set_ValSts("szFormat", P_Par0);
+  $VConfig.U_Store_DDJSts();
+  $Camera.U_SetCfg();
+} /* U_SetFormat */
+
+/*-----U_Grab --------------------------------------------------------
+*
+*/ 
+function U_Grab()
+{
+  $VIP.U_Grab(C_JRg0, G_JConv)
+} /* U_Grab */
+
+function U_Run(P_fLocal)
+{
+  G_fRun_TUISys = true;
+  if (G_ijProgram === 0) {
+     G_ijProgram = G_ijProg_Dflt;  /* Select default Vision Routine */
+  } /* if */
+  U_Set(C_jAdr_ijProgram, G_ijProgram); 
+  U_fChg_Rtn_TUISys(G_ijProgram);
+} /* U_Run */
+      
+function U_Halt(P_fLocal)
+{
+  G_fRun_TUISys = false;
+  G_ijProgram = 0;
+  U_Set(C_jAdr_ijProgram, G_ijProgram); 
+  U_fChg_Rtn_TUISys(G_ijProgram);
+} /* U_Halt */
+
+/*-----U_Init --------------------------------------------------------
+*
+* Initialization of WE2's Modules.
+*/ 
+function U_Init()
+{
+  var DDJSts = {};
+  DDJSts.iRel_KNS        = 20250900;          /* Cfg. release number. */
+  DDJSts.szUser          = "";
+  DDJSts.szURL_Relay     = "";
+  DDJSts.szjDate         = "YYYYMMDD";
+  DDJSts.szURL_Srv       = "http://localhost/Relay/irc/upload_data.php";
+  DDJSts.szSrv_Knd       = "PHP-DDJ";
+  DDJSts.szDir_Data      = "d:/dbase/";
+  DDJSts.szLanguage      = "it-IT";
+  DDJSts.iSmpl_Step      = 1;
+  DDJSts.iNnRow_Page     = 40;
+  DDJSts.iWdt_Icon       = 20;
+  DDJSts.fHalt_Debug     = true;
+  DDJSts.iDebug          = C_iDebug_Dflt_Cfg; // Initial Debug Level
+  DDJSts.fEnaPeriodic    = true;              /* true - enable commands introduced using "tele.htm" */
+  DDJSts.fIcons          = true;
+
+  DDJSts.szFormat        = "png";
+  DDJSts.rComp           = 0.8;
+  DDJSts.iWdt_Tab        = screen.width;  
+  DDJSts.iWdt            = 800;
+  DDJSts.iHgt            = 600;
+  DDJSts.iIdealFR        = 10;
+  DDJSts.iMaxFR          = 15;
+  DDJSts.iNn_Photo       = 10;
+  DDJSts.is_Delay        = 10;
+
+  
+  $VConfig.U_Init_DDJSts(C_szApp, DDJSts, $VConfig.U_CB_Update_Default);
+
+  var apF_Init = [$Root.U_Init, $Log.U_Init, $Error.U_Init, $VConfig.U_Init, $Nation.U_Init, $IPCF.U_Init, $MRMenu.U_Init, $TTS.U_Init, $Pers.U_Init, $VDebug.U_Init, $DDJ.U_Init, $VIP.U_Init, 
+  $SemCtx.U_Init, $Periodic.U_Init];
+  var i;
+    
+  try {
+      for (i = 0; i < apF_Init.length; i++) {
+          var pF = apF_Init[i];
+          pF();
+      } /* for */
+  } catch (P_Err) {
+      debugger;
+      $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+  } /* try catch */
+  
+//  $DDJ.U_Button = U_Button;
+  
+  $SemCtx.U_Sel_TBM("Id_Nav", "VLS", false);
+  G_DBox_About.DBox_About = new CL_DBox("Id_Div_DBox0", "G_DBox_About.DBox_About", "About", S_szHTML_DBox_About, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, G_DBox_Null.U_Cancel, null);
+
+  Id_Monitor.innerText = "START-2";
+  
+  try {
+    $Camera.U_Init();
+  } catch (P_Err) {
+  } /* try catch */
+  
+  U_LoadPrm(G_aRcdPrm);  /* Load ALWAYS defaults */
+  
+  $DDJ.U_Set_iWdt_Icon();
+  $Root.U_Reg();
+} /* U_Init */
+
+U_Init();
+  
+//]]></script>
+
+</html>

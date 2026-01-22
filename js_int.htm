@@ -1,0 +1,570 @@
+<!-- ---------------------------------------------------------------------
+* Project     : CL-Eidos Violetta ex Anna ex NIC
+* Description : Violetta Voice Assistant
+* Revision    : 0.021
+* File        : js_int.htm
+* Function    : JavaScript Interpreter.
+* FirstEdit   : 01/09/2023
+* LastEdit    : 05/03/2025
+* Author      : Luigi D. Capra
+* Copyright(c): Luigi D. Capra 2017, 2025
+* System      : HTML-5 + CSS3 + JavaScript
+* 
+* ----- LICENSE -----
+* 
+*   This file is part of TUISys' Open-DDJ.
+*   
+*   This program is free software: you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation, either version 3 of the License, or
+*   (at your option) any later version.
+*   
+*   This program is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+*   
+*   You should have received a copy of the GNU General Public License
+*   along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+*   
+* ### Needs
+*     js_int.htm works in combination with rpc_exec.js the Remote Procedure Call executer.
+* 
+* ### Requirements
+* ### Specifications
+* ### Functional Requirements
+* ### Non Functional Requirements
+*
+* 
+* ---------------------------------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>JavaScript Interpreter</title>
+    <meta content="Luigi D. CAPRA" name="author">
+    <meta content="JavaScript Interpreter. Simplified programming environment for beginner students." name="description">
+    <meta content="JavaScript Interpreter" name="keywords">    
+    <link rel="stylesheet" href="basic/dbox.css">
+    <link rel="stylesheet" href="basic/mrmenu.css">
+    <link rel="stylesheet" href="appx_files/appx.css">
+    <link rel="shortcut icon" href="appx_files/ico/favicon.ico">
+    <link rel="stylesheet" href="basic/dbox.css">
+    <style id="Id_Style_0"></style>   <!-- CSS styles set by JS code --->
+<style>
+pre { padding-left:2ch; }
+
+#Id_Code {
+  min-height:70vh;
+}
+</style>
+</head>
+<body>
+  <header id="Id_Hdr"> 
+  <noscript>
+     <div style="background-color:yellow; color:magenta;">WARNING: your browser does not support JavaScript or JavaScript is disabled!</div>
+  </noscript>
+  OLS' JavaScript Interpreter 
+  </header>
+  <hr>
+
+  <!-- Navigator's Menu Bar --> 
+  <nav class="Cl_Nav" id="Id_Nav">NAV&nbsp;
+  </nav>
+  <!-- Aside -->
+  <aside id="Id_Aside">ASIDE</aside>
+  <!-- PopUp Menu --> 
+  <div id="Id_RMenu" onclick="$MRMenu.U_Close();">    
+  </div>
+  <!-- Dialogue-Box -->    
+  <div>
+    <section class="Cl_DBox_BG" id="Id_Div_DBox0">DBOX<br>
+    </section>
+  </div>
+  
+  <main id="Id_Main"><br>
+    <table border="1" width="100%">
+      <tbody>
+        <tr>
+          <td width="50%">
+            <h2 style="text-align: center;">Programming Window</h2>
+          </td>
+          <td width="50%">
+            <h2 style="text-align: center;">Output Window</h2>
+          </td>
+        </tr>
+        <tr>
+          <!--td><pre> <textarea rows="50" cols="100" id="Id_Code"></textarea></pre> </td-->
+          <td><pre id="Id_Code" contenteditable="true" spellcheck="true">inserisci il tuo codice qui &nbsp;
+
+ad esempio:
+Val0 = CL_UsrView0.F_UsrView_Selected().XDB0.Coll0;
+          </pre></td>
+          <td>
+            <div id="Id_Output">&nbsp;
+              <div> </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<div id="Id_szSCtx" hidden>&nbsp;</script>
+</main>
+  <footer id="Id_Foot">
+    <div>Copyright (c) Luigi D. CAPRA 2023 - 2025</div>
+  </footer>
+  <div id="Id_szMonitor" hidden>.</div>
+<script>
+const C_JKndTup_Null = 0;
+</script>
+
+<script src="basic/code2.js"></script>
+<script src="basic/root.js"></script>
+<script src="basic/uti.js"></script>
+<script src="basic/log.js"></script>
+<script src="basic/error.js"></script>
+<script src="basic/nation.js"></script>
+<script src="basic/ipcf.js"></script>
+<script src="basic/dbox.js"></script>
+<script src="basic/mrmenu.js"></script>
+<script src="basic/tts.js"></script>
+<script src="basic/pers.js"></script>
+<script src="basic/vconfig.js"></script>
+<script src="basic/vdebug.js"></script>
+<script src="basic/help.js"></script>
+<script src="basic/semctx.js"></script>
+
+<script src="ddj/ddj.js"></script>
+<script>
+const C_jCd_Cur = C_jCd_HTML;
+
+const C_szApp = "JsInt";
+const C_fMain = C_szApp;     /* flag: Enable HTML page Update */
+
+var G_aMnEntry_JsInt = [ 
+["New",          'U_Clear_Sources', "New",          "ols_files/ico/new.svg",       "New"],
+["Load",         'U_LoadFile',      "Load",         "ols_files/ico/input.svg",     "load file"],
+["Clear Output", 'U_Clear_Output',  "Clear Output", "ols_files/ico/clear.svg",     "Clear Output"],
+["Run Text",     'U_Father_0',      "Run Text",     "ols_files/ico/run_html.svg",  "Run Text"],
+["Run HTML",     'U_Father_1',      "Run HTML",     "ols_files/ico/run_text.svg",  "Run HTML"],
+["Configure.",   "U_Config",        "Config",       "ols_files/ico/config.svg",    "configura"],
+["Help",         'U_Help',          "Help",         "ols_files/ico/help.svg",      "aiuto"], 
+["About",        'U_About',         "About",        "ols_files/ico/about.svg",     "about"],
+["License",      'U_License',       "Licenza",      "ols_files/ico/licence.svg",   "licenza"]
+];
+
+var G_aMnEntry_PopUp = [
+["", "U_Clear_Output()",    "Clear Output"],
+["", "U_Clear_Sources()",   "Clear Sources"],
+["", "U_Null",              "----"],
+["", "U_If()",              "if"],
+["", "U_For()",             "for"],
+["", "U_While()",           "while"],
+["", "U_DoWhile()",         "do while"],
+["", "U_Switch()",          "switch"],
+["", "U_Null",              "----"],
+];
+
+var G_asaMnEntry = {
+  "JsInt":G_aMnEntry_JsInt,
+  "PopUp":G_aMnEntry_PopUp
+};
+
+var G_DBox_About = {};
+var G_DBox_LdFile = {};
+var G_DDJ = {};
+
+/*----- Local Variables ----------------------------------------------*/
+
+/*
+*  About.
+*/
+var S_szHTML_DBox_About = `<div style="padding:10%;">
+  <br><br><br><br>
+  Program: <b>OLS' JavaScript Interpreter.</b><br>
+  Date: ${C_szDate_EdtLst} <br>
+  Rel.: <b>${C_szRel_EdtLst}</b><br>
+  Author: Luigi D. CAPRA<br>
+  <br>
+  ${C_szCopyright}<br><br><hr><br><h3 style="text-align:center;">License</h3><br>
+  This program comes with ABSOLUTELY NO WARRANTY; for details see <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a>.<br>
+  This is free software, and you are welcome to redistribute it under certain conditions;<br>
+  type <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a> for details.<br>  
+  The library files could be redistribute at LGLP conditions. Type <a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU LGPL v. 3.0</a> for details.<br>
+  <br><br><br><br>
+</div>`;
+
+/*
+*  Load File
+*/
+var S_szHTML_DBox_LdFile = `<div>
+  Load File: <input title="File Name" type="file" id="Id_szFlNm_Inp"> 
+  <br><br><br><br>
+</div>`;
+
+var S_fHTML  = false;
+
+/*-----U_If --------------------------------------------------------
+*
+*/ 
+function U_If()
+{
+  var szTxt = `
+if () {
+
+}
+else {
+} /* if */
+`;
+  U_Insert(szTxt)
+} /* U_If */
+
+/*-----U_For --------------------------------------------------------
+*
+*/ 
+function U_For()
+{
+  var szTxt = `
+for ( = ; < ; ++) {
+
+} /* for */
+`;
+  U_Insert(szTxt)
+} /* U_For */
+
+/*-----U_While --------------------------------------------------------
+*
+*/ 
+function U_While()
+{
+  var szTxt = `
+while () {
+
+} /* while */
+`;
+  U_Insert(szTxt)
+} /* U_While */
+
+/*-----U_DoWhile --------------------------------------------------------
+*
+*/ 
+function U_DoWhile()
+{
+  var szTxt = `
+do {
+  
+} while ();
+`;
+  U_Insert(szTxt)
+} /* U_DoWhile */
+
+/*-----U_Switch --------------------------------------------------------
+*
+*/ 
+function U_Switch()
+{
+  var szTxt = `
+switch () {
+  case : {
+  } break;
+  default : {
+  } break;
+} /* switch */
+`;
+  U_Insert(szTxt)
+} /* U_Switch */
+
+/*-----U_Insert --------------------------------------------------------
+*
+* https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand#inserttext
+*/ 
+function U_Insert(P_szTxt)
+{
+debugger;
+
+//    var range = document.createRange()
+//     var sel = window.getSelection()
+//     var currentNode = sel.focusNode;
+//     range.setStart(currentNode, currentNode.textContent.length)
+//     range.collapse(true)
+//     
+//     sel.removeAllRanges()
+//     sel.addRange(range)
+//     
+//   var Elem0  = document.getElementById("Id_Code"); 
+//   var iStart = Elem0.selectionStart;
+//   var iEnd   = iStart;
+//   Elem0.setRangeText(P_szTxt, iStart, iEnd, 'select');
+  
+
+document.execCommand("insertText", false, P_szTxt);
+  
+} /* U_Insert */
+
+/*-----U_Indent --------------------------------------------------------
+*
+*/ 
+function U_Indent()
+{
+  document.execCommand("indent", false, "");
+} /* U_Indent */
+
+/*-----U_LoadFile --------------------------------------------------------
+*
+*/ 
+function U_LoadFile()
+{
+  G_DBox_LdFile.U_Hub(C_JPnl_Open);
+} /* U_LoadFile */
+
+/*-----U_Lorem --------------------------------------------------------
+*
+*/ 
+function U_Lorem()
+{
+  var szLorem = `
+/*-----F_Example -------------------------------------------------
+*
+* Read a JSON Object from the localStorage
+*/
+function F_Example(P_szNm_LocalStorage, P_JSON) 
+{
+  var szJSON = localStorage.getItem(P_szNm_LocalStorage);
+  if (szJSON !== null) {
+     for (i = 0; i < 10; i++) {
+      
+     } /* for */
+     try {
+         return(JSON.parse(szJSON));
+     } catch (P_Err) {
+         $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+     } /* try catch */
+  } /* if */
+  if (typeof(P_JSON != "undefined")) {
+     return(P_JSON);
+  } /* if */
+  return(null);
+} /* F_Example */
+`;
+
+  Id_Code.innerText = szLorem;
+} /* U_Lorem */
+
+/*-----U_Clear_Output --------------------------------------------------------
+*
+*/ 
+function U_Clear_Output()
+{
+  Id_Output.innerHTML = "";
+} /* U_Clear_Output */
+
+/*-----U_Clear_Sources --------------------------------------------------------
+*
+*/ 
+function U_Clear_Sources()
+{
+  Id_Code.innerText = "";
+} /* U_Clear_Sources */
+
+/*-----U_Run --------------------------------------------------------
+*
+*/ 
+function U_Run(P_fHTML)
+{
+  S_fHTML = P_fHTML;
+
+  var szCode = Id_Code.innerText;
+  try {
+      var szRes = eval(szCode);
+  } catch (P_Err) {
+      alert("Error: " + P_Err);
+  } /* try catch */
+} /* U_Run */
+
+/*-----U_Father_0 --------------------------------------------------------
+*
+*/ 
+function U_Father_0()
+{
+  U_Father(false);
+} /* U_Father_0 */
+
+/*-----U_Father_1 --------------------------------------------------------
+*
+*/ 
+function U_Father_1()
+{
+  U_Father(true);
+} /* U_Father_1 */
+
+/*-----U_Father --------------------------------------------------------
+*
+* $IPC-GATE
+* Send command to Opener.
+*/ 
+function U_Father(P_fHTML)
+{
+  S_fHTML = P_fHTML;
+
+  var szCode = Id_Code.innerText;
+  try {
+      var szRes = window.opener.U_RPC_Exec(szCode);
+      print(szRes);
+      print("\n");
+      if (typeof(szRes) == "object") {         
+          if ($VConfig.F_ValSts_Get("fShowVal")) {  
+             U_ShowVal("Id_Div_DBox0", szRes);
+          } /* if */
+      } /* if */
+  } catch (P_Err) {
+      alert("Error: " + P_Err);
+  } /* try catch */
+} /* U_Father */
+
+/*-----print --------------------------------------------------------
+*
+*/ 
+function print(P_sz0)
+{
+  if ($VConfig.F_ValSts_Get("fTerminal")) {
+     if (S_fHTML) {
+      Id_Output.innerHTML = P_sz0 + Id_Output.innerHTML; 
+     }
+     else {
+        Id_Output.innerText = P_sz0 + Id_Output.innerHTML;
+     } /* if */
+  }
+  else {
+     if (S_fHTML) {
+      Id_Output.innerHTML += P_sz0;  
+     }
+     else {
+        Id_Output.innerText += P_sz0;
+     } /* if */
+  } /* if */
+} /* print */
+
+/*-----U_Config --------------------------------------------------------
+*
+*/ 
+function _U_Config()
+{
+  $VConfig.DBox_Config.U_Hub(C_JPnl_Open);
+} /* U_Config */
+
+/*-----U_About --------------------------------------------------------
+*
+*/ 
+function _U_About()
+{
+  G_DBox_About.DBox_About.U_Hub(C_JPnl_Open);
+} /* U_About */
+
+/*-----U_Help --------------------------------------------------------
+*
+*/ 
+function _U_Help()
+{
+  $DDJ.F_Window_open(`ols_files/help/std/jsint.html`);   
+} /* U_Help */
+
+/*-----U_License --------------------------------------------------------
+*
+*/ 
+function _U_License()
+{
+  $DDJ.F_Window_open(`ols_files/help/gpl-3.0.txt`);
+} /* U_License */
+
+/*-----U_Load_File --------------------------------------------------------
+*
+*/
+function U_Load_File()
+{
+  oFile = document.getElementById("Id_szFlNm_Inp").files[0];
+  document.getElementById("Id_szFlNm_Inp").innerText = "";
+        
+  var FileReader0 = new FileReader();
+  FileReader0.onload = function(P_Event) {
+      var szTxt = P_Event.target.result;
+      Id_Code.innerText = szTxt;
+  };
+  FileReader0.readAsText(oFile, "UTF-8");
+}
+
+/*-----U_Button --------------------------------------------------------
+*
+* Events manager.
+* Executes commands corresponding to user actions.
+*/ 
+function U_Button(P_szCmd)
+{
+  if (typeof(P_szCmd) != "string") {
+     $Error.U_Error(C_jCd_Cur, 1, "Command undefined", 0, false);
+  } /* if */
+  try {
+      eval(P_szCmd);
+  } catch (P_Err) {
+      alert("Error: " + P_Err);
+  } /* try catch */  
+} /* U_Button */
+
+/*-----U_Init --------------------------------------------------------
+*
+* Initialization of WE2's Modules.
+*/ 
+function U_Init()
+{
+  var DDJSts = {};
+  DDJSts.iRel_KNS        = 20240712;          /* Cfg. release number. */
+  DDJSts.szUser          = "";                // Luigi
+  DDJSts.szURL_Relay     = "";
+  DDJSts.iNnRow_Page     = 1000;
+  DDJSts.szLanguage      = "it-IT";
+  DDJSts.iWdt_Icon       = 20;
+  DDJSts.iDebug          = C_iDebug_Dflt_Cfg; // Initial Debug Level
+  DDJSts.fIcons          = false;
+  DDJSts.fShowVal        = true;
+  DDJSts.fTerminal       = false;
+  DDJSts.fVoice_Error    = true;
+  
+  $VConfig.U_Init_DDJSts(C_szApp, DDJSts, $VConfig.U_CB_Update_Default);
+
+  var apF_Init = [$Root.U_Init, $Log.U_Init, $Error.U_Init, $Nation.U_Init, $IPCF.U_Init, $MRMenu.U_Init, $TTS.U_Init, $Pers.U_Init, $VConfig.U_Init, $DDJ.U_Init, $VDebug.U_Init];
+  var i;
+    
+  try {
+      for (i = 0; i < apF_Init.length; i++) {
+          var pF = apF_Init[i];
+          pF();
+      } /* for */
+  } catch (P_Err) {
+      debugger;
+      $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+  } /* try catch */
+  
+  U_Clear_Output();
+  $SemCtx.U_Sel_TBM("Id_Nav", "JsInt", false);
+  G_DBox_About.DBox_About = new CL_DBox("Id_Div_DBox0", "G_DBox_About.DBox_About", "About", S_szHTML_DBox_About, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, G_DBox_Null.U_Cancel, null);
+  G_DBox_LdFile = new CL_DBox("Id_Div_DBox0", "G_DBox_LdFile", "Load File", S_szHTML_DBox_LdFile, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, U_Load_File, null);
+
+  
+//  window.addEventListener('keydown', U_KeyPressed);
+  $MRMenu.U_Init("Id_Main", $MRMenu.U_Open, G_aMnEntry_PopUp);                    /* Right Button Menu handler for "Id_Main" */
+  
+  var iWdt_Icon = $VConfig.F_ValSts_Get("iWdt_Icon");
+  if (iWdt_Icon < 15) {
+     iWdt_Icon = 15;
+  } /* if */  
+  var szTmp =  `
+  .Cl_input_Image_Button {
+     width:${iWdt_Icon}px;
+  }`;
+  
+  Id_Style_0.innerHTML = szTmp;
+} /* U_Init */
+
+U_Init(); 
+    
+</script> </body>
+</html>

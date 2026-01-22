@@ -1,0 +1,87 @@
+/* License     : https://www.gnu.org/licenses/lgpl-3.0.txt */
+@media (prefers-color-scheme: dark) {     /* dark mode */
+:root {
+  --background: #000;
+  --foreground: #fff;
+  --bg_tbl:     #111;  
+}
+
+}  /* end dark mode */
+
+@media (prefers-color-scheme: light) {     /* light mode */
+:root {
+  --background: #fff;
+  --foreground: #000;
+  --bg_tbl:     ivory;
+}
+
+}  /* end light mode */
+
+body { 
+  background-color: var(--background);
+  color: var(--foreground);
+}
+    
+header {
+  position:fixed;
+  top:0;
+  text-align:center;
+  background-color:cyan;  
+  color: black;
+  font-size:200%;
+  width:100%;
+  height:5vh;
+}
+
+nav {
+  position:fixed;
+  top:5vh;
+  width:100%;
+}
+
+footer {
+  position:fixed;
+  bottom:0;
+  text-align:center;
+  background-color:cyan;  
+  color: black;
+  width:100%;
+}
+
+.Cl_TBM {
+  text-align: left;
+}
+
+#Id_Div01 {
+  background-color: var(--bg_tbl);
+  position:relative;
+  top:20vh;
+  width:100%;
+}
+
+a:link { color: blue; }                                       
+a:visited { color: magenta; }                                         
+a:hover { color: red; }                                           
+a:active { color: #ff4040; text-decoration:none; font-weight:normal; } 
+
+#Id_Hdr_szApp{
+text-align:left;
+width:30%;
+}
+#Id_Hdr_szFlNm {
+text-align:left;
+width:60%;
+}
+#Id_Hdr_szRO {
+text-align:left;
+width:8%;
+}
+
+#Id_Code {
+  font-family: monospace;
+  caret-color: red;
+}
+                                                                  
+Red {
+  color:red;
+}

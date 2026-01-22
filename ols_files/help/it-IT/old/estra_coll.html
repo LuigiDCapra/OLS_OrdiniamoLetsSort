@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Estrazione</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>Estrazione di una parte di una collezione.</h1>
+        <section>
+          <h2>Problema.</h2>
+          <p>Considerata una generica collezione di dati in uno dei formati supportati dal programma DDJ ci si pone il problema di creare una nuova collezione costituita dai valori di alcuni campi dei
+            record selezionati.</p>
+          <p><br>
+          </p>
+          <p>Ad esempio: data la collezione</p>
+          <pre>{
+"anatra_0":{"iNum1":41,"Bool2":false,"sz3":"duck_3","Date4":"2009-09-01","Str5":"S_asObj_5"},
+"cane":{"iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Str5":""},
+"cavallo":{"iNum1":53,"Bool2":true,"sz3":"horse","Date4":"2004-04-03","Str5":""},
+"foca":{"iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Str5":""},
+"gallo":{"iNum1":37,"Bool2":1,"sz3":"cock","Date4":"1988-08-05","Str5":""},
+"gatto":{"iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Str5":""},
+"lupo":{"iNum1":6,"Bool2":0,"sz3":"wolf","Date4":"2007-07-07","Str5":""},
+"oca":{"iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Str5":""},
+"rana":{"iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Str5":""},
+"topo":{"iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Str5":""}
+}</pre>
+          <p>Si potrebbe essere interessati solo ai valori dei campi <code>iNum1</code> e <code>sz3</code> dei record la cui data (<code>Date-4</code>) è più recente del primo gennaio 2025.</p>
+          <p>Per ottenere il risultato desiderato si dovrà impostare un filtro specificando la condizione concernente le date, modificare il tracciato record inibendo la visualizzazione dei campi
+            indesiderati e quindi salvare la collezione dati risultate. </p>
+        </section>
+        <section>
+          <h3>Impostazione del filtro.</h3>
+          <p>Cliccate sulla voce <code>Filter2</code> della barra dei menu, impostate la condizione</p>
+          <p><br>
+          </p>
+          <p style="text-align: center;"> Date4 &gt; 2015-01-01</p>
+          <p><br>
+          </p>
+          <p>usando i bottoni di scelta e confermate.</p>
+          <p>Risulterà selezionata la collezione:</p>
+          <pre>{
+"cane":{"iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Str5":""},
+"gatto":{"iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Str5":""},
+"rana":{"iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Str5":""},
+"topo":{"iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Str5":""}
+}</pre>
+        </section>
+        <section>
+          <h3>Selezione dei campi cui si è interessati.</h3>
+          <p>La selezione dei campi della collezione cui si è interessati deve essere fatta in negativo editando il tracciato record e inibendo la visualizzazione dei campi cui non si è interessati.</p>
+          <ul>
+            <li> Volendo visionare o editare il <span style="font-weight: bold;">tracciato record</span> della <a href="glossario.html#Id_Collezione">collezione di dati</a> selezionata bisogna</li>
+            <li>cliccare il bottone <code>Select Collection</code> della barra dei comandi,</li>
+            <li>selezionare <code>Collection Loaded</code> usando il menu a tendina <code>Source</code>;</li>
+            <li>selezionare <code>Layout UsrView.aFld</code> usando il menu a tendina <code>Show Collection</code>;</li>
+            <li>abilitare la modifica togliendo il segno di spunta alla casella <code>Read Only [RO]</code>.</li>
+            <li>confermare premendo il bottone <code>Confirm</code>.</li>
+          </ul>
+          Per inibire la visualizzazione dei campi indesiderati basta togliere il segno di spunta corrispondente al campo <code>fVisible</code> nelle righe associate ai campi considerati e
+          confermare.<br>
+          Togliendo i segni di spunta ai campi Bool2, Date4, Str5 risulterà selezionata la seguente collezione:<br>
+          <pre>{
+"cane":{"iNum1":70,"sz3":"dog"},
+"gatto":{"iNum1":21,"sz3":"cat"},
+"rana":{"iNum1":84,"sz3":"frog"},
+"topo":{"iNum1":72,"sz3":"mouse"}
+}        </pre>
+        </section>
+        <section>
+          <h3>Salvataggio della collezione risultante.</h3>
+          <p>A questo punto per salvare la collezione risultante in un file esterno basterà cliccare sub bottone <code>Save Collection</code> della barra dei menu, impostare il nome del file in cui
+            si desidera salvare la collezione, selezionando il formato e confermare.</p>
+          <p>La collezione verrà salvata in un file con il nome specificato nella directory di Download.</p>
+        </section>
+        <section>
+          <h3>Salvataggio della collezione in ordine trasposto.</h3>
+          <p>Nel caso in cui foste interessati a salvare la collezione risultante in <strong>ordine trasposto</strong>, scambiando cioè le righe con le colonne, vi scontrereste con il problema
+            costituito dal formato della collezione.</p>
+          <p>La collezione</p>
+          <pre>{
+"cane":{"iNum1":70,"sz3":"dog"},
+"gatto":{"iNum1":21,"sz3":"cat"},
+"rana":{"iNum1":84,"sz3":"frog"},
+"topo":{"iNum1":72,"sz3":"mouse"}
+}</pre>
+          <p>è costituita da un <em>array associativo di oggetti</em>, ma ora il&nbsp; formato <code>asObj</code> prevede la memorizzazione dei valori degli elementi della collezione come come liste
+            di coppie attributo valore separate da ':',</p>
+          <p>il suddetto vincolo impedisce il salvataggio della collezione di dati in ordine trasposto, pertanto se si desidera salvare la collezione in ordine trasposto sarà necessario cambiare
+            formato selezionando ad esempio il formato aRcd e poi confermando la collezione verrà salvata con la rappresentazione seguente:</p>
+          <pre>[
+["cane","gatto","rana","topo"],
+[70,21,84,72],
+["dog","cat","frog","mouse"]
+]<br></pre>
+          <p><br>
+          </p>
+          <p><br>
+          </p>
+          <p><br>
+          </p>
+        </section>
+      </main>
+    </div>
+  <script src="rlcd.js"></script></body>
+</html>

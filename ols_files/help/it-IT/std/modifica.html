@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Modifica dei dati di una collezione.</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Modifica dei dati di una collezione." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>Abilitazione della modifica dei dati di una collezione.</h1>
+        <section>
+          <h2>Premessa.</h2>
+          <p>Il programma <span style="font-weight: bold;">Ordiniamo/Let's Sort</span> alias <span style="font-weight: bold;">DDJ</span> non è un <span style="font-weight: bold;">DBMS</span> bensì
+            un programma per l'esplorazione e la manipolazione delle <a href="glossario.html#Id_Collezione">collezioni di dati</a>, pertanto l'operatore, se lo desidera, ha piena facoltà di apportare
+            modifiche ai dati delle Collezioni sotto la sua responsabilità. </p>
+          <p><br>
+          </p>
+          <p><mark>La salvaguardia dell'integrità dei dati contenuti nelle collezioni viene lasciata alla responsabilità dell'operatore che si assumerà la responsabilità delle modifiche potenzialmente
+              distruttive che deciderà di apportare alle collezioni di dati.</mark></p>
+          <p><br>
+          </p>
+          <p>Come misura precauzionale, in ogni caso, le collezioni di dati vengono aperte (cioè caricate) per default in modalità <span style="font-weight: bold;">Read Only [RO]</span>.</p>
+          <p><br>
+          </p>
+          <p><mark>Le manipolazioni potenzialmente distruttive, che potrebbero compromettere l'integrità dei dati, richiedono una esplicita abilitazione da parte dell'operatore che così facendo se ne
+              assume la responsabilità.</mark></p>
+        </section>
+        <section>
+          <h2>Abilitazione della modifica dei dati.</h2>
+          <p>Per misura precauzionale, per default, il programma OLS propone sempre il caricamento delle <a href="glossario.html#Id_Collezione">collezioni di dati</a> in modalità di sola lettura (<span
+              style="font-weight: bold;">Read Only [RO]</span>),</p>
+          <p><br>
+          </p>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/rw-ro_01.jpg">&nbsp;<figcaption>Figura 1 -Il programma OLS propone per default l'apertura delle collezioni in modalità
+              di sola lettura [RO]</figcaption> </figure>
+          <p>Per cui se si accetta l'opzione di default la collezione sarà aperta in modalità di sola lettura (Read Only [RO]), la barra del titolo pertanto sarà colorata di rosso e riporterà la
+            dicitura <span style="font-weight: bold;">[RO]</span>.</p>
+          <p><br>
+          </p>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/rw-ro_02.jpg">&nbsp;<figcaption>Figura 2 -Il fatto che la collezione selezionata sia aperta in modalità di sola lettura
+              viene segnalato colorando di rosso la barra del titolo e mediante la dicitura [RO]</figcaption> </figure>
+          <p><br>
+          </p>
+          <p>Se si desidera operare sulle collezioni di dati allo scopo di correggere i dati è necessario abilitare le modifiche esplicitamente. </p>
+        </section>
+        <section>
+          <h3>Commutazione da READ ONLY [RO] a Read Write [RW].</h3>
+          Per abilitare l'editing e la modifica dei dati è necessario cliccare sul bottone <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code></code><code>Select Collection</code> della
+          barra dei comandi, togliere la spunta alla casella <code><span id="Id_Span_fReadOnly">Read Only [RO]</span></code><span id="Id_Span_fReadOnly"> e confermare premendo sul bottone <code>Confirm</code>.<br>
+            <br>
+          </span>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/rw-ro_03.jpg">&nbsp;<figcaption>Figura 3 -Per abilitare le modifiche è necessario togliere la spunta alla casella Read
+              Only [RO].</figcaption> </figure>
+          <br>
+          <p>La barra del titolo assumerà il colore celeste per segnalare il cambiamento di stato, inoltre la dicitura [RO] verrà sostituita da [RW].</p>
+          <p><br>
+          </p>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/rw-ro_04.jpg">&nbsp;<figcaption>Figura 4 -Il fatto che le modifiche sono consentite viene segnalato colorando di
+              celeste la barra del titolo e mediante la dicitura [RW]</figcaption> </figure>
+        </section>
+        <section>
+          <h3>Ripristino della modalità READ ONLY [RO].</h3>
+          Per ripristinare la modalità READ ONLY [RO] basta cliccare sul bottone <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code></code><code>Select Collection</code> della barra dei
+          comandi e<span id="Id_Span_fReadOnly"> confermare premendo sul bottone <code>Confirm</code>.</span> </section>
+        <br>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

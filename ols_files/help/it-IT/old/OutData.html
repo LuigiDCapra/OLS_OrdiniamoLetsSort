@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_OutData">
+          <h1>Save Collection</h1>
+          <br>
+          La finestra di dialogo Save Collection consente di salvare la collezione selezionata esternamente sotto di forma di file in locale o in un sito remoto oppure all'interno del browser.<br>
+          <section>
+            <h2>Toolbar di "Save Collection".</h2>
+            <section>
+              <h3>Help</h3>
+              <p>Apre il file di Help.</p>
+              <p><br>
+              </p>
+              <p><br>
+              </p>
+            </section>
+          </section>
+          <section>
+            <h2>Parametri di salvataggio.</h2>
+            <section>
+              <h3>Destination</h3>
+              <section>Il menu a tendina "Destination" consente di scegliere il supporto di memoria che si desidera utilizzare per il salvataggio dai dati contenuti nella collezione.<br>
+                Sono previste le seguenti possibilità: file, local storage, session storage e URL.</section>
+            </section>
+            <br>
+            <section>
+              <h3>File/Local Storage/Session Storage/URL.</h3>
+              <p>Scrivere nella casella il nome del file in cui si desiderano salvare i dati.</p>
+              <p>Il file verrà salvato nella <em>cartella</em> (<em>directory</em>) di <code>download</code> impostato nel browser.</p>
+            </section>
+            <section>
+              <h3>Save as:</h3>
+              <p>Cliccando sul bottone di input si aprirà un menu a tendina che consente di scegliere il formato di salvataggio.</p>
+              <p><br>
+              </p>
+              <p><mark><span style="font-weight: bold;">ATTENZIONE:</span></mark></p>
+              <p>La selezione dei formati asRcd o asObj può causare la perdita di dati nel caso in cui più righe/tuple presentassero lo stesso valore nella colonna scelta come chiave, tipicamente la
+                prima colonna.</p>
+              <p>Questo problema si presenta nel caso in cui nella collezione originale per l'accesso alla colonna richiedesse l'impiego di chiavi composte ottenute concatenando i valori di più
+                attributi.</p>
+            </section>
+            <section>
+              <h3>Index of the column used as Primary key</h3>
+              <p>La casella consente di selezionare (quando è consentito) il numero della colonna da usare come chiave primaria.</p>
+            </section>
+            <br>
+          </section>
+          <section>
+            <h2>Comandi della finestra di dialogo</h2>
+          </section>
+          <section>
+            <h3>X.</h3>
+            <p>Cliccando sul simbolo "X" che appare nell'angolo in alto a destra si chiude la scheda annullando tutte le impostazioni. </p>
+          </section>
+          <section>
+            <h3>Confirm.</h3>
+            <p>Cliccando sul bottone "Confirm" disegnato nell'area verde in basso si chiude la scheda e si procede con il caricamento della Collezione selezionata.</p>
+          </section>
+          <section id="OutData_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/help.svg"> Help file</h2>
+            <p>Descrizione</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

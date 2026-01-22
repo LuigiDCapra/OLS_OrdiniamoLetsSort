@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Creazione</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Creazione di una nuova collezione di dati." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>Creazione di nuove collezioni di dati.</h1>
+        <section>
+          <h2>Creazione di nuove collezioni di dati.</h2>
+          Le <a href="glossario.html#Id_Collezione">collezione di dati</a> possono essere create in vari modi:<br>
+          <ul>
+            <li> <a href="#Id_H2_JS">scrivendo del codice in JavaScript</a>;</li>
+            <li> <a href="#Id_H2_OLS">usando l'interfaccia grafica del programma OLS;</a></li>
+            <li> <a href="#Id_H2_Edit">impiegando un comune editor di testi per inserire i dati di nostro interesse in un file.</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2 id="Id_H2_JS">Creazione di collezioni di dati in JavaScript</h2>
+          <section>
+            <h3>Premessa</h3>
+            Come dice Niklaus Wirth la programmazione concerne la stesura di <span style="font-style: italic;">algoritmi</span> e la gestione di <span style="font-style: italic;">strutture dati</span>,
+            le <a href="#Id_Collezione">collezioni di dati</a> esistono già naturalmente all'interno dei programmi. Spesso&nbsp; non si tratta di "crearle" ex novo, ma di renderle accessibili in modo
+            che si possa operare facilmente su di esse semplificando il lavoro di debug e/o l'analisi dei dati da parte dell'operatore. <br>
+            Si potrebbe pensare che gli strumenti in dotazione ai vari <span style="font-style: italic;">browser</span> siano già più che sufficiente, senonché basta uno sguardo ai rispettivi <span
+              style="font-style: italic;">debugger</span> per accorgersi che sono stati progettati per cercare i difetti presenti nel codice, ma non per consentire l'esplorazione delle strutture dati
+            complesse presenti al loro interno.<br>
+            I normali <span style="font-style: italic;">debugger</span> risultano spesso inadeguati. quando si tratta di accedere a strutture dati complesse e di navigare all'interno di esse.<br>
+            <br>
+            Il programma OLS si propone di offrire una soluzione migliore minimizzando la fatica dell'utente grazie all'impiego di una interfaccia grafica e di strumenti specifici.<br>
+            Supponiamo di voler impiegare le risorse del programma DDJ per studiare il contenuto di una generica struttura dati già definita all'interno di un programma JavaScript, ad esempio:<br>
+            <br>
+            <pre>var S_aFld_aRcd4 = [
+  {"szNm":"sz0",    "szType":"string",  "iLen":8, "szRem":"string zero"},
+  {"szNm":"iNum_X", "szType":"number",  "iLen":8, "szRem":"iNum_X"},
+  {"szNm":"sz_Y",   "szType":"string",  "iLen":8, "szRem":"sz_Y"}
+];
+
+var S_aRcd4  =
+[
+["anatra_0", 0, "a"],
+["cavallo",  2, "c"],
+["gallo",    4, "e"],
+["lupo",     6, "g"],
+["rana",     8, "i"]
+];
+ </pre>
+            Per poter usare gli strumenti grafici della libreria DDJ nella pagina Web che si intende debuggare si dovrà innanzitutto "importare" il codice degli oggetti&nbsp; richiesti inserendo gli
+            opportuni elementi <code>script</code>, ad esempio<br>
+            <pre>&lt;script src="ddj.js"&gt;&lt;/script&gt;
+</pre>Nel caso in cui si intenda modificare il codice di OLS non occorre fare nulla perché gli oggetti richiesti per usare gli strumenti grafici sono già importati.<br>
+            <br>
+            Le strutture dati che si intendono studiare dovranno quindi essere "registrate" nel <span style="font-style: italic;">framework</span> creando i corrispondenti<span style="font-style: italic;">
+              oggetti</span> JavaScript, vedi ad esempio:<br>
+            <pre>new CL_XDB0("S_aFld_aRcd4",  C_JKndTup_aObj, S_aFld_aRcd4, G_aFld_aFld,  "G_aFld_aFld",  "", C_WwFlag_Null); 
+new CL_XDB("S_aRcd4",        C_JKndTup_aRcd, S_aRcd4,      S_aFld_aRcd4, "S_aFld_aRcd4", "", C_WwFlag_Null);</pre>
+            dopodiché si potrà operare sulle collezioni mediante gli strumenti grafici messi a disposizione da OLS.<br>
+            <br>
+            Si noti a questo riguardo che per quanto concerne il programma OLS è indifferente che le collezioni che si desiderano esplorare siano state generate al suo interno da una procedura scritta
+            in JavaScript o siano state caricate da un file esterno, ciò che conta è che siano state regolarmente registrate creando gli oggetti corrispondenti.<br>
+            <br>
+            Supponiamo ad esempio di voler "registrare" la struttura dati costituita dall'oggetto JavaScript così definito:<br>
+            <pre style="background-color: white;">var S_aRcd4  = [["anatra", 0, "a"], ["cavallo", 2, "c"], ["gallo", 4, "e"], ["lupo", 6, "g"], ["rana", 8, "i"] ];   <span style="font-weight: bold; color: red;">(1)</span></pre>
+            La struttura dati <code>S_aRcd4</code> è chiaramente un <span style="font-style: italic;">array</span> di <span style="font-style: italic;">array</span> contenente dati di <a href="glossario.html#Id_Tipo">tipo</a>
+            eterogeneo, sebbene memorizzati secondo una certa logica.<br>
+            Sebbene la struttura <code>S_aRcd4</code> contenga al suo interno un "miscuglio" di dati di tipo diverso: stringhe, numeri interi, caratteri alfabetici, si ravvisa un elemento di
+            regolarità che può essere evidenziato riscrivendola come segue:<br>
+            <pre>var S_aRcd4  = [		<span style="font-weight: bold; color: red;">(2)</span>
+["anatra",   0, "a"],
+["cavallo",  2, "c"],
+["gallo",    4, "e"],
+["lupo",     6, "g"],
+["rana",     8, "i"]
+];</pre>
+            Si osservi che i codici <span style="color: red;">(1)</span> e <span style="color: red;">(2)</span>&nbsp; sono assolutamente identici per quanto concerne l'interprete JavaScript nel
+            senso che ad essi corrisponderà lo stesso codice; non così per gli esseri umani poiché il secondo codice evidenzia degli elementi di regolarità che aiutano a comprendere l'organizzazione
+            della struttura dati.<br>
+            In riferimento al codice riorganizzato sotto forma di <span style="font-weight: bold;">tabella</span> <span style="color: red;">(2)</span> diremo <a href="glossario.html#Id_Record">record</a>
+            le righe della tabella e <a href="glossario.html#Id_Campi">campi</a> le colonne della stessa.<br>
+            Si osservi che sono possibili delle nomenclature alternative per cui i <strong>record</strong> sono detti talvolta anche <span style="font-style: italic;">righe</span> o <a href="glossario.html#Id_Tuple">tuple</a>&nbsp;
+            e i <strong>campi</strong> <span style="font-style: italic;">colonne</span>, <a href="glossario.html#Id_Attributi">attributi</a>, <span style="font-style: italic;">proprietà</span>. o
+            <span style="font-style: italic;">caratteristiche</span>.<br>
+            <br>
+            Gli elementi di regolarità di cui si è parlato possono essere esplicitati scrivendone una descrizione formale che prende il nome di <a href="glossario.html#Id_Tracciato_Record">tracciato
+              record</a>.<br>
+            <br>
+            Il <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> delle righe della collezione <code>S_aRcd4</code> può essere rappresentato come segue:<br>
+            <br>
+            <table style="width: 100%" border="1">
+              <thead>
+                <tr>
+                  <th>nome campo</th>
+                  <th>tipo di dato</th>
+                  <th>lunghezza massima</th>
+                  <th>commento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>szNm</td>
+                  <td>szType</td>
+                  <td>iLen</td>
+                  <td>szRem</td>
+                </tr>
+                <tr>
+                  <td>sz0</td>
+                  <td>string<br>
+                  </td>
+                  <td>8<br>
+                  </td>
+                  <td>esempio di stringa<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>iNum_X</td>
+                  <td>number<br>
+                  </td>
+                  <td>8<br>
+                  </td>
+                  <td>esempio di numero </td>
+                </tr>
+                <tr>
+                  <td>sh0</td>
+                  <td>string<br>
+                  </td>
+                  <td>8<br>
+                  </td>
+                  <td>esempio di carattere<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            E' interessante osservare che la tabella precedente è a sua volta un <span style="font-style: italic;">array</span> di <span style="font-style: italic;">array</span> pertanto può essere
+            rappresentata secondo le convenzioni di JavaScript nel modo seguente:<br>
+            <pre>var S_aFld_aRcd4 = [
+  {"szNm":"sz0",    "szType":"string",  "iLen":8, "szRem":"esempio di stringa"},
+  {"szNm":"iNum_X", "szType":"number",  "iLen":8, "szRem":"iNum_X"},
+  {"szNm":"ch0",    "szType":"string",  "iLen":8, "szRem":"sz_Y"}
+];</pre>
+            Fatto che consente di registrare il <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> di una collezione assieme alla <a href="glossario.html#Id_Collezione">collezione</a>
+            stessa:<br>
+            <pre>new CL_XDB0("S_aFld_aRcd4",  C_JKndTup_aObj, S_aFld_aRcd4, G_aFld_aFld,  "G_aFld_aFld",  "", C_WwFlag_Null); 
+new CL_XDB("S_aRcd4",        C_JKndTup_aRcd, S_aRcd4,      S_aFld_aRcd4, "S_aFld_aRcd4", "", C_WwFlag_Null);</pre>
+            Si osservi che nella creazione dei suddetti oggetti si impiegano due costruttori diversi che fanno riferimento a classi differenti. <br>
+            Il <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> <code>S_aFld_aRcd4</code>, corrispondente ad tracciato record della collezione <code>S_aRcd4</code>, viene
+            registrato ricorrendo al costruttore della classe <code>CL_XDB0</code>, mentre si impiega il costruttore della classe <code>CL_XDB</code>&nbsp; per registrare la collezione dati <code>S_aRcd4</code>.
+            <br>
+            La differenza consiste nel fatto che il primo costruttore si limita a creare un oggetto <code>XDB</code> descrivente la collezione presente in memoria (<a href="glossario.html#Id_Tracciato_Record"><span
+                style="font-style: italic;">Layout fisico</span></a>), mentre il secondo crea anche una <a href="glossario.html#Id_Vista"><span style="font-style: italic;">vista utente</span></a>,
+            inoltre iscrive la collezione considerata nella lista delle <span style="font-style: italic;">collezioni dati presenti in memoria</span>.<br>
+            <br>
+            Le funzioni corrispondenti ai due costruttori sono caratterizzate dalla stessa lista di parametri: il primo parametro corrisponde al <span style="font-style: italic;">nome della
+              collezione</span>. Il secondo definisce la <a href="formati.html">tipologia della collezione</a>. il terzo è la collezione vera e propria che si intende registrare, seguono la struttura
+            dati corrispondente al <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> e il nome della stessa, infine si ha la possibilità di inserire un commento e di specificare dei
+            flag che definiscono alcune proprietà speciali della collezione.<br>
+            Si osservi che il tracciato record <code style="color: red;">G_aFld_aFld</code> (cui si fa riferimento nella la registrazione del <a href="glossario.html#Id_Tracciato_Record">tracciato
+              record</a> <code>S_aFld_aRcd4</code> della collezione <code>S_aRcd4</code>), <br>
+            <pre>new CL_XDB0("S_aFld_aRcd4",  C_JKndTup_aObj, S_aFld_aRcd4, <span style="color: red;">G_aFld_aFld</span>,  "<span style="color: red;">G_aFld_aFld</span>",  "", C_WwFlag_Null);</pre>
+            è già definito poiché è un tracciato record standard, pertanto non è necessario registrarlo. </section>
+          <section>
+            <h2>Ricorso alla opzione AutoDetect.</h2>
+            Nel caso in cui non si volesse registrare una collezione di cui non si dispone <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> la libreria DDJ consente di generarlo
+            automaticamente ricorrendo alla opzione <a href="gloaasario.html#Id_AutoDetect">AutoDetect</a> richiedendo al programma DDJ di costruirsela da solo, in maniera automatica, analizzando i
+            dati della prima riga della collezione.<br>
+            Per attivare la suddetta funzionalità è basta inserire la stringa "AutoDetect" al posto del nome del <a href="glossario.html#Id_Tracciato_Record">Layout</a> come evidenziato in rosso
+            nell'esempio.<br>
+            <br>
+            <code>new CL_XDB("S_aUsrView_N", C_JKndTup_aRcd, CL_aUsrView_N.S_aUsrView_N, <span style="font-weight: bold; color: red;">null</span><span style="color: red;">, "AutoDetect"</span>,&nbsp;
+              "", C_WwFlag_Null);</code><br>
+          </section>
+        </section>
+        <section>
+          <h2 id="Id_H2_OLS">Creazione di collezioni di dati utilizzando l'interfaccia grafica di OLS.</h2>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_00.jpg">&nbsp;<figcaption>Figura 1 - <span style="font-family: monospace;">Creazione di una nuova collezione
+                di dati</span><code></code>.</figcaption> </figure>
+          Il programma OLS prevede diverse procedure per la creazione di Collezioni di dati:<br>
+          <ul>
+            <li><a href="#Id_ExNovo">creazione di una Collezione completamente nuova (New);</a></li>
+            <li><a href="#Id_H2_Function">creazione di una collezione mediante calcolo dei valori di una funzione (Function);</a></li>
+            <li><a href="#Id_H2_Edit">stesura del codice JavaScript in una finestra del browser (TextArea)</a>;</li>
+            <li><a href="#Id_H2_Edit">inserimento di dati in un file</a>;</li>
+            <li>riferimento ad una variabile globale presente in memoria.</li>
+          </ul>
+          <section>
+            <h2 id="Id_ExNovo">Creazione di una Collezione di Dati completamente nuova.</h2>
+            Il procedimento per la creazione di una <a href="#Id_Collezione">collezione di dati</a> completamente nuova prevede:<br>
+            <ul>
+              <li>la scelta del nome della nuova <a href="#Id_Collezione">collezione di dati</a>,</li>
+              <li>la selezione del <a href="formati.html">formato</a> e del <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> della collezione fra quelli già esistenti o la creazione
+                di un nuovo tracciato record,</li>
+              <li>il caricamento dei dati.</li>
+            </ul>
+            <br>
+          </section>
+          <section>
+            <h3>Creazione di un nuovo Tracciato Record.</h3>
+            Nel caso in cui il <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> della nuova <a href="#Id_Collezione">collezione</a> non fosse ancora presente in memoria bisognerà
+            crearlo.<br>
+            Essendo il <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> di una <a href="#Id_Collezione">collezione</a> a sua volta una <a href="#Id_Collezione">collezione</a> non
+            si tratterà che di creare e inizializzare la collezione dei dati che descrivono i campi della nuova collezione.<br>
+            <br>
+            Clicchiamo sul tasto di selezione e caricamento <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> e poi su <code>Source</code>. Selezioniamo la voce
+            <code>New</code> come mostrato in Figura 1.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_11.jpg">&nbsp;<figcaption>Figura 2 - <span style="font-family: monospace;">Creazione di una nuova
+                  collezione di dati</span><code></code>. Il valore "New Layout" della casella&nbsp; indica che si desidera creare un nuovo tracciato record.</figcaption> </figure>
+            <br>
+            Si aprirà una finestra che offre la possibilità di specificare il nome della nuova collezione (<code>Collection Name</code>) e di selezionare il nome del <a href="glossario.html#Id_Tracciato_Record">tracciato
+              record</a> della nuova collezione (<code>Record Layout (aFld)</code>).<br>
+            Nel caso in cui il tracciato record desiderato non fosse già disponibile in memoria si può richiedere il preventivo caricamento del nuovo tracciato record selezionando lo speciale valore "<code>New
+              Layout</code>". Vedi Figura 2.<br>
+          </section>
+          <section id="Id_Layout_Cration">
+            <h3>Creazione di una nuova Collezione facendo riferimento ad Tracciato Record già esistente.</h3>
+            Volendo creare una nuova <a href="#Id_Collezione">collezione di dati</a> facendo riferimento ad un <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> già presente in
+            memoria sarà sufficiente<br>
+            <ul>
+              <li>cliccare sulla voce <code>Select Collection</code> della barra dei menu,</li>
+              <li>selezionare la voce <code>New</code> della lista <code>Source</code>,</li>
+              <li>inserire il nome della nuova collezione nel campo <code>Collection Name</code>,</li>
+              <li>selezionare il <a href="formati.html">formato</a> in cui si desidera siano rappresentati i dati scegliendolo nella lista <code>Kind</code>,</li>
+              <li>selezionare il <a href="glossario.html#Id_Tracciato_Record">tracciato record</a> dalla lista <code>Record layout (aFld)</code>,</li>
+              <li>e confermare.</li>
+              <li>Potrete quindi procedere al <a href="#Id_Data_Loading">caricamento dei dati della nuova collezione</a>.</li>
+            </ul>
+          </section>
+          <section id="Id_Data_Layout">
+            <h3>Creazione di un nuovo Layout</h3>
+            Selezionando&nbsp; "<code>Record Layout aFld</code>" = "<code>New Layout</code>" si forza la creazione della collezione corrispondente al nuovo <a href="glossario.html#Id_Tracciato_Record">tracciato
+              record</a>.<br>
+            Per quest'ultima OLS selezionerà automaticamente il formato <code>aObj</code> e il tracciato record <code>G_aFld_aFld</code> che descrive l'organizzazione dei tracciati record.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_12.jpg">&nbsp;<figcaption>Figura 3 - <span style="font-family: monospace;">Creazione del tracciato record
+                  corrispondente ad una nuova collezione.</span></figcaption>OLS aprirà quindi la prima di una serie di schede che consentiranno di introdurre le specifiche dei campi della nuova
+              collezione.<br>
+              NOTA: se la collezione che di desidera creare si chiama <code>&lt;Collezione&gt;</code>, il tracciato record si chiamerà <code>&lt;Collezione&gt;<span style="font-weight: bold;">_aFld</span></code>.
+              <br>
+              Come si vede in Figura 4 il tracciato record della collezione Customer si chiama Customer_aFld.</figure>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_05.jpg">&nbsp;<figcaption>Figura 4 - <span style="font-family: monospace;">Introduzione dei dati che
+                  definiscono il tracciato record di un campo della nuova collezione.</span></figcaption> </figure>
+            <br>
+            Per terminare il caricamento basta cliccare sulla "X" che compare nell'angolo in alto a destra della finestra di dialogo. <br>
+            <br>
+            Terminato il caricamento dei valori del tracciato record il programma OLS domanderà se si procederà alla creazione della collezione desiderata e all'inserimento dei valori degli elementi.<br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_13.jpg">&nbsp;<figcaption>Figura 5 -<span style="font-family: monospace;">Ricrista di procedere con il
+                  caricamento.</span></figcaption> </figure>
+            <br>
+            Previa conferma verrà avviata la procedura di caricamento aprendo una scheda vuota conforme al tracciato record della nuova collezione.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_08.jpg">&nbsp;<figcaption>Figura 6 - <span style="font-family: monospace;">Inserimento dei record della
+                  nuova collezione di dati</span><code></code>.</figcaption> </figure>
+            <br>
+            Completato il caricamento dei dati nella scheda l'operatore confermerà l'inserimento della scheda nella collezione cliccando sul bottone <code>Confirm</code> posto alla base della scheda.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_09.jpg">&nbsp;<figcaption>Figura 7 - <span style="font-family: monospace;">Inserimento dei record della
+                  nuova collezione di dati</span><code></code>.</figcaption> </figure>
+            Il programma OLS inserirà i dati nella Collezione poi aprirà un'altra scheda vuota.<br>
+            <br>
+            Per completare il caricamento basta cliccare sulla X posta nell'angolo in alto a destra della scheda di input.<br>
+            Terminato il caricamento delle schede il programma OLS mostrerà i valori della Collezione di dati caricata sotto forma di Tabella allo scopo di consentire all'operatore di ricontrollare i
+            valori inseriti.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_10.jpg">&nbsp;<figcaption>Figura 8 - <span style="font-family: monospace;">Risultato dell'inserimento dei
+                  dati</span><code></code>.</figcaption> </figure>
+            <br>
+            <br>
+            <br>
+            <br>
+          </section>
+          <section id="Id_Data_Loading">
+            <h3>Caricamento dei dati nella nuova collezione.</h3>
+            Confermata la creazione di una nuova collezione apparirà una tabella vuota che presenta semplicemente le intestazioni delle colonne corrispondenti ai diversi campi dei record (attributi
+            delle tuple), per introdurre un nuovo record bisognerà pertanto utilizzare la procedura normalmente prevista per l'aggiunta di nuovi record alle collezioni.<br>
+            Cliccando sulla voce <code>New Tuple</code> della barra dei menu si aprirà una scheda che consentirà di introdurre i valori del nuovo record.<br>
+            Introducete i dati e confermate cliccando sul bottone <code>Confirm</code>.<br>
+            Apparirà quindi una nuova scheda vuota che vi offrirà la possibilità di introdurre i valori di un nuovo record e così via.<br>
+            Per interrompere il caricamento basterà cliccare semplicemente sulla <code>X</code> nell'angolo in alto a destra.<br>
+          </section>
+        </section>
+        <section>
+          <h2 id="Id_H2_Function">Creazione di una nuova collezione di dati mediante calcolo dei valori di una funzione</h2>
+          Clicchiamo sul tasto di selezione e caricamento <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> e poi su <code>Source</code>. <br>
+          Selezioniamo la voce <code>Function</code> come mostrato in Figura 1.<br>
+          <br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_02.jpg">&nbsp;<figcaption>Figura 9 - <span style="font-family: monospace;">Creazione di una nuova collezione
+                di dati</span><code></code> mediante calcolo dei valori di una funzione.</figcaption> </figure>
+          Specifichiamo il valore minimo e massimo dell'intervallo sul quale si desiderano calcolare i valori della funzione e il passo di incremento.<br>
+          Inseriamo il codice JavaScript della funzione che desideriamo calcolare (è consentito omettere il nome della libreria ovvero <code>Math</code>.).<br>
+          Indicate eventualmente il nome della nuova collezione, il formato e il Layout e confermate.<br>
+          <br>
+          <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/creation_02.jpg">&nbsp;<figcaption>Figura 10 - <span style="font-family: monospace;">Creazione di una nuova collezione
+                di dati</span><code></code> mediante calcolo dei valori di una funzione.</figcaption> </figure>
+          <br>
+          <br>
+        </section>
+        <section>
+          <h2 id="Id_H2_Edit">Creazioni di collezioni di dati editando un file o inserendo i valori nella TextArea.</h2>
+          Circa la creazione di una nuova collezione di dati editando un file vedi&nbsp; <a href="formati.html#Id_JSON">formati JSON</a>.<br>
+          <br>
+          <br>
+        </section>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+@charset "UTF-8";
+
+/* luigidcapra.com */
+/* lcd_zero.css - 02/11/2021 */
+
+
+/* Clear browser's defaults (derived by "Meyer reset") */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,
+marquee {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* ----- elements ----- */
+
+* {
+/*  padding:0;  */ /* 05/12/2018 - baco bottoni ul */
+  margin:0;
+  box-sizing: border-box;   /* border vs content */
+}
+
+body {  
+  line-height: 1.25;  
+  font-size: 100%;
+}
+
+h1 {  
+  font-size: 150%;  
+  font-weight: bold;  
+  text-align: center;  
+  padding-top: 2em;
+}
+
+h2 {  
+  font-size: 120%;  
+  font-weight: bold;  
+  text-align: left;  
+  padding-top: 2em;
+}
+
+h3 {  
+  font-size: 100%;  
+  font-weight: bold;  
+  text-align: left;  
+  padding-top: 1.5em;
+}
+
+h4 {  
+  font-size: 100%;  
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 1.2em;
+}
+
+h5 {   
+  font-size: 100%;  
+  text-align: left;
+  padding-top: 1.2em;
+}
+
+h6 {
+  font-size: 100%;  
+  text-align: left;
+  font-weight: lighter;
+  padding-top: 1em;
+}
+
+blockquote {  
+  display: block;  
+  margin-top: 1em;  
+  margin-right: 40px;  
+  margin-bottom: 1em;  
+  margin-left: 40px;
+}
+
+code {  
+  font-family: monospace;
+}
+
+big {  
+  font-size: larger;
+}
+
+small {  
+  font-size: smaller;
+}
+
+b {  
+  font-weight: bold;
+}
+
+strong {  
+  font-weight: bold;
+}
+
+i {  
+  font-style: italic;
+}
+
+em {  
+  font-style: italic;
+}
+
+dfn {  
+  font-weight: bold;
+}
+
+cite {  
+  font-style: italic;
+}
+
+pre {  
+  display: block;  
+  font-family: monospace;  
+  white-space: pre;  
+  margin-top: 1em;  
+  margin-right: 0px;  
+  margin-bottom: 1em;  
+  margin-left: 0px;
+}
+
+samp {  
+  font-family: monospace;
+}
+
+sub {  
+  font-size: 60%;  
+  vertical-align: sub;
+}
+
+sup {  
+  font-size: 60%;  
+  vertical-align: super;
+}
+
+fieldset {  
+  display: block;  
+  margin-left: 2px;  
+  margin-right: 2px;  
+  padding-top: 0.35em;  
+  padding-right: 0.75em;  
+  padding-bottom: 0.625em;  
+  padding-left: 0.75em;  
+  border-width: 2px; 
+  border-style: groove;
+}
+
+figcaption {  
+  display: block;  
+  text-align: center;  
+  font-size: 70%;  
+  padding-top: 1em;  
+  padding-bottom: 1em;
+}
+
+li {  
+  display: list-item;  
+  margin-left: 5px;  
+  padding-left: 5px;
+}
+
+ul li {  
+  list-style-type: disc;  
+  display: list-item;  
+  margin-left: 5px;  
+  padding-left: 5px;
+}
+
+ul li li {  
+  list-style-type: circle;
+}
+
+ul li li li {  
+  list-style-type: square;
+}
+
+ol li {  
+  list-style-type: decimal;  
+  display: list-item;  
+  margin-left: 5px;  
+  padding-left: 5px;
+}
+
+ol li li {  
+  list-style-type: upper-alpha;
+}
+
+ol li li li {  
+  list-style-type: lower-alpha;
+}
+
+p {
+}
+
+q {  
+  display: inline;
+}
+
+q:before {  
+  content: open-quote;
+}
+
+q:after {  
+  content: close-quote;
+}
+
+/* NOTE: The border attribute of <table> is not supported in HTML5. */
+table {
+  display:table;  
+  border-collapse: separate;  
+  border-spacing: 2px;
+  border-width:1px;
+  border-style:solid;
+}
+
+tr, th, td {  
+  margin: 0px;  
+  padding: 0px;  
+  font-family: ;  
+  font-style: ;  
+  font-variant: normal;  
+  font-weight: ;  
+  font-size: ;  
+  line-height: ;  
+  font-size-adjust: ;  
+  font-stretch: ;  -moz-font-feature-settings: ;
+  -webkit-font-feature-settings: ;
+  font-feature-settings: ;  
+  -moz-font-language-override: ;  
+  vertical-align: baseline;
+}
+
+ul {  
+  margin-top: 0px;
+}
+
+marquee {  
+  background-color: lime;  
+  height: 3vh;
+}
+
+iframe {  
+  width: 100%;  
+  border-width: 0px;
+  border-style: none;
+}
+
+dt {  
+  font-weight: bold;
+}
+
+dl, dd {  
+  font-size: 0.9rem;  
+  margin-right: 2rem;
+}
+
+dd {   
+  padding-left: 5ex;
+}

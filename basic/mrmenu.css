@@ -1,0 +1,40 @@
+/*
+* Mouse right button menu.
+*/
+#Id_RMenu {
+  background-color: #f8f8f8;
+  position: fixed;
+  z-index:2;
+  display: none;
+}
+
+#Id_RMenu ul {    
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  width: 200px;
+  border: 1px solid #000;
+  font-size:80%;
+}
+
+#Id_RMenu li a {
+  display: block;
+  padding: 6px 16px;
+  text-decoration: none;
+}
+
+#Id_RMenu li {
+  text-align: left;
+  border-bottom: none;
+}
+
+#Id_RMenu .Cl_Line {
+  border-bottom: 1px solid #aaa;
+  height:1px;
+}
+
+#Id_RMenu li a:hover {
+  background-color: yellow;
+  color: #00f;
+}
+

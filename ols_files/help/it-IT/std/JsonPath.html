@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_JsonPath">
+          <h1>JsonPath</h1>
+          <section>
+            <h2>JsonPath.</h2>
+            <p><br>
+            </p>
+            <a href="https://code.google.com/archive/p/jsonpath/">JsonPath</a> è uno strumento software ispirato a <a href="https://en.wikipedia.org/wiki/XPath">XPath</a>&nbsp; che consente di
+            estrarre in modo selettivo i dati dai documenti in formato JSON.<br>
+            Vedi ad esempio <a href="https://jsonpath-plus.github.io/JSONPath/docs/ts/">https://jsonpath-plus.github.io/JSONPath/docs/ts/</a>.<br>
+            <br>
+            Volendo sperimentare le query in JsonPath selezionare la collezione di dati <code>Prova7</code> facente parte degli esempi di prova precaricati (<code>Collection Loaded</code>).<br>
+            <br>
+            <pre>var S_Prova7 = {
+  "store": {
+    "book": [ 
+      {
+        "category": "reference",
+        "author": "Nigel Rees",
+        "title": "Sayings of the Century",
+        "price": 8.95
+      }, {
+        "category": "fiction",
+        "author": "Evelyn Waugh",
+        "title": "Sword of Honour",
+        "price": 12.99
+      }, {
+        "category": "fiction",
+        "author": "Herman Melville",
+        "title": "Moby Dick",
+        "isbn": "0-553-21311-3",
+        "price": 8.99
+      }, {
+         "category": "fiction",
+        "author": "J. R. R. Tolkien",
+        "title": "The Lord of the Rings",
+        "isbn": "0-395-19395-8",
+        "price": 22.99
+      }
+    ],
+    "bicycle": {
+      "color": "red",
+      "price": 19.95
+    }
+  }
+};</pre>
+            Aprire la finestra di dialogo JsonPath e digitare ad esempio il comando <br>
+            <br>
+            <code>$..author</code><br>
+            <br>
+            verrà restituita la lista degli autori presenti nella tabella:
+            <pre>[
+Nigel Rees,
+Evelyn Waugh,
+Herman Melville,
+J. R. R. Tolkien
+]</pre>
+            <br>
+          </section>
+          <section>
+            <h2>Comandi della finestra di dialogo.</h2>
+          </section>
+          <section>
+            <h3>X.</h3>
+            <p>Cliccando sul simbolo "X" che compare in alto a destra si chiude la finestra di dialogo, annullando tutte le modifiche.</p>
+          </section>
+          <section>
+            <h3>Confirm.</h3>
+            <p>Cliccando sul pulsante "Confirm" nella fascia verde sottostante si chiude la finestra di dialogo tornando alla rappresentazione della Collezione selezionata.</p>
+          </section>
+          <section>
+            <h2>Comandi della barra delle icone.</h2>
+          </section>
+          <section id="DDJ_Cfg_Reset">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../../../ico/reset.svg"> reset<br>
+              Reset</h2>
+            <p>Ripristina i valori iniziali dei flag.</p>
+          </section>
+          <section id="DDJ_Cfg_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../../../ico/help.svg"> aiuto<br>
+              Help file</h2>
+            <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

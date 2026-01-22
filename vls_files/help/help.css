@@ -1,0 +1,33 @@
+main {  
+  width: 80%;  
+  margin-left: 10%;
+}
+
+p {  
+  margin-bottom: 0%;  
+  margin-top: 0%;
+}
+
+.Cl_Flex_Row {  
+  display: -webkit-flex;
+  display: flex;  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+#Id_Item_ASide0 {  
+  position: fixed;  
+  height: 90%;  
+  width: 20%;
+}
+
+.Cl_MargLft {  
+  width: 20%;
+}
+
+.Cl_Note {  
+  background-color: #ffff99;  
+  padding: 1%;  
+  margin: 1%;  
+}
+

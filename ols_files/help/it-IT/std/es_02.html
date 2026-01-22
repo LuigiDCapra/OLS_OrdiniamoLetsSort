@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Esempio 2</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Ripulitura dei dati (Data Cleaning)." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>Esempio 2</h1>
+          <section>
+            <h2>Ripulitura dei dati (Data Cleaning).</h2>
+            <br>
+            Consideriamo questa volta la tabella di dati in formato <a href="formati.html#Id_JSON">JSON</a>: <br>
+            <pre><span style="font-family: monospace;">[
+["num1", "str1", "bool", "date",      "num2", "str2",     "num3"],
+[1,      "cane",  true,  "2024-10-30", 1,     "dog     ",  11],
+[2,      "leone", false, "2024-07-30", 2,     "leone",     12],
+[3,      "tigre", true,  "2024-10-30", 3,     "puma",      13],
+[4,      "ape",   false, "2024-05-30", 4,     "ape",       14],
+[5,      "leone", true,  "2024-01-30", 5,     "rana",      15],
+[6,      "leone", true,  "2023-10-30", 6,     "leo",       16],
+[7,      "gatto", true,  "2020-10-01", "x",   "x",        "x"],
+[8,      "rana",  true,  "2024-10-30", true,  true,      true],
+[9,      "topo",  true,  "2019-02-30", 9],
+[10,     "mulo",  true,  "2024-04-30", 10,     null,     null]
+]</span></pre>
+            La suddetta collezione di dati può essere scaricata seguendo la stessa procedura utilizzata nell'Esercizio-1 fatto salvo che giunti al punto 4) bisognerà scrivere o copiare nella casella
+            di input <code>URL</code> la seguente stringa di caratteri <br>
+            <br>
+            <code>https://tuisys.altervista.org/ols/dbase/test_diagn.arcd</code><br>
+            <br>
+            corrispondente alla URL ovvero all'indirizzo Internet del file contenente i dati in questione.<br>
+            Bisogna anche applicare il segno di spunta alla casella <code>Field names in the first line</code> e toglierlo ala casella Read Only [RO ].<br>
+            Confermate cliccando sul bottone <code>Confirm</code>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_01.jpg">&nbsp;<figcaption>Figura 1 - Selezion<span style="font-family: monospace;">e
+                  di una collezioni di dati specificando la corrispondente</span><code> <span style="font-weight: bold;">URL</span></code>.</figcaption> </figure>
+            <br>
+            Il programma scaricherà la collezione di dati selezionata dal sito <code>https://tuisys.altervista.org</code> e la presenterà sullo schermo.<br>
+            Poiché è stata spuntata la casella <code>Field names in the first line</code>&nbsp; il contenuto della prima riga del file <code>test_diagn.arcd</code> consistente della stringa<br>
+            <pre><span style="font-family: monospace;">["num1", "str1", "bool", "date",      "num2", "str2",     "num3"],</span></pre>
+            non verrà visualizzato nella tabella, ma impiegato per i nomi delle colonne come si può vedere nella Figura 2.<br>
+            Posizionando il cursore del mouse sull'intestazione delle colonne apparirà un riquadro che mostrerà le principali informazioni concernenti il <a href="glossario.html#Id_Campo">camp<span style="color: black;">o</span></a>
+            corrispondente alla colonna considerata ed in particolare il <a href="glossario.html#Id_Tipo">tipo</a> dei valori in esso contenuti. Ad esempio il tipo <code>Date</code> per la <code>colonna
+              3- date</code>.<br>
+            Tale informazione è stata ricavata in modo automatico per ogni colonna poiché era attiva l'opzione <code>Recod Layout (aFld): </code><code><span style="font-weight: bold;">AutoDetect</span></code>.
+            Vedi Figura 1.<br>
+            La funzione <code><span style="font-weight: bold;">AutoDetect</span></code> analizza automaticamente il contenuto della prima riga del file caricato (o della seconda nel caso in cui la
+            prima fosse stata utilizzata per i nomi dei campi. Opzione <code>Field names in the first line</code>) cercando di determinare per ciascuna colonna la tipologia dei campi corrispondenti (<code>string</code>,
+            <code>number</code>, <code>boolean</code>, <code>date</code>, eccetera).<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_02.jpg">&nbsp;<figcaption>Figura 1 - Selezion<span style="font-family: monospace;">e
+                  di una collezioni di dati specificando la corrispondente</span><code> <span style="font-weight: bold;">URL</span></code>.</figcaption> </figure>
+            <br>
+            <br>
+            La conoscenza del tipo di dato inserito in un certo campo permette di automatizzare la ricerca delle anomalie.<br>
+          </section>
+          <section>
+            <h2>Ricerca delle anomalie.</h2>
+            Ricerchiamo le anomalie seguendo la stessa procedura impiegata nell'Esercizio 1.<br>
+            Clicchiamo il tasto destro del mouse, poi quando si apre un <a href="glossario.html#Id_PopUp">popup menu</a> selezioniamo la voce: <code>toggle type color</code>.<br>
+            A colpo d'occhio si vede che sono presenti dei problemi nelle colonne 4, 5 e 6.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_03.jpg">&nbsp;<figcaption>Figura 3 - colorazione dei valori delle celle in base al
+                loro tipo.</figcaption> </figure>
+            Risultato confermato ricorrendo alle funzionalità di Diagnostica automatica attivabili cliccando sulla voce <code>toggle Diagnostic</code> del popup menu.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_04.jpg">&nbsp;<figcaption>Figura 4 - Risultato dell'applicazione della Diagnostica
+                automatica.</figcaption> </figure>
+            Nella colonna 4, che dovrebbe contenere solo valori numerici, sono stati introdotti per errore la stringa <code>"x"</code> (nella riga 7) e il booleano <code>true</code> (nella riga 8).<br>
+            La colonna 5, che dovrebbe contenere delle stringhe di caratteri, contiene il booleano <code>true</code> (nella riga 8), il valore della riga 9 è indefinito (<code>undefined</code>),
+            mentre quello della riga 9 e <code>null</code>.<br>
+            Considerazioni analoghe valgono anche per la colonna 6 che dovrebbe contenere solo valori numerici.<br>
+            <pre><span style="font-family: monospace;">[
+["num1", "str1", "bool", "date",      "num2", "str2",     "num3"],
+[1,      "cane",  true,  "2024-10-30", 1,     "dog     ",  11],
+[2,      "leone", false, "2024-07-30", 2,     "leone",     12],
+[3,      "tigre", true,  "2024-10-30", 3,     "puma",      13],
+[4,      "ape",   false, "2024-05-30", 4,     "ape",       14],
+[5,      "leone", true,  "2024-01-30", 5,     "rana",      15],
+[6,      "leone", true,  "2023-10-30", 6,     "leo",       16],
+[7,      "gatto", true,  "2020-10-01", "x",   "x",        "x"],
+[8,      "rana",  true,  "2024-10-30", true,  true,      true],
+[9,      "topo",  true,  "2019-02-30", 9],
+[10,     "mulo",  true,  "2024-04-30", 10,     null,     null]
+]</span></pre>
+            I problemi individuati possono essere parzialmente risolti utilizzando lo strumento <code>Update Data Type</code> (vedi Figura 5) che converte automaticamente i dati contenuti nelle
+            diverse celle di una colonna nel tipo atteso, cioè nel tipo del campo corrispondente alla colonna considerata.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_05.jpg">&nbsp;<figcaption>Figura 5 - Update Data Type.</figcaption> </figure>
+            La <span style="font-weight: bold;">conversione automatica</span> dei tipi è utile in quelle situazioni in cui in una colonna dovrebbero essere presenti solo dei nati numerici, ma i
+            valori sono stati introdotti come stringhe di caratteri numerici (cioè inserendo la stringa <code>"123"</code> anziché il numero <code>123</code>) o viceversa sarebbero state attese
+            delle stringhe di caratteri, ma per sbaglio è stato introdotto un numero invece della stringa di caratteri numerici corrispondente (ad esempio il numero <code>123</code> invece della
+            stringa <code>"123"</code>). L'esistenza della funzione di conversione automatica è giustificata dalla frequenza con la quale si verificano i problemi descritti.<br>
+            <br>
+            Nel caso della tabella considerata il problema è diverso poiché sono presenti quattro righe che presentano dei valori completamente anomali, per non parlare dei valori mancanti nella riga
+            9.<br>
+            <pre><span style="font-family: monospace;">[
+["num1", "str1", "bool", "date",      "num2", "str2",     "num3"],
+[1,      "cane",  true,  "2024-10-30", 1,     "dog     ",  11],
+[2,      "leone", false, "2024-07-30", 2,     "leone",     12],
+[3,      "tigre", true,  "2024-10-30", 3,     "puma",      13],
+[4,      "ape",   false, "2024-05-30", 4,     "ape",       14],
+[5,      "leone", true,  "2024-01-30", 5,     "rana",      15],
+[6,      "leone", true,  "2023-10-30", 6,     "leo",       16],
+[7,      "gatto", true,  "2020-10-01", <span style="color: red;">"x",   "x",        "x"</span>],
+[8,      "rana",  true,  "2024-10-30", <span style="color: red;">true,  true,      true</span>],
+[9,      "topo",  true,  "2019-02-30", 9],
+[10,     "mulo",  true,  "2024-04-30", 10,    <span style="color: red;"> null,     null</span>]
+]</span></pre>
+            Nella situazione considerata sarebbe forse preferibile eliminare del tutto le righe considerata per non correre il rischio di inquinare le statistiche.<br>
+            In alternativa si potrebbe immaginare che i valori <span style="color: red;">null</span>, <span style="color: red;">undefined</span> (cioè non inserito) ed eventualmente anche <span style="color: red;">"x"</span>
+            e <span style="color: red;">true</span> siano stati introdotti perché non si conoscevano i valori veri.<br>
+            Prendendo per buona una simile conclusione si potrebbe decidere di sostituire i valori anomali con i valori di default dei rispettivi campi ad esempio con "" (stringa vuota) per i campi di
+            tipo stringa e con 0 (zero) per i campi numerici, ma si tratta di decisioni che debbono essere prese caso per caso a ragion veduta, conoscendo il contesto in cui si effettuano le
+            correzioni.<br>
+            Un'alternativa migliore potrebbe essere quella di spezzare la tabella originale in due tabelle per poi studiarle separatamente.<br>
+            <br>
+            <pre><span style="font-family: monospace;">[
+["num1", "str1", "bool", "date",      "num2", "str2",     "num3"],
+[1,      "cane",  true,  "2024-10-30", 1,     "dog     ",  11],
+[2,      "leone", false, "2024-07-30", 2,     "leone",     12],
+[3,      "tigre", true,  "2024-10-30", 3,     "puma",      13],
+[4,      "ape",   false, "2024-05-30", 4,     "ape",       14],
+[5,      "leone", true,  "2024-01-30", 5,     "rana",      15],
+[6,      "leone", true,  "2023-10-30", 6,     "leo",       16]
+]</span></pre>
+            <br>
+            <div style="text-align: left;">
+              <pre><span style="font-family: monospace;">[
+["num1", "str1", "bool", "date"],
+[1,      "cane",  true,  "2024-10-30"],
+[2,      "leone", false, "2024-07-30"],
+[3,      "tigre", true,  "2024-10-30"],
+[4,      "ape",   false, "2024-05-30"],
+[5,      "leone", true,  "2024-01-30"],
+[6,      "leone", true,  "2023-10-30"],
+[7,      "gatto", true,  "2020-10-01"],
+[8,      "rana",  true,  "2024-10-30"],
+[9,      "topo",  true,  "2019-02-30"],
+[10,     "mulo",  true,  "2024-04-30"]</span></pre>
+            </div>
+            <br>
+            La prima tabella può essere ottenuta selezionando le prime 6 righe di dati.<br>
+            Selezionate la prima colonna (<code>0 - num1</code>) cliccando su di una qualsiasi cella della stessa.<br>
+            Aprite il filtro assistito (wizard) cliccando sull'icona <img class="Cl_Ico_TBM" src="../../../ico/filter_2.svg">.<br>
+            Inserite la condizione di filtro:<code> Num1 &lt;= 6</code> e confermate.<br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_06.jpg">&nbsp;<figcaption>Figura 6 - Inserite la condizione di filtro: Num1 &lt;= 6.</figcaption>
+            </figure>
+            Salvate la collezione di dati ottenuta cliccando sull'icona <code>salva con nome</code> <img class="Cl_Ico_TBM" src="../../../ico/save_as.svg">.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_07.jpg">&nbsp;<figcaption>Figura 7 - Risultato dell'applicazione della condizione di
+                filtro: Num1 &lt;= 6..</figcaption> </figure>
+            <br>
+            Per creare la seconda collezione è necessario intervenire sul tracciato record della collezione originale (<code>test_diagn.arcd</code>).<br>
+            Cliccate sull'icona <code>Layout</code> <img class="Cl_Ico_TBM" src="../../../ico/layout0.svg">.<br>
+            Modificate il tracciato record togliendo la spunta alle caselle della colonna <code>fVisible</code> righe 4, 5 e 6.<br>
+            Per rendere le modifiche effettive tornate alla collezione precedente cliccando sull'icona <img class="Cl_Ico_TBM" src="../../../ico/prev.svg">.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_08.jpg">&nbsp;<figcaption>Figura 8 - Modificate il tracciato record nascondendo le
+                colonne di destra.</figcaption> </figure>
+            <br>
+            <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex02_09.jpg">&nbsp;<figcaption>Figura 9 - Risultato della modifica</figcaption> </figure>
+            <br>
+            Salvate la collezione di dati cliccando sull'icona <code>salva con nome</code> <img class="Cl_Ico_TBM" src="../../../ico/save_as.svg">.<br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

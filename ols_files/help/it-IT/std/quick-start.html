@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Presentazione</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>Quick Start</h1>
+        <section>
+          <h2>A cosa serve il programma OLS.</h2>
+          Il programma Ordiniamo/Let's Sort (OLS) è uno strumento per l'esplorazione e la manipolazione di <a href="glossario.html#Id_Collezione">collezion<span style="color: black;">i</span></a>
+          strutturate di <a href="glossario.html#Id_Dato">dati</a> in formato JSON.<br>
+        </section>
+        <article>
+          <h2>Introduzione rapida (Quick Start).</h2>
+          <section>
+            <h3>Organizzazione della schermata principale.</h3>
+            La schermata principale del programma Ordiniamo/Let's Sort (OLS) presenta la seguente organizzazione. Procedendo dall'alto verso il basso incontriamo:<br>
+            <ol>
+              <li>La barra del titolo, su sfondo celeste o rosso, che riporta il <strong>nome del programma</strong> (Ordiniamo/Let's Sort (OLS)), il <strong>nome della <a href="glossario.html#Id_Collezione">collezion<span
+
+                      style="color: black;">e</span></a> selezionata</strong> (ad esempio: "<code>S_aRcd</code>") e l'indicazione della abilitazione alle modifiche (<code>[RW]</code> su sfondo <span
+
+                  style="text-decoration: underline;">celeste</span> modifiche consentite, <code>[RO]</code> su sfondo <span style="text-decoration: underline;">rosso</span> modifiche disabilitate).</li>
+              <li>Immediatamente sotto troviamo la <strong>barra dei tasti o delle icone</strong> (TBM).</li>
+              <li>Segue la <a href="glossario.html#Id_Tabella">tabella</a> dei valori della <a href="glossario.html#Id_Collezione">collezion<span style="color: black;">e</span></a>.</li>
+              <li>Infine, alla base, troviamo la <strong>barra di stato</strong>, che riporta le informazioni fondamentali circa lo stato della elaborazione.</li>
+            </ol>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/qk_01.jpg">&nbsp;<figcaption>Figura 1 - Schermata principale. Vista tabelle.</figcaption>
+            </figure>
+            <br>
+          </section>
+          <section>
+            <h3>Introduzione rapida (Quick Start).</h3>
+            Volendo provare il programma OLS bisogna innanzitutto caricare in memoria una o più collezioni di dati.<br>
+            <br>
+            <div class="Cl_Note"> <span style="font-weight: bold;">NOTA:</span><br>
+              Si preferisce parlare di <span style="font-weight: bold;">collezioni di dati</span> anziché <span style="font-weight: bold;">tabelle</span> o <span style="font-weight: bold;">database</span>
+              innanzitutto per ribadire che il presente applicativo ha come scopo lo studio e la manipolazione dei dati e non la gestione di <span style="font-weight: bold;">basi dati</span>, infatti
+              a differenza dei database tradizionali che presuppongono una rappresentazione ben precisa delle strutture dati, solitamente quella in forma di tabelle tipica dei database relazionali, il
+              programma OLS è stato progettato per supportare e adattarsi ad un'ampia tipologia di dati e strutture dati.</div>
+            <br>
+          </section>
+          <section>
+            <h3>Caricamento delle collezioni di dati.</h3>
+            Per caricare una nuova collezione di dati in memoria bisogna innanzitutto cliccare sull'icona <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> della
+            barra dei menu.<br>
+            Bisogna poi selezionare la tipologia di <span style="font-weight: bold;">sorgente</span> della collezione di dati. Selezioniamo <code>Collections Loaded</code>.<br>
+            Fatto ciò dovrebbe risultare automaticamente selezionata la collezione <code>S_aRcd</code> (nel caso in cui non lo fosse selezionatela manualmente cliccando sulla casella <code>Select
+              Collection</code>).<br>
+            Confermate cliccando sul bottone <code>Confirm</code>.<br>
+            <br>
+            Il programma presenterà una&nbsp; <a href="glossario.html#Id_Tabella">tabella</a> costituita da dieci righe (numerate da 0 a 9) e sette colonne (<code>#, sz0, iNum1, Bool2, sz3, Date4,
+              Str5</code>). Vedi Figura 1.<br>
+            Le righe della tabella corrispondono ai <a href="glossario.html#Id_Record">record</a> della collezione, le colonne ai <a href="glossario.html#Id_Campo">campi</a> dei record.<br>
+            La colonna più a sinistra (<code>#</code>) non è associata ad un campo della collezione, ma alla posizione del <a href="glossario.html#Id_Record">record</a>, corrispondente alla riga,
+            all'interno della <a href="glossario.html#Id_Tabella">tabella</a> visualizzata (numero a sinistra) e della <a href="glossario.html#Id_Collezione">collezione</a> (numero fra parentesi
+            tonde); le altre colonne corrispondono ciascuna ad un campo dei record della collezione secondo l'ordine prefissato nel <a href="glossario.html#Id_Tracciato_Record">tracciato record</a>.<br>
+            <br>
+            <div class="Cl_Note">In questa presentazione faremo riferimento alle <a href="glossario.html#Id_Collezione">collezion<span style="color: black;">i</span></a> di prova contenute nel file <code>Prova_all.OLS</code>
+              ed in particolare alla collezione "<code>S_aRcd</code>".<br>
+              Si osservi che le suddette collezioni vengono caricate automaticamente quando si esegue il programma OLS per la prima volta.</div>
+            Per maggiori informazioni circa questo argomento si rimanda a <a href="../InpData.html">Selezione/Caricamento di una Collezione di Dati</a>. </section>
+          <section>
+            <h3>Vista Normale o vista Tabelle.</h3>
+            All'avvio il programma Ordiniamo/Let's Sort (OLS) seleziona automaticamente la modalità di visualizzazione Normale o vista Tabelle (vedi Figura 1) che prevede la presentazione dei dati
+            della collezione mostrando i <a href="glossario.html#Id_Record">record</a> sotto forma di righe e i <a href="glossario.html#Id_Campo">campi</a> come colonne.<br>
+            Per maggiori informazioni circa questo argomento si rimanda a <a href="../Standard.html">Vista Standard</a>.</section>
+          <section>
+            <h3>Vista trasposta.</h3>
+            Nel caso in cui il numero delle colonne eccedesse notevolmente il numero delle righe potrebbe essere conveniente passare alla vista trasposta cliccando sull'icona <img class="Cl_Ico_TBM"
+
+              src="../../../ico/transpose.svg"> <code></code> <code>Transpose</code> nella barra dei menu.<br>
+            Cliccando una seconda volta sulla voce <code>Transpose</code> si ritorna alla rappresentazione precedente.<br>
+          </section>
+          <section>
+            <h3>Vista Schede.</h3>
+            In alternativa alla <a href="glossario.html#Id_Vista_Tabelle">vista tabelle</a>, descritta in precedenza,si può ricorrere alla rappresentazione dei <a href="glossario.html#Id_Record">record</a>
+            sotto forma di <a href="glossario.html#Id_Vista_Schede">schede</a>.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/qk_02.jpg">&nbsp;<figcaption>Figura 2 - Vista schede.</figcaption> </figure>
+            La commutazione nella <a href="glossario.html#Id_Vista_Schede">vista Schede</a> richiede innanzitutto la selezione del <a href="glossario.html#Id_Record">record</a> cui si è interessati
+            cliccandoci sopra, bisogna poi cliccare sull'icona <img class="Cl_Ico_TBM" src="../../../ico/edit_tuple.svg"> <code></code> <code>Edit Tuple</code>. <br>
+            Si aprirà una scheda che presenta i campi del record selezionato consentendo di prenderne visione più comodamente.<br>
+            E' possibile passare da una scheda all'altra usando i bottoni<br>
+            <code><img class="Cl_Ico_TBM" src="../../../ico/first.svg"> First</code> apre la scheda corrispondente al primo record della collezione;<br>
+            <code><img class="Cl_Ico_TBM" src="../../../ico/prev.svg"> Prev</code> apre la scheda precedente;<br>
+            <code><img class="Cl_Ico_TBM" src="../../../ico/next.svg"> Next</code> apre la scheda successiva;;<br>
+            <code><img class="Cl_Ico_TBM" src="../../../ico/last.svg"> Last</code> apre la scheda corrispondente all'ultimo record della collezione.<br>
+            <br>
+            Per tornare alla <a href="glossario.html#Id_Vista_Tabelle">vista tabelle</a> basta cliccare sul bottone <code>Confirm</code> (se si vogliono salvare i cambiamenti) o sulla croce 'x' che
+            compare nell'angolo in altro a destra (se si vogliono annullare le modifiche).<br>
+            Per maggiori informazioni circa questo argomento si rimanda a <a href="../Card.html">Vista Schede</a>.<br>
+          </section>
+          <section>
+            <h3>Riorganizzazione dei dati di una tabella.</h3>
+            Il programma Ordiniamo/Let's Sort (OLS) consente di riordinare i dati della collezione selezionata secondo vari criteri in particolare si possono:<br>
+            <ul>
+              <li>selezionare le righe (<a href="glossario.html#Id_Record">record</a>) che soddisfano una certa condizione,</li>
+              <li>scegliere le colonne (<a href="glossario.html#Id_Campo">campi</a>) che si desiderano visualizzare nascondendo le altre,</li>
+              <li>si possono riordinare le righe in base ai valori delle (chiavi) contenute in una colonna.</li>
+            </ul>
+            In alcuni casi è possibile abilitare la presentazione grafica di particolari tipologie di dato in alternativa alla tradizionale rappresentazione sotto forma di testo.<br>
+          </section>
+          <section>
+            <h3> Selezione delle righe (record) che soddisfano una certa condizione.</h3>
+            Il programma Ordiniamo/Let's Sort (OLS) offre&nbsp;numerosi strumenti (<a href="glossario.html#Id_Filtro">filtri</a>) per la selezione dei <a href="glossario.html#Id_Record">record</a>
+            soddisfacenti una certa condizione. I filtri sono spesso indicati graficamente come degli imbuti.<br>
+            <br>
+            <div style="text-align: center;"><img class="Cl_Ico_TBM" src="../../../ico/filter_js.svg"><img class="Cl_Ico_TBM" src="../../../ico/filter_2.svg"><img class="Cl_Ico_TBM" src="../../../ico/filter_qbe.svg"><img
+
+                class="Cl_Ico_TBM" src="../../../ico/filter_str.svg"><img class="Cl_Ico_TBM" src="../../../ico/toggle_filter.svg"><img class="Cl_Ico_TBM" src="../../../ico/invert_filter.svg"><img class="Cl_Ico_TBM"
+
+                src="../../../ico/clear_filter.svg"><br>
+            </div>
+            Cliccando sull'icona <img class="Cl_Ico_TBM" src="../../../ico/filter_js.svg"> corrispondente al filtro JavaScript si apre una finestra di dialogo che consente di impostare le condizioni di
+            filtro usando i formalismi del linguaggio di programmazione JavaScript. Questo è sicuramente lo strumento più potente, ma richiede la conoscenza di JavaScript.<br>
+            L'icona del filtro assistito (wizard) <img class="Cl_Ico_TBM" src="../../../ico/filter_2.svg"> apre una finestra che permette di inserire le condizioni di filtro utilizzando una procedura
+            parzialmente guidata.<br>
+            Il filtro <em>query by example</em> (QBE) <img class="Cl_Ico_TBM" src="../../../ico/filter_qbe.svg">permette di selezionare le righe che si vogliono vedere fornendo un esempio.<br>
+            Il filtro stringa <img class="Cl_Ico_TBM" src="../../../ico/filter_str.svg"> seleziona i <a href="glossario.html#Id_Record">record</a> che contengono una certa sequenza di caratteri
+            (stringa) al loro interno o in un <a href="glossario.html#Id_Campo">camp<span style="color: black;">o</span></a> in particolare.<br>
+            L'icona <img class="Cl_Ico_TBM" src="../../../ico/clear_filter.svg"> annulla tutte le selezioni.<br>
+            L'icona <img class="Cl_Ico_TBM" src="../../../ico/toggle_filter.svg"> inverte la selezione mostrando tutta la <a href="glossario.html#Id_Collezione">collezione</a> in alternativa ai <a href="glossario.html#Id_Record">record</a>
+            che soddisfano le condizioni di <a href="glossario.html#Id_Filtro">filtr<span style="color: black;">o</span></a>.<br>
+            L'icona <img class="Cl_Ico_TBM" src="../../../ico/invert_filter.svg"> inverte la selezione mostrando i <a href="glossario.html#Id_Record">record</a> che non soddisfano le condizioni di <a
+
+              href="glossario.html#Id_Filtro">filtr<span style="color: black;">o</span></a> in alternativa a quelli che le soddisfano.<br>
+            <br>
+            Per maggiori informazioni circa questo argomento si rimanda alla documentazione dei filtri:<br>
+            <a href="../Filter_JS.html">Filtro JavaScript</a>. <br>
+            <a href="../Filter_2.html">Filtro Assistito (Wizard)</a>. <br>
+            <a href="../Filter_QBE.html">Filtro Query By Example (QBE)</a>. <br>
+            <a href="../Filter_Str.html">Filtro Stringa</a>. </section>
+          <section>
+            <h3>Selezione delle colonne (campi) che si desiderano visualizzare nascondendo le altre.</h3>
+            <br>
+            La selezione e l'eventuale riordino delle colonne impone di intervenire sul <a href="glossario.html#Id_tracciato_record">tracciato record</a> (layout), termine che designa la tabella che
+            definisce l'ordine e le caratteristiche dei <a href="glossario.html#Id_Campo">camp<span style="color: black;">i</span></a> del <a href="glossario.html#Id_Record">record</a>.<br>
+            Nello specifico ci interessano le colonne <code>1 - iPos1</code> e <code>2 - fVisible</code>.<br>
+            La colonna 1 specifica l'ordine con cui i campi debbono essere visualizzati.<br>
+            La colonna 2 stabilisce se un certo campo debba essere visualizzato o meno.<br>
+            Volendo nascondere una colonna basta togliere il segno di spunta alla casella corrispondente.<br>
+            Le modifiche divengono effettive quando si chiude la finestra tornando alla collezione precedentemente selezionata cliccando sull'icona <img class="Cl_Ico_TBM" src="../../../ico/prev.svg">.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/qk_03.jpg">&nbsp;<figcaption>Figura 3 - Tracciato record (Layout).</figcaption> </figure>
+            <br>
+            Per maggiori informazioni circa questo argomento si rimanda a <a href="afld1.html">Tracciato Record della Vista Utente</a>. </section>
+          <section>
+            <h3> Riordino dei record in base ai valori di un campo.</h3>
+            Volendo riordinare l'elenco dei record secondo i valori di un certo <a href="glossario.html#Id_Campo">campo</a>, cioè di una colonna, basta cliccare sull'intestazione che riporta il nome
+            del <a href="glossario.html#Id_Campo">campo</a>, che compare in cima alla colonna nella tabella.<br>
+            Cliccando una seconda volta sull'intestazione si commuta l'ordinamento passando da quello crescente a quello decrescente o viceversa.<br>
+            Considerazioni analoghe valgono per la <a href="glossario.html">vista trasposta</a>, fatto salvo che si deve cliccare non sul nome del campo, ma sul numero di linea che compare nella
+            colonna più a sinistra.<br>
+          </section>
+          <section>
+            <h3> Salvataggio delle modifiche.</h3>
+            Al termine del lavoro si potrebbero volere salvare i risultati ottenuti.<br>
+            Per salvare i valori della tabella corrente bisogna cliccare sull'icona <code>salva con nome</code> <img class="Cl_Ico_TBM" src="../../../ico/save_as.svg"> che aprirà la finestra di
+            salvataggio.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/qk_04.jpg">&nbsp;<figcaption>Figura 4 - Finestra di salvataggio.</figcaption> </figure>
+            La finestra di salvataggio offre la possibilità di selezionare la tipologia di supporto su sui si desiderano salvare i dati (ad esempio <code>file</code>), di assegnare un nome alla
+            collezione (ad esempio <code>S_aRcd.aRcd</code>), ma sopratutto di scegliere il <a href="glossario.html#Id_Formato">formato</a> in cui si desidera salvare la collezione di dati.<br>
+            <br>
+            NOTA:<br>
+            Si osservi che specificando <code>Destination: file</code> (come in figura 4) la collezione di dati verrà salvata nella cartella di <code>Download</code>. Questo&nbsp; fatto si deve alle
+            specifiche del linguaggio JavaScript che limitano l'accesso al filesystem per ragioni di sicurezza, per cui è possibile salvare i file in <code>Download</code>, ma non altrove.<br>
+            Per maggiori informazioni circa questo argomento si rimanda a <a href="../OutData.html">Salvataggio di una Collezione di Dati</a>. <br>
+          </section>
+          <section>
+            <h3> Help Contestuale.</h3>
+            Le funzioni di Help Contestuale di cui il programma Ordiniamo/Let's Sort (OLS) è dotato consentono di ottenere sempre in ogni istante informazioni la schermata corrente e le funzioni
+            associate alle icone attive.<br>
+            Per aprire la finestra di Help e prendere visione della documentazione basta cliccare sulla icona di Help <img class="Cl_Ico_TBM" src="../../../ico/help.svg"> che aprirà la corrispondente
+            finestra.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/qk_05.jpg">&nbsp;<figcaption>Figura 5 - Finestra di Help.</figcaption> </figure>
+            .<br>
+            Sulla sinistra della finestra di Help, in un riquadro, verrà visualizzato l'indice della documentazione disponibile.<br>
+            <br>
+          </section>
+          <section>
+            <h3> Esempi.</h3>
+            Se volete potete proseguire svolgendo i seguenti esercizi degli esempi.<br>
+            <br>
+            <h2>Esempi</h2>
+            <ul>
+              <li> <a target="_top" href="es_01.html">Esempio-1</a> Ripulitura dei dati (Data Cleaning).</li>
+              <li> <a target="_top" href="es_02.html">Esempio-2</a> Ripulitura dei dati (Data Cleaning).</li>
+              <li> <a target="_top" href="es_03.html">Esempio-3</a> Esercizio-3 Statistiche.</li>
+              <li> <a target="_top" href="es_04.html">Esempio-4</a> Esercizio-3 Dati, Formati e Tipi.</li>
+            </ul>
+            <br>
+            <br>
+            <br>
+            <br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

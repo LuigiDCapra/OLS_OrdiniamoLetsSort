@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Front End SQL</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Impiego di OLS come Front End SQL" name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>Front End SQL (Sperimentale).</h1>
+          <section>
+            <h2>Prerequisiti.</h2>
+            <ul>
+              <li> L'impiego del programma <span style="font-weight: bold;">Ordiniamo/Let's Sort</span> con font end dell'installazione di MariaDB eseguita mediante XAMPP presuppone l'installazione
+                del file <code>rpc_exec.php</code> sullo stesso server al fine di contentire la comunicazione fra OLS e il DBMS MariaDB.</li>
+              <li>L'utilizzo delle suddette funzioni presuppone la conoscenza di SQL da parte dell'operatore.</li>
+            </ul>
+            NOTA:<br>
+            <mark>il funzionamento delle funzionalità considerate è sperimentale.</mark></section>
+          <section>
+            <h2>Scaricamento dei dati di una tabella mediante Input URL.</h2>
+            <ul>
+              <li>Cliccate sull'icona <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> della barra dei menu.</li>
+              <li> <br>
+              </li>
+              <li>Selezionate <code>Source</code> URL.</li>
+              <li>Copiate nella casella URL l'indirizzo del server specificando il nome del DataBase e quello della Tabella desiderata.<br>
+                (ad esempio http://localhost/Relay/irc/rpc_exec.php?szNmDB=mysql&amp;szNmTab=innodb_table_stats).</li>
+              <li>Selezionate <code>Kind</code> aObj.</li>
+              <li>Inserite il segno di spunta nella casella <code>Embed</code>.</li>
+              <li>Confermate.</li>
+            </ul>
+            <p><br>
+            </p>
+            <br>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/sql_00.jpg">&nbsp;<figcaption>Figura 1 - Scaricamento dei dati di una Tabella SQL.</figcaption> </figure>
+            <p><br>
+            </p>
+            <p>La tabella <code>innodb_table_stats</code> del database <code>mysql</code> è particolarmente importante perché contiene l'elenco dei database e delle tabelle contenute nei diversi
+              database. </p>
+            <p><br>
+            </p>
+            <figure> <img class="Cl_Img90" src="../../../../../res/quick-start_files/sql_01.jpg">&nbsp;<figcaption>Figura 2 - Elenco delle Tabella contenute nei diversi database SQL.</figcaption> </figure>
+            <p><br>
+            </p>
+            <p><br>
+            </p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

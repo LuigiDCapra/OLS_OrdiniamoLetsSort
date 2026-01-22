@@ -1,0 +1,1000 @@
+<!-- ---------------------------------------------------------------------
+Project     : TUISYS' WE4
+Description : LCD's HTML Editor
+Revision    : 0.021
+File        : we4.html
+Function    : WebEditor-4 (WE4)
+FirstEdit   : 05/06/2020
+LastEdit    : 23/09/2025
+Author      : Luigi D. CAPRA
+Copyright(c): Luigi D. CAPRA 2025
+System      : HTML-5 + CSS3 + JavaScript
+
+----- LICENSE -----
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+----------------------------------------------------------------------  
+* ### Needs
+*     Data Browsing Environment.
+*     GUI functions shared by different applications.
+* 
+* ### Requirements
+* ### Specifications
+* ### Functional Requirements
+* ### Non Functional Requirements
+* 
+https://dev.to/_moehab/documentexeccommand-alternative-5a55   +++++++++++++++++
+---------------------------------------------------------------------- -->
+
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Web Editor 4 (WE4)</title>
+    <meta content="Luigi D. CAPRA" name="author">
+    <meta content="Web Editor 4 (WE4)" name="description">
+    <link rel="stylesheet" href="basic/dbox.css">
+    <link rel="stylesheet" href="basic/mrmenu.css">
+    <link rel="stylesheet" href="we4_files/we4.css">
+    <link rel="shortcut icon" href="we4_files/ico/we4.svg">
+    <style id="Id_Style_0"></style> <!-- CSS styles set by JS code --->
+<style>
+</style>
+  </head>
+  <body>
+    <header id="Id_Hdr">
+    <noscript>
+       <div style="background-color:yellow; color:magenta;">WARNING: your browser does not support JavaScript or JavaScript is disabled!</div>
+    </noscript>
+    WE4
+    </header>
+    <hr>
+    <!-- PopUp Menu -->
+    <div id="Id_RMenu" onclick="$MRMenu.U_Close();">&nbsp; </div>
+    <!-- Dialogue-Box -->
+    <div>
+      <section class="Cl_DBox_BG" id="Id_Div_DBox0">&nbsp;<br>
+      </section>
+    </div>
+
+    <!-- Navigator's Menu Bar -->
+    <nav class="Cl_Nav" id="Id_Nav">&nbsp; </nav>
+    <!-- Aside -->
+    <aside id="Id_Aside"></aside>
+    <br>
+    <br>
+    <br>
+    <main id="Id_Main">
+      <hr>
+      <div id="Id_Code" spellcheck="true" contenteditable="true" lang="it">Insert here a text.<br>
+        &nbsp;</div>
+    </main>
+    <footer id="Id_Foot">
+      <table style="width: 100%" border="0">
+        <tbody>
+          <tr>
+            <!-- <td id="Id_szFlNm">
+          </td> -->
+            <td id="Id_State" style="text-align:left;"> </td>
+            <td id="Id_Aux_00"> </td>
+            <td id="Id_Aux_01"> </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="Id_szMonitor" hidden="">.</div>
+      <div>Copyright (c) Luigi D. CAPRA 2025</div>
+    </footer>
+</body>
+ <span id="Id_szSCtx" hidden>&nbsp;</span>
+<script src="we4_files/data/mnentry.js"></script>
+  
+    <script src="basic/code2.js"></script>
+    <script src="basic/root.js"></script>
+    <script src="basic/uti.js"></script>
+    <script src="basic/log.js"></script>
+    <script src="basic/error.js"></script>
+    <script src="basic/nation.js"></script>
+    <script src="basic/ipcf.js"></script>
+    <script src="basic/dbox.js"></script>
+    <script src="basic/mrmenu.js"></script>
+    <script src="basic/pers.js"></script>
+    <script src="basic/vconfig.js"></script>
+    <script src="basic/vdebug.js"></script>
+    <script src="basic/tts.js"></script>
+    <script src="basic/stt.js"></script>
+    <script src="basic/help.js"></script>
+    <script src="basic/semctx.js"></script>
+    <script src="ddj/ddj.js"></script>
+    <script src="ddj/ndu.js"></script>
+
+    <script src="ddj/style.js"></script>
+    <script src="ddj/periodic.js"></script>
+
+    <script type="text/javascript">//<![CDATA[
+"use strict";
+////
+
+const C_jCd_Cur = C_jCd_HTML;
+
+const C_szApp = "WE4";
+const C_fMain = C_szApp;     /* flag: Enable HTML page Update */
+
+// var G_aMnEntry_Sources = [
+// ["Graphics",      "U_Wysiwyg",    "HTML Text",   "we4_files/ico/wysiwyg.svg",   "grafica"],
+// ["Ext",           'U_SetExt',     "App",         "", "applicazione", "select",  ["txt", "html", "c", "h", "js"]],  
+// ["New File.",     "U_New_File",   "New File",    "we4_files/ico/new_file.svg",  "nuovo file", ""],
+// ["Lorem Ipsum",   "U_Lorem",      "Lorem Ipsum", "we4_files/ico/lorem.svg",     "lorem", ""],
+// 
+// ["File Name",     'U_Ld_File',    "File Name",    "", "szFlNm", "input", ["file"]],
+// ["Load File",     'U_Ld_File',    "Load File",   "we4_files/ico/load_file.svg", "carica il file"],
+// ["Reload File.",  "U_Reload",     "Reload File", "we4_files/ico/reload.svg",    "ricarica"],
+// ["Save",          "U_Sv_Back",    "Save",        "we4_files/ico/save3.svg",     "salva", "opt_auth"],
+// ["Save File",     'U_Sv_File',    "Save File",   "we4_files/ico/save_as.svg",   "salva il file"],
+//  
+// ["Spell Check","U_SpellCheck", "spell check", "we4_files/ico/spell.svg",  "controllo lessicale"],
+// 
+// ["Test-1",        "U_Test1", "test-1", "we4_files/ico/test-1.svg", "test-1"],
+// 
+// ["Help",     'U_Help',     "Help",     "we4_files/ico/help.svg",      "aiuto"],
+// ["Configure","U_Config",   "Config",   "we4_files/ico/config.svg",    "configura"],
+// ["About",    'U_About',    "About",    "we4_files/ico/about.svg",     "about"],
+// ["License",  'U_License',  "Licenza",  "we4_files/ico/licence.svg",   "licenza"]
+// ];
+// 
+// var G_aMnEntry_Wysiwyg = [
+// ["Sources",       "U_Sources",    "Text sources","we4_files/ico/sources.svg",   "testo"],
+// ["Ext",           'U_SetExt',     "App",         "", "applicazione", "select",  ["txt", "html", "c", "h", "js"]],  
+// ["New File.",     "U_New_File",   "New File",    "we4_files/ico/new_file.svg",  "nuovo file", ""],
+// ["Lorem Ipsum",   "U_Lorem",      "Lorem Ipsum", "we4_files/ico/lorem.svg",     "lorem", ""],
+// 
+// ["File Name",     'U_Ld_File',    "File Name",    "", "szFlNm", "input", ["file"]],
+// ["Load File",     'U_Ld_File',    "Load File",   "we4_files/ico/load_file.svg", "carica il file"],
+// ["Reload File.",  "U_Reload",     "Reload File", "we4_files/ico/reload.svg",    "ricarica"],
+// ["Save",          "U_Sv_Back",    "Save",        "we4_files/ico/save3.svg",     "salva", "opt_auth"],
+// ["Save File",     'U_Sv_File',    "Save File",   "we4_files/ico/save_as.svg",   "salva il file"],
+// 
+// ["bold",       "U_Bold",       "bold",     "we4_files/ico/bold.gif",      "grassetto"],
+// ["italics",    "U_Italic",     "italics",  "we4_files/ico/italics.gif",   "corsivo"], 
+// ["underline",  "U_Underline",  "underline","we4_files/ico/underline.gif", "sottolineato"],
+// ["strike",     "U_Strike",     "strike",   "we4_files/ico/strike.gif",    "sbarrato"], 
+// ["superscript","U_SuperScript","superscript","we4_files/ico/sup.gif",     "apici"], 
+// ["subscript",  "U_SubScript",  "subscript","we4_files/ico/sub.gif",       "pedici"],
+// 
+// ["Tag",        'U_SetTag',     "Tag",      "", "pippo", "select",  [
+// "-- Tag --", "a", "abbr", "acronym", "address", "applet", "article", "aside", "audio", "b", "big", "blockquote", "canvas", "caption", "center", "cite", "code", "del", "details", "dfn", "div", "em", "embed", 
+// "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "i", "iframe", "img", "ins", "kbd", "label", "legend", "mark", "menu", "nav", 
+// "object", "ol", "output", "p", "pre", "q", "ruby", "s", "samp", "section", "small", "span", "strike", "strong", "sub", "summary", "sup", "table", "tbody", "tfoot", "thead", "time", "tt", "u", "ul", "var", "video"
+// ]],
+//  
+// ["left",       "U_Left",       "left",     "we4_files/ico/left.gif",      "sinistra"], 
+// ["center",     "U_Center",     "center",   "we4_files/ico/center.gif",    "centrato"], 
+// ["right",      "U_Right",      "right",    "we4_files/ico/right.gif",     "destra"], 
+// ["justify",    "U_Justify",    "justify",  "we4_files/ico/justify.gif",   "giustificato"], 
+// ["indent",     "U_Indent",     "indent",   "we4_files/ico/indent.gif",    "indenta"], 
+// ["outdent",    "U_Outdent",    "outdent",  "we4_files/ico/outdent.gif",   "indietro"], 
+// ["ol",         "U_Ordered",    "ol",       "we4_files/ico/ol.gif",        "ol"],  
+// ["ul",         "U_Unordered",  "ul",       "we4_files/ico/ul.gif",        "ul"],  
+// ["Spell Check","U_SpellCheck", "spell check", "we4_files/ico/spell.svg",  "controllo lessicale"],
+// 
+// 
+// ["Font",       'U_Font',     "Font",         "", "font", "select",  ["-- Font --", "Arial", "Verdana", "Times", "Courier", "Digital-7 Mono"]],
+// ["Template",   'U_Template', "Template",     "", "template", "select", ["-- Template --", "div", "button", "input", "table"]],
+//  
+// ["remove format",  "U_RemFormat", "remove format",  "we4_files/ico/rformat.gif",   "cancella formattazione"],  
+// ["ld_image",   "U_Ld_Image",      "ld_image",       "we4_files/ico/Ld_Image.gif",  "immagine"],    
+// ["Insert EOL", "U_Insert_EOL",    "Insert EOL",     "we4_files/ico/eol.svg",  "Insert EOL"],
+// 
+// ["Link Name",   '', "Link Name",     "", "Link_Name", "input", ["text"]],  
+// ["link",       "U_CreateLink",    "link",           "we4_files/ico/link.gif",      "collega"], 
+// ["unlink",     "U_Prev_DDJ",      "unlink",         "we4_files/ico/unlink.gif",    "scollega"], 
+// 
+// ["JSON Conversion",     "U_JSON_Mp_Text", "JSON Conversion", "we4_files/ico/json.svg", "conversione in JSON"],
+// ["Test-1",     "U_Test1", "test-1", "we4_files/ico/test-1.svg", "test-1"],
+//  
+// ["Help",     'U_Help',     "Help",     "we4_files/ico/help.svg",      "aiuto"],
+// ["Configure","U_Config",   "Config",   "we4_files/ico/config.svg",    "configura"],
+// ["About",    'U_About',    "About",    "we4_files/ico/about.svg",     "about"],
+// ["License",  'U_License',  "Licenza",  "we4_files/ico/licence.svg",   "licenza"]
+// ];
+
+// var G_aMnEntry_Cfg = [
+// ["Reset",    "$VConfig.U_Reset", "Reset", "we4_files/ico/reset.svg", "reset"],
+// ["Help file","U_Help", "Help", "we4_files/ico/help.svg", "aiuto"]
+// ];
+// 
+// var xError = [
+// ["", "", "", "", "++ Chiudi ++"]
+// ];
+// 
+// var G_aaMnEntry = {
+//   "Sources":G_aMnEntry_Sources,
+//   "Wysiwyg":G_aMnEntry_Wysiwyg,
+//   "DDJ_Cfg":G_aMnEntry_Cfg,
+// };
+
+/*
+* The following declarations overcome problems due to Modules not loaded!
+*/
+//var G_asaMnEntry = G_aaMnEntry;
+//var $DDJ = {};
+var G_DBox_About = {};
+
+var S_szExt    = "txt";
+var S_fHTML    = false;   /* Format of the original document. */
+var S_fWysiwyg = false;   /* Current editing mode. */
+var S_asFreq   = {};
+
+/*----- Local Variables ----------------------------------------------*/
+
+/*
+*  About.
+*/
+var S_szHTML_DBox_About = `<div style="padding:10%;">
+  <br><br><br><br>
+  Program: <b>Web Editor 4 (WE4).</b><br>
+  Date: ${C_szDate_EdtLst} <br>
+  Rel.: <b>${C_szRel_EdtLst}</b><br>
+  Author: Luigi D. CAPRA<br>
+  <br>
+  ${C_szCopyright}<br><br><hr><br><h3 style="text-align:center;">License</h3><br>
+  This program comes with ABSOLUTELY NO WARRANTY; for details see <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a>.<br>
+  This is free software, and you are welcome to redistribute it under certain conditions;<br>
+  type <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a> for details.<br>  
+  The library files could be redistribute at LGLP conditions. Type <a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU LGPL v. 3.0</a> for details.<br>
+  <br><br><br><br>
+</div>`;
+
+//////////////////////////
+
+/*-----U_SpellCheck --------------------------------------------------------
+*
+*/ 
+function U_SpellCheck()
+{
+debugger;
+//  var Elem0 = document.getElementById("Id_Txt_Edt");
+  Id_Code.spellcheck = !Elem0.spellcheck;
+} /* U_SpellCheck */
+
+/*-----U_Config --------------------------------------------------------
+*
+*/ 
+function U_Config()
+{
+  $VConfig.DBox_Config.U_Hub(C_JPnl_Open);
+} /* U_Config */
+
+/*-----U_Help --------------------------------------------------------
+*
+*/ 
+function U_Help()
+{
+  $DDJ.F_Window_open(`we4_files/help/main.html`);   
+} /* U_Help */
+
+/*-----U_About --------------------------------------------------------
+*
+*/ 
+function U_About()
+{
+  G_DBox_About.DBox_About.U_Hub(C_JPnl_Open);
+} /* U_About */
+
+/*-----U_License --------------------------------------------------------
+*
+*/ 
+function U_License()
+{
+  $DDJ.F_Window_open(`we4_files/help/gpl-3.0.txt`);
+} /* U_License */
+
+/*-----U_Clear --------------------------------------------------------
+*
+*/ 
+function U_Clear()
+{
+  Id_szMonitor.innerText = "";
+} /* U_Clear */
+
+///////////////////////////////
+
+/*-----U_Read --------------------------------------------------------
+*
+*/ 
+function U_Read(P_szFlNm, P_szBuff, P_CB_Read=U_CB_Read, P_CB_Err=U_CB_Err, R_Bag)
+{
+  function U_CB_Err()
+  {
+     debugger;
+  } /* U_CB_Err */
+
+  function U_CB_Read(P_sz)
+  {
+     debugger;
+     P_szBuff = P_sz;
+  } /* U_CB_Read */
+  var szURL = $NDU.F_szURL_Mp_Cmd_Res("localhost", "read", P_szFlNm);
+  $IPCF.U_DownLoad_File(szURL, P_CB_Read, P_CB_Err, true, false, R_Bag);     
+} /* U_Read */
+
+/*-----U_Write --------------------------------------------------------
+*
+*/ 
+function U_Write(P_szFlNm, P_szBuff)
+{
+  var szURL = $NDU.F_szURL_Mp_Cmd_Res("localhost", "write", P_szFlNm);
+  $IPCF.U_UpLoad_File(szURL, P_szBuff);
+} /* U_Write */
+
+/*-----U_Button --------------------------------------------------------
+*
+* Events manager.
+* Translate user events executing the corresponding routines.
+* $NOTE: the menus and their respective icons have been initialized in $SemCtx.F_szHTML_TBM();
+*
+* P_szCmd JS  command or function called.
+* P_szCaller  ID of the routine that called U_Button.
+* P_szPar     allows to pass parameters to the routine specified in P_szCmd.
+*/ 
+function U_Button(P_szCmd, P_szCaller, P_szPar="")
+{
+  try {
+      var szCmd = P_szCmd + `("${P_szPar}")`;
+      eval(szCmd);      
+  } catch (P_Err) {
+      var szErr = $Error.F_szErr_Catch(P_Err);
+      $Error.U_Error(C_jCd_Cur, 1, "U_Button command: " + szCmd + "\n", szErr);
+  } /* try catch */
+} /* U_Button */
+
+/*-----U_New_File --------------------------------------------------------
+*
+*/ 
+function U_New_File()
+{
+  function U_CB_Read_File(P_szTxt, R_VCtx_Cur)
+  {
+    U_Sources();
+    try {
+       
+       Id_Code.innerText = P_szTxt;
+    } catch (P_Err) {
+        $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+    } /* try catch */
+  } /* U_CB_Read_File */
+  
+  var szFlNm = "D:/res/viola_template/Default." + S_szExt;
+  
+  U_Read(szFlNm, null, U_CB_Read_File, null, null);
+} /* U_New_File */
+
+/*-----U_Lorem --------------------------------------------------------
+*
+*/ 
+function U_Lorem()
+{
+  function U_CB_Read_File(P_szTxt, R_VCtx_Cur)
+  {
+    try {
+       Id_Code.innerText = P_szTxt;
+    } catch (P_Err) {
+        $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+    } /* try catch */
+  } /* U_CB_Read_File */
+  
+  var szFlNm = "D:/res/viola_template/Lorem.txt";
+  
+  U_Read(szFlNm, null, U_CB_Read_File, null, null);
+} /* U_Lorem */
+
+/*-----U_SetExt --------------------------------------------------------
+*
+*/ 
+function U_SetExt(P_szExt)
+{
+  var aszExt = ["c", "css", "h", "html", "java", "js", "ods", "odt", "php", "svg", "txt"];
+
+  if (aszExt.indexOf(P_szExt) >= 0) {
+     S_szExt = P_szExt;
+  }
+  else {
+     S_szExt = "txt";
+  } /* if */
+} /* U_SetExt */
+
+/*-----U_Sv_Back --------------------------------------------------------
+*
+* $IPC-GATE
+* Send back changes in the calling application (usually OLS.html).
+* $IMPORTANT: G_fRefresh should be enabled in OLS.html
+*/ 
+function U_Sv_Back()
+{
+  if (confirm("salvare")) {
+      var UsrView0 = window.opener.G_UsrView_IPC;
+      if (UsrView0) {
+         var XDB0 = UsrView0.XDB0;
+         var Coll0 = XDB0.Coll0;
+         var szTxt = (S_fHTML)? Id_Code.innerHTML: Id_Code.innerText;
+         Coll0[UsrView0.KeyTup][UsrView0.jaFld1] = szTxt;
+         window.opener.G_fRefresh = true;   /* Force opener display refresh. */   
+      }
+      else {
+      } /* if */
+  } /* if */
+} /* U_Sv_Back */
+
+/*-----U_UnLoad --------------------------------------------------------
+*
+* Menage window closing event. This routine will be executed when the user close the window.
+*/ 
+function U_UnLoad()
+{
+  if (confirm("salvare")) {
+     U_Sv_Back();
+  } /* if */
+} /* U_UnLoad */
+
+/*-----U_Reload --------------------------------------------------------
+*
+* $IPC-GATE
+* Load and show the file passed by OLS.
+*/ 
+function U_Reload()
+{
+  if (window.opener) {
+     /* Get file passed. */
+     var UsrView0 = window.opener.G_UsrView_IPC;    /* the variable window.opener.G_UsrView_IPC (of the opener) contains the text to be edited*/
+     var Fld1 = UsrView0.aFld1[UsrView0.jaFld1];     
+
+     if (Fld1.szType == "HTML") {
+        S_fHTML = true;
+        S_fWysiwyg = true;
+        Id_Code.innerHTML = UsrView0.Val_Sel;
+
+        $SemCtx.U_Sel_TBM("Id_Nav", "Wysiwyg", false);
+     }
+     else {
+        S_fHTML = false;
+        S_fWysiwyg = false;
+        Id_Code.innerText = UsrView0.Val_Sel;
+        $SemCtx.U_Sel_TBM("Id_Nav", "Sources", false);
+     } /* if */
+  }
+  else {
+        S_fHTML = false;
+        S_fWysiwyg = false;
+        $SemCtx.U_Sel_TBM("Id_Nav", "Sources", false);
+  } /* if */
+} /* U_Reload */
+
+/*-----U_Sources --------------------------------------------------------
+*
+* Switch in Text Mode.
+*/ 
+function U_Sources()
+{
+  if (S_fWysiwyg) {
+     var szTxt = Id_Code.innerHTML;
+     szTxt = szTxt.replaceAll("<br>\n", "<br>");
+     szTxt = szTxt.replaceAll("<br>", "<br>\n");
+     szTxt = szTxt.replaceAll("</div>\n", "</div>");
+     szTxt = szTxt.replaceAll("</div>", "</div>\n");
+     Id_Code.innerText = szTxt;
+     S_fWysiwyg = false;
+     $SemCtx.U_Sel_TBM("Id_Nav", "Sources", false);
+  } /* if */
+} /* U_Sources */
+
+/*-----U_Wysiwyg --------------------------------------------------------
+*
+* Switch in HTML Mode.
+*/ 
+function U_Wysiwyg()
+{
+  if (!S_fWysiwyg) {    
+     var szTxt = Id_Code.innerText;
+     
+     Id_Code.innerHTML = szTxt;
+     S_fWysiwyg = true;
+     $SemCtx.U_Sel_TBM("Id_Nav", "Wysiwyg", false);
+  } /* if */
+} /* U_Wysiwyg */
+
+/*-----U_All --------------------------------------------------------
+*
+*/ 
+function U_All(P_aCommandName, P_aShowDefaultUI, P_aValueArgument=null)
+{
+   if (S_fWysiwyg) {
+      document.execCommand(P_aCommandName, P_aShowDefaultUI, P_aValueArgument);         
+   }
+   else {
+   debugger;
+      alert("you are not in graphic mode");
+   } /* if */
+} /* U_All */
+
+/*-----U_SetTag --------------------------------------------------------
+*
+*/ 
+function U_SetTag(P_szTag)
+{
+  if (!P_szTag || (P_szTag[0] == "-")) {
+     return;
+  } /* if */
+  if (S_fWysiwyg) {
+     var Elem0 = document.createElement(P_szTag);
+     var userSelection = window.getSelection();
+     var selectedTextRange = userSelection.getRangeAt(0);
+     selectedTextRange.surroundContents(Elem0);         
+  }
+  else {
+  debugger;
+     alert("you are not in graphic mode");
+  } /* if */
+} /* U_SetTag */
+
+/*-----U_Font --------------------------------------------------------
+*
+*/ 
+function U_Font(P_szFont)
+{
+
+  if (!P_szFont || (P_szFont[0] == "-")) {
+     return;
+  } /* if */
+
+  U_All('fontName', false, P_szFont);
+} /* U_Font */
+
+const C_szTable = `
+    <table style="width: 100%" border="1">
+      <tbody>
+        <tr>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>`;
+
+/*-----U_Template --------------------------------------------------------
+*
+* "", "div", "button", "input", "table"]
+*/ 
+function U_Template(P_szTemp)
+{
+  var a_szTemp = {
+    "div" : '<div id="Id_"><br>\n</div>',
+    "span" : '<span style=""><br>\n</span>',
+    "button" : '<button id="Id_" onclick="">Botton-0</button>',
+    "input" : '<input id="Id_" name="Nm_" type="" onclick="">',
+    "table" : C_szTable
+  };
+
+  if (!P_szTemp || (P_szTemp[0] == "-")) {
+     return;
+  } /* if */
+  
+  var szHTML = a_szTemp[P_szTemp];
+  if (S_fWysiwyg) {
+     U_All('insertHTML', false, szHTML);  
+  }
+  else {
+     U_All('insertText', false, szHTML);
+  } /* if */
+} /* U_Template */
+
+/*-----U_All2 --------------------------------------------------------
+*
+*/ 
+function U_All2(P_szTag, P_aShowDefaultUI, P_aValueArgument=null)
+{
+   if (S_fWysiwyg) {
+      var Elem0 = document.createElement(P_szTag);
+      var userSelection = window.getSelection();
+      var selectedTextRange = userSelection.getRangeAt(0);
+      selectedTextRange.surroundContents(Elem0);         
+   }
+   else {
+   debugger;
+      alert("you are not in graphic mode");
+   } /* if */
+} /* U_All2 */
+
+/*-----U_Ld_Image --------------------------------------------------------
+*
+* https://dev.to/_moehab/documentexeccommand-alternative-5a55
+*/ 
+function boldCommand() {
+    const strongElement = document.createElement("strong");
+    const userSelection = window.getSelection();
+    const selectedTextRange = userSelection.getRangeAt(0);
+    selectedTextRange.surroundContents(strongElement);
+} /* U_Ld_Image */
+
+/*-----U_Bold --------------------------------------------------------
+*
+*/ 
+function U_Bold()
+{
+  U_All2("b");
+} /* U_Bold */
+
+/*-----U_Italic --------------------------------------------------------
+*
+*/ 
+function U_Italic()
+{
+  U_All2("i");
+} /* U_Italic */
+
+/*-----U_Underline --------------------------------------------------------
+*
+*/ 
+function U_Underline()
+{
+  U_All2("u");
+} /* U_Underline */
+
+/*-----U_Strike --------------------------------------------------------
+*
+*/ 
+function U_Strike()
+{
+  U_All2("s");
+} /* U_Strike */
+
+/*-----U_Left --------------------------------------------------------
+*
+*/ 
+function U_Left()
+{
+  U_All('justifyLeft', false, '');
+} /* U_Left */
+
+/*-----U_Center --------------------------------------------------------
+*
+*/ 
+function U_Center()
+{
+  U_All('justifyCenter', false, '');
+} /* U_Center */
+
+/*-----U_Right --------------------------------------------------------
+*
+*/ 
+function U_Right()
+{
+  U_All('justifyRight', false, '');
+} /* U_Right */
+
+/*-----U_Justify --------------------------------------------------------
+*
+*/ 
+function U_Justify()
+{
+  U_All('justifyFull', false, '');
+} /* U_Justify */
+
+/*-----U_SuperScript --------------------------------------------------------
+*
+*/ 
+function U_SuperScript()
+{
+//  U_All('superscript', false, '');
+  U_All2("sup");
+} /* U_SuperScript */
+
+/*-----U_SubScript --------------------------------------------------------
+*
+*/ 
+function U_SubScript()
+{
+//  U_All('subscript', false, '');
+  U_All2("sub");
+} /* U_SubScript */
+
+/*-----U_Indent --------------------------------------------------------
+*
+*/ 
+function U_Indent()
+{
+  U_All('indent', false, '');
+} /* U_Indent */
+
+/*-----U_Outdent --------------------------------------------------------
+*
+*/ 
+function U_Outdent()
+{
+  U_All('outdent', false, '');
+} /* U_Outdent */
+
+/*-----U_Ordered --------------------------------------------------------
+*
+*/ 
+function U_Ordered()
+{
+  U_All('insertOrderedList', false, '');
+} /* U_Ordered */
+
+/*-----U_Unordered --------------------------------------------------------
+*
+*/ 
+function U_Unordered()
+{
+  U_All('insertUnorderedList', false, '');
+} /* U_Unordered */
+
+var S_szURL_Link = "";
+
+/*-----U_CreateLink --------------------------------------------------------
+*
+* https://id.javascript.info/selection-range
+*/ 
+function U_CreateLink()
+{
+
+// $WebEd.All('createLink', false, Id_HREF.value);
+
+  S_szURL_Link = prompt('Enter a URL:', 'http://');
+  document.execCommand('createLink', false, S_szURL_Link);
+} /* U_CreateLink */
+
+/*-----U_Unlink --------------------------------------------------------
+*
+*/ 
+function U_Unlink()
+{
+  document.execCommand('unLink', false, S_szURL_Link);
+} /* U_Unlink */
+
+/*-----U_RemFormat --------------------------------------------------------
+*
+* Removes all formatting from the current selection.
+*/ 
+function U_RemFormat()
+{
+  U_All('removeFormat', false, '');
+} /* U_RemFormat */
+
+/*-----U_Test1 --------------------------------------------------------
+*
+* https://www.tutorialspoint.com/how-to-set-cursor-position-in-content-editable-element-using-javascript
+*/ 
+function U_SetCursor(P_iPos)
+{
+ALERT("xxx",1);
+
+var xxx = Id_Pippo123.value;
+
+debugger;
+//       // select content editable div element
+// //      var Elem0 = document.getElementById("Id_1");
+//       var Elem0 = document.getElementById("Id_Code");
+//       debugger;
+//       // select text from a window
+//       var selectedText = window.getSelection();
+//  
+//       // create a range
+//       var selectedRange = document.createRange();
+// 
+//       // set starting position of the cursor in the texts
+//       selectedRange.setStart(Elem0.childNodes[0], P_iPos);
+// 
+//       // collapse the range at boundaries
+//       selectedRange.collapse(true);
+// 
+//       // remove all ranges
+//       selectedText.removeAllRanges();
+// 
+//       // add a new range to the selected text
+//       selectedText.addRange(selectedRange);
+// 
+//       // focus the cursor
+//       Elem0.focus();
+} /* U_SetCursor */
+
+/*-----U_Test1 --------------------------------------------------------
+*
+*/
+var S_iPos_Caret = 0; 
+function U_Test1()
+{
+  U_SetCursor(0);
+} /* U_Test1 */
+
+/*-----U_Ld_Image --------------------------------------------------------
+*
+*/ 
+function U_Ld_Image()
+{
+
+} /* U_Ld_Image */
+
+/*-----U_SpellCheck --------------------------------------------------------
+*
+*/ 
+function U_SpellCheck()
+{
+  var szTxt = Id_Code.innerText;
+  szTxt = F_szHTML_Color(szTxt);     
+  Id_Code.innerHTML = szTxt;
+} /* U_SpellCheck */
+
+/*-----U_Insert_EOL --------------------------------------------------------
+*
+*/ 
+function U_Insert_EOL()
+{
+  var szTxt = Id_Code.innerText;
+  szTxt = szTxt.replaceAll(".", ".\n");   
+  Id_Code.innerText = szTxt;
+} /* U_Insert_EOL */
+
+/*-----U_Ld_File --------------------------------------------------------
+*
+*/ 
+function U_Ld_File(P_0)  {
+  var oFile = document.getElementById("Id_szFlNm").files[0];       
+  var FileReader0 = new FileReader();
+  FileReader0.onload = function(P_Event) {
+      var szTxt = P_Event.target.result;
+      if (S_fWysiwyg) {
+          Id_Code.innerHTML = szTxt;
+      }
+      else {
+          Id_Code.innerText = szTxt;
+      } /* if */
+  };
+  FileReader0.readAsText(oFile, "UTF-8");
+} /* U_Ld_File */
+
+/*-----U_Sv_File --------------------------------------------------------
+*
+*/ 
+function U_Sv_File()
+{
+  var szNm_Sav = prompt("File destinazione:");
+  var szTxt = (S_fHTML || S_fWysiwyg)? Id_Code.innerHTML: Id_Code.innerText;
+  U_Write(szNm_Sav, szTxt);
+} /* U_Sv_File */
+
+/*-----U_JSON_Mp_Text --------------------------------------------------------
+*
+*/ 
+function U_JSON_Mp_Text()
+{
+  var szTxt = prompt("Enter originale text: ");
+  var szJSON = JSON.stringify(szTxt);
+  alert("JSON text:\n" + szJSON);
+} /* U_JSON_Mp_Text */
+
+/*-----F_szHTML_Color --------------------------------------------------------
+*
+*/ 
+function F_szHTML_Color(P_szTxt)
+{
+  var szTxt2 = "";
+  var szTxt = P_szTxt.replaceAll("<br>", " ");
+  var iLen = szTxt.length;
+  var szWrd = '';
+  var i;
+  
+  for (i = 0; i < iLen; i++) {
+      let ch = szTxt[i];
+      if ((ch == ' ') || (ch == '.') || (ch == ',') || (ch == ';')  || (ch == ':') || (ch == '!')  || (ch == '?') || (ch == '"') || (ch == "'")  || (ch == "’") || (ch == '“') || (ch == '”') || (ch == '\n')  || (ch == '\r')   || (ch == '\t')  || (ch == '\\') || (ch == '(') || (ch == ')')) {
+         if (ch == "’") {
+            szWrd += ch;
+         } /* if */
+         
+         var iFreq = S_asFreq[szWrd];        
+         if (S_asFreq[szWrd] > 2) {
+            szTxt2 += szWrd;            
+         }
+         else {
+            szTxt2 += "<Red>" + szWrd + "</Red>";
+         } /* if */
+         szWrd = '';
+         szTxt2 += ch;
+      }
+      else {
+         szWrd += ch;
+      } /* if */
+  } /* for */
+
+  return(szTxt2);
+} /* F_szHTML_Color */
+
+
+/*-----U_Init --------------------------------------------------------
+*
+*/ 
+function U_Init()
+{ 
+  var DDJSts = {};
+  DDJSts.iRel_KNS        = 20250106;          /* Cfg. release number. */
+  DDJSts.szUser          = "";                // Luigi
+  DDJSts.szURL_Relay     = "";                // https://canavesehub.altervista.org/Big/LCD/irc/
+  DDJSts.szjDate         = "YYYYMMDD";
+  DDJSts.szURL_Srv       = "localhost";
+  DDJSts.szSrv_Knd       = "PHP-DDJ";
+  DDJSts.iWdt_Tab        = screen.width;
+  DDJSts.iNnRow_Page     = 25;
+  DDJSts.szLanguage      = "it-IT";
+  DDJSts.iWdt_Icon       = 20;
+  DDJSts.fHalt_Debug     = true;
+  DDJSts.iDebug          = C_iDebug_Dflt_Cfg; // Initial Debug Level
+  DDJSts.fEnaPeriodic    = false;             /* true - enable commands introduced using "tele.htm" */
+  DDJSts.fIcons          = true;
+  DDJSts.fVoice_Error    = true;
+  
+  $VConfig.U_Init_DDJSts(C_szApp, DDJSts, $VConfig.U_CB_Update_Default);
+
+  var apF_Init = [$Root.U_Init, $Log.U_Init, $Error.U_Init, $VConfig.U_Init, $Nation.U_Init, $MRMenu.U_Init, $TTS.U_Init, $IPCF.U_Init, $Pers.U_Init, $VDebug.U_Init, // $DDJ.U_Init, 
+    $SemCtx.U_Init, $Periodic.U_Init
+];
+  var i, j;
+    
+  try {
+      for (i = 0; i < apF_Init.length; i++) {
+          var pF = apF_Init[i];
+          pF();
+      } /* for */
+  } catch (P_Err) {
+      debugger;
+      $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+  } /* try catch */  
+//   $DDJ.U_UnLoad = U_UnLoad;   /* $Register */ 
+//   $DDJ.U_Button = U_Button;
+
+  S_fWysiwyg = false;
+  $SemCtx.U_Sel_TBM("Id_Nav", "Sources", false);  
+  G_DBox_About.DBox_About = new CL_DBox ("Id_Div_DBox0", "G_DBox_About.DBox_About", "About", S_szHTML_DBox_About, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, G_DBox_Null.U_Cancel, null);
+
+  $DDJ.U_Set_iWdt_Icon();
+
+  $Root.U_Reg();
+  U_Reload();
+} /* U_Init */
+
+
+U_Init();
+  
+//]]></script>
+    
+
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>OLS HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article class="Cl_Extra">
+          <h1>Add Columns</h1>
+          <section>
+            <h2>Toolbar di "AddCol".</h2>
+            <p><br>
+            </p>
+            <p>La funzione <span style="font-weight: bold;">AddCol</span> consente di estendere una tabella lateralmente aggiungendo una o più colonne corrispondenti ad altrettanti nuovi <a href="glossario.html#Id_Campo">campi</a>
+              / <a href="glossario.html#Id_Attributo">attributi</a>.</p>
+            <p><br>
+            </p>
+          </section>
+          <section>
+            <h3>Precondizioni.</h3>
+            <p>Le collezioni contenenti i dati delle nuove colonne debbono essere ordinate allo stesso modo della collezione che si vuole estendere, cioè debbono fare riferimento alla stessa chiave ed
+              essere ordinate in base agli stessi criteri.</p>
+            <p><br>
+            </p>
+            <p>Ad esempio, la collezione:</p>
+            <p><br>
+            </p>
+            <pre>var S_aObj  =
+[
+{"sz0":"<span style="color: red;">anatra</span>_0","iNum1":41,"Bool2":false,"sz3":"duck_3","Date4":"2009-09-01","Obj5":{"nome":"Primo","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">cane</span>","iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Obj5":{"nome":"Secondo","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">cavallo</span>","iNum1":53,"Bool2":true,"sz3":"horse","Date4":"2004-04-03","Obj5":{"nome":"Terzo","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">foca</span>","iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Obj5":{"nome":"Quarto","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">gallo</span>","iNum1":37,"Bool2":1,"sz3":"cock","Date4":"1988-08-05","Obj5":{"nome":"Quinto","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">gatto</span>","iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Obj5":{"nome":"Sesto","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">lupo</span>","iNum1":6,"Bool2":0,"sz3":"wolf","Date4":"2007-07-07","Obj5":{"nome":"Settimo","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">oca</span>","iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Obj5":{"nome":"Ottavo","cognome":"Rossi"}},
+{"sz0":"<span style="color: #33cc00;">rana</span>","iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Obj5":{"nome":"Nono","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">topo</span>","iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Obj5":{"nome":"Decimo","cognome":"Rossi"}}
+];</pre>
+            <p>può essere estesa a destra aggiungendo le colonne della collezione:</p>
+            <pre>var S_aObj4  =
+[
+{"sz0":"<span style="color: red;">anatra</span>_0",<span style="color: #3333ff;">"iNum_X":0,"sz_Y":"S_aObj4"</span>},
+{"sz0":"<span style="color: red;">cane</span>",<span style="color: #3333ff;">"iNum_X":1,"sz_Y":"b"</span>},
+{"sz0":"<span style="color: red;">cavallo</span>",<span style="color: #3333ff;">"iNum_X":2,"sz_Y":"c"</span>},
+{"sz0":"<span style="color: red;">foca</span>",<span style="color: #3333ff;">"iNum_X":3,"sz_Y":"d"</span>},
+{"sz0":"<span style="color: red;">gallo</span>",<span style="color: #3333ff;">"iNum_X":4,"sz_Y":"e"</span>},
+{"sz0":"<span style="color: red;">gatto</span>",<span style="color: #3333ff;">"iNum_X":5,"sz_Y":"f"</span>},
+{"sz0":"<span style="color: red;">lupo</span>",<span style="color: #3333ff;">"iNum_X":6,"sz_Y":"g"</span>},
+{"sz0":"<span style="color: red;">oca</span>",<span style="color: #3333ff;">"iNum_X":7,"sz_Y":"h"</span>},
+{"sz0":"<span style="color: #999999; font-weight: bold;">rospo</span>",<span style="color: #999999;">"iNum_X":8,"sz_Y":"i"</span>},
+{"sz0":"<span style="color: red;">topo</span>",<span style="color: #3333ff;">"iNum_X":9,"sz_Y":"j"</span>}
+];</pre>
+            <p><br>
+            </p>
+            <p>generando la collezione:</p>
+            <p><br>
+            </p>
+            <pre>[
+{"sz0":"<span style="color: red;">anatra</span>_0","iNum1":41,"Bool2":false,"sz3":"duck_3","Date4":"2009-09-01","Obj5":{"nome":"Primo","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":0,"sz_Y":"S_aObj4"</span>},
+{"sz0":"<span style="color: red;">cane</span>","iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Obj5":{"nome":"Secondo","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":1,"sz_Y":"b"</span>},
+{"sz0":"<span style="color: red;">cavallo</span>","iNum1":53,"Bool2":true,"sz3":"horse","Date4":"2004-04-03","Obj5":{"nome":"Terzo","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":2,"sz_Y":"c"</span>},
+{"sz0":"<span style="color: red;">foca</span>","iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Obj5":{"nome":"Quarto","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":3,"sz_Y":"d"</span>},
+{"sz0":"<span style="color: red;">gallo</span>","iNum1":37,"Bool2":1,"sz3":"cock","Date4":"1988-08-05","Obj5":{"nome":"Quinto","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":4,"sz_Y":"e"</span>},
+{"sz0":"<span style="color: red;">gatto</span>","iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Obj5":{"nome":"Sesto","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":5,"sz_Y":"f"</span>},
+{"sz0":"<span style="color: red;">lupo</span>","iNum1":6,"Bool2":0,"sz3":"wolf","Date4":"2007-07-07","Obj5":{"nome":"Settimo","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":6,"sz_Y":"g"</span>},
+{"sz0":"<span style="color: red;">oca</span>","iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Obj5":{"nome":"Ottavo","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":7,"sz_Y":"h"</span>},
+{"sz0":"<span style="color: #33cc00;">rana</span>","iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Obj5":{"nome":"Nono","cognome":"Rossi"}},
+{"sz0":"<span style="color: red;">topo</span>","iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Obj5":{"nome":"Decimo","cognome":"Rossi"},<span style="color: #3333ff;">"iNum_X":9,"sz_Y":"j"</span>}
+]</pre>
+            <p>Si noti che le righe della prima collezione (<code>S_aObj</code>) sono state estese aggiungendo le proprietà (attributi) delle righe della seconda collezione (<code>S_aObj</code>4)
+              aventi la stessa chiave (campo <code>sz0</code> evidenziato in rosso).</p>
+            <p>Il campo <code>sz0</code> corrispondente alla chiave NON viene duplicato. Questo non soltanto nel formato <code>aObj</code> ma anche negli altri formati compreso il formato <code>aRcd</code>.</p>
+            <p><br>
+            </p>
+            <p>Ad esempio la collezione (<code>S_aRcd</code>)</p>
+            <p><br>
+            </p>
+            <pre>var S_aRcd  =
+[
+["<span style="color: red;">anatra</span>_0",41,false,"duck_3","2009-09-01",{"nome":"Primo","cognome":"Rossi"}],
+["<span style="color: red;">cane</span>",70,0,"dog","2021-01-02",{"nome":"Secondo","cognome":"Rossi"}],
+["<span style="color: red;">cavallo</span>",53,true,"horse","2004-04-03",{"nome":"Terzo","cognome":"Rossi"}],
+["<span style="color: red;">foca</span>",19,true,"seal","2000-10-04",{"nome":"Quarto","cognome":"Rossi"}],
+["<span style="color: red;">gallo</span>",37,1,"cock","1988-08-05",{"nome":"Quinto","cognome":"Rossi"}],
+["<span style="color: red;">gatto</span>",21,1,"cat","2017-02-06",{"nome":"Sesto","cognome":"Rossi"}],
+["<span style="color: red;">lupo</span>",6,0,"wolf","2007-07-07",{"nome":"Settimo","cognome":"Rossi"}],
+["<span style="color: red;">oca</span>",115,true,"goose","1996-06-08",{"nome":"Ottavo","cognome":"Rossi"}],
+["<span style="color: #33cc00;">rana</span>",84,false,"frog","2015-05-09",{"nome":"Nono","cognome":"Rossi"}],
+["<span style="color: red;">topo</span>",72,false,"mouse","2023-03-10",{"nome":"Decimo","cognome":"Rossi"}]
+];</pre>
+            <p>può essere estesa a destra aggiungendo le colonne della collezione:</p>
+            <pre>var S_aRcd4  =
+[
+["<span style="color: red;">foca</span>",     <span style="color: #3333ff;">3, "d"</span>],
+["<span style="color: red;">gallo</span>",    <span style="color: #3333ff;">4, "e"</span>],
+["<span style="color: red;">gatto</span>",    <span style="color: #3333ff;">5, "f"</span>],
+["<span style="color: red;">lupo</span>",     <span style="color: #3333ff;">6, "g"</span>],
+["<span style="color: red;">anatra_0</span>", <span style="color: #3333ff;">0, "S_aRcd4"</span>],
+["<span style="color: red;">cane</span>",     <span style="color: #3333ff;">1, "b"</span>],
+["<span style="color: red;">cavallo</span>",  <span style="color: #3333ff;">2, "c"</span>],
+["<span style="color: red;">oca</span>",      <span style="color: #3333ff;">7, "h"</span>],
+[<span style="color: #999999;">"rospo",    8, "i"</span>],
+["<span style="color: red;">topo</span>",     <span style="color: #3333ff;">9, "j"</span>]
+];</pre>
+            <p>generando la collezione:</p>
+            <pre>[
+["<span style="color: red;">anatra_0</span>",41,false,"duck_3","2009-09-01",{"nome":"Primo","cognome":"Rossi"},<span style="color: #3333ff;">0,"S_aRcd4"</span>],
+["<span style="color: red;">cane</span>",70,0,"dog","2021-01-02",{"nome":"Secondo","cognome":"Rossi"},<span style="color: #3333ff;">1,"b"</span>],
+["<span style="color: red;">cavallo</span>",53,true,"horse","2004-04-03",{"nome":"Terzo","cognome":"Rossi"},<span style="color: #3333ff;">2,"c"</span>],
+["<span style="color: red;">foca</span>",19,true,"seal","2000-10-04",{"nome":"Quarto","cognome":"Rossi"},<span style="color: #3333ff;">3,"d"</span>],
+["<span style="color: red;">gallo</span>",37,1,"cock","1988-08-05",{"nome":"Quinto","cognome":"Rossi"},<span style="color: #3333ff;">4,"e"</span>],
+["<span style="color: red;">gatto</span>",21,1,"cat","2017-02-06",{"nome":"Sesto","cognome":"Rossi"},<span style="color: #3333ff;">5,"f"</span>],
+["<span style="color: red;">lupo</span>",6,0,"wolf","2007-07-07",{"nome":"Settimo","cognome":"Rossi"},<span style="color: #3333ff;">6,"g"</span>],
+["<span style="color: red;">oca</span>",115,true,"goose","1996-06-08",{"nome":"Ottavo","cognome":"Rossi"},<span style="color: #3333ff;">7,"h"</span>],
+["<span style="color: #33cc00;">rana</span>",84,false,"frog","2015-05-09",{"nome":"Nono","cognome":"Rossi"},<span style="color: #cc33cc;">null,null</span>],
+["<span style="color: red;">topo</span>",72,false,"mouse","2023-03-10",{"nome":"Decimo","cognome":"Rossi"},<span style="color: #3333ff;">9,"j"</span>]
+]</pre>
+            <p><br>
+            </p>
+            <p>Si osservi inoltre che la riga avente per chiave "<code style="color: #33cc00;">rana</code>" delle collezioni di sinistra (<code>S_aObj, S_aRcd</code>) è stata inserita nella nuova
+              collezione, ma non completata con gli attributi delle collezioni di destra (<code>S_aObj</code>4, <code>S_aRcd4</code>) poiché in quest'ultimo non è presente alcuna riga avente la
+              chiave considerata.</p>
+            <p><br>
+            </p>
+            <p><br>
+            </p>
+          </section>
+        </article>
+        <article id="Id_AddCol">
+          <h1>AddCol</h1>
+          <section id="AddCol_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/help.svg"> aiuto<br>
+              Help file</h2>
+            <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+          <section>
+            <h2>Comandi della finestra di dialogo</h2>
+          </section>
+          <section>
+            <h3>X.</h3>
+            <p>Cliccando sul simbolo "X" che appare nell'angolo in alto a destra si chiude la scheda annullando tutte le impostazioni. </p>
+          </section>
+          <section>
+            <h3>Confirm.</h3>
+            <p>Cliccando sul bottone "Confirm" disegnato nell'area verde in basso si chiude la scheda e si procede con il caricamento della Collezione selezionata.</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

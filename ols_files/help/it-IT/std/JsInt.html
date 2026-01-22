@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Console JavaScript.</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Modifica dei dati di una collezione." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>OLS' JavaScript Interpreter</h1>
+        <section>
+          <h2>Se la comunicazione NON funziona.</h2>
+          Se la comunicazione NON funziona cliccare sul bottone di configurazione di <span style="font-weight: bold;">JsInt</span> e verificare che il valore di szURL_Relay coincida con quello
+          impostato nel menu di configurazione del programma <span style="font-weight: bold;">OLS</span>.<br>
+          Verificare che il suddetto valore coincida con la URL di un server <a href="glossario.html#Id_Relay">Relay</a> valido e che il suddetto server sia attivo.</section>
+        <section>
+          <h2>Esempi.</h2>
+        </section>
+        <br>
+        <span style="font-weight: bold;">Example:</span><br>
+        Calculate the sum of the integer number in the range [0..10] and return the result to the calling environment using the variable Val0.<br>
+        <br>
+        Sum = 0;<br>
+        <br>
+        for (i = 0; i &lt;= 10; i++) {<br>
+        &nbsp;&nbsp;&nbsp; Sum += i;<br>
+        } /* for */<br>
+        <br>
+        Val0 = Sum;<br>
+        <br>
+        <span style="font-weight: bold;">Example:</span><br>
+        <ul>
+          <li>Generate the array of date in the range "2020-01-15", "2020-03-15",</li>
+          <li>create the matrix aRcd0 consisting of 4 columns, inserting in the column 0 the values of the dates generated previously,</li>
+          <li>return the matrix aRcd0 to the calling environment using Var0,</li>
+          <li>register the data structure aRcd0, in the list of the collections, with the name "Calendar1"</li>
+          <li>select and display the new collection.</li>
+        </ul>
+        <br>
+        Arr1 = F_Arr_Range("date", "2020-01-15", "2020-03-15", 1 * C_ims_Day);<br>
+        aRcd0 = [];<br>
+        for (i = 0; i &lt; Arr1.length; i++) {<br>
+        &nbsp;&nbsp;&nbsp; Rcd0 = [];<br>
+        &nbsp;&nbsp;&nbsp; Rcd0[0] = Arr1[i];<br>
+        &nbsp;&nbsp;&nbsp; Rcd0[1] = i;<br>
+        &nbsp;&nbsp;&nbsp; Rcd0[2] = 2*i^2 + 1;<br>
+        &nbsp;&nbsp;&nbsp; Rcd0[3] = "test";<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; aRcd0[i] = Rcd0;<br>
+        }<br>
+        Val0 = aRcd0;<br>
+        GenColl("Calendar1", aRcd0, true);<br>
+        <br>
+        <span style="font-weight: bold;">Example:</span><br>
+        <br>
+        Given the collection currently selected (UsrView0) change the values of the column 7 assigning the values corresponding to the position of the given element in the order selected by the user
+        using the GUI.<br>
+        <br>
+        &nbsp; var UsrView0 = CL_UsrView0.F_UsrView_Selected();&nbsp; <br>
+        &nbsp; var XDB0 = UsrView0.XDB0;<br>
+        &nbsp; var Coll0 = XDB0.Coll0;<br>
+        &nbsp; var aNdx&nbsp; = UsrView0.aNdx;<br>
+        &nbsp; var iCard_aNdx = aNdx.length;<br>
+        &nbsp; var i, k;<br>
+        &nbsp; <br>
+        &nbsp; for (i = 0; i &lt; iCard_aNdx; i++) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k = aNdx [i];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Coll0[k][7] = i;<br>
+        &nbsp; } /* for */<br>
+        &nbsp; $Table.U_Display_Table();<br>
+        <br>
+        <span style="font-weight: bold;">Example:</span><br>
+        <br>
+        /*-----U_Replicate --------------------------------------------------------<br>
+        *<br>
+        *&nbsp; Replicate Tags set in fDistinct mode.<br>
+        */ <br>
+        function U_Replicate()<br>
+        {<br>
+        &nbsp; var UsrView0 = CL_UsrView0.F_UsrView_Selected();&nbsp; <br>
+        &nbsp; var XDB0 = UsrView0.XDB0;<br>
+        &nbsp; var Coll0 = XDB0.Coll0;<br>
+        &nbsp; var aNdx&nbsp; = UsrView0.aNdx;<br>
+        &nbsp; var iCard_aNdx = aNdx.length;<br>
+        &nbsp; var i, j, k;<br>
+        &nbsp; var szPrv = "";<br>
+        &nbsp; <br>
+        &nbsp; for (i = 0; i &lt; iCard_aNdx; i++) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k = aNdx[i];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (Coll0[k][7] != "") {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; szPrv = Coll0[k][7];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } /* if */&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Coll0[k][8] = szPrv;<br>
+        &nbsp; } /* for */<br>
+        &nbsp; $Table.U_Display_Table();<br>
+        } /* U_Replicate */<br>
+        <br>
+        <span style="font-weight: bold;">Example:</span><br>
+        <br>
+        <br>
+        <section>
+          <h3> Return the UsrView data structure corresponding to the given collection (without selecting it).</h3>
+          Val0 = GetUsrView("Prova3");<br>
+          <br>
+          -- var Val0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView("Prova2", true);<br>
+        </section>
+        <section>
+          <h3>Return a Collection by name (without selecting it).</h3>
+          Val0 = GetColl("Prova3");<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView("Prova2", true).XDB0.Coll0;<br>
+        </section>
+        <section>
+          <h3> Select the collection specified.</h3>
+          Val0 = SelColl("Prova1");<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Select("Prova3",false,true).XDB0.Coll0; </section>
+        <section>
+          <h3> Get the name of the collection selected.</h3>
+          Val0 = CollName();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected().szNmColl;</section>
+        <section>
+          <h3>Get the descriptor of the UsrView currently selected.</h3>
+          Val0 = UsrView();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected();<br>
+        </section>
+        <section>
+          <h3>Get the XDB descriptor of the selected UsrView<span style="font-weight: normal;"></span>.</h3>
+          Val0 = XDB();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected().XDB0;<br>
+        </section>
+        <section>
+          <h3>Get the structure layout of the selected Collection.</h3>
+          Val0 = Layout();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected().XDB0.aFld0;<br>
+          <br>
+        </section>
+        <section>
+          <h3>Get the structure layout selected UsrView.</h3>
+          Val0 = Layout_UV();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected().aFld1;<br>
+          <br>
+        </section>
+        <section>
+          <h3>Get the array (aNdx) corresponding to the active index of the collection selected.</h3>
+          Val0 = Ndx();<br>
+          <br>
+          -- Val0&nbsp; = CL_UsrView0.F_UsrView_Selected().aNdx;<br>
+        </section>
+        <section>
+          <h3>Values of the Selected Collection.</h3>
+          Val0 = CollCur();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected().XDB0.Coll0;<br>
+        </section>
+        <section>
+          <h3>Value of the selected Tuple (record).</h3>
+          Val0 = Tuple();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected().XDB0.Tup_Sel;<br>
+        </section>
+        <section>
+          <h3>Value of the selected Cell.</h3>
+          Val0 = Cell();<br>
+          <br>
+          -- Val0 = CL_UsrView0.F_UsrView_Selected().Val_Sel;<br>
+        </section>
+        <section>
+          <h3>Extract the elements of the column 3 of the selected collection in the order of the index <span style="font-weight: normal;"></span> set by the operator using the GUI.&nbsp; </h3>
+          &nbsp; var UsrView0 = CL_UsrView0.F_UsrView_Selected();&nbsp; <br>
+          &nbsp; var XDB0 = UsrView0.XDB0;<br>
+          &nbsp; var Coll0 = XDB0.Coll0;<br>
+          &nbsp; var aNdx&nbsp; = UsrView0.aNdx;<br>
+          &nbsp; var iCard_aNdx = aNdx.length;<br>
+          &nbsp; var Coll1 = [];<br>
+          &nbsp; var i, j;<br>
+          &nbsp; <br>
+          &nbsp; for (i = 0; i &lt; iCard_aNdx; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j = aNdx[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Coll1[i] = Coll0[j][3];<br>
+          &nbsp; } /* for */<br>
+          <br>
+          Val0 = Coll1;<br>
+        </section>
+        <section>
+          <h3>Create a new collection consisting of the elements of the column 3 of the selected collection in the order of the index <span style="font-weight: normal;"></span> set by the operator
+            using the GUI.&nbsp; </h3>
+          &nbsp; var UsrView0 = CL_UsrView0.F_UsrView_Selected();&nbsp; <br>
+          &nbsp; var XDB0 = UsrView0.XDB0;<br>
+          &nbsp; var Coll0 = XDB0.Coll0;<br>
+          &nbsp; var aNdx&nbsp; = UsrView0.aNdx;<br>
+          &nbsp; var iCard_aNdx = aNdx.length;<br>
+          &nbsp; var Coll1 = [];<br>
+          &nbsp; var i, j;<br>
+          &nbsp; <br>
+          &nbsp; for (i = 0; i &lt; iCard_aNdx; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j = aNdx[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Coll1[i] = Coll0[j][3];<br>
+          &nbsp; } /* for */<br>
+          <br>
+          Val0 = Coll1;<br>
+          GenColl("New Collection", Coll1, true);<br>
+        </section>
+        <section>
+          <h3>Return the name of the field selected by the operator using the GUI<span style="font-weight: normal;"></span>.</h3>
+          Val0 = CL_UsrView0.F_UsrView_Selected().F_szNm_Fld_Sel();<br>
+        </section>
+        <section>
+          <h3>Return the name of the field used as a Key to sort the collection.</h3>
+          Val0 = CL_UsrView0.F_UsrView_Selected().F_szKey_Sort();<br>
+        </section>
+        <section>
+          <h3>Return the key (or the sequential position) of the Tuple selected by the user in the original collection. </h3>
+          Val0 = CL_UsrView0.F_UsrView_Selected().F_szNm_szKeyTup();<br>
+          <br>
+          or<br>
+          <br>
+          Val0 = CL_UsrView0.F_UsrView_Selected().KeyTup;<br>
+        </section>
+        <section>
+          <h3>Field descriptor corresponding to the selected Cell.</h3>
+          Val0 = CL_UsrView0.F_UsrView_Selected().Fld_Sel;<br>
+        </section>
+        <section>
+          <h3>Position of the index corresponding to the selected Tuple in aNdx</h3>
+          Val0 = CL_UsrView0.F_UsrView_Selected().jaNdx_Sel;<br>
+        </section>
+        <section>
+          <h3>Open the selected Tuple as a Card for editing.</h3>
+          EdtTup();<br>
+          <br>
+        </section>
+        <section>
+          <h3>Open the selected Cell in a Card for editing.</h3>
+          EdtVal();<br>
+          <br>
+        </section>
+        <section>
+          <h3>Get a collection downloading a file.</h3>
+          $LdFile.U_DownLoad_URL("http://localhost/Relay/irc/read.php/?szTopic=D:/dbase/spectrum.OLS");<br>
+          <br>
+        </section>
+        <section>
+          <h3>xxxx</h3>
+          $LdFile.U_UpLoad_URL("http://localhost/Relay/irc/write.php/?szTopic=D:/dbase/drago.arcd");<br>
+          <br>
+        </section>
+        <section>
+          <h3>xxxx</h3>
+          <br>
+          <br>
+        </section>
+        <section>
+          <h2>Comandi della finestra di dialogo.</h2>
+        </section>
+        <section>
+          <h3>X.</h3>
+          <p>Cliccando sul simbolo "X" che compare in alto a destra si chiude la finestra di dialogo, annullando tutte le modifiche.</p>
+        </section>
+        <section>
+          <h3>Confirm.</h3>
+          <p>Cliccando sul pulsante "Confirm" nella fascia verde sottostante si chiude la finestra di dialogo tornando alla rappresentazione della Collezione selezionata.</p>
+        </section>
+        <section>
+          <h2>Comandi della barra delle icone.</h2>
+        </section>
+        <section id="DDJ_Cfg_Reset">
+          <h2><img class="Cl_Ico_TBM" alt="" src="../../../ico/reset.svg"> reset<br>
+            Reset</h2>
+          <p>Ripristina i valori iniziali dei flag.</p>
+        </section>
+        <section id="DDJ_Cfg_Help file">
+          <h2><img class="Cl_Ico_TBM" alt="" src="../../../ico/help.svg"> aiuto<br>
+            Help file</h2>
+          <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+        </section>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Presentazione</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <h1>Ordiniamo/Let's Sort (OLS) - Presentazione</h1>
+        <section>
+          <p><br>
+          </p>
+          <p>Il software <span style="font-weight: bold;">Ordiniamo/Let's Sort (OLS)</span> è un'applicazione Open Source, scritta in JavaScript, per l'esplorazione e la manipolazione di collezioni
+            di dati in formato JSON. </p>
+          <p> I sorgenti di <span style="font-weight: bold;">Ordiniamo/Let's Sort (OLS)</span> sono distribuiti sotto licenza <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL v. 3.0</a>. </p>
+          <p>I file che costituiscono la libreria DDJ, su cui si basa il programma OLS, sono invece distribuiti con licenza <a href="https://www.gnu.org/licenses/lgpl-3.0.txt">LGPL v. 3.0</a>.</p>
+          <p><br>
+          </p>
+          <p style="text-align: center;"><mark><span style="font-weight: bold;">Il programma OLS non è un programma fatto finito e funzionante pronto per essere usato dagli utenti finali, ma un
+                cantiere aperto in continua evoluzione</span></mark></p>
+          <p style="text-align: center;"><mark><span style="font-weight: bold;">per cui può contenere degli errori e manifestare talvolta dei fenomeni di malfunzionamento.</span></mark></p>
+          <p> </p>
+          <br>
+          Il programma <span style="font-weight: bold;">Ordiniamo/Let's Sort (OLS)</span> è uno strumento tecnico per l'esplorazione e la manipolazione di collezioni di dati in formato JSON o formati
+          alternativi,<br>
+          <span style="font-weight: bold;">OLS</span> supporta un'ampia gamma di fonti consentendo di caricare le collezioni di dati dai tradizionali file salvati su disco, scaricare tabelle ospitate
+          su un WebServer, si può ricorrere al copia e incolla, ma può anche essere integrato con alti programmi JavaScript per essere usato a scopo di debug per prendere visione dei valori contenuti
+          in strutture dati complesse che potrebbero essere difficili da studiare con i normali debugger.<br>
+          <br>
+          Il programma <span style="font-weight: bold;">Ordiniamo/Let's Sort (OLS)</span> è stato creato nell'ambito di un'attività didattica avente lo scopo di consentire ad alcuni studenti, esclusi
+          dalla PCTO, di fare una esperienza lavorativa simulata. svolgendo delle attività lavorative simili a quelle che potrebbero farsi in azienda.<br>
+          Il programma <span style="font-weight: bold;">Ordiniamo/Let's Sort (OLS)</span> è fondamentalmente un dimostratore tecnologico che enfatizza le possibilità creative della terna HTML5 + CSS3
+          + JS allo scopo di catturare l'attenzione degli studenti e farli appassionare alla programmazione in JavaScript. Date queste premesse gli obiettivi didattici prevalgono su ogni altro
+          requisito anche quelli concernenti la sicurezza, <mark>si sconsiglia pertanto il suo impiego in tutti quei contesti in cui l'utilizzo di OLS potrebbe costituire una breccia nella
+            sicurezza&nbsp; dei sistemi informatici degli utenti.</mark><br>
+          A questo proposito si osserva che il programma <span style="font-weight: bold;">Ordiniamo/Let's Sort (OLS)</span> è il prototipo di uno strumento per sviluppatori ed è pensato per essere
+          utilizzato da utenti competenti e responsabili, che sanno ciò che fanno e se ne assumono le responsabilità. Non è uno strumento per utenti finali.<br>
+          <br>
+          Il programma <span style="font-weight: bold;">Ordiniamo/Let's Sort (OLS)</span> non è un <a href="https://it.wikipedia.org/wiki/Transazione_%28basi_di_dati%29">database transazional</a>e e
+          non vuole esserlo, ma piuttosto un <a href="https://it.wikipedia.org/wiki/Data_warehouse">datawarehouse</a>&nbsp; intesa come "una collezione o aggregazione di dati strutturati, provenienti
+          da fonti interne operazionali (DBMS) ed esterne al sistema informativo aziendale, utili ad analisi e rapporti informativi".<br>
+          <br>
+          <p>Il software <span style="font-weight: bold;">OLS</span> può essere usato in vari modi:</p>
+          <ul>
+            <li>per esplorare e/o manipolare strutture dati già presenti nella memoria del browser o caricate da un file esterno,</li>
+            <li>per monitorare l'evoluzione nel tempo dei risultati dell'elaborazione di un programma sotto test,</li>
+            <li>per prendere visione delle proprietà di una collezione verificandone l'aderenza alle specifiche per poi eventualmente "ripulirla" effettuando il cosiddetto <span style="font-style: italic;">data
+                cleaning</span>,</li>
+            <li>per cambiare la rappresentazione dei dati di una collezione convertendone il tracciato record e il formato dei campi,</li>
+            <li>o più semplicemente si può integrare la libreria DDJ in un altro programma per usarne le funzioni di esplorazione e visualizzazione dei dati.</li>
+          </ul>
+          <br>
+          <span style="font-weight: bold;">Va sa sé che le operazioni concernenti la modifica e la riorganizzazione dei dati di una collezione possono andare a detrimento dell'integrità della
+            collezione.</span><br>
+          <p style="text-align: center;"><mark>La salvaguardia dell'integrità dei dati contenuti nelle collezioni viene lasciata alla responsabilità dell'operatore.</mark></p>
+          <p><br>
+          </p>
+          <p>Comunque, come misura precauzionale, le collezioni di dati vengono aperte per default in modalità Read Only, in modo che sia possibile esplorarle prendendone visione, ma non modificarle.
+            Se l'operatore decide di commutare la modalità di funzionamento abilitando le modifiche (modalità <span style="font-style: italic;">Read/Write</span>) si assume la responsabilità dei
+            danni che potrebbero essere arrecati alle strutture dati.</p>
+        </section>
+        <section>
+          <h3>Caratteristiche</h3>
+          <ul>
+            <li>Supporto di differenti <a href="formati.html">schemi di rappresentazione dei dati in formato JSON</a><span style="font-style: italic;"> (array, oggetti, array di record, array di
+                oggetti, array associativi di record e array associativi di oggetti).</span></li>
+            <li>Supporto tracciati record arbitrari.<span style=" font-style: italic;"><br>
+              </span></li>
+            <li>Possibilità di esplorare le collezioni di dati rappresentandole sotto forma di tabelle o di schede.</li>
+            <li>Possibilità di trasporre le righe con le colonne.</li>
+            <li>Possibilità di convertire automaticamente le collezioni di dati da uno <a href="formati.html">schema JSON</a> all'altro e di salvarle.</li>
+            <li>Possibilità di estrarre e riorganizzare sottoinsiemi di dati e di salvarli.</li>
+            <li>Supporto di collezioni di dati <span style="font-style: italic;">multimediali</span> (immagini, audio, video, formule matematiche, coordinate GPS).</li>
+            <li>Supporto di dati <span style="font-style: italic;">ipertestuali</span>.</li>
+            <li>Supporto dei tipi di data di HTML-5 (<code>date, datetime, datetime-local</code>).</li>
+            <li>Supporto tipo JavaScript "<code>bigdata</code>".</li>
+            <li> Molteplici filtri di ricerca corrispondenti ad altrettante modalità di selezione dei dati (<span style="font-style: italic;">data query</span>). </li>
+            <li> Possibilità di navigare all'interno delle collezioni di dati esplorandole interattivamente.</li>
+            <li>Supporto di tabelle caratterizzate da dati "sparsi" ovvero da colonne prevalentemente vuote.</li>
+            <li><span style="font-style: italic;">Data driven</span>. Possibilità associare una vista utente (<span style="font-style: italic;">user view</span>) al <span style="font-style: italic;">tracciato
+                record</span> di una collezione personalizzando la sua rappresentazione e l'interfaccia utente.</li>
+            <li>Supporto di collezioni di dati attive. Gestione di collezioni di dati che si modificano nel corso dell'esecuzione (a <span style="font-style: italic;">run time</span>) ricevendo
+              aggiornamenti da siti diversi.</li>
+            <li>Riconoscimento automatico dello <a href="formati.html">schema di rappresentazione dei dati</a>.</li>
+            <li>Funzioni automatiche di validazione e colorazione dei dati con segnalazione delle incongruenze.</li>
+            <li> Codice <span style="font-style: italic;">open-source</span> rilasciato con licenza <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL v. 3.0</a> e <a href="https://www.gnu.org/licenses/lgpl-3.0.txt">GNU
+                LGPL v. 3.0</a>.</li>
+          </ul>
+          <h3>Caratteristiche della versione Sperimentale (NON ancora Rilasciate)</h3>
+          <ul>
+            <li> Interfaccia in linguaggio Naturale.</li>
+            <li>FileManager (richiede la disponibilità di XAMPP e l'installazione di codice PHP).</li>
+            <li>Vista Calendario.</li>
+            <li>Supporto coordinate GPS collegamento a OpenStreetMap.</li>
+            <li>Possibilità di interagire con dispositivi di Internet delle Cose (IoT).<br>
+              <ul>
+                <li>Theremino.</li>
+                <li>ESP8266.</li>
+              </ul>
+            </li>
+            <li> Assistente Virtuale Personale.<br>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2> Continua a leggere.</h2>
+          <ul>
+            <li><a target="_top" href="quick-start.html">Quick Start.</a></li>
+            <li><a target="_top" href="https://tuisys.altervista.org/slide_2024/anim.html">Slide convegno "Inteligenza Artificiosa" 2024.</a></li>
+          </ul>
+          <br>
+        </section>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

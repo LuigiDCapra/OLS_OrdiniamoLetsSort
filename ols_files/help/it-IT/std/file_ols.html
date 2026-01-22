@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>HELP - File .OLS</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="File .OLS" name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>File .OLS</h1>
+          <section>
+            <h2>Organizzazione dei file .OLS.</h2>
+            I file .OLS sono dei file in formato asObj organizzati come segue:<br>
+            <br>
+            <pre>{
+"_Hdr0_":{"iRel":1.0, "szAutoExec":"autoexec"},
+"_aaFld_":[["DaFare_aFld", 4]],
+"_aColl_":[["DaFare", 3, "DaFare_aFld", ""]],
+
+"DaFare_aFld":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Data","szCaption":"Data","szType":"date","iLen":2,"fRecalc":false,"szCode":""},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Categoria","szCaption":"Categoria","szType":"string","iLen":4,"fRecalc":false,"szCode":" "},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Argomento","szCaption":"Argomento","szType":"string","iLen":4,"fRecalc":false,"szCode":" "},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"Priorità","szCaption":"Priorità","szType":"number","iLen":1,"fRecalc":false,"szCode":""},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Note","szCaption":"Note","szType":"HTML","iLen":16,"fRecalc":false,"szCode":"","szRem":" "},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Fatto","szCaption":"Data","szType":"date","iLen":2,"fRecalc":false,"szCode":""},
+{"fVisible":false,"szNm":"XDB.jCnf", "szType":"none", "iLen":0, "szRem":"SetPar select Confidentiality= private", "szCode":"2"}
+],
+
+"DaFare":[
+["2025-01-15","Ivrea","Pagare Assicurazione",1,"","2025-01-21"],
+["2025-01-20","Torino","Tagliare legna",4,"",null],
+["2025-01-20","OLS","Baco",1,"Controllare edit layout",null]
+]<br>
+"autoexec":"setTimeout(CL_UsrView0.F_UsrView_Select, 1000, 'Lcd', '0x800');",<br>}</pre>
+            <code>"_Hdr0_"</code> &nbsp;&nbsp; : intestazione.<br>
+            <code>"_aaFld_"</code>&nbsp; : lista dei tracciati record.<br>
+            <code>"_aColl_"</code>&nbsp; : lista delle collezioni.<br>
+            <code>"autoexec"</code>: comando AutoExec.<br>
+            <br>
+          </section>
+          <section>
+            <h2>"_Hdr0_"</h2>
+            L'intestazione riporta in numero di release e l'informazione concernente la richiesta di eseguire automaticamente le funzioni di inizializzazione (AutoExec) al termine del caricamento
+            della collezione.<br>
+          </section>
+          <section>
+            <h2>"_aaFld_"</h2>
+            Elenco dei tracciati record utilizzati per definire le collezioni contenute nel file .OLS.<br>
+          </section>
+          <section>
+            <h2>"_aColl_"</h2>
+            Elenco delle collezioni contenute nel file .OLS.<br>
+          </section>
+          <section>
+            <h2>"autoexec"</h2>
+            Eventuale codice di inizializzazione.<br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

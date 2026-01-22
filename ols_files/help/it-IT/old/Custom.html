@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>OLS HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article class="Cl_Extra">
+          <h1>Sviluppo di routine personalizzate</h1>
+          L'impiego di JavaScript per manipolare le collezioni di dati, lungi da essere qualcosa di accessorio, è stato invece il punto di partenza per lo sviluppo di questo programma.<br>
+          Ordiniamo/Let's Sort (OLS), precedentemente chiamato DDJ, è nato infatti come libreria per la manipolazione di dati strutturati in JavaScript. In un secondo tempo si è poi dotato di una
+          interfaccia grafica allo scopo di facilitarne l'uso da parte degli utenti interessati ad adoperare le suddette librerie nell'analisi e nella manipolazione di collezioni di dati memorizzati
+          nel formato interno di JavaScript oppure salvati in file sotto form ai stringhe JSON.<br>
+          Il modulo test.js di Ordiniamo/Let's Sort (OLS) è stato creato allo scopo di facilitare l'integrazione di routine personalizzate; i tasti <code>Test1</code> e <code>Test2</code> nella
+          barra dei menu consentono di richiamare le corrispondenti routine sviluppate dall'utente.<br>
+          <h2>Tasti di Test.</h2>
+          &nbsp;I tasti <code>Test1</code> e <code>Test2</code> nella barra dei menu della vista <code>Tabella</code> sono agganciati rispettivamente alle funzioni <code>$Test.U_Test1</code> e <code>$Test.U_Test2</code>
+          definite nel file <code>test.js</code>.<br>
+          <h2>Funzioni di Test.</h2>
+          L'utente programmatore è libero di modificare il codice delle funzioni <code>$Test.U_Test1</code> e <code>$Test.U_Test2</code> definite nel file <code>test.js</code> integrando il suo
+          codice allo scopo di provarlo.<br>
+          <h2>Esempio: una generica routine personalizzata.</h2>
+          <br>
+          <pre>/*-----U_Test1 --------------------------------------------------------
+*
+*/ 
+function U_Test1()
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var XDB0  = UsrView0.XDB0;
+  var Coll0 = XDB0.Coll0;
+  var Rcd0;
+  var iTmp;
+  
+  alert("Inizio Test");
+  for (let i = 0; i &lt; Coll0.length; i++) {
+      Rcd0 = Coll0[i];
+      iTmp = Rcd0[1];
+      if (iTmp &lt; 0) {
+         iTmp = -iTmp;
+         Rcd0[2] = iTmp;
+      } /* if */
+
+      Coll0[i] = Rcd0;
+  } /* for */
+
+  alert("Fine Test.");
+  $Table.U_Display_Table();
+} /* U_Test1 */</pre>
+          Data una collezione di dati memorizzati sotto forma di <a href="formati.html#Id_aRcd">array di record</a> il codice precedentemente illustrato:<br>
+          <ol>
+            <li> ottiene di descrittore della UserView della vista selezionata ( <code>var UsrView0 = CL_UsrView0.F_UsrView_Selected();</code>);</li>
+            <li> estrae il descrittore della Collezione originale (<code> var XDB0&nbsp; = UsrView0.XDB0;</code>);</li>
+            <li> ottiene l'accesso ai valori della Collezione (<code>var Coll0 = XDB0.Coll0;</code>);</li>
+            <li> segnala l'inizio del Test;</li>
+            <li> quindi elabora in sequenza i valori della collezione <code>Coll0</code> in base all'ordine in cui sono stati memorizzati nella collezione originale;</li>
+            <li> All'interno del ciclo i record vengono selezionati uno alla volta e assegnati alla variabile <code>Rcd0</code> (<code>Rcd0 = Coll0[i];</code>);</li>
+            <li> la routine estrae poi il valore del campo 1 assegnandolo alla variabile <code>iTmp</code>;</li>
+            <li> controlla la negatività del valore considerato</li>
+            <li> se il valore di iTmp è negativo viene reso positivo è assegnato al campo 2.</li>
+            <li> Alla fine del ciclo, la routine segnala la terminazione del processo e</li>
+            <li> aggiorna i valori mostrati sullo schermo (<code>$Table.U_Display_Table()</code>;).</li>
+          </ol>
+          <h2> Principali funzioni.</h2>
+          <h3>CL_UsrView0.F_UsrView_Selected();</h3>
+          Il metodo <code>CL_UsrView0.F_UsrView_Selected();</code> restituisce il descrittore della vista utente selezionata ovvero della UserView selezionata della collezione selezionata.<br>
+          <br>
+          <h3>UsrView0.XDB0</h3>
+          L'attributo <code>UsrView0.XDB0</code> è il descrittore contenente i metadati della collezione originale.<br>
+          <br>
+          <h3>XDB0.Tup_Sel</h3>
+          L'attributo <code>XDB0.Tup_Sel</code> punta all'ultima Tupla selezionata (ovvero all'ultimo record o all'ultima riga selezionata).<br>
+          Tale considerazione è degna di nota poiché il fatto che <code>XDB0.Tup_Sel</code> <span style="text-decoration: underline;">punti</span> all'ultima Tupla selezionata implica che:<br>
+          <br>
+          <div style="text-align: center;"><span style="font-style: italic;">ogni modifica apportata ai valori di <code>XDB0.Tup_Sel</code> si traduce automaticamente in una modifica dei valori del
+              corrispondente record nella collezione.</span></div>
+          <br>
+          <h3>UsrView0.jaFld1</h3>
+          Il valore dell'attributo <code>UsrView0.jaFld1</code> individua univocamente la colonna della tabella selezionata (nella vista utente).<br>
+          <br>
+          <h3>UsrView0.aFld1[UsrView0.jaFld1]</h3>
+          L'attributo <code>UsrView0.aFld1[UsrView0.jaFld1]</code> è costituito dai valori dei metadati che caratterizzano il campo del record selezionato, <span style="font-style: italic;">tenendo
+            conto che nell'ambito della vista utente i campi possono essere stati nascosti o riordinati</span>.<br>
+        </article>
+        <article id="Id_Custom">
+          <h1>Custom</h1>
+          <section id="Custom_Previous">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/prev.svg"> collezione precedente<br>
+              Previous</h2>
+            <p>Precedente.In riferimento alla Cronologia, torna alla Collezione precedente.</p>
+          </section>
+          <section id="Custom_Next">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/next.svg"> collezione seguente<br>
+              Next</h2>
+            <p>Successiva.In riferimento alla Cronologia, vai alla Collezione successiva.</p>
+          </section>
+          <section id="Custom_Select Collection.">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/input.svg"> seleziona la collezione<br>
+              Select Collection.</h2>
+            <p>Apri il menu di caricamento che consente di selezionare una Collezione di dati da una sorgente e di caricarla in memoria.Il menu Load Collection può anche essere usato per selezionare
+              un'altra Collezione già in memoria.La sequenza dei passaggi da una Collezione all'altra viene memorizzato nella Cronologia.</p>
+          </section>
+          <section id="Custom_Configure.">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/config.svg"> configura<br>
+              Configure.</h2>
+            <p>Apre la finestra di configurazione.</p>
+          </section>
+          <section id="Custom_Help.">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/help.svg"> aiuto<br>
+              Help.</h2>
+            <p>Apre la schemata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+          <section id="Custom_About.">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../ico/about.svg"> informazioni<br>
+              About.</h2>
+            <p>Mostra le informazioni generali concernenti l'autore e le condizioni di licenza.</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

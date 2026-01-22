@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Esempio 6</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="../help.css">
+    <meta content="Strutture dati e formati dei file." name="description">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_InpVal"><br>
+          <h1>Esempio 6</h1>
+          <section>
+            <section>
+              <h2>Rappresentazioni dei dati in memoria.</h2>
+              Il linguaggio di programmazione JavaScript consente di rappresentare le strutture dati secondo una varietà di schemi di cui il formato JSON ne supporta una mezza dozzina<br>
+              Avendo la necessità di essere più precisi ci siamo permessi di introdurre la seguente nomenclatura.<br>
+            </section>
+            <section>
+              <h3 id="Id_Null">Null.</h3>
+              <br>
+              <p>Formato <strong>nullo</strong> o illegale.</p>
+            </section>
+            <section>
+              <h3 id="Id_Arr">Arr - <strong>Array</strong>.</h3>
+              <br>
+              Sequenze di valori di tipo omogeneo accessibili specificando la posizione del valore all'interno della struttura.<br>
+              L'accesso ai dati può essere effettuato utilizzando l'<span style="font-style: italic;">operatore parentesi quadre</span>, specificando il nome della struttura dati e la posizione
+              dell'elemento al suo interno (ad es. <code>S_ai[5]</code>).<br>
+              <br>
+              <p>Esempio:</p>
+              <p><code>var S_ai&nbsp;&nbsp; = [41,70,53,19,37,21,6,115,84,72];</code></p>
+              <p><code>var S_asz&nbsp; = ["rosso", "verde", "blu"];</code></p>
+            </section>
+            <section>
+              <h3 id="Id_Obj">Obj - <strong>Oggetti</strong> (user defined).</h3>
+              <br>
+              Sequenze di valori di tipo arbitrario accessibili mediante <span style="font-style: italic;">chiave</span>.<br>
+              L'accesso ai dati può essere effettuato secondo due modalità:<br>
+              <ul>
+                <li> utilizzando la <span style="font-style: italic;">notazione puntata</span> specificando il nome della struttura dati e il nome (chiave) del campo considerato (ad es. <code>S_Obj.foca</code>);</li>
+                <li> utilizzando l'<span style="font-style: italic;">operatore parentesi quadre</span> specificando il nome della struttura dati e il nome (chiave) del campo considerato (ad es. <code>S_Obj["foca"]</code>).
+
+                  </li>
+              </ul>
+              <p><br>
+              </p>
+              <p>Esempio:</p>
+              <p><code>var S_Obj = {sz0:"S_Obj", iNum1:111, sz2:"due", iNum3:33, Date4:"2022-09-21", fBool5F:false, fBool6T:true, szImg7:"file://D:/Prove/image0.jpg", Arr8:[1,2,3]};</code></p>
+            </section>
+            <section>
+              <h3 id="Id_as_">as_ - <strong>Array associativi</strong> (caratterizzati da valori di tipo omogeneo).</h3>
+              <br>
+              Sequenze di valori di tipo omogeneo accessibili mediante <em>chiave</em>.<br>
+              L'accesso ai dati può essere effettuato secondo due modalità:<br>
+              <ul>
+                <li> utilizzando la <span style="font-style: italic;">notazione puntata</span> specificando il nome della struttura dati e il nome (chiave) del campo considerato (ad es. <code>S_Obj.foca</code>);</li>
+                <li> utilizzando l'<span style="font-style: italic;">operatore parentesi quadre</span> specificando il nome della struttura dati e il nome (chiave) del campo considerato (ad es. <code>S_Obj["foca"]</code>).
+                  </li>
+              </ul>
+              <p>Esempio:</p>
+              <pre>var S_as_ = 
+{
+"anatra_0":41,
+"cane":70,
+"cavallo":53,
+"foca":19,
+"gallo":37,
+"gatto":21,
+"lupo":6,
+"oca":115,
+"rana":84,
+"topo":72
+};</pre>
+            </section>
+            <section>
+              <h3 id="Id_aRcd">aRcd - <strong>Array di Record.</strong></h3>
+              <br>
+              Sequenze di record di tipo omogeneo (cioè caratterizzati dallo stesso tracciato record) accessibili&nbsp; utilizzando l'<span style="font-style: italic;">operatore parentesi quadre</span>
+              per accede prima al record e poi al campo (ad es. S_aRcd[3][4]).<br>
+              <br>
+              <p>Esempio:</p>
+              <pre>var S_aRcd  =
+[
+["anatra_0",41,false,"duck_3","2009-09-01","S_aRcd_5"],
+["cane",70,0,"dog","2021-01-02",""],
+["cavallo",53,true,"horse","2004-04-03",""],
+["foca",19,true,"seal","2000-10-04",""],
+["gallo",37,1,"cock","1988-08-05",""],
+["gatto",21,1,"cat","2017-02-06",""],
+["lupo",6,0,"wolf","2007-07-07",""],
+["oca",115,true,"goose","1996-06-08",""],
+["rana",84,false,"frog","2015-05-09",""],
+["topo",72,false,"mouse","2023-03-10",""]
+];</pre>
+            </section>
+            <section>
+              <h3 id="Id_aObj">aObj<strong> - Array di Oggetti.</strong></h3>
+              <br>
+              Sequenze di record di tipo eterogeneo (aventi potenzialmente tracciati&nbsp; record diversi) accessibili&nbsp; utilizzando l'<span style="font-style: italic;">operatore parentesi quadre</span>
+              per accede al record e quindi la chiave per accedere al campo (ad es. S_aObj[3].sz3 o in alternativa S_aObj[3]["sz3"].<br>
+              <p><br>
+              </p>
+              <p>Esempio:</p>
+              <pre>var S_aObj  = 
+[
+{"sz0":"anatra_0","iNum1":41,"Bool2":false,"sz3":"duck_3","Date4":"2009-09-01","Str5":"S_aObj_5"},
+{"sz0":"cane","iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Str5":""},
+{"sz0":"cavallo","iNum1":53,"Bool2":true,"sz3":"horse","Date4":"2004-04-03","Str5":""},
+{"sz0":"foca","iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Str5":""},
+{"sz0":"gallo","iNum1":37,"Bool2":1,"sz3":"cock","Date4":"1988-08-05","Str5":""},
+{"sz0":"gatto","iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Str5":""},
+{"sz0":"lupo","iNum1":6,"Bool2":0,"sz3":"wolf","Date4":"2007-07-07","Str5":""},
+{"sz0":"oca","iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Str5":""},
+{"sz0":"rana","iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Str5":""},
+{"sz0":"topo","iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Str5":""}
+];</pre>
+            </section>
+            <section>
+              <h3 id="Id_asRcd">asRcd<strong> - Array associativo di Record.</strong></h3>
+              <br>
+              Sequenze di record di tipo omogeneo (cioè caratterizzati dallo stesso tracciato record) che prevedono il ricorso ad una chiave per accedere al record e all'operatore parentesi quadre al
+              campo (ad es. S_asRcd["gallo"][4]).<br>
+              <br>
+              <p>Esempio:</p>
+              <pre>var S_asRcd = 
+{
+"anatra_0":[41,false,"duck_3","2009-09-01","S_asRcd_5"],
+"cane":[70,0,"dog","2021-01-02",""],
+"cavallo":[53,true,"horse","2004-04-03",""],
+"foca":[19,true,"seal","2000-10-04",""],
+"gallo":[37,1,"cock","1988-08-05",""],
+"gatto":[21,1,"cat","2017-02-06",""],
+"lupo":[6,0,"wolf","2007-07-07",""],
+"oca":[115,true,"goose","1996-06-08",""],
+"rana":[84,false,"frog","2015-05-09",""],
+"topo":[72,false,"mouse","2023-03-10",""]
+};</pre>
+            </section>
+            <section>
+              <h3 id="Id_asObj">asObj. <strong>Array associativo di Oggetti.</strong></h3>
+              <br>
+              Sequenze di record di tipo eterogeneo (aventi potenzialmente tracciati&nbsp; record diversi) che prevedono l'utilizzo di una prima chiave per accedere al record e quindi di una seconda
+              chiave per accedere al campo (ad es. S_asObj["gatto"]["sz3"].<br>
+              <br>
+              <p>Esempio:</p>
+              <pre>var S_asObj = 
+{
+"anatra_0":{"iNum1":41,"Bool2":false,"sz3":"duck_3","Date4":"2009-09-01","Str5":"S_asObj_5"},
+"cane":{"iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Str5":""},
+"cavallo":{"iNum1":53,"Bool2":true,"sz3":"horse","Date4":"2004-04-03","Str5":""},
+"foca":{"iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Str5":""},
+"gallo":{"iNum1":37,"Bool2":1,"sz3":"cock","Date4":"1988-08-05","Str5":""},
+"gatto":{"iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Str5":""},
+"lupo":{"iNum1":6,"Bool2":0,"sz3":"wolf","Date4":"2007-07-07","Str5":""},
+"oca":{"iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Str5":""},
+"rana":{"iNum1":84,"Bool2":false,"sz3":"frog","Date4":"2015-05-09","Str5":""},
+"topo":{"iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-10","Str5":""}
+};</pre>
+            </section>
+            <section>
+              <h2>Supporto degli schemi da parte del programma OLS.</h2>
+              Il programma OLS è stato progettato per gestire in modo trasparente tutti gli schemi supportati dal formato JSON consentendo il caricamento delle collezioni di dati, l'esplorazione delle
+              stesse e il salvataggio delle collezioni secondo uno schema eventualmente differente.<br>
+              Cliccate sull'icona <img class="Cl_Ico_TBM" alt="" src="../../../ico/input.svg"> <code>Load Collection</code> della barra dei menu e poi su <code>Sfoglia</code> si aprirà una finestra di
+              dialogo che consente di esplorare il contenuto dei dischi del vostro computer.<br>
+              Selezionate un file di formato noto (.Arr, .Obj, .aRcd, .aObj, .asRcd, .asObj, .CSV, eccetera) e confermate cliccando sul bottone "Apri".<br>
+              Riconoscendo l'estensione del file il programma OLS selezionerà automaticamente lo schema corrispondente nella casella "Kind".<br>
+              Nel caso in cui l'estensione fosse sconosciuta al programma OLS, ma a voi nota oppure nel caso in cui il programma OLS avesse sbagliato a riconoscerla potete sempre impostare lo schema
+              manualmente cliccando sul bottone "Kind". <br>
+              Impostate eventualmente gli altri parametri selezionando in particolare il tracciato record&nbsp; (casella "Record Layout (aFld)") se lo conoscete, in caso contrario mantenete
+              l'impostazione "AutoDetect".<br>
+              Confermata la selezione della Collezione cliccando sul bottone "Confirm" il programma OLS tenterà di caricare automaticamente il contenuto del file attenendosi alle impostazioni
+              dell'utente ed in particolare ai valor delle caselle di input "Kind" e "Record Layout (aFld)".<br>
+              Nel caso in cui la casella "Record Layout (aFld)" avesse come valore "AutoDetect" prima di procedere con il caricamento della struttura dati il programma OLS analizzerà le prime due
+              righe del file cercando di determinare lo schema utilizzato e il tracciato record dopo di ché proverà ad effettuare il caricamento facendo riferimento ai parametri determinati
+              automaticamente.</section>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex06_01.jpg">&nbsp;<figcaption>Figura 1 - Selezione e caricamento della Collezione
+                contenuta in un file.</figcaption> </figure>
+            Supponendo che il caricamento della Collezione dati sia andato a buon fine l'utente potrà procedere con l'esame e l'eventuale modifica della collezione.<br>
+            Quest'ultima attività implica naturalmente che la Collezione sia stata caricata in modalità Read Write [RW], in caso contrario prima di effettuare le modifiche l'utente dovrò commutare
+            dalla modalità Read Only [RO] a quella in cui le modifiche sono consentite.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex06_02.jpg">&nbsp;<figcaption>Figura 2 - Collezione Italia al termine delle modifiche.</figcaption>
+            </figure>
+            Al termine delle modifiche l'utente potrà salvare la Collezione risultante cliccando sull'icona <code>salva con nome</code> <img class="Cl_Ico_TBM" src="../../../ico/save_as.svg">.<br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex06_03.jpg">&nbsp;<figcaption>Figura 3 - Salvataggio della Collezione modificata.</figcaption>
+            </figure>
+            Il risultato del salvataggio sarà una tabella come la seguente.<br>
+            <pre>[
+[7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+["Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino AA","Umbria","Val D'Aosta","Veneto"],
+[28186429,11769471,66455047,5861897,659039,29950973,10470234,3952510,12137581,21961578,3458809,3462762,611356,21389911],
+[1705867,616437,3156254,512094,73326,1758184,810119,368920,1230978,1382041,282471,290925,50612,1417020]
+]</pre>
+            Si osservi che la tabella salvata è trasposta rispetto a quella originale.<br>
+            <br>
+            Trasponiamo nuovamente la collezione tornando alla rappresentazione per righe e per colonne. <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex06_04.jpg">&nbsp;<figcaption>Figura 4 - Collezione rappresentata per righe e per
+                colonne.</figcaption> </figure>
+            <br>
+            Salviamo la collezione usando lo schema array associativo di oggetti (asObj). <br>
+            <br>
+            <figure> <img class="Cl_Img90" alt="Schermata principale" src="../../../../../res/quick-start_files/ex06_05.jpg">&nbsp;<figcaption>Figura 5 - Salvataggio usando lo schema asObj.</figcaption>
+            </figure>
+            L'aspetto della Collezione salvata sarò il seguente:<br>
+            <br>
+            <pre>{
+"7":{"Regione":"Lazio","depositi":28186429,"autovetture":1705867},
+"8":{"Regione":"Liguria","depositi":11769471,"autovetture":616437},
+"9":{"Regione":"Lombardia","depositi":66455047,"autovetture":3156254},
+"10":{"Regione":"Marche","depositi":5861897,"autovetture":512094},
+"11":{"Regione":"Molise","depositi":659039,"autovetture":73326},
+"12":{"Regione":"Piemonte","depositi":29950973,"autovetture":1758184},
+"13":{"Regione":"Puglia","depositi":10470234,"autovetture":810119},
+"14":{"Regione":"Sardegna","depositi":3952510,"autovetture":368920},
+"15":{"Regione":"Sicilia","depositi":12137581,"autovetture":1230978},
+"16":{"Regione":"Toscana","depositi":21961578,"autovetture":1382041},
+"17":{"Regione":"Trentino AA","depositi":3458809,"autovetture":282471},
+"18":{"Regione":"Umbria","depositi":3462762,"autovetture":290925},
+"19":{"Regione":"Val D'Aosta","depositi":611356,"autovetture":50612},
+"20":{"Regione":"Veneto","depositi":21389911,"autovetture":1417020}
+}</pre>
+            <br>
+            <br>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

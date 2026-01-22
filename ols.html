@@ -1,0 +1,702 @@
+<!-- ---------------------------------------------------------------------
+Project     : CL-Eidos Violetta ex Indi ex NIC
+Description : Violetta Voice Assistant
+Revision    : 0.021
+File        : ols.htm
+Function    : Ordiniamo/Let's Sort ex Data Jockey (ex CL-DAP)
+FirstEdit   : 15/12/2019
+LastEdit    : 18/01/2026
+Author      : Luigi D. Capra
+Copyright(c): Luigi D. Capra 2017, 2026
+System      : HTML-5 + CSS3 + JavaScript
+
+----- LICENSE -----
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+  ----------------------------------------------------------------------  
+* ### Needs
+* ### Requirements
+* ### Specifications
+* ### Functional Requirements
+* ### Non Functional Requirements
+* 
+TBM = ToolBar Menu
+  
+---------------------------------------------------------------------- -->
+
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">    
+    <title>CL-Eidos Data Analysis Package</title>
+    <meta content="Luigi D. CAPRA" name="author">
+    <meta content="TUISys' Ordiniamo/Let's Sort" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="ols_files/ico/favicon.ico">
+    
+    <style id="Id_Style_0"></style>   <!-- CSS styles set by JS code --->        
+    <link rel="stylesheet" href="basic/dbox.css">
+    <link rel="stylesheet" href="basic/mrmenu.css">
+    <link rel="stylesheet" href="ddj/ddj.css">    
+    <link rel="stylesheet" href="basic/camera.css" type="text/css" media="all">   
+    <!-- $VERSIONING -->    
+    <link rel="stylesheet" href="lcd/lcdlcd.css">
+    
+    <style id="Id_Style_1"></style>   <!-- CSS styles set by JS code --->
+
+  </head>
+  <body>
+  <header id="Id_Hdr"> 
+    <noscript>
+       <div style="background-color:yellow; color:magenta;">WARNING: your browser does not support JavaScript or JavaScript is disabled!</div>
+    </noscript>
+    <table style="width: 100%" border="0">
+      <tbody>
+        <tr>
+          <td id="Id_Hdr_szApp">Ordiniamo/Let's Sort (OLS)
+          </td>
+          <td id="Id_Hdr_szFlNm">&nbsp;
+          </td>
+          <td id="Id_Hdr_szRO">&nbsp;
+          </td>
+          <td width="2%">&nbsp;
+          </td>
+        </tr>
+      </tbody>
+    </table>  
+  </header>
+  <!-- PopUp Menu --> 
+  <div id="Id_RMenu" onclick="$MRMenu.U_Close();">    
+  </div>
+     
+  <!-- Navigator's Menu Bar --> 
+  <nav class="Cl_Nav" id="Id_Nav">
+    <hr>
+  </nav> 
+  <!-- Dialogue-Box -->    
+  <div>
+    <section class="Cl_DBox_BG" id="Id_Div_DBox0"><br>
+    </section>
+  </div>
+  <aside></aside>                                  
+  <main id="Id_Main"><br><br><br><br>
+    <div id="Id_Div00"></div>  <!-- Area preallocated to display graphics -->
+    <div id="Id_Div01">        <!-- Area preallocated to display the Table -->
+    
+      <table id="Id_TabFix0" class="Cl_TabFix" border="1">
+        <colgroup id="Id_ColGr0">
+        </colgroup>
+        <thead id="Id_Tbl0_H">
+        </thead>
+        <tbody id="Id_Tbl0_B">
+        </tbody>
+      </table>
+    </div>
+    <div id="Id_DivX"></div> <!-- DEBUG -->    
+  </main>
+  <footer id="Id_Foot">
+    <table style="width: 100%" border="0">
+      <tbody>
+        <tr>
+          <!-- <td id="Id_szFlNm">
+          </td> -->
+          <td style="text-align:left;">
+              <span id="Id_szSCtx">&nbsp;</span> | 
+              <span id="Id_State">&nbsp;</span>
+          </td>
+          <td id="Id_Aux_00">
+          </td>
+          <td id="Id_Aux_01">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="Id_szMonitor" hidden>.</div> 
+    <div id="Id_szCopyright">Copyright (c) Luigi D. CAPRA 2016,..,2026</div>
+  </footer>
+
+  <form method="post" accept-charset="utf-8" name="Nm_Form1">
+    <input name="Nm_Hidden_Data"   id='Id_Hidden_Data'   type="hidden"/>
+    <input name="Nm_Hidden_Format" id='Id_Hidden_Format' type="hidden"/>
+  </form>
+  
+  <div id="Id_Msg" hidden>&nbsp; </div>  <!-- STT -->
+  <div id="Id_select_language" hidden>&nbsp; </div>  <!-- STT -->
+  <div class="Cl_ReadOnly">x</div>
+</body>
+
+<script src="ols_files/data/mnentry.js"></script>
+       
+<script src="basic/code2.js"></script>
+<script src="basic/root.js"></script>
+<script src="basic/uti.js"></script>
+<script src="basic/nation.js"></script>
+<script src="basic/error.js"></script>
+<script src="basic/ipcf.js"></script>
+<script src="basic/pers.js"></script>
+<script src="basic/log.js"></script>
+<script src="basic/dbox.js"></script>
+<script src="basic/mrmenu.js"></script>
+<script src="basic/tts.js"></script>
+<!-- script src="basic/stt.js"></script -->
+<script src="basic/vconfig.js"></script>
+<script src="basic/vdebug.js"></script>
+<script src="basic/help.js"></script>
+<script src="basic/semctx.js"></script>
+<script src="basic/mail.js"></script>
+<script src="basic/combin.js"></script>
+<script src="basic/stat.js"></script>
+<script src="basic/camera.js"></script>
+
+<script src="ddj/fileman.js"></script>
+<script src="ddj/oprn.js"></script>
+<script src="ddj/type.js"></script>
+<script src="ddj/sort.js"></script>
+<script src="ddj/ddj.js"></script>     
+<script src="ddj/aggreg.js"></script>
+<script src="ddj/style.js"></script>
+<script src="ddj/panel.js"></script>
+<script src="ddj/tabprm.js"></script>
+<script src="ddj/xdb.js"></script>
+<script src="ddj/usrview.js"></script>
+<script src="ddj/autodetect.js"></script>
+<script src="ddj/arr.js"></script>
+<script src="ddj/obj.js"></script>
+<script src="ddj/arcd.js"></script>
+<script src="ddj/aobj.js"></script>
+<script src="ddj/asrcd.js"></script>
+<script src="ddj/asobj.js"></script>
+<script src="ddj/as_.js"></script>
+<script src="ddj/card.js"></script>
+<script src="ddj/table.js"></script>
+<script src="ddj/filter.js"></script>
+<script src="ddj/mef.js"></script>
+<script src="ddj/calendar.js"></script>
+<script src="ddj/tag.js"></script>
+<script src="ddj/inpdata.js"></script>
+<script src="ddj/outdata.js"></script>
+<script src="ddj/ldfile.js"></script>
+<script src="ddj/timedate.js"></script>
+<script src="ddj/value.js"></script>
+<script src="ddj/object.js"></script>
+<script src="ddj/plot.js"></script>
+<script src="ddj/math_ddj.js"></script> 
+<script src="ddj/stat_ddj.js"></script>
+<script src="ddj/matrix.js"></script>
+<script src="ddj/formint.js"></script>     
+<script src="ddj/execmd.js"></script>
+<script src="ddj/ndu.js"></script>
+<script src="ddj/prnhtml.js"></script>
+<script src="ddj/history.js"></script>
+<script src="ddj/position.js"></script>
+<script src="ddj/ans.js"></script>
+<script src="ddj/periodic.js"></script>
+
+<!-- foreign -->
+<script src="foreign/jsonpath-0.8.0.js"></script>
+<script src="foreign/json2xml.js"></script>
+<script src="foreign/xml2json.js"></script>
+<script src="foreign/c_xml2json.js"></script>
+<!-- script src="../foreign/jstat.js"></script-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+
+<!-- Viola -->
+<script src="viola/monitor.js"></script>
+<script src="viola/kinae.js"></script>
+<script src="viola/attention.js"></script>
+
+<script src="ols_files/dsaft.js"></script>
+<script src="ols_files/jsonpath.js"></script>
+<script src="ols_files/rpc_exec.js"></script>
+<script src="ols_files/chart2.js"></script>
+<script src="ols_files/sentence.js"></script>
+<script src="ols_files/remarks.js"></script>
+<script src="ols_files/wiki.js"></script>
+<script src="ols_files/test.js"></script>
+<script src="ols_files/bp.js"></script>
+
+<script src="ols_files/ols.js"></script>
+<script src="ols_files/xtg.js"></script>
+<script src="ols_files/custom.js"></script>
+
+<-- -->
+
+<script type="text/javascript">//<![CDATA[
+"use strict";
+////
+
+const C_jCd_Cur = C_jCd_HTML;
+
+const C_szApp  = "OLS  ";
+const C_szFlNm = "ols.html";
+const C_fMain  = C_szApp;     /* flag: Enable DDJ's page Update */
+
+const C_fReload = false;      // $LCD
+
+const C_jaszHelp_Main    = 0;
+const C_jaszHelp_aFld0   = 1;
+const C_jaszHelp_aFld1   = 2;
+const C_jaszHelp_XDB     = 3;
+const C_jaszHelp_UsrView = 4;
+
+var G_jaszHelp = 0;
+var G_fCard = false;
+var G_U_FlMan_Exec;         /* Procedure that receives commands from FlMan and executes them. */
+var G_szApp = C_szApp;
+
+var G_szBuff_WE4 = "";
+var G_Pippo = {};
+
+/*-----U_Set_TabFix_iWdt --------------------------------------------------------
+*
+* Set Table's width.
+*/ 
+function U_Set_TabFix_iWdt(P_iWdt)
+{
+ $VConfig.U_Set_ValSts("iWdt_Tab", P_iWdt);
+ Id_TabFix0.style.width = P_iWdt + "px";
+} /* U_Set_TabFix_iWdt */
+
+/*-----U_Concat --------------------------------------------------------
+*
+*/ 
+function U_Concat()
+{
+  $MeF.DBox_Concat.U_Hub(C_JPnl_Open); 
+} /* U_Concat */
+
+/*-----U_AddCol --------------------------------------------------------
+*
+*/ 
+function U_AddCol()
+{
+  $MeF.DBox_AddCol.U_Hub(C_JPnl_Open); 
+} /* U_AddCol */
+
+/*-----U_JsonPath --------------------------------------------------------
+*
+*  https://jsonpath-plus.github.io/JSONPath/docs/ts/
+*/ 
+function U_JsonPath()
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var XDB0 = UsrView0.XDB0;
+  
+  $JSonPath.DBox_JsonPath.U_Hub(C_JPnl_Open);
+} /* U_JsonPath */
+
+// /*-----U_Home --------------------------------------------------------
+// *
+// */ 
+// function U_Home()
+// {
+//   if (window.isSecureContext) {
+//      $DDJ.F_Window_open("file:///I:/siti/luigi.htm", "Tg_Home");
+//   }
+//   else {
+//      $Error.U_Error(C_jCd_Cur, 1, "Not secure", "", false);
+//   } /* if */ 
+// } /* U_Home */
+
+/*-----U_Toggle_Debug --------------------------------------------------------
+*
+*/ 
+function U_Toggle_Debug()
+{
+  var fVal = $VConfig.F_fValSts_Toggle("fHalt_Debug");
+
+  var szTxt = (fVal)? "Debug enabled.": "Debug disabled.";
+  $TTS.U_Speak(szTxt);
+} /* U_Toggle_Debug */
+
+/*-----U_Toggle_fMng_Undef --------------------------------------------------------
+*
+* $NOTE: fMng_Undef can ot be managed using $VConfig.F_fValSts_Toggle(); because it is a property of XDB0! 
+*/ 
+function U_Toggle_fMng_Undef()
+{
+  var fVal = CL_UsrView0.F_fMng_Undef_Toggle();
+
+  var szTxt = (fVal)? "Undefined Management enabled.": "Undefined Management disabled.";
+  $TTS.U_Speak(szTxt);
+  $Table.U_Display_Table(); 
+} /* U_Toggle_fMng_Undef */
+
+/*-----U_Toggle_fLoad --------------------------------------------------------
+*
+* Show resources vs. files' URL.
+*/ 
+function U_Toggle_fLoad()
+{
+  var fVal = $VConfig.F_fValSts_Toggle("fLoadRes");
+  $Value.U_Set_fLoad1(fVal);
+  
+  var szTxt = (fVal)? "Resources loading enabled.": "Resources loading disabled.";
+  $TTS.U_Speak(szTxt);
+  $Table.U_Display_Table();
+} /* U_Toggle_fLoad */
+
+/*-----U_Toggle_fRawData --------------------------------------------------------
+*
+* Show resources vs. raw data.
+*/ 
+function U_Toggle_fRawData()
+{
+  var fVal = $VConfig.F_fValSts_Toggle("fRawData");
+  
+  var szTxt = (fVal)? "Show raw values.": "Show formatted values.";
+  $TTS.U_Speak(szTxt);
+  $Table.U_Display_Table();
+} /* U_Toggle_fRawData */
+
+/*-----U_Toggle_fDistinct --------------------------------------------------------
+* 
+*/ 
+function U_Toggle_fDistinct()
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();  
+  var fVal = $VConfig.F_fValSts_Toggle("fDistinct");
+  if (fVal) {
+     UsrView0.U_Reset_aNdx(UsrView0);
+  } /* if */
+  
+  var szTxt = (fVal)? "Show only Distinct values.": "Show All values.";
+  $TTS.U_Speak(szTxt);
+  $Table.U_Display_State(UsrView0);
+  $Table.U_Display_Table();
+} /* U_Toggle_fDistinct */
+
+/*-----U_Toggle_fDiagnostic --------------------------------------------------------
+*
+*/ 
+function U_Toggle_fDiagnostic()
+{  
+  var fVal = $VConfig.F_fValSts_Toggle("fDiagnostic");
+
+  var szTxt = (fVal)? "Values Diagnostic enabled.": "Values Diagnostic disabled,";
+  $TTS.U_Speak(szTxt);
+  $Table.U_Display_Table(); 
+} /* U_Toggle_fDiagnostic */
+
+/*-----U_Toggle_fTypeColor --------------------------------------------------------
+*
+*/ 
+function U_Toggle_fTypeColor()
+{  
+  var fVal = $VConfig.F_fValSts_Toggle("fTypeColor");
+
+  var szTxt = (fVal)? "Type Color enabled.": "Type Color disabled,";
+  $TTS.U_Speak(szTxt);
+  $Table.U_Display_Table(); 
+} /* U_Toggle_fTypeColor */
+
+/*-----U_Toggle_fCaseSens --------------------------------------------------------
+*
+*/ 
+function U_Toggle_fCaseSens()
+{  
+  var fVal = $VConfig.F_fValSts_Toggle("fCaseSens");
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  UsrView0.U_Reset_aNdx(UsrView0);
+    
+  var szTxt = (fVal)? "Case Sensitive enabled.": "Case Sensitive disabled,";
+  $TTS.U_Speak(szTxt);
+  $Table.U_Display_Table(); 
+} /* U_Toggle_fCaseSens */
+
+/*-----U_Stat_Field --------------------------------------------------------
+*
+*/ 
+function U_Stat_Field()
+{
+  $Stat_DDJ.U_Stat_Field();
+} /* U_Stat_Field */
+
+/*-----U_Stat_Record --------------------------------------------------------
+*
+*/ 
+function U_Stat_Record()
+{
+  $Stat_DDJ.U_Stat_Record();
+} /* U_Stat_Record */
+
+/*-----F_aVal_Mp_Args --------------------------------------------------------
+*
+*/ 
+function F_aVal_Mp_Args(P_Args)
+{
+  var aVal = [];
+  for (let i = 0; i < arguments.length; i++) {
+      aVal[i] = arguments[i];
+  } /* for */
+  return(aVal);
+} /* F_aVal_Mp_Args */
+
+/*-----U_Test1 --------------------------------------------------------
+*
+*/ 
+function U_Test1()
+{
+  $Test.U_Test1();
+} /* U_Test1 */
+
+/*-----U_Test2 --------------------------------------------------------
+*
+* Spare routine for code testing.
+*/ 
+function U_Test2()
+{  
+  $ACP.U_Open_Alert("NO"); 
+} /* U_Test2 */
+
+/*-----U_Test3 --------------------------------------------------------
+*
+* Spare routine for code testing.
+*/ 
+function U_Test3()
+{  
+  $ACP.U_Open_Alert("NO");
+} /* U_Test3 */
+
+/*-----U_UnLoad --------------------------------------------------------
+*
+* Menage window closing event. This routine will be executed when the user close the window.
+*/ 
+function U_UnLoad()
+{
+  var szDateTime = $TimeDate.F_szDate_Now("datetime"); 
+  $Log.U_Log(C_jCd_Cur, 1, C_iLvl_InitEnd, "--- HALT ---", szDateTime + " " + C_szApp);
+} /* U_UnLoad */
+
+/*-----U_NL_Cmd_123 --------------------------------------------------------
+*
+*/ 
+function U_NL_Cmd_123()
+{
+  function U_CB_Ins_NLP()
+  {
+    var szCmd = $TabPrm.F_ValSts_Get("NLP", "Comando");
+    var BagRef = {fRestore:true};
+    $Sentence.U_Interpreter(szCmd, BagRef);
+    if (BagRef.fRestore) {
+       CL_UsrView0.F_UsrView_Select(szNmColl, C_WwFlag_fDisplay);   /* Restore the Collection previously selected. */
+    } /* if */
+  } /* U_CB_Ins_NLP */
+
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var szNmColl  = UsrView0.szNmColl;
+  $Panel.U_Display("NLP", U_CB_Ins_NLP);
+  
+//   var szCmd = prompt('Inserici comando ++++:');
+//   $Sentence.U_Interpreter(szCmd);
+} /* U_NL_Cmd_123 */
+
+/*-----U_NL_Cmd0 --------------------------------------------------------
+*
+*/ 
+function U_NL_Cmd0(P_szId)
+{
+} /* U_NL_Cmd0 */
+
+/*-----U_NL_Cmd --------------------------------------------------------
+*
+* Natural Language input.
+*/ 
+function U_NL_Cmd(P_szId)
+{
+  var Elem0 = document.getElementById(P_szId);
+  var szVal = Elem0.value;
+  $Sentence.U_Interpreter(szVal);
+} /* U_NL_Cmd */
+
+/*-----U_Path0 --------------------------------------------------------
+*
+*/ 
+function U_Path0(P_szId)
+{
+} /* U_Path0 */
+
+/*-----U_Path --------------------------------------------------------
+*
+* Using XTG load directory list corresponding to the path required by the user.
+*/ 
+function U_Path(P_szId)
+{
+  var Elem0 = document.getElementById(P_szId);
+  var szVal = Elem0.value;
+  var szPath = szVal.replaceAll("\\", "/");
+  $FileMan.U_Open_PATH_2(szPath, "dir");
+} /* U_Path */
+
+/*-----U_SetPath --------------------------------------------------------
+*
+* Set in the Path HTML's input element the path corresponding to the cell selected by the user.
+*/ 
+function U_SetPath(P_szId)
+{
+  var Elem0 = document.getElementById(P_szId);
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var szFlNm  = UsrView0.Val_Sel;
+  var iPos = szFlNm.lastIndexOf("/");
+  var szPath = (0 <= iPos)? szFlNm.substr(0, iPos): UsrView0.szNmColl;
+  Elem0.value = szPath;
+} /* U_SetPath */
+
+/*-----U_Open_XTG --------------------------------------------------------
+*
+*/ 
+function U_Open_XTG()
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var szFlNm  = UsrView0.Val_Sel;
+  var iPos = szFlNm.lastIndexOf("/");
+  szFlNm = szFlNm.substr(0, iPos);
+  $FileMan.U_Open_PATH_2(szFlNm, "dir");
+} /* U_Open_XTG */
+
+// /*-----U_SemTree0 --------------------------------------------------------
+// *
+// */ 
+// function U_SemTree0(P_szId)
+// {
+// } /* U_SemTree0 */
+// 
+// /*-----U_SemTree --------------------------------------------------------
+// *
+// * SemTree selection.
+// */ 
+// function U_SemTree(P_szId)
+// {
+//   var Elem0 = document.getElementById(P_szId);
+//   var szVal = Elem0.value;
+// debugger;
+//   var szCond = `($[0].indexOf("${szVal}") == 0)`;
+//   $Filter.U_SetFilter($Filter.F_fFilter_Std, szCond);
+//   $Table.U_Display_Table();
+// } /* U_SemTree */
+
+/*-----U_Init --------------------------------------------------------
+* 
+*/ 
+function U_Init()
+{
+  var DDJSts = {};
+  DDJSts.iRel_KNS        = 20250922;          /* Cfg. release number. */
+  DDJSts.szUser          = "";                // Luigi
+  DDJSts.szURL_Relay     = "";                // http://helios:27015/
+  DDJSts.szjDate         = "YYYYMMDD";
+  DDJSts.szURL_Srv       = "localhost";
+  DDJSts.szSrv_Knd       = "PHP-DDJ";
+//  DDJSts.szDir_Data      = "https://tuisys.altervista.org/ols/dbase/";          // $VERSIONING
+  DDJSts.szDir_Data      = "d:/dbase/";
+  DDJSts.szFlNm_Remarks  = "d:/dbase/remarks.OLS";
+  DDJSts.iWdt_Tab        = screen.width;
+  DDJSts.iSmpl_Step      = 1;
+  DDJSts.iNnRow_Page     = 40;
+  DDJSts.szLanguage      = navigator.language || navigator.userLanguage;
+  DDJSts.iWdt_Icon       = 20;
+  DDJSts.szStyle         = "Light";
+  DDJSts.iNn_Col         = 4;
+  DDJSts.iDebug          = C_iDebug_Dflt_Cfg; // Initial Debug Level
+  DDJSts.fHalt_Debug     = false;
+  DDJSts.fSend_DebugInfo = false;
+  DDJSts.fChk_OnLine     = false;
+  DDJSts.fDtStru         = false;
+  DDJSts.fOvrDflt        = false;
+  DDJSts.fInitialize     = false;
+  DDJSts.fLoadExamples   = false; 
+  DDJSts.fLoadRemarks    = false;  
+  DDJSts.fEnaPeriodic    = false;              /* true - enable commands introduced using "tele.htm" */
+  DDJSts.fIcons          = true;
+  DDJSts.fVoice_Error    = true; 
+  DDJSts.fEcho_Commands  = false; 
+
+  $VConfig.U_Init_DDJSts(C_szApp, DDJSts, $DDJ.U_CB_Update, $DDJ.U_WellCome);
+  CL_UsrView0.U_SetDefaults(0, "Id_Div01", 'Id_Tbl0', 'Id_Tbl3', "Id_Tbl0_H", "Id_Tbl0_B");
+
+  var apF_Init = [$Root.U_Init, $Log.U_Init, $Error.U_Init, $VConfig.U_Init,  $Pers.U_Init, $Nation.U_Init, $Help.U_Init, $MRMenu.U_Init, $TTS.U_Init, $IPCF.U_Init, $Mail.U_Init, $VDebug.U_Init, $Style.U_Init, 
+                  $FileMan.U_Init, $Type.U_Init, $Sort.U_Init, $Aggreg.U_Init, $Card.U_Init, $Table.U_Init, $Filter.U_Init, $MeF.U_Init, $Calendar.U_Init, $Tag.U_Init, $UsrView.U_Init, $AutoDetect.U_Init, $XDB.U_Init, 
+                  $TimeDate.U_Init, $Value.U_Init, $Object.U_Init,
+                  $Plot.U_Init, $Camera.U_Init, $Stat.U_Init, $Stat_DDJ.U_Init, $Math_DDJ.U_Init, $Matrix.U_Init, $DSaft.U_Init, $JSonPath.U_Init, 
+                  $DDJ.U_Init, $Monitor.U_Init, $Kinae.U_Init, $Attention.U_Init, $Test.U_Init, $SemCtx.U_Init, $Sentence.U_Init, $Remarks.U_Init, $Wiki.U_Init, $FormInt.U_Init, $ExeCmd.U_Init, $NDU.U_Init, 
+                  $PrnHTML.U_Init, $Position.U_Init, $Custom.U_Init,  $OLS.U_Init, $Periodic.U_Init];
+  var i, j;
+     
+  try {
+      for (i = 0; i < apF_Init.length; i++) {
+          $Log.U_Log(C_jCd_Cur, 2, C_iLvl_Init, "Init ", i);
+          var pF = apF_Init[i];
+          pF();
+      } /* for */
+  } catch (P_Err) {
+      debugger;                                                                                                                                                                                                               
+      $Error.U_Catch(C_jCd_Cur, 2, P_Err);
+  } /* try catch */  
+  $DDJ.U_UnLoad = U_UnLoad;   /* $Register */
+
+  var szDateTime = $TimeDate.F_szDate_Now("datetime"); 
+  $Log.U_Log(C_jCd_Cur, 3, C_iLvl_InitEnd, "--- READY ---", szDateTime + " " + C_szApp);
+    
+  /* Set Parameters defaults */
+  
+  $VConfig.U_Set_ValSts("fDiagnostic", false);   
+  $VConfig.U_Set_ValSts("fDistinct",   false);   
+  $VConfig.U_Set_ValSts("fTypeColor",  false); 
+  $VConfig.U_Set_ValSts("fRawData",    false);  
+  $VConfig.U_Set_ValSts("fMng_Undef",  false);  
+  $VConfig.U_Set_ValSts("fLoadRes",    false); 
+  $VConfig.U_Set_ValSts("fCaseSens",   true);
+
+  $DDJ.DBox_InpData  = new CL_DBox('Id_Div_DBox0', '$DDJ.DBox_InpData', 'Select Collection', G_szHTML_DBox_InpData,  G_DBox_InpData.U_Open,  G_DBox_InpData.U_Close, G_DBox_InpData.U_Confirm,  G_asaMnEntry.InpData, 'InpData');
+  $DDJ.DBox_OutData  = new CL_DBox('Id_Div_DBox0', '$DDJ.DBox_OutData', 'Save Collection',   G_szHTML_DBox_OutData,  G_DBox_OutData.U_Open,  G_DBox_OutData.U_Close, G_DBox_OutData.U_Confirm,  G_asaMnEntry.OutData, 'OutData');
+
+  window.addEventListener('keydown', $ExeCmd.U_KeyPressed);
+  $MRMenu.U_Sel_PopUp("Id_Main", $MRMenu.U_Open, "PopUp");                      /* Mouse's Right Button Menu handler for "Id_Main" */  
+  G_U_FlMan_Exec = $InpData.U_FlMan_Exec;                                       /* Set FlMan command interpreter. */  
+
+  Id_szCopyright.innerText = C_szCopyright;
+  $Root.U_Reg();
+  
+  var szDateTime = $TimeDate.F_szDate_Now("datetime"); 
+  $Log.U_Log(C_jCd_Cur, 4, C_iLvl_InitEnd, "+++ READY +++", szDateTime + " " + C_szApp);
+ 
+  if ($VConfig.F_ValSts_Get("fChk_OnLine")) {
+     $IPCF.U_Chk_OnLine(true);
+  } /* if */
+
+  /* Select starting Collection required by the user. */
+  setTimeout(U_Start, 1000);
+} /* U_Init */
+
+/*-----U_Start --------------------------------------------------------
+*
+*/ 
+function U_Start()
+{
+  if ($VConfig.F_ValSts_Get("fInitialize")) {
+    var szDir_Data = $VConfig.F_ValSts_Get("szDir_Data");  
+    var szDNS      = $VConfig.F_ValSts_Get("szURL_Srv");
+     $LdFile.U_DownLoad_NDU(szDNS, szDir_Data + 'Init.OLS', C_WwFlag_fService);
+  } /* if */
+} /* U_Start */
+
+U_Init();
+
+//]]></script>
+
+</html>     
+
+

@@ -1,0 +1,525 @@
+{
+"aHdr":[["","autoexec"],
+["aFld_Prova0", 4],["Prova0", 3, "Example of JavaScript basic types."],
+["aFld_Prova1", 4],["Prova1", 3, "Example of HTML's input types. (Toggle Resources Loading)"],
+["aFld_Prova2", 4],["Prova2", 3, "Test 'Cards Mode' editing capabilities. Click on 'Edit Tuple'"],
+["aFld_Prova3", 4],["Prova3", 3, "Test advanced HTML support in 'Table Mode'."],
+["aFld_Prova4", 4],["Prova4", 3, "Advanced types."],
+["aFld_Prova5", 4],["Prova5", 3, "Time and dates formats."],
+["aFld_Prova6", 4],["Prova6", 3, "JS' objects display."],
+["aFld_Prova7", 4],["Prova7", 6, "Autodetect applied to heterogeneous objects."],
+["aFld_Prova8", 4],["Prova8", 3, "Load the list of the files in a directories via Web Server. Click on 'Edit value'."],
+["aFld_Prova9", 4],["Prova9", 3, "Object exploration. Click on 'Edit value'."],
+["aFld_Prova10", 4],["Prova10", 3, "Test constraints and Case Sensitive."],
+["aFld_Prova11", 4],["Prova11", 3, "Test exponential representations."],
+["aFld_Prova12", 4],["Prova12", 3, "Test charts drawing."],
+["aFld_Prova13", 4],["Prova13", 3, "Test Regression."],
+["aFld_Prova14", 4],["Prova14", 3, "Test Regression."],
+["aFld_Prova15", 4],["Prova15", 3, "Test Regression."],
+["aFld_Prova16", 4],["Prova16", 3, "Test Regression."],
+["aFld_Prova17", 4],["Prova17", 3, "Test Regression."],
+["aFld_Prova18", 4],["Prova18", 3, "Test PATH, url, file, link.\nResources could be opened using popup menu."],
+["aFld_ai", 4],["S_ai", 1, "Array of numbers"],
+["aFld_Obj", 4],["S_Obj", 2, "Object"],
+["aFld_as_i", 4],["S_as_i", 10, "Associative Array of numbers"],
+["aFld_aRcd", 4],["S_aRcd", 3, "Array of Records"],
+["aFld_aObj", 4],["S_aObj", 4, "Array of Objects"],
+["aFld_asRcd", 4],["S_asRcd", 5, "Associative array of Records"],
+["aFld_asObj", 4],["S_asObj", 6, "Associative array of Objects"],
+
+["aFld_DBox", 4],["S_aObj_DBox_SetReset", 4, "Dialog-Box"]
+
+],
+
+"aFld_Prova0":[
+  {"szNm":"string_0",    "szType":"string",   "iLen":10, "szRem":"JS' string"},
+  {"szNm":"number_1",    "szType":"number",   "iLen":5,  "szRem":"JS' number"},
+  {"szNm":"boolean_2",   "szType":"boolean",  "iLen":5,  "szRem":"JS' boolean"},
+  {"szNm":"bigint_3",    "szType":"bigint",   "iLen":10, "szRem":"JS' bigint"},
+  {"szNm":"symbol_4",    "szType":"symbol",   "iLen":10, "szRem":"JS' symbol"},
+  {"szNm":"object_5",    "szType":"object",   "iLen":10, "szRem":"JS' object {}"},
+  {"szNm":"function_6",  "szType":"function", "iLen":10, "szRem":"JS' function"},
+  {"szNm":"array_7",     "szType":"Array",    "iLen":10, "szRem":"JS' array. Really an object []"},
+  {"szNm":"undefined",   "szType":"undefined","iLen":10, "szRem":"JS' undefined"}
+],
+
+"Prova0":[
+  ["Pippo",      10, true,  "9007199254740991n",    "symbol", [1,2, {"nome":"Mario"}], "function Inc(P_1) {return(P_1 +1);}", [1,2,3] ],
+  ["Pluto",    true, false, "0x1fffffffffffff",     "symbol", {"nome":"Mario"},        "function Inc(P_1) {return(P_1 +1);}", [4,5,6] ],
+  ["Paperino", "10", true,  "0o377777777777777777", "symbol", null,                    "function Inc(P_1) {return(P_1 +1);}", [7,8,9] ],
+  ["Brigitta",  77,     1,  1234567890,             "symbol", null,                    "function Inc(P_1) {return(P_1 +1);}", [7,8,9] ],
+  [ ]
+],
+
+"aFld_Prova1":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Date0","szCaption":"Date0","szType":"date","iLen":10,"fRecalc":false,"szCode":"","szRem":"HTML's input type 'date'."},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"WDay","szCaption":"WDay","szType":"jRB_WDay","iLen":10,"fRecalc":false,"szCode":"","szRem":"OLS' type Week Day."},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"NTel","szCaption":"NTel","szType":"tel","iLen":10,"fRecalc":false,"szCode":"","szRem":"HTML's input type 'tel'."},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"e-mail","szCaption":"e-mail","szType":"email","iLen":20,"fRecalc":false,"szCode":"","szRem":"HTML's input type 'email'."},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Color","szCaption":"Color","szType":"color","iLen":10,"fRecalc":false,"szCode":"","szRem":"HTML's input type 'color'."},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"iNum_RO","szCaption":"iNum_RO","szType":"number","iLen":5,"fReadOnly":true,"fRecalc":false,"szCode":"","szRem":"Example of field set READ ONLY."},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"szImg","szCaption":"szImg","szType":"Image","iLen":40,"fRecalc":false,"szCode":"","szRem":"HTML's 'image'."},
+{"iPos0":7,"iPos1":7,"fVisible":true,"szNm":"szAudio","szCaption":"szAudio","szType":"Audio","iLen":40,"fRecalc":false,"szCode":"","szRem":"HTML's 'audio'."},
+{"iPos0":8,"iPos1":8,"fVisible":true,"szNm":"szVideo","szCaption":"szVideo","szType":"Video","iLen":40,"fRecalc":false,"szCode":"","szRem":"HTML's 'video'."},
+{"iPos0":9,"iPos1":9,"fVisible":true,"szNm":"szText","szCaption":"szText","szType":"Doc","iLen":20,"fRecalc":false,"szCode":"","szRem":"HTML's external document."}
+],
+
+"Prova1":[
+["2000-04-07","wednesday","0125-537426","","rgb(255,80,128)",1100,"../res/image0.jpg","../res/horse.ogg","../res/video.mp4","../res/prova.odt"],
+["2022-03-22","monday","0125-325521","local.res@file.com","red",123,"file://D:/Prove_JS/_Viola/Res/image0.jpg","file://D:/Prove_JS/_Viola/Res/mameli.ogx","file://D:/Prove_JS/_Viola/Res/video.mp4","testo.txt"],
+["2012-03-12","tuesday","0125-713625","global@capralezioni.com","#00ff88",333,"https://capralezioni.altervista.org/2024_25/ols_001/res/image0.jpg","https://capralezioni.altervista.org/2024_25/ols_001/res/mameli.ogx","https://capralezioni.altervista.org/2024_25/ols_001/res/video.mp4","index.js"],   
+["2012-03-12","tuesday","0125-713625","local.res@helios.com","#00ff88",2,"../res/image0.jpg","../res/mameli.ogx","../res/video.mp4","index.js"],
+["2015-05-15","thursday","0125-442529","","#579",99999,"../../Temp/image0.jpg","horse.ogg","","prova.html"]
+],
+
+"aFld_Prova2":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Date","szCaption":"Date","szType":"date","iLen":5,"fRecalc":false,"szCode":"","szRem":"Date in standard HTML standard format YYYY-MM-DD."},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"WDay","szCaption":"WDay","szType":"jRB_WDay","iLen":5,"fRecalc":false,"szCode":"","szRem":"Days of the week radio button"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Chk","szCaption":"Chk","szType":"jCB_WDay","iLen":5,"fRecalc":false,"szCode":"","szRem":"Days of the week checkbox"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"List","szCaption":"List","szType":"jLst_WDay","iLen":5,"fRecalc":false,"szCode":"","szRem":"Days of the week list"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"jCB_Flag","szCaption":"jCB_Flag","szType":"jCB_Flag","iLen":5,"fRecalc":false,"szCode":"","szRem":"Flag"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"iRange","szCaption":"iRange","szType":"range","iLen":10,"Aux0":{"Min":0,"Max":100,"Step":5,"szRem":""},"fRecalc":false,"szCode":"","szRem":"Range"},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"TimeStamp","szCaption":"TimeStamp","szType":"timestamp","iLen":5,"fRecalc":false,"szCode":"","szRem":"timestamp"}
+],
+
+"Prova2":[
+["2000-03-07","monday",2,"monday",0,10,"0"],
+["2001-03-08","thursday",16,"thursday",1,15,"946684800000"],
+["2002-09-16","friday",32,"friday",false,20,"1665146220014"],
+["2024-08-12","monday",2,"monday",false,20,"1723462989600"], 
+["2003-03-09","saturday",64,"saturday",true,25,"1234567890000"]
+],
+
+"aFld_Prova3":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Data","szCaption":"Data","szType":"datetime-local","iLen":10,"fRecalc":false,"szCode":"","szRem":"Date in YYYY-MM-DDThh:mm:ss.mmm format."},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Formula","szCaption":"Formula","szType":"HTML","iLen":10,"fRecalc":false,"szCode":"","szRem":"Math formulas."},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"TextArea","szCaption":"TextArea","szType":"textarea","iLen":40,"fRecalc":false,"szCode":"","szRem":"textarea."},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"Lorem-HTML","szCaption":"Lorem-HTML","szType":"HTML","iLen":40,"fRecalc":false,"szCode":"","szRem":"HTML Text."}
+],
+
+"Prova3":[
+["1492-10-12T22:00","<math> <mi>y'</mi> <mo>=</mo> <mfrac> <mn>1</mn><mrow> <msup> <mi>cos</mi> <mn>2</mn> </msup><mi>x</mi> </mrow> </mfrac><mo>=</mo> <mrow><mn>1</mn><mo>+</mo><msup> <mi>tg</mi> <mn>2</mn> </msup><mi>x</mi> </mrow> </math>",
+"<h3>Lorem ipsum</h3> Dolor sit amet consectetuer feugiat quis condimentum justo condimentum. <br><a href=\"prova.html\">Test Link esterno (apre il file ./prova.html)</a><br>Urna <span style='font-weight: bold;'>leo</span> et sem at velit Praesent rutrum amet In augue. <br> <span style='font-style: italic;'>Pellentesque Vestibulum</span> et a lacinia elit mauris ac risus felis Sed. Diam <span style='color: red;'>turpis sagittis</span> Nullam montes magna nunc Sed urna nulla pellentesque. <br> Porta <span style='color: green;'>Curabitur</span> vel pede vitae id ornare lorem justo pretium Aenean. <span style='text-decoration: underline;'>Malesuada</span> Suspendisse libero Pellentesque nulla elit elit est Curabitur porta et. Quis commodo et.",
+"<h3>Lorem ipsum</h3> Dolor sit amet consectetuer feugiat quis condimentum justo condimentum. <br>Urna <span style='font-weight: bold;'>leo</span> et sem at velit Praesent rutrum amet In augue. <br> <span style='font-style: italic;'>Pellentesque Vestibulum</span> et a lacinia elit mauris ac risus felis Sed. Diam <span style='color: red;'>turpis sagittis</span> Nullam montes magna nunc Sed urna nulla pellentesque. <br> Porta <span style='color: green;'>Curabitur</span> vel pede vitae id ornare lorem justo pretium Aenean. <span style='text-decoration: underline;'>Malesuada</span> Suspendisse libero Pellentesque nulla elit elit est Curabitur porta et. Quis commodo et."
+],
+["1986-01-28T11:38:00.01","<math> <mi>y</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mraw>&nbsp; <msup> <mi>x</mi> <mi>n</mi></msup>&nbsp; </mraw></mfrac> </math>",
+"In pharetra lacinia semper egestas dui pulvinar Vestibulum cursus leo Vivamus. <br><a href=\"ddj:prova6\">Test link interno (apre la collezione Prova6).</a><br> Leo dignissim interdum wisi Pellentesque vitae tellus molestie ac a enim. Pede molestie pellentesque tellus sem Integer dapibus felis sed adipiscing enim. Rhoncus Aenean eget et amet tempus ante ac Sed et risus. Ut nec sit consequat vitae condimentum et Phasellus et Vestibulum leo. Et eros nunc et auctor Vestibulum morbi dictumst Suspendisse nulla felis. Ornare.","In pharetra lacinia semper egestas dui pulvinar Vestibulum cursus leo Vivamus. Leo dignissim interdum wisi Pellentesque vitae tellus molestie ac a enim. Pede molestie pellentesque tellus sem Integer dapibus felis sed adipiscing enim. Rhoncus Aenean eget et amet tempus ante ac Sed et risus. Ut nec sit consequat vitae condimentum et Phasellus et Vestibulum leo. Et eros nunc et auctor Vestibulum morbi dictumst Suspendisse nulla felis. Ornare.",
+"In pharetra lacinia semper egestas dui pulvinar Vestibulum cursus leo Vivamus. Leo dignissim interdum wisi Pellentesque vitae tellus molestie ac a enim. Pede molestie pellentesque tellus sem Integer dapibus felis sed adipiscing enim. Rhoncus Aenean eget et amet tempus ante ac Sed et risus. Ut nec sit consequat vitae condimentum et Phasellus et Vestibulum leo. Et eros nunc et auctor Vestibulum morbi dictumst Suspendisse nulla felis. Ornare.","In pharetra lacinia semper egestas dui pulvinar Vestibulum cursus leo Vivamus. Leo dignissim interdum wisi Pellentesque vitae tellus molestie ac a enim. Pede molestie pellentesque tellus sem Integer dapibus felis sed adipiscing enim. Rhoncus Aenean eget et amet tempus ante ac Sed et risus. Ut nec sit consequat vitae condimentum et Phasellus et Vestibulum leo. Et eros nunc et auctor Vestibulum morbi dictumst Suspendisse nulla felis. Ornare."
+],
+["2018-06-12T19:30","<math> <mrow> <mi>y</mi> <mo>=</mo> <mrow><msqrt><mi>x</mi> </msqrt> </mrow> </mrow> </math>",
+"Lorem ipsum<br>Dolor sit amet consectetuer feugiat quis condimentum justo condimentum. Urna leo et sem at velit Praesent rutrum amet In augue.Pellentesque Vestibulum et a lacinia elit mauris ac risus felis Sed. Diam turpis sagittis Nullam montes magna nunc Sed urna nulla pellentesque.Porta Curabitur vel pede vitae id ornare lorem justo pretium Aenean. Malesuada Suspendisse libero Pellentesque nulla elit elit est Curabitur porta et. Quis commodo et.","Lorem ipsumDolor sit amet consectetuer feugiat quis condimentum justo condimentum. Urna leo et sem at velit Praesent rutrum amet In augue.Pellentesque Vestibulum et a lacinia elit mauris ac risus felis Sed. Diam turpis sagittis Nullam montes magna nunc Sed urna nulla pellentesque.Porta Curabitur vel pede vitae id ornare lorem justo pretium Aenean. Malesuada Suspendisse libero Pellentesque nulla elit elit est Curabitur porta et. Quis commodo et.",
+"Lorem ipsum<br>Dolor sit amet consectetuer feugiat quis condimentum justo condimentum. Urna leo et sem at velit Praesent rutrum amet In augue.Pellentesque Vestibulum et a lacinia elit mauris ac risus felis Sed. Diam turpis sagittis Nullam montes magna nunc Sed urna nulla pellentesque.Porta Curabitur vel pede vitae id ornare lorem justo pretium Aenean. Malesuada Suspendisse libero Pellentesque nulla elit elit est Curabitur porta et. Quis commodo et.","Lorem ipsumDolor sit amet consectetuer feugiat quis condimentum justo condimentum. Urna leo et sem at velit Praesent rutrum amet In augue.Pellentesque Vestibulum et a lacinia elit mauris ac risus felis Sed. Diam turpis sagittis Nullam montes magna nunc Sed urna nulla pellentesque.Porta Curabitur vel pede vitae id ornare lorem justo pretium Aenean. Malesuada Suspendisse libero Pellentesque nulla elit elit est Curabitur porta et. Quis commodo et."
+]
+],
+
+"aFld_Prova4":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Campo","szCaption":"Campo","szType":"string","iLen":10,"fRecalc":false,"szCode":"","szRem":"string."},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Rel","szCaption":"Rel","szType":"jLst_Rel","iLen":10,"fRecalc":false,"szCode":"","szRem":"OLS' list."},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"IntVal","szCaption":"IntVal","szType":"int","iLen":10,"fRecalc":false,"szCode":"","szRem":"user defined type 'int'."},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"szNum","szCaption":"szNum","szType":"string","iLen":10,"fRecalc":false,"szCode":"","szRem":"number represented as a string. Eg '123'. "},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"RealVal","szCaption":"RealVal","szType":"real","iLen":10,"fRecalc":false,"szCode":"","szRem":"floating point number."},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"HexVal","szCaption":"HexVal","szType":"hex","iLen":4,"fRecalc":false,"szCode":"","szRem":"number represented in HEX format. E.g. 0xe4c9."},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"Posizione","szCaption":"Posizione","szType":"GPS","iLen":10,"fRecalc":false,"szCode":"","szRem":"GPS' coordinates. Click 'Edit Value'"},
+{"iPos0":7,"iPos1":7,"fVisible":true,"szNm":"jType0","szCaption":"jType0","szType":"jLst_Type","iLen":10,"fRecalc":false,"szCode":"","szRem":"list of OLS' types."}
+],
+
+"Prova4":[
+["cinque",">=",null,"NA",0.123,256," ","boolean"],
+["dieci","<=",6,"6",48.653,255," ","omega"],
+["due",">",null,"null",3.123,19," ","text"],
+["nove","<=",16,"16",12.438,27," ","canguro"],
+["otto","<=",111,"111",75.777,1023," ","hex"],
+["quattro","<=",56,"56",200.385,0," ","string"],
+["sei","<=",null,"NA",412.952,64," ","undefined"],
+["sette","<=",0,"+86",234,32," ","int"],
+["tre","==",45,"45",23.729,1020," ","date"],
+["uno","<",25,"25",123.456,253,"45.3105, 7.9807","int"]
+],
+
+"aFld_Prova5":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Time","szCaption":"Time","szType":"time","iLen":20,"fRecalc":false,"szCode":"","szRem":"Time in HH:MM:SS.mmm format."},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Month","szCaption":"Month","szType":"month","iLen":20,"fRecalc":false,"szCode":"","szRem":"Month in YYYY-MM format."},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Week","szCaption":"Week","szType":"week","iLen":20,"fRecalc":false,"szCode":"","szRem":"Weeek of the year."},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"Pass","szCaption":"Pass","szType":"password","iLen":20,"fRecalc":false,"szCode":"","szRem":"Password example. Clic on 'Edit value'"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Date","szCaption":"Date","szType":"date","iLen":20,"fRecalc":false,"szCode":"","szRem":"Date in YYYY-MM-DD format."},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"DateTime","szCaption":"DateTime","szType":"datetime","iLen":20,"fRecalc":false,"szCode":"","szRem":"HTML text."},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"DateTime-local","szCaption":"DateTime-local","szType":"datetime-local","iLen":20,"fRecalc":false,"szCode":"","szRem":"Date time local in YYYY-MM-DD HH:MM:SS format."}
+],
+
+"Prova5":[
+["12:00:00","1949-07","2022-W29","Republic of Italy","1949-04-25","1949-04-25T12:00:00.00+01:00","1949-04-25T12:00:00"],
+["20:17:40","1969-07","2022-W29","Moon landing","1969-07-20","1969-07-20T20:17:40.00-08:00","1969-07-20T20:17:40"],
+["23:59:59","2000-01","2000-W01","","2000-01-01","2000-01-01T23:59+00:00","2000-01-01T23:59:59"]
+],
+
+"aFld_Prova6":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Seq","szCaption":"Seq","szType":"number","iLen":10,"fRecalc":false,"szCode":"","szRem":"sequence number."},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"szJKndTup","szCaption":"szJKndTup","szType":"string","iLen":10,"fRecalc":false,"szCode":"","szRem":"object kind."},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Example","szCaption":"Example","szType":"object","iLen":60,"fRecalc":false,"szCode":"","szRem":"example. Click on 'Edit value'."}
+],
+
+"Prova6":[
+[1,"Arr",[0,1,2,3,4,5,6,7,8,9]],
+[2,"Obj",{"sz0":"aaa","iNum":100,"fBool":true}],
+[3,"aRcd",[["cane",100,true],["gatto",1,true],["rana",1002,true],["anatra",203,true]]],
+[4,"aObj",[{"sz0":"aaa","iNum":100,"fBool":true},{"sz0":"bbb","iNum":101,"fBool":true},{"sz0":"ccc","iNum":102,"fBool":true}]],
+[5,"asRcd",{"key0":["aaa",100,true],"key1":["bbb",101,false],"key2":["ccc",102,0],"key3":["ddd",103,1]}],
+[6,"asObj",{"key0":{"sz0":"aaa","iNum":100,"fBool":true},"key1":{"sz0":"bbb","iNum":101,"fBool":false},"key2":{"sz0":"ccc","iNum":102,"fBool":1}}]
+],
+
+"aFld_Prova7":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"szKey","szCaption":"szKey","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"book","szCaption":"book","szType":"object","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"bicycle","szCaption":"bicycle","szType":"object","iLen":8,"fRecalc":false,"szCode":""}
+],
+
+"Prova7":{
+"store":{"book":[{"category":"reference","author":"Nigel Rees","title":"Sayings of the Century","price":8.95},{"category":"fiction","author":"Evelyn Waugh","title":"Sword of Honour","price":12.99},{"category":"fiction","author":"Herman Melville","title":"Moby Dick","isbn":"0-553-21311-3","price":8.99},{"category":"fiction","author":"J. R. R. Tolkien","title":"The Lord of the Rings","isbn":"0-395-19395-8","price":22.99}],"bicycle":{"color":"red","price":19.95}}
+},
+
+"aFld_Prova8":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"name","szCaption":"name","szType":"PATH","iLen":60,"fRecalc":false,"szCode":"","szRem":"Directory's URI"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"attr","szCaption":"attr","szType":"hex","iLen":20,"fRecalc":false,"szCode":"","szRem":"Hex code"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"size","szCaption":"size","szType":"number","iLen":20,"fRecalc":false,"szCode":"","szRem":"number"}
+],
+
+"Prova8":[
+["http://helios:27015/Dir.cgi/?l:/websrv/bad/*.c",32,0],
+["http://helios:27015/Dir.cgi/?r:/*.*",32,0],
+["http://helios:27015/Dir.cgi/?r:/XAR/*.*",32,0]
+],
+
+"aFld_Prova9":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"szNm0","szCaption":"szNm0","szType":"string","iLen":5,"fRecalc":false,"szCode":"","szRem":"name"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Obj1","szCaption":"Obj1","szType":"object","iLen":5,"Aux0":{"szNm_aFltObj":"aFld_Obj1","aFltObj":[{"szNm":"i0","szType":"number","iLen":5,"szRem":"number"},{"szNm":"i1","szType":"number","iLen":5,"szRem":"number"},{"szNm":"i2","szType":"number","iLen":5,"szRem":"number"}]},"fRecalc":false,"szCode":"","szRem":"object-1"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"iNum2","szCaption":"iNum2","szType":"number","iLen":5,"fRecalc":false,"szCode":"","szRem":"number"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"Obj3","szCaption":"Obj3","szType":"object","iLen":5,"Aux0":{"szNm_aFltObj":"aFld_Obj3","aFltObj":[{"szNm":"uno","szType":"string","iLen":5,"szRem":"number"},{"szNm":"due","szType":"string","iLen":5,"szRem":"number"},{"szNm":"tre","szType":"string","iLen":5,"szRem":"number"}]},"fRecalc":false,"szCode":"","szRem":"object-3"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"sz4","szCaption":"sz4","szType":"string","iLen":5,"fRecalc":false,"szCode":"","szRem":"Remarks"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Obj5","szCaption":"Obj5","szType":"object","iLen":5,"fRecalc":false,"szCode":"","szRem":"object-5 unknown layout"}
+],
+
+"Prova9":[
+["gatto",[[1,2,3],[11,12,13],[21,22,23]],123,{"one":"rosso","two":"verde","three":"blu"},"cat",[[1,2,3],[11,12,13],[21,22,23]]],
+["prova9",[[1,2,3],[11,12,13],[21,22,23]],123,{"uno":"rosso","due":"verde","tre":"blu"},"dog",[[1,2,3],[11,12,13],[21,22,23]]]
+],
+
+"aFld_Prova10":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"sz0","szCaption":"sz0","szType":"string","iLen":8,"Aux0":{"Min":"f","Max":"u"},"fRecalc":false,"szCode":"","szRem":"'cane' error"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"iNum1","szType":"number","iLen":8,"Aux0":{"Min":1,"Max":100},"fRecalc":false,"szCode":"","szRem":"1010   error"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Bool2","szCaption":"Bool2","szType":"boolean","iLen":8,"fRecalc":false,"szCode":"","szRem":"boolean two"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"sz3","szCaption":"sz3","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"string three"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Date4","szCaption":"Date4","szType":"date","iLen":8,"Aux0":{"Min":"2000-01-01","Max":"2020-12-31"},"fRecalc":false,"szCode":"","szRem":"date four"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Obj5","szCaption":"Obj5","szType":"object","iLen":8,"fRecalc":false,"szCode":"","szRem":"string five"},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"fRec","szCaption":"fRec","szType":"Flag","iLen":17,"fRecalc":false,"szCode":"","szRem":"Flag"}
+],
+
+"Prova10":[
+["anatra_0",41,false,"duck_3","2009-09-01",{"nome":"Primo","cognome":"Rossi"},true],
+["cane",70,0,"Dog","2021-01-02",{"nome":"Secondo","cognome":"Rossi"},false],
+["cavallo",53,true,"horse","2004-04-03",{"nome":"Terzo","cognome":"Rossi"},true],
+["foca",19,true,"Seal","2000-10-04",{"nome":"Quarto","cognome":"Rossi"},false],
+["gallo",37,1,"cock","1988-08-05",{"nome":"Quinto","cognome":"Rossi"},true],
+["gatto",21,1,"Cat","2017-02-06",{"nome":"Sesto","cognome":"Rossi"},false],
+["lupo",6,0,"wolf","2007-07-07",123,null],
+["oca",115,true,"Goose","1996-06-08",null,null],
+["rana",84,false,"frog","2015-05-09",null,null],
+["topo",72,false,"Mouse","2023-03-20",{},null]
+],
+
+"aFld_Prova11":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"fRec","szCaption":"fRec","szType":"Flag","iLen":4,"fRecalc":false,"szCode":"","szRem":"Flag"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"iNum1","szType":"number","iLen":8,"Aux0":{"iNnDgt":5},"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Hex","szCaption":"Hex","szType":"hex","iLen":8,"Aux0":{"iNnDgt":4},"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"Oct","szCaption":"Oct","szType":"oct","iLen":8,"Aux0":{"iNnDgt":4},"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Bin","szCaption":"Bin","szType":"bin","iLen":8,"Aux0":{"iNnDgt":8},"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Real","szCaption":"Real","szType":"real","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"Float","szCaption":"Float","szType":"float","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":7,"iPos1":7,"fVisible":true,"szNm":"rExp","szCaption":"rExp","szType":"rExp","iLen":8,"fRecalc":false,"szCode":"","szRem":""}
+],
+
+"Prova11":[
+[false,9,8,8,8,123.456789,123.456789,123.456789],
+[false,31,31,31,31,3145000,3145000,3145000],
+[false,65531,65531,65531,65531,3145000,3145000,3145000],
+[true,-5,-5,-5,-5,-5.456789,-5.456789,-5.456789],
+[true,260,260,260,260,0.026045,0.026045,0.026045]
+],
+
+"aFld_Prova12":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"szNm","szCaption":"szNm","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"Flag"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"iNum1","szType":"number","iLen":8,"Aux0":{"iNnDgt":5},"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Real1","szCaption":"Real1","szType":"real","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"Real2","szCaption":"Real2","szType":"real","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"rExp3","szCaption":"rExp3","szType":"rExp","iLen":8,"fRecalc":false,"szCode":"","szRem":""}
+],
+
+"Prova12":[
+["Ancona",94,19.5,22.7,410],
+["Bologna",181,22.5,92.7,61000],
+["Cagliari",219,49.5,22.7,9100],
+["Firenze",23,37.5,62.7,4100000],
+["Genova",96,12.5,92.7,110000],
+["Milano",117,6.2,82.7,4100],
+["Napoli",44,27.5,32.7,2100],
+["Roma",123,14.5,12.7,51000],
+["Torino",221,4.5,52.7,610000],
+["Venezia",78,76.5,42.7,31000]
+],
+
+"aFld_Prova13":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"szNm","szCaption":"szNm","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"Flag"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"X","szCaption":"X","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Y","szCaption":"Y","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""}
+],
+
+"Prova13":[
+["1850",-5,23.2],
+["1860",-4,31.4],
+["1870",-3,39.8],
+["1880",-2,50.2],
+["1890",-1,62.9],
+["1900",0,76],
+["1910",1,92],
+["1920",2,105.7],
+["1930",3,122.8],
+["1940",4,131.7],
+["1950",5,151.1]
+],
+
+"aFld_Prova14":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"szNm","szCaption":"szNm","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"Flag"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"H","szCaption":"H","szType":"HChkBox","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"N","szCaption":"N","szType":"NChkBox","iLen":8,"fRecalc":false,"szCode":"","szRem":""}
+],
+
+"Prova14":[
+["Firenze",700,80],
+["Roma",4660,4660],
+["Torino",23280,23280]
+],
+
+"aFld_Prova15":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"x1","szCaption":"x1","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"x2","szCaption":"x2","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"x3","szCaption":"x3","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"k","szCaption":"k","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""}
+],
+
+"Prova15":[
+[2,1,1,6],
+[3,-1,2,12],
+[5,-1,1,2]
+],
+
+"aFld_Prova16":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"X","szCaption":"X","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Y","szCaption":"Y","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Z","szCaption":"Z","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""}
+],
+
+"Prova16":[
+[51,42,6],
+[53,49,6],
+[55,51,8],
+[56,52,10],
+[57,48,9],
+[58,50,7],
+[64,57,8],
+[67,62,11],
+[68,57,9],
+[71,59,10],
+[76,61,12],
+[77,55,10]
+],
+
+"aFld_Prova17":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"X","szCaption":"X","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":""},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"f","szCaption":"f","szType":"AbsFreq","iLen":8,"fRecalc":false,"szCode":"","szRem":""}
+],
+
+"Prova17":[
+[66,66],
+[66,69],
+[68,64],
+[72,71],
+[73,70]
+],
+
+"aFld_Prova18":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"PATH","szCaption":"PATH","szType":"PATH","iLen":8,"fRecalc":false,"szCode":"","szRem":"PATH"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"url", "szCaption":"url", "szType":"url", "iLen":8,"fRecalc":false,"szCode":"","szRem":"url" },
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"file","szCaption":"file","szType":"file","iLen":8,"fRecalc":false,"szCode":"","szRem":"file"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"link","szCaption":"link","szType":"link","iLen":8,"fRecalc":false,"szCode":"","szRem":"link"}
+],
+
+"Prova18":[                                                                                                                   
+["http://localhost/Relay/irc/topic/prova.arcd", "http://localhost/Relay/irc/topic/prova.arcd", "http://localhost/Relay/irc/topic/prova.arcd", "http://localhost/Relay/irc/topic/prova.arcd"],
+["http://localhost/index.html", "http://localhost/index.html", "http://localhost/index.html", "http://localhost/index.html"]                                                                                                                             
+],
+
+
+"aFld_ai":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Val","szCaption":"Val","szType":"number","iLen":8,"fRecalc":false,"szCode":""}
+],
+
+"S_ai":[
+41,
+70,
+53,
+19,
+37,
+21,
+6,
+115,
+84,
+72
+],
+
+"aFld_Obj":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"sz0","szCaption":"string value sz0","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"zero"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"number value iNum1","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":"one"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Sz2","szCaption":"string value Sz2","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"two"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"iNum3","szCaption":"number value iNum3","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":"three"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Date4","szCaption":"date value Date4","szType":"date","iLen":8,"fRecalc":false,"szCode":"","szRem":"four"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"fBool5F","szCaption":"boolean value fBool5F","szType":"boolean","iLen":8,"fRecalc":false,"szCode":"","szRem":"five"},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"fBool6T","szCaption":"boolean value fBool6T","szType":"boolean","iLen":8,"fRecalc":false,"szCode":"","szRem":"six"},
+{"iPos0":7,"iPos1":7,"fVisible":true,"szNm":"szImg7","szCaption":"string value szImg7","szType":"Image","iLen":20,"fRecalc":false,"szCode":"","szRem":"seven"},
+{"iPos0":8,"iPos1":8,"fVisible":true,"szNm":"Arr8","szCaption":"array value Arr8","szType":"object","iLen":8,"fRecalc":false,"szCode":"","szRem":"eight"}
+],
+
+"S_Obj":{
+"Arr8":[1,2,3],
+"Date4":"2022-09-21",
+"fBool5F":false,
+"fBool6T":true,
+"iNum1":111,
+"iNum3":33,
+"sz0":"S_Obj",
+"Sz2":"due",
+"szImg7":"file:///D:/Prove_JS/_Viola/Res/image0.jpg"
+},
+
+"aFld_as_i": [
+{"iPos0":0, "iPos1":0, "fVisible":true, "szNm":"Attribute", "szType":"string", "szCaption":"Attribute",  "iLen":5},
+{"iPos0":1, "iPos1":1, "fVisible":true, "szNm":"Value",     "szType":"string", "szCaption":"Value",      "iLen":5}
+],
+
+"S_as_i":{
+"nero":0,
+"marrone":1,
+"rosso":2,
+"arancione":3,
+"giallo":4,
+"verde":5,
+"blu":6,
+"viola":7,
+"grigio":8,
+"bianco":9
+},
+
+"aFld_aRcd":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"sz0","szCaption":"sz0","szType":"string","iLen":10,"fRecalc":false,"szCode":"","szRem":"string zero"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"iNum1","szType":"number","iLen":10,"fRecalc":false,"szCode":"","szRem":"number one"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Bool2","szCaption":"Bool2","szType":"boolean","iLen":10,"fRecalc":false,"szCode":"","szRem":"boolean two"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"sz3","szCaption":"sz3","szType":"string","iLen":10,"fRecalc":false,"szCode":"","szRem":"string three"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Date4","szCaption":"Date4","szType":"date","iLen":12,"fRecalc":false,"szCode":"","szRem":"date four"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Obj5","szCaption":"Obj5","szType":"object","iLen":20,"fRecalc":false,"szCode":"","szRem":"string five"},
+{"fVisible":false,"szNm":"jaFld1_aNdx", "szType":"none", "iLen":0, "szRem":"SetPar ordina in base al campo 4", "szCode":4}
+],
+
+"S_aRcd":[
+["anatra_0",41,false,"Duck_3","2009-09-01",{"nome":"Primo","cognome":"Rossi"}],
+["cane",70,0,"dog","2021-01-02",{"nome":"Secondo","cognome":"Rossi"}],
+["cavallo",53,true,"Horse","2004-04-03",{"nome":"Terzo","cognome":"Rossi"}],
+["foca",19,true,"seal","2000-10-04",{"nome":"Quarto","cognome":"Rossi"}],
+["gallo",37,1,"Cock","1988-08-05",{"nome":"Quinto","cognome":"Rossi"}],
+["gatto",21,1,"cat","2017-02-06",{"nome":"Sesto","cognome":"Rossi"}],
+["lupo",6,0,"Wolf","2007-07-07",{"nome":"Settimo","cognome":"Rossi"}],
+["oca",115,true,"goose","1996-06-08",{"nome":"Ottavo","cognome":"Rossi"}],
+["rana",84,false,"Frog","2015-05-09",{"nome":"Nono","cognome":"Rossi"}],
+["topo",72,false,"mouse","2023-03-20",{"nome":"Decimo","cognome":"Rossi"}]
+],
+
+"aFld_aObj":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"sz0","szCaption":"sz0","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"string zero"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"iNum1","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":"number one"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Bool2","szCaption":"Bool2","szType":"boolean","iLen":8,"fRecalc":false,"szCode":"","szRem":"boolean two"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"sz3","szCaption":"sz3","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"string three"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Date4","szCaption":"Date4","szType":"date","iLen":8,"fRecalc":false,"szCode":"","szRem":"date four"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Obj5","szCaption":"Obj5","szType":"object","iLen":8,"fRecalc":false,"szCode":"","szRem":"string five"}
+],
+
+"S_aObj":[
+{"sz0":"anatra_0","iNum1":41,"Bool2":false,"sz3":"Duck_3","Date4":"2009-09-01","Obj5":{"nome":"Primo","cognome":"Rossi"}},
+{"sz0":"cane","iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Obj5":{"nome":"Secondo","cognome":"Rossi"}},
+{"sz0":"cavallo","iNum1":53,"Bool2":true,"sz3":"Horse","Date4":"2004-04-03","Obj5":{"nome":"Terzo","cognome":"Rossi"}},
+{"sz0":"foca","iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Obj5":{"nome":"Quarto","cognome":"Rossi"}},
+{"sz0":"gallo","iNum1":37,"Bool2":1,"sz3":"Cock","Date4":"1988-08-05","Obj5":{"nome":"Quinto","cognome":"Rossi"}},
+{"sz0":"gatto","iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Obj5":{"nome":"Sesto","cognome":"Rossi"}},
+{"sz0":"lupo","iNum1":6,"Bool2":0,"sz3":"Wolf","Date4":"2007-07-07","Obj5":{"nome":"Settimo","cognome":"Rossi"}},
+{"sz0":"oca","iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Obj5":{"nome":"Ottavo","cognome":"Rossi"}},
+{"sz0":"rana","iNum1":84,"Bool2":false,"sz3":"Frog","Date4":"2015-05-09","Obj5":{"nome":"Nono","cognome":"Rossi"}},
+{"sz0":"topo","iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-20","Obj5":{"nome":"Decimo","cognome":"Rossi"}}
+],
+
+"aFld_asRcd":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"sz0","szCaption":"sz0","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"string zero"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"iNum1","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":"number one"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Bool2","szCaption":"Bool2","szType":"boolean","iLen":8,"fRecalc":false,"szCode":"","szRem":"boolean two"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"sz3","szCaption":"sz3","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"string three"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Date4","szCaption":"Date4","szType":"date","iLen":8,"fRecalc":false,"szCode":"","szRem":"date four"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Obj5","szCaption":"Obj5","szType":"object","iLen":8,"fRecalc":false,"szCode":"","szRem":"string five"}
+],
+
+"S_asRcd":{
+"Anatra_0":[41,false,"Duck_3","2009-09-01",{"nome":"Primo","cognome":"Rossi"}],
+"cane":[70,0,"dog","2021-01-02",{"nome":"Secondo","cognome":"Rossi"}],
+"Cavallo":[53,true,"Horse","2004-04-03",{"nome":"Terzo","cognome":"Rossi"}],
+"foca":[19,true,"seal","2000-10-04",{"nome":"Quarto","cognome":"Rossi"}],
+"Gallo":[37,1,"Cock","1988-08-05",{"nome":"Quinto","cognome":"Rossi"}],
+"gatto":[21,1,"cat","2017-02-06",{"nome":"Sesto","cognome":"Rossi"}],
+"Lupo":[6,0,"Wolf","2007-07-07",{"nome":"Settimo","cognome":"Rossi"}],
+"oca":[115,true,"goose","1996-06-08",{"nome":"Ottavo","cognome":"Rossi"}],
+"Rana":[84,false,"Frog","2015-05-09",{"nome":"Nono","cognome":"Rossi"}],
+"topo":[72,false,"mouse","2023-03-20",{"nome":"Decimo","cognome":"Rossi"}]
+},
+
+"aFld_asObj":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"sz0","szCaption":"sz0","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"string zero"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"iNum1","szCaption":"iNum1","szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":"number one"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Bool2","szCaption":"Bool2","szType":"boolean","iLen":8,"fRecalc":false,"szCode":"","szRem":"boolean two"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"sz3","szCaption":"sz3","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"string three"},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"Date4","szCaption":"Date4","szType":"date","iLen":8,"fRecalc":false,"szCode":"","szRem":"date four"},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"Obj5","szCaption":"Obj5","szType":"object","iLen":8,"fRecalc":false,"szCode":"","szRem":"string five"}
+],
+
+"S_asObj":{
+"Anatra_0":{"iNum1":41,"Bool2":false,"sz3":"Duck_3","Date4":"2009-09-01","Obj5":{"nome":"Primo","cognome":"Rossi"}},
+"cane":{"iNum1":70,"Bool2":0,"sz3":"dog","Date4":"2021-01-02","Obj5":{"nome":"Secondo","cognome":"Rossi"}},
+"Cavallo":{"iNum1":53,"Bool2":true,"sz3":"Horse","Date4":"2004-04-03","Obj5":{"nome":"Terzo","cognome":"Rossi"}},
+"foca":{"iNum1":19,"Bool2":true,"sz3":"seal","Date4":"2000-10-04","Obj5":{"nome":"Quarto","cognome":"Rossi"}},
+"Gallo":{"iNum1":37,"Bool2":1,"sz3":"Cock","Date4":"1988-08-05","Obj5":{"nome":"Quinto","cognome":"Rossi"}},
+"gatto":{"iNum1":21,"Bool2":1,"sz3":"cat","Date4":"2017-02-06","Obj5":{"nome":"Sesto","cognome":"Rossi"}},
+"Lupo":{"iNum1":6,"Bool2":0,"sz3":"Wolf","Date4":"2007-07-07","Obj5":{"nome":"Settimo","cognome":"Rossi"}},
+"oca":{"iNum1":115,"Bool2":true,"sz3":"goose","Date4":"1996-06-08","Obj5":{"nome":"Ottavo","cognome":"Rossi"}},
+"Rana":{"iNum1":84,"Bool2":false,"sz3":"Frog","Date4":"2015-05-09","Obj5":{"nome":"Nono","cognome":"Rossi"}},
+"topo":{"iNum1":72,"Bool2":false,"sz3":"mouse","Date4":"2023-03-20","Obj5":{"nome":"Decimo","cognome":"Rossi"}}
+},
+
+"aFld_DBox":[
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Start",  "szCaption":"Start",  "szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":"zero"},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Stop",   "szCaption":"Stop",   "szType":"number","iLen":8,"fRecalc":false,"szCode":"","szRem":"one"},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Formula","szCaption":"Formula","szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"two"},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"Value",  "szCaption":"Value",  "szType":"string","iLen":8,"fRecalc":false,"szCode":"","szRem":"three"}
+],
+
+"S_aObj_DBox_SetReset":[{
+"Start": 0,
+"Stop": 100,
+"Formula": "",
+"Value": ""  
+}],
+
+"rem autoexec":"setTimeout(CL_UsrView0.F_UsrView_Select, 1000, 'S_as_i', '0x800');",
+"autoexec":"setTimeout(CL_UsrView0.F_UsrView_Select, 1000, 'Prova1', '0x800');"
+}

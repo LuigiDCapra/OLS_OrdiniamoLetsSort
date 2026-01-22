@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Notazione Ungherese</title>
+    <meta content="Luigi CAPRA" name="author">
+    <meta content="BlueGriffon wysiwyg editor" name="generator">
+    <link rel="stylesheet" href="../help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="../aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <section>
+          <h1>Notazione razionale per l'attribuzione dei nomi agli identificatori</h1>
+          <br>
+          <h2><a href="https://en.wikipedia.org/wiki/Hungarian_notation">Notazione Ungherese</a> Modificata</h2>
+          <h3>Introduzione</h3>
+          Un <span style="font-style: italic;">ente informatico</span> è un algoritmo, una struttura dati o un ente formale, impiegabile come meta-entità per rappresentare alcuni <span style="font-style: italic;">aspetti</span>
+          o <span style="font-style: italic;">proprietà</span> di un oggetto tangibile nell'ambito di un modello.<br>
+          Quando una ente informatico <span style="font-style: italic;">x</span> viene usato per rappresentare un'altra entità <span style="font-style: italic;">y</span>, <span style="font-style: italic;">x</span>
+          agisce come <span style="font-style: italic;">meta-entità</span>, ma quando si considera <span style="font-style: italic;">x</span> per sé stesso, <span style="font-style: italic;">x</span>
+          è a sua volta un'entità reale.<br>
+          Ad esempio: "la parità del numero di caratteri di cui è composta la stringa <code>str</code>" è un'<span style="font-style: italic;">entità informatica</span> che rappresenta una <span style="font-style: italic;">proprietà</span>
+          di un numero intero, che a sua volta rappresenta una particolare <span style="font-style: italic;">proprietà</span> della stringa considerata <code>str</code>.<br>
+          Si vengono così a creare delle <span style="font-style: italic;">catene semantiche</span> che si estendono dall'ente informatico considerato (denominato <span style="font-weight: bold;">foglia</span>),
+          ad un concetto più generale assunto come primitivo (detto <span style="font-weight: bold;">radice</span>), passando per uno o più nodi intermedi di specializzazione.<br>
+          <figure class="Cl_Center"><img class="Cl_Img_100" src="not_ung_files/albero.svg"><br>
+            <figcaption>Figura 1: albero delle entità.</figcaption> </figure>
+          <br>
+          La semantica di un meta-entità è spesso una specializzazione di quella di un entità più generale.<br>
+          <br>
+          <h2>Principi di base</h2>
+          Progettando una notazione razionale per l'attribuzione dei <span style="font-style: italic;">nomi delle entità informatich</span>e ovvero per la generazione degli <span style="font-style: italic;">identificatori
+            </span>si deve tener conto dei seguenti principi fondamentali<br>
+          <ul>
+            <li> Un identificatore è un codice che individua un ente informatico.</li>
+            <li> Ogni entità appartiene ad almeno una <span style="font-style: italic;">classe</span>, sebbene in genere possa essere classificata secondo più di un criterio.</li>
+          </ul>
+          In particolare:<br>
+          <ol>
+            <li> Un generico identificatore può essere catalogato in base al <span style="font-style: italic;">genere </span>(<span style="font-style: italic;">kind</span>).<br>
+              <span style="font-style: italic;">kind </span>= {<span style="font-style: italic;">label</span>, <span style="font-style: italic;">constant</span>, <span style="font-style: italic;">type</span>,
+              <span style="font-style: italic;">variabile</span>, <span style="font-style: italic;">procedure</span>, <span style="font-style: italic;">function</span>, ecc}.</li>
+            <li> Nel caso di <span style="font-style: italic;">costanti</span>, <span style="font-style: italic;">variabili </span>e <span style="font-style: italic;">funzioni</span>, ad ogni
+              entità si può associare anche un <span style="font-style: italic;">tipo base</span> (<span style="font-style: italic;">type</span>)<br>
+              <span style="font-style: italic;">type </span>= {<span style="font-style: italic;">integer, char, boolean, pointer, array, record</span>, ecc}..</li>
+            <li> Costruendo un modello del mondo reale è desiderabile organizzare il tutto in maniera tale che i meta-oggetti rispecchino nella maniera più fedele le proprietà degli oggetti reali
+              rappresentati. Essendo auspicabile estendere agli oggetti informatici i criteri di classificazione caratteristici degli oggetti rappresentati, ne consegue che il processo di generazione
+              degli identificatori dovrà rispecchiare le catene semantiche.</li>
+          </ol>
+          <h3> Codifica degli identificatori</h3>
+          Il processo di codifica attraverso il quale si associa un identificatore ad un entità informatica si estende in due direzioni:<br>
+          <ul>
+            <li>in orizzontale codificando le proprietà del nodo considerato ad un dato livello,</li>
+            <li>in verticale codificando le proprietà dei nodi che si incontrano lungo la catena semantica procedendo dalla foglia sino all'ente assunto come radice, che potrebbe essere il file di
+              definizione, un oggetto oppure una funzione.</li>
+          </ul>
+          Ad ogni nodo foglia sarà quindi associata una codifica basata su cinque chiavi:<br>
+          <span style="font-style: italic;">&lt;ambito&gt;&lt;genere&gt;&lt;tipo&gt;&lt;categoria&gt;&lt;qualificatore&gt;<br>
+          </span><br>
+          <table style="width: 100%" border="0">
+            <tbody>
+              <tr>
+                <td width="20%;"><span style="font-style: italic;">&lt;ambito&gt;</span> </td>
+                <td width="80%;"><span style="font-style: italic;">ambito </span>di visibilità dell'identificatore {<span style="font-style: italic;">globale</span>, <span style="font-style: italic;">statico</span>,
+                  <span style="font-style: italic;">parametro</span> o valore limitato alla <span style="font-style: italic;">blocco di definizione</span>}</td>
+              </tr>
+              <tr>
+                <td><span style="font-style: italic;">&lt;genere&gt;</span> </td>
+                <td><span style="font-style: italic;">genere </span>dell'ente considerato {<span style="font-style: italic;">label, const, type, variable, function, procedure</span>} </td>
+              </tr>
+              <tr>
+                <td><span style="font-style: italic;">&lt;tipo&gt;</span> </td>
+                <td><span style="font-style: italic;">tipo </span>dell'ente informatico considerato {<span style="font-style: italic;">char, int, string</span>, ecc.} </td>
+              </tr>
+              <tr>
+                <td><span style="font-style: italic;">&lt;classe&gt;</span> </td>
+                <td><span style="font-style: italic;">categoria </span>di appartenenza l'entità reale rappresentato dal meta-entità; </td>
+              </tr>
+              <tr>
+                <td><span style="font-style: italic;">&lt;qualificatore&gt;</span> </td>
+                <td>proprietà che individua univocamente l'entità reale rappresentato dal meta-entità. </td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          Il <span style="font-style: italic;">genere </span>è interessante principalmente in riferimento ai nodi foglia; viene solitamente omesso nel caso dei nodi superiori.<br>
+          Il <span style="font-style: italic;">tipo </span>è obbligatorio solo per i nodi foglia; può essere omesso nei nodi superiori a condizione che ciò non sia causa di ambiguità.<br>
+          La <span style="font-style: italic;">categoria </span>può essere codificata in due modi diversi:<br>
+          <ul>
+            <li> mediante un sostantivo;</li>
+            <li> sviluppando la catena semantica che definisce la <span style="font-style: italic;">categoria</span>.</li>
+          </ul>
+          Nei casi in cui è possibile una sola catena semantica è preferibile codificare la classe mediante un sostantivo; l'impiego di quest'ultimo come alias invece della catena semantica consente
+          di contenere la lunghezza degli identificatori.<br>
+          Il secondo approccio è utile nei soli casi in cui i nodi superiori al primo si presentino come casi particolari (<span style="font-style: italic;">instance</span>)&nbsp; di un concetto più
+          generale, cioè necessitino a loro volta di essere qualificati.<br>
+          Il <span style="font-style: italic;">qualificatore </span>è forse la parte più importante dell'identificatore perché è quella che lo caratterizza univocamente.<br>
+          Nel caso di catene di inclusione <code> is-a</code> il qualificatore è generalmente un aggettivo o un sostantivo; nel caso di catene di inclusione <code>member of</code> il qualificatore è
+          un attributo dell'entità definito al livello superiore.<br>
+          <br>
+          7) La codifica delle catene semantiche si opera:<br>
+          <ul>
+            <li> da sinistra a destra, procedendo dalla foglia alla radice,</li>
+            <li> separando le codifiche dei nodi con "_",</li>
+            <li> omettendo il codice di categoria di tutti i nodi figli (in quanto la categoria coincide con il codice del nodo superiore, riportato alla destra di "_").</li>
+          </ul>
+          8) Il presente schema di codifica è suscettibile di deroghe, anche notevoli, nel caso di oggetti strutturati a causa dei vincoli imposti dalla sintassi del linguaggio di programmazione
+          impiegato.<br>
+          <br>
+          <h4> <span style="font-weight: bold;">Label</span></h4>
+          <code>[L_]&lt;acronimo nome procedura&gt;_&lt;qualificatore&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">Costanti</span><br>
+          Costanti e #define usate come costanti.<br>
+          <code>C_&lt;nome variabile&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">Macro</span><br>
+          Macro e #define intese come da codice da intercalare al codice sorgente.<br>
+          <code>M_&lt;nome funzione&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">#define</span><br>
+          &nbsp; Identificatori definiti mediante <code>#define</code> utilizzati come flag in combinazione con <code>#ifdef</code>.<br>
+          <code>f_&lt;nome opzione&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">Tipi</span><br>
+          <code>[T_]&lt;nome tipo&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">Variabili</span><br>
+          <code>[V_]&lt;genere&gt;&lt;tipo&gt;&lt;classe&gt;&lt;qualificatore&gt; </code><br>
+          <br>
+          <span style="font-weight: bold;">Puntatori</span><br>
+          <code>p&lt;classe elementi puntati&gt;&lt;qualificatore&gt;_&lt;struttura dati degli oggetti puntati&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">Indici</span><br>
+          <code>&lt;classe indice&gt;&lt;qualificatore&gt;j[&lt;nome dell'array&gt;]</code><br>
+          ijach&nbsp;&nbsp;&nbsp; intero usato come indice in un array di caratteri<br>
+          <br>
+          <span style="font-weight: bold;">Flag</span><br>
+          <code>f&lt;proprietà&gt;&lt;entità&gt;&lt;qualificatore&gt; </code><br>
+          <br>
+          <span style="font-weight: bold;">Array</span><br>
+          <code>a&lt;classe elementi&gt;J&lt;tipo indice&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">Record</span><br>
+          Nel caso dei record il nome del record e i nomi dei singoli campi vengono gestiti come oggetti distinti; pertanto i due identificatori vengono codificati separatamente.<br>
+          <br>
+          <span style="font-weight: bold;">Funzioni</span><br>
+          <code>F_&lt;tipo restituito&gt;&lt;azione&gt;[_&lt;tipo risultato&gt;][_&lt;tipo parametri&gt;]</code><br>
+          <br>
+          <span style="font-weight: bold;">Parametri</span> (passati per <span style="font-weight: bold;">valore</span>)<br>
+          <code>P_&lt;nome parametro&gt;</code><br>
+          <span style="font-weight: bold;"><br>
+          </span><span style="font-weight: bold;">Parametri</span> (passati per <span style="font-weight: bold;">referenza</span>)<br>
+          <code>R_&lt;nome parametro&gt;</code><br>
+          <br>
+          <span style="font-weight: bold;">Generi</span><br>
+          L_&nbsp;&nbsp;&nbsp; Label<br>
+          <br>
+          C_&nbsp;&nbsp;&nbsp; Costanti<br>
+          <br>
+          M_&nbsp;&nbsp;&nbsp; Macro<br>
+          <br>
+          f_&nbsp;&nbsp;&nbsp; #define<br>
+          <br>
+          [T_]&nbsp;&nbsp;&nbsp; Tipi<br>
+          <br>
+          [V_]&nbsp;&nbsp;&nbsp; Variabili<br>
+          <span style="font-weight: bold;"><br>
+            Tipi Base Assembler</span><br>
+          <br>
+          <table style="width: 100%" border="0">
+            <tbody>
+              <tr>
+                <td width="10%;">adr<br>
+                </td>
+                <td width="90%;">address<br>
+                </td>
+              </tr>
+              <tr>
+                <td>By<br>
+                </td>
+                <td>Byte<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Ww<br>
+                </td>
+                <td>Word (16 bit)<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Dw<br>
+                </td>
+                <td>Double Word (32 bit)<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Qw<br>
+                </td>
+                <td>Quad Word (64 bit)<br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          Variabili non tipate usate per definire le successive. È consentito operare su di esse con operatori booleani agendo a livello di bit.<br>
+          <br>
+          <span style="font-weight: bold;">Tipi Base</span><br>
+          <br>
+          <table style="width: 100%" border="0">
+            <tbody>
+              <tr>
+                <td width="10%;">ch<br>
+                </td>
+                <td width="90%;">char<br>
+                </td>
+              </tr>
+              <tr>
+                <td>f<br>
+                </td>
+                <td>flag<br>
+                </td>
+              </tr>
+              <tr>
+                <td>i<br>
+                </td>
+                <td>integer (la larghezza di defaul degli interi dipende dal processore e dal compilatore) int16, int32, int64<br>
+                </td>
+              </tr>
+              <tr>
+                <td>li<br>
+                </td>
+                <td>long integer<br>
+                </td>
+              </tr>
+              <tr>
+                <td>p<br>
+                </td>
+                <td>pointer<br>
+                </td>
+              </tr>
+              <tr>
+                <td>J<br>
+                </td>
+                <td>tipi definiti per enumerazione<br>
+                </td>
+              </tr>
+              <tr>
+                <td>j<br>
+                </td>
+                <td>indici<br>
+                </td>
+              </tr>
+              <tr>
+                <td>r<br>
+                </td>
+                <td>Real o double<br>
+                </td>
+              </tr>
+              <tr>
+                <td>x<br>
+                </td>
+                <td>Ascisse<br>
+                </td>
+              </tr>
+              <tr>
+                <td>y<br>
+                </td>
+                <td>Ordinate<br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          Nel caso di tipi <span style="font-style: italic;">unsigned </span>i codici precedenti debbono essere preceduti dalla lettera 'u'.<br>
+          <br>
+          <span style="font-weight: bold;">Tipi complessi</span><br>
+          <br>
+          <table style="width: 100%" border="0">
+            <tbody>
+              <tr>
+                <td width="10%;">a<br>
+                </td>
+                <td width="90%;">array<br>
+                </td>
+              </tr>
+              <tr>
+                <td>b <br>
+                </td>
+                <td>Block<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Block<br>
+                </td>
+                <td>Block (Clipper)<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Img<br>
+                </td>
+                <td>Image<br>
+                </td>
+              </tr>
+              <tr>
+                <td>mP<br>
+                </td>
+                <td>matrice di Pixel == Image<br>
+                </td>
+              </tr>
+              <tr>
+                <td>m<br>
+                </td>
+                <td>matrice<br>
+                </td>
+              </tr>
+              <tr>
+                <td>P<br>
+                </td>
+                <td>Pixel mappati su <code>int</code><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Pxl<br>
+                </td>
+                <td>Pixel scheda gafica<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Pel<br>
+                </td>
+                <td>Pixel frame grabber<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Rcd<br>
+                </td>
+                <td>Record di un database<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Rec<br>
+                </td>
+                <td><span style="font-style: italic;">record </span>Pascal <span style="font-style: italic;">struct </span>C-Language<br>
+                </td>
+              </tr>
+              <tr>
+                <td>rg<br>
+                </td>
+                <td>range<br>
+                </td>
+              </tr>
+              <tr>
+                <td>sz<br>
+                </td>
+                <td>stringa terminata con '\0'<br>
+                </td>
+              </tr>
+              <tr>
+                <td>str<br>
+                </td>
+                <td>stringa Pascal<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Uni <br>
+                </td>
+                <td><span style="font-style: italic;">union</span><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Obj <br>
+                </td>
+                <td><span style="font-style: italic;">Oggetti (definiti dall'utente</span>)<br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          Per quanto concerne i puntatori bisogna distinguere due casi:<br>
+          <ol>
+            <li> il puntatore ad una struttura dati (es. aiBuff);</li>
+            <li> il puntatore ad un <span style="text-decoration: underline;">elemento </span>(es. aiBuff[i]) di una struttura dati.</li>
+          </ol>
+          Nel primo caso si userà la notazione:<br>
+          <code>p&lt;struttura&gt;</code><br>
+          Esempio:&nbsp; paiBuff.<br>
+          Nel secondo caso si userà la notazione:<br>
+          <code>p&lt;classe elementi puntati&gt;&lt;qualificatore&gt;_&lt; struttura&gt;</code><br>
+          Esempio:&nbsp; piCur_aiBuff, piMin_aiCur.<br>
+          <br>
+          Quest'ultima notazione ci ricorda che la nostra attenzione è concentrata sul puntatore ad un particolare intero (piCur) facente parte di una certa struttura dati.<br>
+          Nel caso in non ci possano essere dubbi circa la scrittura dati cui si fa riferimento è consentito omettere la seconda parte dell'identificatore (_&lt;struttura&gt;).<br>
+          <br>
+          pF&nbsp;&nbsp;&nbsp; Puntatore ad una Funzione<br>
+          Esempio: pFRead_ch<br>
+          <br>
+          <span style="font-weight: bold;">Prefissi e Suffissi Abituali</span> (riferimento C-Language)<br>
+          <br>
+          <table style="width: 100%;" border="1">
+            <tbody>
+              <tr>
+                <td>Prefisso</td>
+                <td>Nome</td>
+                <td>Note</td>
+              </tr>
+              <tr>
+                <td>Anc</td>
+                <td>Ancestor</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Ave</td>
+                <td>Average</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Base&nbsp;&nbsp;&nbsp; </td>
+                <td>Base&nbsp;&nbsp;&nbsp; </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Bias</td>
+                <td>Bias</td>
+                <td>Sfasamento di uno o più valori rispetto al valore di riferimento. NOTA: nel caso in cui gli sfasamenti fossero diversi si usa Delta.</td>
+              </tr>
+              <tr>
+                <td>Brd</td>
+                <td>Border</td>
+                <td>Bordo di una figura in una immagine grafica.</td>
+              </tr>
+              <tr>
+                <td>Buff<br>
+                </td>
+                <td>Buffer<br>
+                </td>
+                <td>Array utilizzato per ospitare temporaneamente dei dati disaccoppiando due routine. </td>
+              </tr>
+              <tr>
+                <td>By</td>
+                <td>Byte</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>C_<br>
+                </td>
+                <td>Constant<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Card<br>
+                </td>
+                <td>Cardinalità<br>
+                </td>
+                <td>cardinalità di un insieme o di un array.<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Cen<br>
+                </td>
+                <td>Center<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>ch</td>
+                <td>char</td>
+                <td>carattere</td>
+              </tr>
+              <tr>
+                <td>Chr</td>
+                <td>Char</td>
+                <td>16 bit Unicode Char in C-Language</td>
+              </tr>
+              <tr>
+                <td>Clc<br>
+                </td>
+                <td>Calculate<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Cnt<br>
+                </td>
+                <td>Counter<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Col<br>
+                </td>
+                <td>Column<br>
+                </td>
+                <td>NB: il concetto di "colonna" può dare luogo a delle ambiguità:<br>
+                  colonna considerata&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; iNColCur_aPImgAcq;<br>
+                  numero di colonne (in una matrice)&nbsp;&nbsp;&nbsp; iNNCol_aPImgRot;<br>
+                  vettore colonna&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; aiCol[i]<br>
+                  <br>
+                  NOTA: Le colonne sono degli Integer. </td>
+              </tr>
+              <tr>
+                <td>Cp<br>
+                </td>
+                <td>Copy<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Csd<br>
+                </td>
+                <td>Closed<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Cur<br>
+                </td>
+                <td>Current<br>
+                </td>
+                <td>valore assunto dalla variabile considerata nell'iterazione attuale. </td>
+              </tr>
+              <tr>
+                <td>Dbg<br>
+                </td>
+                <td>Debug<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>De<br>
+                </td>
+                <td>Delta<br>
+                </td>
+                <td>indicar lo sfasamento di un valore rispetto al valore di riferimento (nel caso si sfasamenti comuni a più elementi si usa Bias). </td>
+              </tr>
+              <tr>
+                <td>Dflt<br>
+                </td>
+                <td>Default<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Dst<br>
+                </td>
+                <td>Destination<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Ext<br>
+                </td>
+                <td>External<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>f_<br>
+                </td>
+                <td>flag di compilazione </td>
+                <td> Prefisso degli identificatori selettori di opzioni di compilazione dichiarati come #define ed usati in abbinamento a #ifdef. </td>
+              </tr>
+              <tr>
+                <td>f</td>
+                <td>Flag</td>
+                <td>tipo booleano in C-Language</td>
+              </tr>
+              <tr>
+                <td>Fl<br>
+                </td>
+                <td>File<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Fld<br>
+                </td>
+                <td>Field<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Fnd<br>
+                </td>
+                <td>Found<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Free<br>
+                </td>
+                <td><br>
+                </td>
+                <td> Primo elemento libero di una stuttura dati. </td>
+              </tr>
+              <tr>
+                <td>Fst<br>
+                </td>
+                <td>First<br>
+                </td>
+                <td>Primo elemento di una sequenza ordinata. NB: in linea di principio pFst_aiBuff == aiBuff. </td>
+              </tr>
+              <tr>
+                <td>FUsd<br>
+                </td>
+                <td>First Used<br>
+                </td>
+                <td>Primo elemento usato di una Heap. </td>
+              </tr>
+              <tr>
+                <td>Get<br>
+                </td>
+                <td>Get<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Head<br>
+                </td>
+                <td><br>
+                </td>
+                <td>L'Head di una lista coincide con il Fst cioè con il primo elemento della stessa. </td>
+              </tr>
+              <tr>
+                <td>HoA<br>
+                </td>
+                <td>Head of Array </td>
+                <td>Dato un array ai[a..b], l'HoA di ai è l'indice o il puntatore a ai[a-1]. </td>
+              </tr>
+              <tr>
+                <td>i</td>
+                <td style="height: 20px;">integer</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Img<br>
+                </td>
+                <td>Image<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Ini<br>
+                </td>
+                <td>Initial Value<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Inp<br>
+                </td>
+                <td>Input<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Int<br>
+                </td>
+                <td>Internal<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>J</td>
+                <td><br>
+                </td>
+                <td>posizione di un elemento in una enumerazione.</td>
+              </tr>
+              <tr>
+                <td>j</td>
+                <td><br>
+                </td>
+                <td>posizione di un elemento in un array</td>
+              </tr>
+              <tr>
+                <td>Knd<br>
+                </td>
+                <td>Kind<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>L_<br>
+                </td>
+                <td>Local<br>
+                </td>
+                <td>Usato come prefisso nel caso di variabili locali aventi lo stesso nome di variabili globali. </td>
+              </tr>
+              <tr>
+                <td>Lft<br>
+                </td>
+                <td>Left<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Len<br>
+                </td>
+                <td>Length<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Li<br>
+                </td>
+                <td style="height: 20px;">List<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Ln<br>
+                </td>
+                <td>Line<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Lp<br>
+                </td>
+                <td>Loop<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Lst<br>
+                </td>
+                <td>Last<br>
+                </td>
+                <td>Ultimo elemento di una sequenza ordinata. </td>
+              </tr>
+              <tr>
+                <td>LUsd</td>
+                <td>Last Used </td>
+                <td>Ultimo elemento che è stato usato di una Heap. </td>
+              </tr>
+              <tr>
+                <td>LUT<br>
+                </td>
+                <td>Look Up Table<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Lvl<br>
+                </td>
+                <td>Level<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>M_<br>
+                </td>
+                <td>Macro<br>
+                </td>
+                <td>Macro intesa come codice da introdurre in fase di precompilazione. </td>
+              </tr>
+              <tr>
+                <td>Max<br>
+                </td>
+                <td>Massimo<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Min<br>
+                </td>
+                <td>Minimo<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Mns<br>
+                </td>
+                <td>Minus<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Msk<br>
+                </td>
+                <td>Mask<br>
+                </td>
+                <td>Maschera di bit<br>
+                </td>
+              </tr>
+              <tr>
+                <td>N<br>
+                </td>
+                <td>Numero di sequenza<br>
+                </td>
+                <td>N è il numero d'ordine in una sequenza. N può essere preceduto solo da i o li.<br>
+                  Dato l'array ai[], la posizione dell'elemento avente valore massimo sarà codificata come: iNMax_ai; mentre il valore del massimo sarà iValMax_ai o iMax_ai.<br>
+                </td>
+              </tr>
+              <tr>
+                <td>NN<br>
+                </td>
+                <td>Numero Elementi </td>
+                <td>Numero Elementi di una struttura ordinata (Es. iNNRow_ImgAcq).</td>
+              </tr>
+              <tr>
+                <td>Ndx<br>
+                </td>
+                <td>Index<br>
+                </td>
+                <td>array indice.<br>
+                </td>
+              </tr>
+              <tr>
+                <td>New<br>
+                </td>
+                <td><br>
+                </td>
+                <td>Valore attuale di una variabile (non induttiva) in fase di inizializzazione. </td>
+              </tr>
+              <tr>
+                <td>Nm<br>
+                </td>
+                <td>Name<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Nxt<br>
+                </td>
+                <td>Next<br>
+                </td>
+                <td>Valore che assumerà la variabile induttiva considerata nell'iterazione successiva. </td>
+              </tr>
+              <tr>
+                <td>Num<br>
+                </td>
+                <td>Number<br>
+                </td>
+                <td>Numero di sequenza.<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Off<br>
+                </td>
+                <td>Offset<br>
+                </td>
+                <td>Off si usa solo nella combinazione Segment:Offset negli altri casi per indicare lo sfasamento rispetto alla posizione di riferimento si usa Bias oppure Delta. </td>
+              </tr>
+              <tr>
+                <td>Obj</td>
+                <td>Object</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Old<br>
+                </td>
+                <td><br>
+                </td>
+                <td>Valore precedente di una variabile (non induttiva) </td>
+              </tr>
+              <tr>
+                <td>Opn<br>
+                </td>
+                <td>Open<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Opt<br>
+                </td>
+                <td>Option<br>
+                </td>
+                <td>Opzione = scelta nei menu. </td>
+              </tr>
+              <tr>
+                <td>Out<br>
+                </td>
+                <td>Output<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>p</td>
+                <td>Pointer</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>P_<br>
+                </td>
+                <td style="height: 20px;">Parameter (per valore)<br>
+                </td>
+                <td>Usato come prefisso nel caso di parametri di una funzione. L'impiego del prefisso P_ consente di distingue i parametri da eventuali variabili globali aventi lo stesso nome. </td>
+              </tr>
+              <tr>
+                <td>Par<br>
+                </td>
+                <td>Parent<br>
+                </td>
+                <td>Indica il "padre"del nodo considerato. </td>
+              </tr>
+              <tr>
+                <td>Pg<br>
+                </td>
+                <td>Page<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>PgLog<br>
+                </td>
+                <td>Logical Page<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>PgPhy<br>
+                </td>
+                <td>Physical Page<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Pls<br>
+                </td>
+                <td>Plus<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Prn<br>
+                </td>
+                <td>Print<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Prv<br>
+                </td>
+                <td>Previous<br>
+                </td>
+                <td>Valore assunto dalla variabile induttiva considerata nell'iterazione precedente. </td>
+              </tr>
+              <tr>
+                <td>Rgt<br>
+                </td>
+                <td>Right<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>r</td>
+                <td>Read</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Row<br>
+                </td>
+                <td>Row<br>
+                </td>
+                <td>NB: il concetto di "riga" può dare luogo a delle ambiguità:<br>
+                  riga considerata&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; iNRowCur_aPImgAcq;<br>
+                  numero di righe (in una matrice)&nbsp;&nbsp;&nbsp; iNNRow_aPImgRot;<br>
+                  vettore riga&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; aiRow[i] </td>
+              </tr>
+              <tr>
+                <td>Sav<br>
+                </td>
+                <td>Save<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Scrn<br>
+                </td>
+                <td>Screen<br>
+                </td>
+                <td>Schermata = Immagine video in modo alfanumerico </td>
+              </tr>
+              <tr>
+                <td>Seg<br>
+                </td>
+                <td>Segment<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Sent<br>
+                </td>
+                <td>Sentinella<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Shw<br>
+                </td>
+                <td>Show<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Size<br>
+                </td>
+                <td>Size<br>
+                </td>
+                <td>Quantità di memoria occupata da un tipo o da una variabile. </td>
+              </tr>
+              <tr>
+                <td>Smp<br>
+                </td>
+                <td>Sample<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Son<br>
+                </td>
+                <td>Son<br>
+                </td>
+                <td>Nodo "figlio"di quello considerato </td>
+              </tr>
+              <tr>
+                <td>Src<br>
+                </td>
+                <td>Source<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Stk<br>
+                </td>
+                <td>Stack<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Str<br>
+                </td>
+                <td>String<br>
+                </td>
+                <td>Stringhe (Pascal)<br>
+                </td>
+              </tr>
+              <tr>
+                <td>sz<br>
+                </td>
+                <td>zero terminated string<br>
+                </td>
+                <td>Stringhe (C-Language)<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Tail<br>
+                </td>
+                <td><br>
+                </td>
+                <td>La Tail di una lista coincide con il Lst cioè con l'ultimo elemento della stessa. </td>
+              </tr>
+              <tr>
+                <td>ToA<br>
+                </td>
+                <td>Tail of Array </td>
+                <td>Dato un array ai[a..b], la ToA di ai è l'indice o il puntatore a ai[b+1].<br>
+                  In altri termini iToA_ai = iLstj_ai + 1; </td>
+              </tr>
+              <tr>
+                <td>Thr<br>
+                </td>
+                <td>Threshold<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Tmp<br>
+                </td>
+                <td>Temporary<br>
+                </td>
+                <td>Le variabili temporanee impiegate nell'esecuzione di passi intermedi di calcoli complessi. </td>
+              </tr>
+              <tr>
+                <td>Tms<br>
+                </td>
+                <td>Times<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Tup<br>
+                </td>
+                <td>Tuple<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Upd<br>
+                </td>
+                <td>Update<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Usd<br>
+                </td>
+                <td>Used<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Val<br>
+                </td>
+                <td>Value<br>
+                </td>
+                <td>Valore polimorfico<br>
+                </td>
+              </tr>
+              <tr>
+                <td>Wdt<br>
+                </td>
+                <td>Width<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>Zn<br>
+                </td>
+                <td>Zone<br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td><br>
+                </td>
+                <td><br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          <br>
+        </section>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>

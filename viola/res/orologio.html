@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Orologio</title>
+    <meta content="Luigi D. CAPRA" name="author">
+  </head>
+  <body>
+
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"
+      width="270px" height="270px" viewBox="0 0 270 270" onload="setClock()">
+.Cl_NumClock {
+  font-style:normal;
+  font-weight:normal;
+  font-size:21.3333px;
+  line-height:125%;
+  font-family:sans-serif;
+  letter-spacing:0px;
+  word-spacing:0px;
+  fill:#ff0000;
+  fill-opacity:1;
+  stroke:none;
+  stroke-width:1px;
+  stroke-linecap:butt;
+  stroke-linejoin:miter;
+  stroke-opacity:1"
+}
+</style>
+
+      <g transform="translate(135, 135)">
+        <!-- tick -->
+        <g>
+          <circle r="108" fill="none" stroke-width="4" stroke="gray"></circle>
+          <circle r="97" fill="none" stroke-width="11" stroke="black"
+            stroke-dasharray="4,46.789082" transform="rotate(-1.5)"></circle>
+          <circle r="100" fill="none" stroke-width="5" stroke="black"
+            stroke-dasharray="2,8.471976" transform="rotate(-0.873)"></circle>
+        </g>
+        <!-- hands -->
+        <g id="hands" transform="rotate(180)">
+          <g id="hour" transform="rotate(331.483)">
+            <line stroke-width="5" y2="75" stroke-linecap="round" stroke="blue" opacity=".5"></line>
+            <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="12h" by="360"></animateTransform>
+            <circle r="7"></circle>
+          </g>
+          <g id="minute" transform="rotate(17.8)">
+            <line stroke-width="4" y2="93" stroke-linecap="round" stroke="green" opacity=".9"></line>
+            <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="60min" by="360"></animateTransform>
+            <circle r="6" fill="red"></circle>
+          </g>
+          <g id="second" transform="rotate(348)">
+            <line stroke-width="2" y1="-20" y2="102" stroke-linecap="round" stroke="red"></line>
+            <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="60s" by="360"></animateTransform>
+            <circle r="4" fill="blue"></circle>
+          </g>
+        </g>
+      </g>
+<text xml:space="preserve" class="Cl_NumClock" x="190.74631" y="35.039223" id="text877">1</text>
+<text xml:space="preserve" class="Cl_NumClock" x="233.14558" y="82.656624" id="text9013">2</text>
+<text xml:space="preserve" class="Cl_NumClock" x="250.21599" y="141.95377" id="text869">3</text>
+<text xml:space="preserve" class="Cl_NumClock" x="233.14558" y="203.42345" id="text885">4</text>
+<text xml:space="preserve" class="Cl_NumClock" x="191.04318" y="251.86182" id="text889">5</text>
+<text xml:space="preserve" class="Cl_NumClock" x="125.41197" y="265.04025" id="text865">6</text>
+<text xml:space="preserve" class="Cl_NumClock" x="61.390903" y="252.01285" id="text893">7</text>
+<text xml:space="preserve" class="Cl_NumClock" x="22.910269" y="203.41302" id="text897">8</text>
+<text xml:space="preserve" class="Cl_NumClock" x="8.5351887" y="141.95377" id="text873">9</text>
+<text xml:space="preserve" class="Cl_NumClock" x="10.332076" y="82.656624" id="text901">10</text>
+<text xml:space="preserve" class="Cl_NumClock" x="54.380501" y="35.039223" id="text905">11</text>
+<text xml:space="preserve" class="Cl_NumClock" x="118.59428" y="21.113373" id="text861">12</text>     
+
+</svg>
+<br>
+<div id="Id_DClock" style="text-align:center;"></div>
+<br>
+<script> 
+/* This is a modified version from Charles McCathieNevile's code */
+
+function setClock() {
+  var date = new Date();
+  var h = parseInt(date.getHours());
+  h = (h > 12) ? h -12: h;
+  var m = parseInt(date.getMinutes());
+  var s = parseInt(date.getSeconds());
+  var second = 6*s;
+  var minute =(m+s/60)*6;
+  var hour = (h+m/60+s/3600)*30;
+  var hourHand = document.getElementById("hour");
+  var minuteHand = document.getElementById("minute");
+  var secondHand = document.getElementById("second");
+  hourHand.setAttribute("transform","rotate("+ hour.toString() +")");
+  minuteHand.setAttribute("transform","rotate("+ minute.toString() +")");
+  secondHand.setAttribute("transform","rotate("+ second.toString() +")");
+  
+//   var sz_h = (h < 10)? '0' + h: h;
+//   var sz_m = (m < 10)? '0' + m: m;
+//   var sz_s = (s < 10)? '0' + s: s;
+//   
+//   var szTime = sz_h + ":" + sz_m + ":" + sz_s;
+//   
+//   var Elem0 = document.getElementById("Id_DClock");
+//   Elem0.innerHTML = szTime;
+  
+} </script>
+  </body>
+</html>

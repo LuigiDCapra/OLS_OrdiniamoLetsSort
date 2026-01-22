@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>OLS HELP</title>
+    <meta content="Luigi CAPRA" name="author">
+    <link rel="stylesheet" href="help.css">
+  </head>
+  <body>
+    <div class="Cl_Flex_Row">
+      <div class="Cl_MargLft"><br>
+        <iframe id="Id_Item_ASide0" src="aside.html" type="text/html"></iframe><br>
+      </div>
+      <main id="Id_Main">
+        <article id="Id_Sort_HardCoded">
+          <h1>Sort<br>
+            Riordino dei valori di una Collezione.</h1>
+          <section id="Intestazione">
+            <h2>Ordinamento dei valori di un campo cliccando sull'intestazione. </h2>
+            <br>
+            <p>La vista Tabelle consente di riordinare l'elenco delle righe in funzione dei valori di un campo, cioè di una colonna, semplicemente cliccando sull'intestazione.</p>
+            <p>Cliccando una seconda volta sulla stessa intestazione la tabella verrà riordinata rispetto allo stesso campo in ordine inverso cioè in ordine decrescente se prima era crescente o vice
+              versa.</p>
+          </section>
+          <section id="Ordinamento Stringhe">
+            <h2>Ordinamento Lessicografico (stringhe di caratteri). </h2>
+            <br>
+            <p>Le stringhe di caratteri possono essere ordinate considerando le lettere maiuscole e minuscole uguali o diverse.</p>
+            <p>In inglese si dice che l'ordinamento e "<strong>Case Sensitive</strong>" se le stringhe:</p>
+            <p><br>
+            </p>
+            <p>"ciao", "CIAO", "Ciao", "ciAo"</p>
+            <p><br>
+            </p>
+            <p>si considerano diverse in caso contrario l'ordinamento è "<strong>NON Case Sensitive</strong>".</p>
+            <p><br>
+            </p>
+            <p>Il programma OLS consente di impostare la modalità di confronto fra le stringhe campo per campo impostando opportunamente il flag <code>fCaseSens</code> del Tracciato Record.</p>
+            <p>Per default il confronto è sempre Case Sensitive, per cui se si desidera considerare le stringhe di caratteri "ciao", "CIAO", "Ciao", "ciAo" come equivalenti bisogna disabilitare il
+              flag.</p>
+          </section>
+        </article>
+        <article id="Id_Sort">
+          <section id="Sort_Help file">
+            <h2><img class="Cl_Ico_TBM" alt="" src="../../ico/help.svg"> aiuto<br>
+              Help file</h2>
+            <p>Apre la schermata di Help contestuale mostrando le informazioni concernenti le funzioni disponibili nel contesto considerato.</p>
+          </section>
+        </article>
+      </main>
+    </div>
+    <script src="rlcd.js"></script>
+  </body>
+</html>
