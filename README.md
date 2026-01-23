@@ -4,9 +4,7 @@ Il software __Ordiniamo/Let's Sort (OLS)__ è un'applicazione Open Source, scrit
 I sorgenti di __Ordiniamo/Let's Sort (OLS)__ sono distribuiti sotto licenza GPL v. 3.0.
 I file che costituiscono la libreria DDJ, su cui si basa il programma OLS, sono invece distribuiti con licenza LGPL v. 3.0.
 
-### Il programma OLS non è un programma fatto finito e funzionante pronto per essere usato dagli utenti finali, ma un cantiere aperto in continua evoluzione
-
-per cui può contenere degli errori e manifestare talvolta dei fenomeni di malfunzionamento.
+### Il programma OLS non è un programma fatto finito e funzionante pronto per essere usato dagli utenti finali, ma un cantiere aperto in continua evoluzione per cui può contenere degli errori e manifestare talvolta dei fenomeni di malfunzionamento.
 
 
 Il programma __Ordiniamo/Let's Sort (OLS)__ è uno strumento tecnico per l'esplorazione e la manipolazione di collezioni di dati in formato JSON o formati alternativi,
