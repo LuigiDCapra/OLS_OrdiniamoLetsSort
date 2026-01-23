@@ -1,7 +1,7 @@
 # Ordiniamo/Let's Sort (OLS) - Presentazione
 
-Il software *** Ordiniamo/Let's Sort (OLS) *** è un'applicazione Open Source, scritta in JavaScript, per l'esplorazione e la manipolazione di collezioni di dati in formato JSON.
-I sorgenti di *** Ordiniamo/Let's Sort (OLS) *** sono distribuiti sotto licenza GPL v. 3.0.
+Il software __Ordiniamo/Let's Sort (OLS)__ è un'applicazione Open Source, scritta in JavaScript, per l'esplorazione e la manipolazione di collezioni di dati in formato JSON.
+I sorgenti di __Ordiniamo/Let's Sort (OLS)__ sono distribuiti sotto licenza GPL v. 3.0.
 I file che costituiscono la libreria DDJ, su cui si basa il programma OLS, sono invece distribuiti con licenza LGPL v. 3.0.
 
 ### Il programma OLS non è un programma fatto finito e funzionante pronto per essere usato dagli utenti finali, ma un cantiere aperto in continua evoluzione
@@ -9,15 +9,15 @@ I file che costituiscono la libreria DDJ, su cui si basa il programma OLS, sono 
 per cui può contenere degli errori e manifestare talvolta dei fenomeni di malfunzionamento.
 
 
-Il programma *** Ordiniamo/Let's Sort (OLS) *** è uno strumento tecnico per l'esplorazione e la manipolazione di collezioni di dati in formato JSON o formati alternativi,
+Il programma __Ordiniamo/Let's Sort (OLS)__ è uno strumento tecnico per l'esplorazione e la manipolazione di collezioni di dati in formato JSON o formati alternativi,
 OLS supporta un'ampia gamma di fonti consentendo di caricare le collezioni di dati dai tradizionali file salvati su disco, scaricare tabelle ospitate su un WebServer, si può ricorrere al copia e incolla, ma può anche essere integrato con alti programmi JavaScript per essere usato a scopo di debug per prendere visione dei valori contenuti in strutture dati complesse che potrebbero essere difficili da studiare con i normali debugger.
 
-Il programma *** Ordiniamo/Let's Sort (OLS) *** è stato creato nell'ambito di un'attività didattica avente lo scopo di consentire ad alcuni studenti, esclusi dalla PCTO, di fare una esperienza lavorativa simulata. svolgendo delle attività lavorative simili a quelle che potrebbero farsi in azienda.
-Il programma *** Ordiniamo/Let's Sort (OLS) *** è fondamentalmente un dimostratore tecnologico che enfatizza le possibilità creative della terna HTML5 + CSS3 + JS allo scopo di catturare l'attenzione degli studenti e farli appassionare alla programmazione in JavaScript. Date queste premesse gli obiettivi didattici prevalgono su ogni altro requisito anche quelli concernenti la sicurezza, 
+Il programma __Ordiniamo/Let's Sort (OLS)__ è stato creato nell'ambito di un'attività didattica avente lo scopo di consentire ad alcuni studenti, esclusi dalla PCTO, di fare una esperienza lavorativa simulata. svolgendo delle attività lavorative simili a quelle che potrebbero farsi in azienda.
+Il programma __Ordiniamo/Let's Sort (OLS)__ è fondamentalmente un dimostratore tecnologico che enfatizza le possibilità creative della terna HTML5 + CSS3 + JS allo scopo di catturare l'attenzione degli studenti e farli appassionare alla programmazione in JavaScript. Date queste premesse gli obiettivi didattici prevalgono su ogni altro requisito anche quelli concernenti la sicurezza, 
 
 ### si sconsiglia pertanto il suo impiego in tutti quei contesti in cui l'utilizzo di OLS potrebbe costituire una breccia nella sicurezza  dei sistemi informatici degli utenti.
-A questo proposito si osserva che il programma *** Ordiniamo/Let's Sort (OLS) *** è il prototipo di uno strumento per sviluppatori ed è pensato per essere utilizzato da utenti competenti e responsabili, che sanno ciò che fanno e se ne assumono le responsabilità. Non è uno strumento per utenti finali.
-Il programma *** Ordiniamo/Let's Sort (OLS) *** non è un database transazionale e non vuole esserlo, ma piuttosto un datawarehouse  intesa come "una collezione o aggregazione di dati strutturati, provenienti da fonti interne operazionali (DBMS) ed esterne al sistema informativo aziendale, utili ad analisi e rapporti informativi".
+A questo proposito si osserva che il programma __Ordiniamo/Let's Sort (OLS)__ è il prototipo di uno strumento per sviluppatori ed è pensato per essere utilizzato da utenti competenti e responsabili, che sanno ciò che fanno e se ne assumono le responsabilità. Non è uno strumento per utenti finali.
+Il programma __Ordiniamo/Let's Sort (OLS)__ non è un database transazionale e non vuole esserlo, ma piuttosto un datawarehouse  intesa come "una collezione o aggregazione di dati strutturati, provenienti da fonti interne operazionali (DBMS) ed esterne al sistema informativo aziendale, utili ad analisi e rapporti informativi".
 
 Il software OLS può essere usato in vari modi:
 
