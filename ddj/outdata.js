@@ -5,9 +5,9 @@
 * File        : outdata.js
 * Function    : Data Saving.
 * FirstEdit   : 15/12/2019
-* LastEdit    : 14/11/2025
+* LastEdit    : 29/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -71,6 +71,7 @@ var G_szHTML_DBox_OutData  = `<div style="padding:10%;">
           <option value="19" title="Fixed Length Records">FLR </option>
           <option value="20" title="XML">XML </option>
           <option value="22" title="HTML">HTML </option>
+          <option value="24" title="HTML">TOON </option>
 </select><br><br>
 <label for="Id_Out_jPrimKey">Name of the field used as Primary key (or 'unsorted'): </label> <select id="Id_Out_jPrimKey">&nbsp;</select><br>
 <label for="Id_CBox_fSvAll">Save all fields vs. save selected fields:</label> <input id="Id_CBox_fSvAll" type="checkbox">
@@ -338,6 +339,9 @@ function U_Save(P_szDest, P_szNm_Sav, P_JKndTup, P_jPrimKey)
     } break;
     case C_JKndTup_HTML: {
        szTxt = F_szHTML_Mp_Coll(UsrView0, P_szNm_Sav, P_jPrimKey);
+    } break;
+    case C_JKndTup_TOON: {
+       szTxt = encode(UsrView0.XDB0.Coll0);  // $NOTE: foreign/toon.js
     } break;
     default : {
        szTxt = F_szJSON_Mp_Coll(UsrView0, P_JKndTup, P_jPrimKey);

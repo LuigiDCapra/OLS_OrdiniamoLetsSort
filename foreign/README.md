@@ -1,0 +1,1 @@
+The software in the present directory is NOT part of Viola/OLS project but it is third party software.

@@ -5,7 +5,7 @@
 * File        : ddj.js
 * Function    : Data Disk Jockey ex CL-DAP
 * FirstEdit   : 15/12/2019
-* LastEdit    : 18/01/2026
+* LastEdit    : 03/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -343,14 +343,14 @@ function U_Log_Command(P_ch, P_szCmd)
 {
   var szSCtx = $SemCtx.F_szSCtx_Cur();
   var szMsg = "";
-  var Rcd0;
+  var Rcd0, i;
 
   if (P_ch == "B") {
      var aMnEntry = G_asaMnEntry[szSCtx];
      if (!aMnEntry) {
         return;
      } /* if */
-     for (let i = 0; i < aMnEntry.length; i++) {
+     for (i = 0; i < aMnEntry.length; i++) {
          if (aMnEntry[i][C_jaMnEntry_pFn] == P_szCmd) {
             szMsg = aMnEntry[i][C_jaMnEntry_Key];
             break;
@@ -403,7 +403,8 @@ function U_DispColl(P_Bag_XDB)
 
   P_Bag_XDB[C_jWwFlag0] &= ~C_WwFlag_fDisplay;        /* Disable C_WwFlag_fDisplay to prevent double display. */
   var XDB_Cur = new CL_XDB(P_Bag_XDB);                /* If the Collection has changed update XDB */
-  var UsrView_Cur = CL_UsrView0.F_UsrView_Select(P_szNmColl, (P_WwFlag0 | C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
+//  var UsrView_Cur = CL_UsrView0.F_UsrView_Select(P_szNmColl, (P_WwFlag0 | C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
+  var UsrView_Cur = CL_UsrView0.F_UsrView_Select(P_szNmColl, (P_WwFlag0 | C_WwFlag_fSearchCS));
 } /* U_DispColl */
 
 /*-----U_Config --------------------------------------------------------
@@ -1656,7 +1657,7 @@ function U_LayoutColl()
 
   $MeF.U_Set_UsrView_Lft(UsrView0);
   /* $NOTE: make explicit reference to aFld_aFld1. */        
-  $DDJ.U_DispColl([szNm_aFld, C_JKndTup_aObj, UsrView0.aFld1, null, "aFld_aFld1", "Layout", (C_WwFlag_fOverWrite | C_WwFlag_fLayout), C_jCd_Cur, [UsrView0.szNmColl, C_jPg_0,'', null, null, C_Undefined, C_Undefined, "PopUp_Layout", C_jaszHelp_aFld1]]);                
+  $DDJ.U_DispColl([szNm_aFld, C_JKndTup_aObj, UsrView0.aFld1, null, "aFld_aFld1", "Layout", (C_WwFlag_fOverWrite | C_WwFlag_fLayout | C_WwFlag_fDisplay), C_jCd_Cur, [UsrView0.szNmColl, C_jPg_0,'', null, null, C_Undefined, C_Undefined, "PopUp_Layout", C_jaszHelp_aFld1]]);                
 } /* U_LayoutColl */
 
 /*-----U_Thumbnails --------------------------------------------------------
@@ -1968,6 +1969,9 @@ function U_LinkClicked(P_Event) {
         else if (S_fShow && (szHREF != "JavaScript:void(0)")) {
            F_Window_open(szHREF);
            S_fShow = false;
+        }
+        else {
+          F_Window_open(szHREF); // 02/02/2026
         } /* if */
     } /* if */
 } /* U_LinkClicked */

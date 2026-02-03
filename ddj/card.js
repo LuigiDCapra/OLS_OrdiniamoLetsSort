@@ -5,9 +5,9 @@
 * File        : card.js
 * Function    : Card Editing
 * FirstEdit   : 15/12/2019
-* LastEdit    : 22/12/2025
+* LastEdit    : 30/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -402,6 +402,9 @@ function U_EditCard(P_XDB, P_jOpt_Confirm, P_fCustom=false)
   
   var Collect1 = XDB0.Coll0;
   var szId_Tbl_Card = UsrView0.szId_Tbl_Card;
+  if (!szId_Tbl_Card) {
+     $Error.U_Error(C_jCd_UsrView, 6, "szId_Tbl_Card undefined", UsrView0.szNmColl, false);
+  } /* if */
   $OPrn.U_Ins_Elem(szId_Tbl_Card);  
   $OPrn.U_Prn_Elem("", true);
   
@@ -412,7 +415,7 @@ function U_EditCard(P_XDB, P_jOpt_Confirm, P_fCustom=false)
   
   if (!XDB0.Tup_Sel && (P_jOpt_Confirm != C_jOpt_Confirm_New) && (P_jOpt_Confirm != C_jOpt_Confirm_Flt) && (P_jOpt_Confirm != C_jOpt_Confirm_Panel)) {
      if (XDB0.JKndTup0 > C_JKndTup_Obj) {
-         $Error.U_Error(C_jCd_Cur, 6, "No Tuple selected.", "", false);
+         $Error.U_Error(C_jCd_Cur, 7, "No Tuple selected.", "", false);
      }
      else {
 /*
@@ -427,7 +430,7 @@ function U_EditCard(P_XDB, P_jOpt_Confirm, P_fCustom=false)
         var f1 = (szType0 == "boolean") && (Val0 == false); 
 
         if (!(f0 || f1)) {
-           $Error.U_Error(C_jCd_Cur, 7, "No Tuple selected.", XDB0.Tup_Sel, false);
+           $Error.U_Error(C_jCd_Cur, 8, "No Tuple selected.", XDB0.Tup_Sel, false);
         } /* if */
      } /* if */
   } /* if */
@@ -511,7 +514,7 @@ function U_ConfirmCard_Edt()
      $Table.U_Scroll(jaNdx_Sel +1);
   }
   else {
-     $Error.U_Warning(C_jCd_Cur, 12, "Read Only!", "");
+     $Error.U_Warning(C_jCd_Cur, 9, "Read Only!", "");
   } /* if */
 } /* U_ConfirmCard_Edt */
 
@@ -537,7 +540,7 @@ function U_ConfirmCard_New()
      } /* if */
   }
   else {
-     $Error.U_Warning(C_jCd_Cur, 13, "Read Only!", "");
+     $Error.U_Warning(C_jCd_Cur, 10, "Read Only!", "");
   } /* if */
 } /* U_ConfirmCard_New */
 
@@ -594,7 +597,7 @@ function U_ConfirmPanel(P_0)
      } /* if */
   }
   else {
-     $Error.U_Warning(C_jCd_Cur, 12, "Read Only!", "");
+     $Error.U_Warning(C_jCd_Cur, 11, "Read Only!", "");
   } /* if */
 } /* U_ConfirmPanel */
 

@@ -5,7 +5,7 @@
 * File        : inpdata.js
 * Function    : Input Data / Data Loading
 * FirstEdit   : 15/12/2019
-* LastEdit    : 21/01/2026
+* LastEdit    : 30/01/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -162,7 +162,8 @@ var G_szHTML_DBox_InpData  = `
           <option value="19" title="Fixed Length Records">FLR </option>
           <option value="20" title="XML">XML </option>
           <option value="21" title="DBF">DBF </option>
-          <option value="23" title="Analyze Text">Text </option>
+          <option value="23" title="Analyze Text">Text </option>         
+          <option value="24" title="HTML">TOON </option>
         </select>
         </div> <!-- Id_Div_Kind -->
         
@@ -607,7 +608,7 @@ function U_Upd_szNmColl(P_szStruct, P_szSource)
 //          Id_CBox_fReadOnly.checked = G_DDJ.fReadOnly;    
     } break;    
     case "File DDJ": {
-          if (szFlNm.indexOf("http://" >= 0)) {
+          if (szFlNm.indexOf("http://") >= 0) {
              $Error.U_Error(C_jCd_Cur, 2, "Was expected a PATH not an URL.", szFlNm, false);
           } /* if */
           Id_Inp_szNmColl_2.value = szFlNm;

@@ -5,9 +5,9 @@
 * File        : aobj.js
 * Function    : Array of Objects
 * FirstEdit   : 03/11/2021
-* LastEdit    : 14/10/2025
+* LastEdit    : 02/02/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -394,10 +394,10 @@ function F_szHTML_OpenCard(P_UsrView, P_jOpt_Confirm, P_fReadOnly)
       Obj0 = Obj1; /* 12/02/2024 */
   } /* if */       
   for (var j = 0; j < iCard_aiPos; j++) {
-       var i1 = aiPos[j];
-       var szNm = aFld1[i1].szNm;
+       var j0 = aiPos[j];
+       var szNm = aFld1[j0].szNm;  
        var Val0 = Obj0[szNm];
-       szRow += $Value.F_szHTML_TR_Card(Val0, aFld1[i1], i1, P_fReadOnly);          
+       szRow += $Value.F_szHTML_TR_Card(Val0, aFld1[j0], j, P_fReadOnly);          
   } /* for */ 
   return(szRow);
 } /* F_szHTML_OpenCard */

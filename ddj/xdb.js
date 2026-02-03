@@ -5,9 +5,9 @@
 * File        : xdb.js ex xarr2.js
 * Function    : Data_Structure MetaData (Layout) management.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 05/12/2025
+* LastEdit    : 25/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -75,12 +75,13 @@ const C_JKndTup_XML   = 20;
 const C_JKndTup_DBF   = 21;   /* File DBIII */
 const C_JKndTup_HTML  = 22;   /* File HTML */
 const C_JKndTup_Text  = 23;
-const C_JKndTup_ToA   = 23;
+const C_JKndTup_TOON  = 24;
+const C_JKndTup_ToA   = 24;
 
 const C_JKndTup_ArrLike = 1;  /* odd index access, even key access */
 const C_Ww_KndTup_aRcd_Test  = 1;  /* Test (JKndTup0 & C_Ww_KndTup_Test) is equivalent to ((JKndTup0 == C_JKndTup_Arr) || (JKndTup0 == C_JKndTup_aRcd) || (JKndTup0 == C_JKndTup_asRcd)) */
 
-const C_asz_JKndTup = ["Null", "Arr", "Obj", "aRcd", "aObj", "asRcd", "asObj", "+9", "+8", "Arr", "as_", "+11", "as_", "+13", "+14", "+15", "OLS", "CSV", "Blob", "FLR", "XML", "DBF", "HTML", "Text"];
+const C_asz_JKndTup = ["Null", "Arr", "Obj", "aRcd", "aObj", "asRcd", "asObj", "+9", "+8", "Arr", "as_", "+11", "as_", "+13", "+14", "+15", "OLS", "CSV", "Blob", "FLR", "XML", "DBF", "HTML", "Text", "TOON"];
 
 const C_jTup_Fst  =  0;                                                                                                                                                        
 const C_jTup_Prv  = -1;                                                                                                                                                          

@@ -5,9 +5,9 @@
 * File        : autodetect.js
 * Function    : Layout autodetect.
 * FirstEdit   : 15/12/2019
-* LastEdit    : 13/10/2025
+* LastEdit    : 30/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2024
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -51,8 +51,10 @@ const C_jCd_Cur = C_jCd_AutoDetect;
 function F_aFld_Make(P_Coll0, P_JKndTup, P_fszFldNm_1)
 {
   var aFld;
+
   if (!P_Coll0 || (P_Coll0.length == 0)) {  
-     //  26/08/2023 $Error.U_Error(C_jCd_Cur, 1, "AutoDetect requires a NON empty collections!", "");   NON funziona con Obj!!!!
+     //  26/08/2023 $Error.U_Error(C_jCd_Cur, 1, "AutoDetect requires a NON empty collections!", "");   // LCD NON funziona con Obj!!!!
+     $Error.U_Error(C_jCd_Cur, 1, "AutoDetect requires a NON empty collections!", "");    // LCD ripristinato 30/01/2026 perché richiesto da New (creazione nuove collezioni).
   } /* if */
   
   switch (P_JKndTup) {                                                          /* Manage polymorphism*/

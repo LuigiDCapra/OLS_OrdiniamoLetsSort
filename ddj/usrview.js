@@ -5,9 +5,9 @@
 * File        : usrview.js
 * Function    : User's View management.
 * FirstEdit   : 30/06/2022
-* LastEdit    : 31/12/2025
+* LastEdit    : 30/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -429,7 +429,7 @@ class CL_UsrView0 {
     this.CfgUV0 = CfgUV0;
 
     var jPg = C_jPg_0;   
-    // U_Sel_Pg(this, jPg);   // 2025-10-03
+    U_Sel_Pg(this, jPg);   // LCD 2025-10-03 Tolto // 2026/01/30 Ripristinato perché serve alla New quando si creano nuove collezioni
      
     if (ch) {
        CL_as_UsrView_K.U_Insert(ch, this);
@@ -442,9 +442,6 @@ class CL_UsrView0 {
           
     this.U_Prn_Elem        = $OPrn.U_Prn_Elem;  // Add HTML code to the compiled list.
     this.U_Upd_Elem        = $OPrn.U_Upd_Elem;  // Update the HTML code of the Element selected by its Id (P_szId) inserting the compiled HTML code.
-    
-    this.U_PreProc         = U_Null;            // Optional. Pre-Processing  Procedure. 
-    this.U_PostProc        = U_Null;            // Optional. Post-Processing Procedure.
     this.U_Pre_Select      = U_Null;            // Routine that set User View parameters in U_XShow
 
     this.F_aNdx            = F_aNdx;            // Select the index corresponding to the whole collection (UsrView0.aNdx) vs the index corresponding to the Tuples satisfying filter conditions.   
@@ -678,10 +675,6 @@ class CL_UsrView0 {
   */ 
   static F_UsrView_Select(P_szNm_UsrView, P_WwFlag)
   {
-//     if (P_szNm_UsrView == "D:/dbase/lcd/KBS/") {
-//        debugger;
-//     } /* if */
-//    debugger;
     var UsrView0 = CL_UsrView0.F_UsrView_SelIns(P_szNm_UsrView, P_WwFlag);
     if (UsrView0) {
        CL_UsrView0.U_Set_fMng_Undef(UsrView0.XDB0.fMng_Undef);

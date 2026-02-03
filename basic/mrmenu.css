@@ -17,7 +17,7 @@
   font-size:80%;
 }
 
-#Id_RMenu li a {
+#Id_RMenu li div {
   display: block;
   padding: 6px 16px;
   text-decoration: none;
@@ -33,7 +33,7 @@
   height:1px;
 }
 
-#Id_RMenu li a:hover {
+#Id_RMenu li div:hover {
   background-color: yellow;
   color: #00f;
 }

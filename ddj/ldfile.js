@@ -5,9 +5,9 @@
 * File        : ldfile.js
 * Function    : Load File.
 * FirstEdit   : 10/04/2024
-* LastEdit    : 09/11/2025
+* LastEdit    : 30/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -393,6 +393,11 @@ function F_Coll_Mp_Text(R_DDJ, P_szTxt)
         case C_JKndTup_OLS: {                          /* OLS */
              Coll0 = F_Coll_Mp_OLS(R_DDJ, P_szTxt);
         } break;
+        case C_JKndTup_TOON: {                         /* TOON */
+             Coll0 = F_Coll_Mp_TOON(R_DDJ, P_szTxt);
+             var JKndTup0 = $AutoDetect.F_JKndTup(Coll0);
+             R_DDJ.JKndTup0 = JKndTup0;
+        } break;
         default : {
              $Error.U_Error(C_jCd_Cur, 2, "Unknow data format", P_JKndTup0, false);
         } break;
@@ -618,6 +623,17 @@ const C_jHdrOls_szPost    = 5;
  return(Coll0);
 } /* F_Coll_Mp_OLS */
 
+
+/*-----F_Coll_Mp_TOON --------------------------------------------------------
+*
+* Given a file in TOON format create the collections in it.
+*/ 
+function F_Coll_Mp_TOON(R_DDJ, P_szTxt)
+{
+ var Coll0 = decode(P_szTxt);
+ return(Coll0);
+} /* F_Coll_Mp_TOON */
+
 /*-----F_aRcd_Mp_szText --------------------------------------------------------
 *
 * Convert a string in CSV format in a matrix.
@@ -711,7 +727,8 @@ Fails for:
           continue;        /* Skip empty lines. */
        } /* if */
        if (fAdd_LnNum) {
-          Rcd0 = (j == 0)? [""]: [j];
+//          Rcd0 = (j == 0)? [""]: [j];  // 30/01/2026
+          Rcd0 = [j];
           Rcd1 = pF_aRcd(aszRcd);
           Rcd2 = Rcd0.concat(Rcd1);  
        }

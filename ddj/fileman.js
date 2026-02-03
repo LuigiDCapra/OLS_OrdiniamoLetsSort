@@ -6,7 +6,7 @@
 * Function    : code FileMan
 * FirstEdit   : 21/04/2024
 * FirstEdit   : 11/01/2025
-* LastEdit    : 19/01/2026
+* LastEdit    : 28/01/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -269,7 +269,9 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
            szPath += "/";
         } /* if */
         var CB_GetDir = (P_fImg)? U_CB_GetDir_2: U_CB_GetDir;
-        U_Get_Dir(szDNS, szPath, CB_GetDir, false);   // 31/05/2025
+        
+        G_DDJ.WwFlag0 = (C_WwFlag_fDisplay);          // 28/01/2026
+        U_Get_Dir(szDNS, szPath, CB_GetDir, false);   // 31/05/2025   <<<<<<
         return;
      }
      else {
@@ -674,7 +676,8 @@ function U_Get_Dir(P_szDNS, P_szURL, P_CB_GetDir=U_CB_GetDir, P_fInit= true)
   U_URL(P_szURL);  
   G_DDJ.JKndTup0 = C_JKndTup_aRcd;
   G_DDJ.szNmColl = P_szURL;
-  G_DDJ.WwFlag0  = (C_WwFlag_fDisplay);
+//  G_DDJ.WwFlag0  = (C_WwFlag_fDisplay);
+//  G_DDJ.WwFlag0  = (C_WwFlag_Null);    // 28/01/2026
 
   if (window.fLcdLcd) {   /* $VERSIONING */
      $IPCF.U_GetFile(szURL, P_CB_GetDir, U_Null, false, G_DDJ);
@@ -928,6 +931,9 @@ function F_JKndTup_Mp_szExt(P_szExt)
    } break;
    case "ols": {
         JKndTup0 = C_JKndTup_OLS;
+   } break;
+   case "toon": {
+        JKndTup0 = C_JKndTup_TOON;
    } break;
    default : {
    } break;

@@ -5,9 +5,9 @@
 * File        : type.js
 * Function    : Types management
 * FirstEdit   : 16/03/2022
-* LastEdit    : 13/12/2025
+* LastEdit    : 31/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -163,11 +163,7 @@ var G_aFld_aFld = [
   {"szNm":"szNm",      "szType":"string",   "iLen":5, "szRem":"Name of the field."},
   {"szNm":"szType",    "szType":"jLst_Type","iLen":5, "szRem":"Type_Sem of the Field."},
   {"szNm":"iLen",      "szType":"int",      "iLen":5, "szRem":"Number of chars reserved for the field."},
-  {"szNm":"szRem",     "szType":"string",   "iLen":5, "szRem":"Description."},
-
-  {"fVisible":false,"szNm":"szTBM_Table",  "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":"Layout"},            /* Select Layout TBM. */
-  {"fVisible":false,"szNm":"szTBM_PopUp",  "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":"PopUp_Layout"},      /* Select Layout TBM. */
-  {"fVisible":false,"szNm":"szHelp_Table", "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":"std/afld0"}          /* Select Layout Help file. */
+  {"szNm":"szRem",     "szType":"string",   "iLen":5, "szRem":"Description."}
 ];
 /* 
 * Data Layout of the UsrView's "Data Layout" that is the aFld1 data structure (see: UsrView0).
@@ -180,11 +176,11 @@ var G_aFld_aFld1 = [
   {"szNm":"szCaption", "szType":"string",   "iLen":8, "szRem":"Name showed"},                                          /* RW Name showed */
   {"szNm":"szType",    "szType":"jLst_Type","iLen":4, "szRem":"Semantic type of the field"},                           /* RW Type_Sem of the Field */
   {"szNm":"iLen",      "szType":"int",      "iLen":3, "szRem":"Size of the field"},                                    /* RW Number of chars reserved for the field */
-  {"szNm":"Aux0",      "szType":"object",   "iLen":3, "szRem":""},                                                     // , "Aux0":{"szShow":"","oEnum":"", "iCard":""}
+  {"szNm":"Aux0",      "szType":"object",   "iLen":3, "szRem":""},                                                     /* Ex. "Aux0":{"F_fChk":U_Null, "Min":1, "Max":100,"szShow":"","oEnum":"", "iCard":"", "F_Val_PreProc":U_Null, "F_Val_PostProc":U_Null} */
   {"szNm":"fReadOnly", "szType":"Flag",     "iLen":3, "szRem":"Flag: Field set Read Only"},                            /* RW field Read Only */
   {"szNm":"fCaseSens", "szType":"Flag",     "iLen":3, "szRem":"Flag: Case Sensitive sorting"},                         /* RW Case Sensitive Sorting */
-  {"szNm":"fRecalc",   "szType":"Flag",     "iLen":3, "szRem":"Flag. Requires recalculation of field values"},         /* RW field requires recalculation */
-  {"szNm":"szCode",    "szType":"string",   "iLen":3, "szRem":"JS expression used in recalculation."},                 // code that defines the new value ex. "_[5] * 2"
+  {"szNm":"fRecalc",   "szType":"Flag",     "iLen":3, "szRem":"Flag. Enables automatic recalc of field values"},       /* RW enables automatic recalculation of field values */
+  {"szNm":"szCode",    "szType":"string",   "iLen":3, "szRem":"JS expression used for recalc."},                       /* RW code that defines the new value ex. "$[5] * 2". NOTE: values will be calculated una tantum. */
   {"szNm":"szRem",     "szType":"string",   "iLen":10,"szRem":"Remarks"},                                              /* RW Remarks */
 
   {"fVisible":false,"szNm":"szTBM_Table",  "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":"Layout"},            /* Select Layout TBM. */
@@ -247,8 +243,6 @@ var G_aFld_UsrView = [
 {"szNm":"U_Delete", "szType":"function","iLen":5,"szRem":""},
 {"szNm":"U_Insert", "szType":"function","iLen":5,"szRem":""},
 {"szNm":"U_Invert_Filter", "szType":"function","iLen":5,"szRem":""},
-{"szNm":"U_PostProc", "szType":"function","iLen":5,"szRem":""},
-{"szNm":"U_PreProc", "szType":"function","iLen":5,"szRem":""},
 {"szNm":"U_Pre_Select", "szType":"function","iLen":5,"szRem":""},
 {"szNm":"U_Prn_Elem", "szType":"function","iLen":5,"szRem":""},
 {"szNm":"U_Reset_aNdx", "szType":"function","iLen":5,"szRem":""},
@@ -520,20 +514,22 @@ var G_asRcd_Type = {
 
 "textarea":  ["string",  "string",   "textarea",  "string",  8, "Input+", {"default":""}, "HTML text. Lines end with '<br>'.", 29],
 "HTML":      ["string",  "string",   "HTML",      "HTML",    8, "Input+", {"get":"getString", "Min":"", "default":""}, "HTML text.", 30],
+"MarkDown":  ["string",  "string",   "MarkDown",  "MarkDown",8, "Input+", {"get":"getString", "Min":"", "default":""}, "MarkDown text.", 31],
 
-"SByte":     ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt8",  "CPU":true, "Min":-128, "Max":127, "default":0},  "signed 8 bits number.", 31],
-"short":     ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt16", "CPU":true, "Min":-32768, "Max":32767, "default":0}, "signed 16 bits number.", 32],
-"int":       ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt32", "CPU":true, "Min":-0x80000000, "Max":0x7fffffff, "default":0}, "signed 32 bits number.", 33],
-"int64":     ["number",  "bigint",   "bigint",    "bigint",  8, "CPU", {"get":"getUInt64", "CPU":true, "Min":-0x8000000000000000, "Max":0x7fffffffffffffff, "default":0},"signed 64 bits number.", 34],
 
-"Byte":      ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt8",  "CPU":true, "Min":0, "Max":255, "default":0}, "unsigned 8 bits number.", 35],
-"Word":      ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt16", "CPU":true, "Min":0, "Max":65535, "default":0}, "unsigned 16 bits number.", 36],
-"DWord":     ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getInt32",  "CPU":true, "Min":0, "Max":0x80000000, "default":0}, "unsigned 32 bits number.", 36],
-"QWord":     ["number",  "bigint",   "number",    "number",  8, "CPU", {"get":"getInt64",  "CPU":true, "Min":0, "Max":0x8000000000000000, "default":0}, "unsigned 64 bits number.", 38],
+"SByte":     ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt8",  "CPU":true, "Min":-128, "Max":127, "default":0},  "signed 8 bits number.", 32],
+"short":     ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt16", "CPU":true, "Min":-32768, "Max":32767, "default":0}, "signed 16 bits number.", 33],
+"int":       ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt32", "CPU":true, "Min":-0x80000000, "Max":0x7fffffff, "default":0}, "signed 32 bits number.", 34],
+"int64":     ["number",  "bigint",   "bigint",    "bigint",  8, "CPU", {"get":"getUInt64", "CPU":true, "Min":-0x8000000000000000, "Max":0x7fffffffffffffff, "default":0},"signed 64 bits number.", 35],
 
-"float":     ["number",  "real",     "number",    "number",  8, "CPU", {"get":"getFloat32","CPU":true, "Min":-Number.MAX_VALUE, "Max":Number.MAX_VALUE, "default":0}, "float number.", 39],
-"real":      ["number",  "real",     "real",      "number",  8, "CPU", {"get":"getFloa64", "CPU":true, "Min":-Number.MAX_VALUE, "Max":Number.MAX_VALUE, "default":0}, "double number. Ex. 123.45 ", 40],
-"adr":       ["number",  "bigint",   "number",    "number",  8, "CPU", {"get":"getFloa64", "CPU":true, "Min":-Number.MAX_VALUE, "Max":Number.MAX_VALUE, "default":0}, "64 bits address", 41],
+"Byte":      ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt8",  "CPU":true, "Min":0, "Max":255, "default":0}, "unsigned 8 bits number.", 36],
+"Word":      ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getUInt16", "CPU":true, "Min":0, "Max":65535, "default":0}, "unsigned 16 bits number.", 38],
+"DWord":     ["number",  "int",      "number",    "number",  8, "CPU", {"get":"getInt32",  "CPU":true, "Min":0, "Max":0x80000000, "default":0}, "unsigned 32 bits number.", 39],
+"QWord":     ["number",  "bigint",   "number",    "number",  8, "CPU", {"get":"getInt64",  "CPU":true, "Min":0, "Max":0x8000000000000000, "default":0}, "unsigned 64 bits number.", 40],
+
+"float":     ["number",  "real",     "number",    "number",  8, "CPU", {"get":"getFloat32","CPU":true, "Min":-Number.MAX_VALUE, "Max":Number.MAX_VALUE, "default":0}, "float number.", 41],
+"real":      ["number",  "real",     "real",      "number",  8, "CPU", {"get":"getFloa64", "CPU":true, "Min":-Number.MAX_VALUE, "Max":Number.MAX_VALUE, "default":0}, "double number. Ex. 123.45 ", 42],
+"adr":       ["number",  "bigint",   "number",    "number",  8, "CPU", {"get":"getFloa64", "CPU":true, "Min":-Number.MAX_VALUE, "Max":Number.MAX_VALUE, "default":0}, "64 bits address", 43],
 
 "output":    ["output",  "output",   "output",    "output",  8, "output", {}, "output.", 98],
 "Custom":    ["Custom",  "Custom",   "Custom",    "Custom",  8, "Custom", {}, "Custom data type.", 99],
@@ -870,7 +866,7 @@ function F_fChk_Type(P_Val, P_szTypeReq, P_Fld)
       /* registered type */
       
       if (!Type0[C_jaType_oAux]) {
-         /* There are no type checking indications for this type go back to is ancestor. ++++++++++++++++++++++++++++++++ */
+         /* There are no type checking indications for this type go back to its ancestor. */
           if (szTypeCur != Type0[C_jaType_szType_Anc]) {
              return(F_fChk_Type(P_Val, Type0[C_jaType_szType_Anc]));
           }
@@ -883,7 +879,7 @@ function F_fChk_Type(P_Val, P_szTypeReq, P_Fld)
   } /* if */
   
   if (Aux0.F_fChk) {
-     /* f the user provided a specific check for the values entered use it! */
+     /* if the user provided a specific check for the values entered use it! */
      iSyndrome |= Aux0.F_fChk(P_Val);
   } /* if */
   

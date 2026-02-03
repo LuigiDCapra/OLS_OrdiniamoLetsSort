@@ -5,7 +5,7 @@
 * File        : MRMenu.js
 * Function    : Mouse Right Menu - Context Menu
 * FirstEdit   : 05/10/2021
-* LastEdit    : 09/01/2026
+* LastEdit    : 03/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -99,7 +99,7 @@ function U_Open(P_Event)
          sz0 += `<li class="Cl_Line"></li>\n`;      
       }
       else {
-         sz0 += `<li><a href="JavaScript:void(0)" title="${MnEntry0[C_jaMnEntry_Title]}" onclick="$DDJ.U_Button('${MnEntry0[C_jaMnEntry_pFn]}', 'Pos-1');">${MnEntry0[C_jaMnEntry_Cap]}</a></li>\n`;
+         sz0 += `<li><div title="${MnEntry0[C_jaMnEntry_Title]}" onclick="$DDJ.U_Button('${MnEntry0[C_jaMnEntry_pFn]}', 'Pos-1');">${MnEntry0[C_jaMnEntry_Cap]}</div></li>\n`;
       } /* if */
   } /* for */ 
   sz0 += "</ul><br>\n";

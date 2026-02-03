@@ -5,9 +5,9 @@
 * File        : table.js
 * Function    : DDJ's table display
 * FirstEdit   : 15/12/2019
-* LastEdit    : 31/12/2025
+* LastEdit    : 27/01/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -535,14 +535,20 @@ function U_Display_Table(P_WwFlag0 = C_WwFlag_Null)
   $Log.U_Log(C_jCd_Cur, 5, C_iLvl_DispTbl, "U_Display_Table", "");
 
   var UsrView0    = CL_UsrView0.F_UsrView_Selected();
+  if (!UsrView0) {
+     $Error.U_Error(C_jCd_Cur, 3, "No UsrView selected", "", false);
+  } /* if */
+  
   var ElemPrv     = UsrView0.ElemPrv;
   var szNmColl    = UsrView0.szNmColl;
   var szTBM_Table = UsrView0.szTBM_Table;
   var szTBM_PopUp = UsrView0.szTBM_PopUp;
   
-  if (!UsrView0) {
-     $Error.U_Error(C_jCd_Cur, 3, "No UsrView selected", "", false);
+  if (P_WwFlag0 & C_WwFlag_fDisplay) {
+     var yyy = szNmColl;
+     var xxx = 0;
   } /* if */
+  
   if (UsrView0.XDB0.fLive) {
      UsrView0.U_Upd_aNdx();
   } /* if */
@@ -721,7 +727,7 @@ function U_Display_Table_RC_0(P_UsrView)
           szTitle0 += (Type0[C_jaType_szNote])? "\r\n" + Type0[C_jaType_szNote]: "";
       szRow += `<th onclick="$Table.U_LH(this)" title="${szTitle0}">` + i + " - " + $Value.F_szHTML_Caption(szCaption0) + "</th>";
 
-      /* Recalc field values */
+      /* Recalculate field values for the whole column. */
       if (Fld2.fRecalc && (Fld2.szCode)) {
          P_UsrView.U_Set_Field(P_UsrView, Fld2, Fld2.szCode, 0, XDB0.Coll0.length -1);    /* $NOTE: length -1 because test on "<=" condition. */
          Fld2.fRecalc = false;

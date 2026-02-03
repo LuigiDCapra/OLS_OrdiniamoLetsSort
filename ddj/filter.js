@@ -944,7 +944,8 @@ function U_SetFilter(P_pF_fFilter, P_szCond0)
              aNdxFlt_F[jF++] = Key;
           } /* if */
       } catch (P_Err) {
-          $Error.U_Error(C_jCd_Cur, 9, "Filter ", Key, false);
+          $Error.U_Warning(C_jCd_Cur, 9, "Illegal field value. ", Key, false);   // 24/01/2026
+          aNdxFlt_F[jF++] = Key;
       } /* try catch */
   } /* for */
 

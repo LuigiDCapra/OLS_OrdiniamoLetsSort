@@ -5,7 +5,7 @@ Revision    : 0.021
 File        : ols.htm
 Function    : Ordiniamo/Let's Sort ex Data Jockey (ex CL-DAP)
 FirstEdit   : 15/12/2019
-LastEdit    : 18/01/2026
+LastEdit    : 25/01/2026
 Author      : Luigi D. Capra
 Copyright(c): Luigi D. Capra 2017, 2026
 System      : HTML-5 + CSS3 + JavaScript
@@ -209,6 +209,8 @@ TBM = ToolBar Menu
 <script src="foreign/json2xml.js"></script>
 <script src="foreign/xml2json.js"></script>
 <script src="foreign/c_xml2json.js"></script>
+<script src="foreign/toon.js"></script>
+
 <!-- script src="../foreign/jstat.js"></script-->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
@@ -231,6 +233,21 @@ TBM = ToolBar Menu
 <script src="ols_files/ols.js"></script>
 <script src="ols_files/xtg.js"></script>
 <script src="ols_files/custom.js"></script>
+
+<!-- $DEBUG $LCD $Versioning -->
+<!-- -->
+
+<script src="http://helios:27015/D:/viola/lcd/agenda.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/diz.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/fintech.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/kbase.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/natlang.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/release.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/semtree.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/voiceint.js"></script>
+<script src="http://helios:27015/D:/viola/lcd/sinottico.js"></script>
+<!-- script src="http://helios:27015/D:/dbase/dict.js"></script -->
+<script src="http://helios:27015/D:/viola/lcd/lcdlcd.js"></script>
 
 <-- -->
 
@@ -453,6 +470,41 @@ function U_Test1()
   $Test.U_Test1();
 } /* U_Test1 */
 
+/*-----U_Test1 --------------------------------------------------------
+*
+* Conversione Genias 2  $LCD
+*/ 
+function xxx_U_Test1()
+{
+//  debugger;
+  alert("inizio (1)");
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected(); 
+  var Coll0 = UsrView0.XDB0.Coll0;
+  var iLen = Coll0.length;
+  var Out = [];
+  var i, Tup0;
+  var k = 0;
+  for (i = 0; i < iLen; i++) {
+      Tup0 = Coll0[i];
+      if (Tup0[2] == "zzzzzz") {
+         if (Tup0[1].length < 6) {
+            // Coll0[i] = [-1, "", ""];
+         }
+         else {
+            Coll0[k++] = Coll0[i];
+         } /* if */
+      }
+      else {
+         Coll0[k++] = Coll0[i];
+      } /* if */
+  } /* for */
+  
+  for (i = k; i < iLen; i++) {
+      Coll0[k++] = [-2, "", ""];
+  } /* for */
+  alert("finito");
+} /* U_Test1 */
+
 /*-----U_Test2 --------------------------------------------------------
 *
 * Spare routine for code testing.
@@ -669,6 +721,10 @@ function U_Init()
 
   Id_szCopyright.innerText = C_szCopyright;
   $Root.U_Reg();
+    
+  if (window.fLcdLcd) {  // $VERSIONING
+     $LcdLcd.U_Debug();  // $DEBUG
+  } /* if */
   
   var szDateTime = $TimeDate.F_szDate_Now("datetime"); 
   $Log.U_Log(C_jCd_Cur, 4, C_iLvl_InitEnd, "+++ READY +++", szDateTime + " " + C_szApp);
@@ -692,6 +748,15 @@ function U_Start()
      $LdFile.U_DownLoad_NDU(szDNS, szDir_Data + 'Init.OLS', C_WwFlag_fService);
   } /* if */
 } /* U_Start */
+
+
+/*-----U_XXX --------------------------------------------------------
+*
+*/ 
+function U_XXX(P_1, P_2, P_3)
+{
+  debugger;
+} /* U_XXX */
 
 U_Init();
 

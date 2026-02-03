@@ -5,9 +5,9 @@
 * File        : asobj.js
 * Function    : Associative Array of Objects
 * FirstEdit   : 03/11/2021
-* LastEdit    : 13/10/2025
+* LastEdit    : 02/02/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -350,8 +350,9 @@ function F_szHTML_OpenCard(P_UsrView, P_jOpt_Confirm, P_fReadOnly)
   szRow += '<tr><td><label>' + szNm + '</label></td><td><input id="Id_Card_' + j + '" value="' + P_UsrView.KeyTup + '" style="color:red;" '+ '></td></tr>'; 
   
   for (var j = 1; j < iCard_aiPos; j++) {
-       var szNm = aFld1[j].szNm;     
-       szRow += $Value.F_szHTML_TR_Card(Obj0[szNm], aFld1[j], j, P_fReadOnly);          
+       var j0 = aiPos[j];
+       var szNm = aFld1[j0].szNm;    
+       szRow += $Value.F_szHTML_TR_Card(Obj0[szNm], aFld1[j0], j, P_fReadOnly); // 02/02/2026         
   } /* for */
   return(szRow);
 } /* F_szHTML_OpenCard */

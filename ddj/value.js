@@ -5,9 +5,9 @@
 * File        : value.js
 * Function    : Data's value Editing
 * FirstEdit   : 05/09/2022
-* LastEdit    : 28/12/2025
+* LastEdit    : 02/02/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -1038,10 +1038,8 @@ function U_Confirm_V1(P_Bag)
   
   if (S_aIOType[szType_In]) {
       Val0 = S_aIOType[szType_In].U_Confirm_V1(Fld1.szNm, szType_Sem);
-      
-      if ($Type.F_fChk_Type(Val0, szType_In, Fld1)) {               /* Check the value entered by the User. */
-         $Error.U_Error(C_jCd_Cur, 11, "Illegal or out of range value:", Val0, false);
-      } /* if */
+
+      Val0 = F_Val_PostProc(Val0, szType_In, Fld1, 1);
       
       switch (JKndTup0) {
         case C_JKndTup_Arr: {    
@@ -1091,7 +1089,6 @@ function U_Confirm_V1(P_Bag)
 */ 
 function F_szHTML_TR_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
 {
-  // debugger;
   var szVal  = F_szHTML_TD_Card(P_Item, P_Fld1, P_j, P_fReadOnly);
   var szNm   = P_Fld1.szNm;
   var szType = P_Fld1.szType;
@@ -1103,20 +1100,23 @@ function F_szHTML_TR_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
   var szTitle0  = (P_Fld1.szCaption)? P_Fld1.szCaption: "";
       szTitle0 += (P_Fld1.szRem)? P_Fld1.szRem: "";
   var szTitle1 = (Type0[C_jaType_szNote])? Type0[C_jaType_szNote]: "";
-  var szId0 = `Id_Card_${P_j}`; 
+  var szId0 = `Id_Card_${P_j}`;
   
   if (S_fType_Show) {
      szInfo = `<td>${szType}</td>`; 
+  } /* if */
+  if (P_Fld1.fReadOnly) {
+     szDisabled += " readonly";
   } /* if */
 
   /* Show the input box. */
   switch (szType_Out) {
     case "string": {
-          var iSize = 40; // $DEBUG
+          var iSize = 80; // $DEBUG  // 30/01/2026
           szRow = `<tr><td width="10%;"><label for="${szId0}" title="${szTitle0}">${P_j})&nbsp; ${szNm}</label></td><td><input type="text" id="${szId0}" ${szDisabled} value="${szVal}" title="${szTitle1}" size=${iSize}></td>${szInfo}</tr>`;
     } break;
     case "textarea": {
-          szRow = `<tr><td width="10%;"><label for="${szId0}" title="${szTitle0}">${szNm} (1)</label></td><td><fieldset><legend>${szNm}</legend><textarea id="Id_Card_${P_j}" rows="5" cols="80">${P_Item}</textarea></fieldset></td>${szInfo}</tr>`; 
+          szRow = `<tr><td width="10%;"><label for="${szId0}" title="${szTitle0}">${szNm} (1)</label></td><td><fieldset><legend>${szNm}</legend><textarea id="Id_Card_${P_j}" rows="5" cols="80">${szVal}</textarea></fieldset></td>${szInfo}</tr>`; 
     } break;
     case "date" :   
     case "datetime-local" :
@@ -1164,10 +1164,10 @@ function F_szHTML_TR_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
     case "Video": {
 //          if (S_fLoad0 && S_fLoad1) {
           if (S_fLoad0) {
-             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${P_Item}" style="width:${S_iWdt_Image}%;" ${szDisabled}> ${szVal}</td>${szInfo}</tr>`;
+             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${szVal}" style="width:${S_iWdt_Image}%;" ${szDisabled}> ${szVal}</td>${szInfo}</tr>`;
           }
           else {
-             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${P_Item}" style="width:${S_iWdt_Image}%;" ${szDisabled}></td>${szInfo}</tr>`;
+             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${szVal}" style="width:${S_iWdt_Image}%;" ${szDisabled}></td>${szInfo}</tr>`;
           } /* if */
     } break;
     default : {
@@ -1195,6 +1195,16 @@ function F_szHTML_TD_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
   var szType_Out = Type0[C_jaType_szType_Out];                                  /* Type_IO required */
   var szType_Item = typeof(P_Item);                                             /* Type_JS of the argument (P_Item). */
   var szRes;
+  
+  if (P_Fld1) {
+     if (P_Fld1.szU_PreProc) {
+        /* Do preprocessing. */
+        var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+        var szU_PreProc = "szRes = " + P_Fld1.szU_PreProc + "(P_Item, P_Fld1, UsrView0)";
+        eval(szU_PreProc);
+        return(szRes);
+     } /* if */
+  } /* if */
 
   if (szType_Item == "undefined") {
      szRes = F_szVal_Undefined("1");                                            /* Manage undefined values. */
@@ -1220,17 +1230,14 @@ function F_Val_Inp_Card(P_Fld1, P_j)
   var szType_Usr = P_Fld1.szType;
   var Type0 = $Type.F_asRcd_Type(szType_Usr);    /* Type_JS used to map the Type Required */
   var szType_In = Type0[C_jaType_szType_In];
-  var szInput = "%%1234%%";
+  var Val0 = "%%1234%%";
   
   if (S_aIOType[szType_In]) {
-      szInput = S_aIOType[szType_In].F_Val_Inp_Card(P_Fld1, P_j);
-      
-      if ($Type.F_fChk_Type(szInput, szType_In, P_Fld1)) {                      /* Check the value entered by the User. */
-         $Error.U_Error(C_jCd_Cur, 12, "Illegal or out of range value:", szInput, false);
-      } /* if */
+      Val0 = S_aIOType[szType_In].F_Val_Inp_Card(P_Fld1, P_j);
+      Val0 = F_Val_PostProc(Val0, szType_In, P_Fld1, 2);
   } /* if */         
 
-  return(szInput);
+  return(Val0);
 } /* F_Val_Inp_Card */
 
 /*-----F_szHTML_Caption ---------------------------------------------------------------
@@ -1347,12 +1354,7 @@ function F_Val_Inp_Table(P_szTypeDst, P_Fld1, P_szInp, P_jOpt_Confirm=C_jOpt_Con
   
   if (S_aIOType[szType_In]) {
      Val0 = S_aIOType[szType_In].F_Val_Inp_Table(szType_In, P_Fld1, Val0);
-      
-     if ($Type.F_fChk_Type(Val0, szType_In, P_Fld1)) {                          /* Check the value entered by the User. */     
-        $Error.U_Warning(C_jCd_Cur, 14, "Illegal value:", Val0, false);
-        /* If the value introduced by the user is not valid restore previous value. */
-        Val0 = $Table.F_ValPrv_Restore();
-     } /* if */
+     Val0 = F_Val_PostProc(Val0, szType_In, P_Fld1, 3);
      return(Val0);      
   } /* if */
 
@@ -1366,6 +1368,26 @@ function F_Val_Mp_Val()
 {
 
 } /* F_Val_Mp_Val */
+
+/*-----F_Val_PostProc --------------------------------------------------------
+*
+* Do postprocessing. Check type's requirements. If they fail restore previous value.
+*/ 
+function F_Val_PostProc(P_Val0, P_szType_In, P_Fld1, P_jCall)
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+
+  if (P_Fld1.szU_PostProc) {
+     var szU_PostProc = P_Fld1.szU_PostProc + "(P_Val0, UsrView0, P_jCall)";
+     eval(szU_PostProc);
+     P_Val0 = UsrView0.Val_New;  /* The confirmed value, with any changes, is returned in UsrView0.Val_New */
+  } /* if */
+  if ($Type.F_fChk_Type(P_Val0, P_szType_In, P_Fld1)) {                         /* Check the value entered by the User. */
+     $Error.U_Warning(C_jCd_Cur, 11, "Illegal or out of range value:", P_Val0, false);     
+     P_Val0 = UsrView0.Val_Sel;  /* Restore the original value stored in UsrView0.Val_Sel */
+  } /* if */
+  return(P_Val0);
+} /* F_Val_PostProc */
 
 
 /* ***** CL_IOType *******************************************************
@@ -1628,7 +1650,8 @@ function F_szHTML_TD_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
   var szRes = P_Item;
   switch (szType_Item) {
     case "string": {
-          szRes = P_Item.substr(0, 80);  /* Return the firsts 80 chars of the string. */
+          szRes = P_Item.substr(0, 80);  /* Return the firsts 80 chars of the string. */   // 30/01/2026
+          //szRes = "" + P_Item;
     } break;
     case "number":
     case "bigint": {
@@ -3889,6 +3912,106 @@ function F_Val_Inp_Table(P_szTypeDst, P_Fld1, P_szInp)
   } /* constructor */
 }  /* class CL_HTML */
 
+/* ***** CL_MarkDown *******************************************************
+* Prova3 Formula
+*/ 
+class CL_MarkDown extends CL_IOType {
+  constructor() {
+    super("CL_MarkDown"); /* new CL_IOType() */   
+    this.U_Open_V1 = U_Open_V1;
+    this.U_Confirm_V1  = U_Confirm_V1;
+    this.F_szMD_TD_Card = F_szMD_TD_Card;
+    this.F_Val_Inp_Card  = F_Val_Inp_Card;
+    this.F_szMD_TD_Table = F_szMD_TD_Table;
+    this.F_Val_Inp_Table = F_Val_Inp_Table;
+
+/*-----F_szMD_TD_Table --------------------------------------------------------
+*
+* HighLigth the string searched, that is matching GoTo conditions set using FilterStr.
+*/ 
+function F_szMD_TD_Table(P_Item, P_Fld1)
+{
+  var szFilterStr = $Filter.F_szFilterStr();
+  if (szFilterStr != "") {
+     P_Item = P_Item.replaceAll(`${szFilterStr}`, `<hili>${szFilterStr}</hili>`); 
+  } /* if */
+  return(P_Item); 
+} /* F_szMD_TD_Table */
+
+/*-----U_Open_V1 --------------------------------------------------------
+*
+*/ 
+function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
+{
+   var szTmp = "";
+   var szNm = P_Fld1.szNm;
+   var Val0 = P_Val0;
+  
+   var szMD = `<label for="Id_xKrW98717_a">${szNm} = MarkDown</label><fieldset><div id="Id_xKrW98717_a" contenteditable="true">${Val0}</div></fieldset>`;   
+   return(szMD);  
+} /* U_Open_V1 */
+
+/*-----U_Confirm_V1 --------------------------------------------------------
+*
+*/ 
+function U_Confirm_V1()
+{
+  return(Id_xKrW98717_a.innerHTML);
+} /* U_Confirm_V1 */
+
+/*-----F_szMD_TD_Card --------------------------------------------------------
+*
+*/ 
+function F_szMD_TD_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
+{
+  var szType_Item = typeof(P_Item);                                          /* Type_JS of the argument (P_Item). */
+  var szRes = P_Item;
+  switch (szType_Item) {
+    case "string": {    
+         szRes = P_Item;
+    } break;
+    case "number":
+    case "bigint": {
+          szRes = "" + P_Item;
+    } break;
+    case "boolean": {
+          szRes = (P_Item)? "true": "false";
+    } break;
+    case "function": {
+          /* Get the name of the function. */
+          var szTmp = "" + P_Item;
+          szRes = szTmp.substr(0, szTmp.indexOf(')') +1);
+    } break;
+  } /* switch */
+  return(szRes);
+} /* F_szMD_TD_Card */
+
+/*-----F_Val_Inp_Card --------------------------------------------------------
+*
+*/ 
+function F_Val_Inp_Card(P_Fld1, P_j)
+{
+  var szId = "Id_Card_" + P_j;
+  var Elem0 = document.getElementById(szId);
+  var szInput = Elem0.innerHTML;
+  return(szInput);
+} /* F_Val_Inp_Card */
+
+/*-----F_Val_Inp_Table --------------------------------------------------------
+*
+*/ 
+function F_Val_Inp_Table(P_szTypeDst, P_Fld1, P_szInp)
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var ElemPrv = UsrView0.ElemPrv;
+  var Val1 = ElemPrv.innerHTML;
+
+  return(Val1);
+} /* F_Val_Inp_Table */
+
+  } /* constructor */
+}  /* class CL_MarkDown */
+
 /* ***** CL_Flag *******************************************************
 *
 */ 
@@ -4713,6 +4836,7 @@ function U_Init_Value()
   S_aIOType.week       = new CL_Week();
   S_aIOType.textarea   = new CL_TextArea();
   S_aIOType.HTML       = new CL_HTML();
+  S_aIOType.MarkDown   = new CL_MarkDown();
 
   S_aIOType.SByte      = new CL_Number();
   S_aIOType.short      = new CL_Number();
