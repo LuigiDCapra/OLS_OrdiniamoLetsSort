@@ -1,4 +1,4 @@
-# Ordiniamo/Let's Sort (OLS) - Presentazione
+# Ordiniamo/Let's Sort (OLS) - Presentazione (03/02/2026)
 
 Il software __Ordiniamo/Let's Sort (OLS)__ è un'applicazione Open Source, scritta in JavaScript, per l'esplorazione e la manipolazione di collezioni di dati in formato JSON.
 I sorgenti di __Ordiniamo/Let's Sort (OLS)__ sono distribuiti sotto licenza GPL v. 3.0.
