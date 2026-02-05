@@ -1,66 +1,66 @@
-# Ordiniamo/Let's Sort (OLS) - Presentazione
+# Ordiniamo/Let's Sort (OLS) - Presentation
 
-Il software __Ordiniamo/Let's Sort (OLS)__ è un'applicazione Open Source, scritta in JavaScript, per l'esplorazione e la manipolazione di collezioni di dati in formato JSON.
-I sorgenti di __Ordiniamo/Let's Sort (OLS)__ sono distribuiti sotto licenza GPL v. 3.0.
-I file che costituiscono la libreria DDJ, su cui si basa il programma OLS, sono invece distribuiti con licenza LGPL v. 3.0.
+__Ordiniamo/Let's Sort (OLS)__ is an open-source application, written in JavaScript, for exploring and manipulating data collections in JSON format.
+The __Ordiniamo/Let's Sort (OLS)__ source code is distributed under the GPL v. 3.0 license.
+The files that make up the DDJ library, on which the OLS program is based, are distributed under the LGPL v. 3.0 license.
 
-### Il programma OLS non è un programma fatto finito e funzionante pronto per essere usato dagli utenti finali, ma un cantiere aperto in continua evoluzione per cui può contenere degli errori e manifestare talvolta dei fenomeni di malfunzionamento.
+### The OLS program is not a finished, functional program ready for end users; it is a work in progress, constantly evolving, and may contain errors and occasionally exhibit malfunctions.
 
+The __Ordiniamo/Let's Sort (OLS)__ program is a technical tool for exploring and manipulating data collections in JSON or alternative formats.
+OLS supports a wide range of sources, allowing you to load data collections from traditional files saved on disk, download tables hosted on a web server, and copy and paste. It can also be integrated with other JavaScript programs for debugging purposes, allowing you to view the values contained in complex data structures that might be difficult to study with standard debuggers.
 
-Il programma __Ordiniamo/Let's Sort (OLS)__ è uno strumento tecnico per l'esplorazione e la manipolazione di collezioni di dati in formato JSON o formati alternativi,
-OLS supporta un'ampia gamma di fonti consentendo di caricare le collezioni di dati dai tradizionali file salvati su disco, scaricare tabelle ospitate su un WebServer, si può ricorrere al copia e incolla, ma può anche essere integrato con alti programmi JavaScript per essere usato a scopo di debug per prendere visione dei valori contenuti in strutture dati complesse che potrebbero essere difficili da studiare con i normali debugger.
+The __Ordiniamo/Let's Sort (OLS)__ program was created as part of an educational program designed to allow some students, excluded from the PCTO program, to gain simulated work experience by performing work activities similar to those they might perform in a company.
+The __Ordiniamo/Let's Sort (OLS)__ program is essentially a technology demonstrator that emphasizes the creative possibilities of the HTML5 + CSS3 + JS trio, aiming to capture students' attention and inspire them to develop a passion for JavaScript programming. Given these premises, educational objectives take precedence over all other requirements, including those concerning security.
 
-Il programma __Ordiniamo/Let's Sort (OLS)__ è stato creato nell'ambito di un'attività didattica avente lo scopo di consentire ad alcuni studenti, esclusi dalla PCTO, di fare una esperienza lavorativa simulata. svolgendo delle attività lavorative simili a quelle che potrebbero farsi in azienda.
-Il programma __Ordiniamo/Let's Sort (OLS)__ è fondamentalmente un dimostratore tecnologico che enfatizza le possibilità creative della terna HTML5 + CSS3 + JS allo scopo di catturare l'attenzione degli studenti e farli appassionare alla programmazione in JavaScript. Date queste premesse gli obiettivi didattici prevalgono su ogni altro requisito anche quelli concernenti la sicurezza, 
+### It is therefore not recommended for use in any context where the use of OLS could compromise the security of users' computer systems.
+In this regard, it should be noted that the __Ordiniamo/Let's Sort (OLS)__ program is the prototype of a developer tool and is intended for use by competent and responsible users who know what they are doing and take responsibility for it. It is not a tool for end users.
+The __Ordiniamo/Let's Sort (OLS)__ program is not a transactional database and does not claim to be one, but rather a data warehouse defined as "a collection or aggregation of structured data, from internal operational sources (DBMS) and external to the company information system, useful for analysis and reporting."
 
-### si sconsiglia pertanto il suo impiego in tutti quei contesti in cui l'utilizzo di OLS potrebbe costituire una breccia nella sicurezza  dei sistemi informatici degli utenti.
-A questo proposito si osserva che il programma __Ordiniamo/Let's Sort (OLS)__ è il prototipo di uno strumento per sviluppatori ed è pensato per essere utilizzato da utenti competenti e responsabili, che sanno ciò che fanno e se ne assumono le responsabilità. Non è uno strumento per utenti finali.
-Il programma __Ordiniamo/Let's Sort (OLS)__ non è un database transazionale e non vuole esserlo, ma piuttosto un datawarehouse  intesa come "una collezione o aggregazione di dati strutturati, provenienti da fonti interne operazionali (DBMS) ed esterne al sistema informativo aziendale, utili ad analisi e rapporti informativi".
+The OLS software can be used in various ways:
 
-Il software OLS può essere usato in vari modi:
+- to explore and/or manipulate data structures already present in the browser's memory or loaded from an external file,
+- to monitor the evolution of the processing results of a program under test over time,
+- to view the properties of a collection, verifying its compliance with specifications and then, if necessary, "cleaning" it through data cleaning,
+- to change the data representation of a collection by converting its record layout and field format,
+- or, more simply, the DDJ library can be integrated into another program to use its data exploration and visualization functions.
 
-- per esplorare e/o manipolare strutture dati già presenti nella memoria del browser o caricate da un file esterno,
-- per monitorare l'evoluzione nel tempo dei risultati dell'elaborazione di un programma sotto test,
-- per prendere visione delle proprietà di una collezione verificandone l'aderenza alle specifiche per poi eventualmente "ripulirla" effettuando il cosiddetto data cleaning,
-- per cambiare la rappresentazione dei dati di una collezione convertendone il tracciato record e il formato dei campi,
-- o più semplicemente si può integrare la libreria DDJ in un altro programma per usarne le funzioni di esplorazione e visualizzazione dei dati.
+It goes without saying that operations involving the modification and reorganization of data in a collection may compromise the integrity of the collection.
 
+### Safeguarding the integrity of data contained in collections is the responsibility of the operator.
 
-Va sa sé che le operazioni concernenti la modifica e la riorganizzazione dei dati di una collezione possono andare a detrimento dell'integrità della collezione.
+However, as a precaution, data collections are opened by default in Read-Only mode, so that they can be explored and viewed, but not modified. If the operator decides to switch the operating mode to Read/Write mode, they assume responsibility for any damage that may be caused to the data structures.
 
-### La salvaguardia dell'integrità dei dati contenuti nelle collezioni viene lasciata alla responsabilità dell'operatore.
+## Features
 
-Comunque, come misura precauzionale, le collezioni di dati vengono aperte per default in modalità Read Only, in modo che sia possibile esplorarle prendendone visione, ma non modificarle. Se l'operatore decide di commutare la modalità di funzionamento abilitando le modifiche (modalità Read/Write) si assume la responsabilità dei danni che potrebbero essere arrecati alle strutture dati.
+- Support for various data representation schemes in JSON format (arrays, objects, record arrays, object arrays, record-associative arrays, and object-associative arrays).
+- Support for arbitrary record layouts.
+- Ability to explore data collections by representing them as tables or cards.
+- Ability to transpose rows with columns.
+- Ability to automatically convert data collections from one JSON schema to another and save them.
+- Ability to extract and reorganize data subsets and save them.
+- Support for multimedia data collections (images, audio, video, mathematical formulas, GPS coordinates).
+- Support for hypertext data. In the record fields you can insert links that refer to records in other OLS tables or to documents accessible via the Web.
+- Support for HTML-5 date types (date, datetime, datetime-local).
+- Support for the JavaScript "bigdata" type.
+- Support for JSON, CSV, FLR, DBF, TOON formats.
+- Multiple search filters corresponding to multiple data selection methods (data queries).
+- Ability to navigate data collections by exploring them interactively.
+- Support for tables with sparse data, i.e., predominantly empty columns.
+- Data-driven. Ability to associate a user view with a collection's record layout, customizing its representation and user interface.
+- Support for active data collections. Management of data collections that change during execution (at run time) by receiving updates from different sources via HTTP.
+- Automatic recognition of the data representation scheme.
+- Automatic data validation and coloring functions with inconsistencies flagged.
+- Contextual help.
+- Open-source code released under the GNU GPL v. 3.0 and GNU LGPL v. 3.0 licenses.
 
-## Caratteristiche
+## Features of the Experimental Version (NOT yet released)
 
-- Supporto di differenti schemi di rappresentazione dei dati in formato JSON (array, oggetti, array di record, array di oggetti, array associativi di record e array associativi di oggetti).
-- Supporto tracciati record arbitrari.
-- Possibilità di esplorare le collezioni di dati rappresentandole sotto forma di tabelle o di schede.
-- Possibilità di trasporre le righe con le colonne.
-- Possibilità di convertire automaticamente le collezioni di dati da uno schema JSON all'altro e di salvarle.
-- Possibilità di estrarre e riorganizzare sottoinsiemi di dati e di salvarli.
-- Supporto di collezioni di dati multimediali (immagini, audio, video, formule matematiche, coordinate GPS).
-- Supporto di dati ipertestuali.
-- Supporto dei tipi di data di HTML-5 (date, datetime, datetime-local).
-- Supporto tipo JavaScript "bigdata".
-- Molteplici filtri di ricerca corrispondenti ad altrettante modalità di selezione dei dati (data query).
-- Possibilità di navigare all'interno delle collezioni di dati esplorandole interattivamente.
-- Supporto di tabelle caratterizzate da dati "sparsi" ovvero da colonne prevalentemente vuote.
-- Data driven. Possibilità associare una vista utente (user view) al tracciato record di una collezione personalizzando la sua rappresentazione e l'interfaccia utente.
-- Supporto di collezioni di dati attive. Gestione di collezioni di dati che si modificano nel corso dell'esecuzione (a run time) ricevendo aggiornamenti da fonti diverse tramite HTTP.
-- Riconoscimento automatico dello schema di rappresentazione dei dati.
-- Funzioni automatiche di validazione e colorazione dei dati con segnalazione delle incongruenze.
-- Codice open-source rilasciato con licenza GNU GPL v. 3.0 e GNU LGPL v. 3.0.
-
-## Caratteristiche della versione Sperimentale (NON ancora Rilasciate)
-
-- Interfaccia in linguaggio Naturale.
-- FileManager (richiede la disponibilità di XAMPP e l'installazione di codice PHP).
-- Vista Calendario.
-- Supporto coordinate GPS collegamento a OpenStreetMap.
-- Possibilità di interagire con dispositivi di Internet delle Cose (IoT).
-  - Theremino.
-  - ESP8266.
-- Assistente Virtuale Personale
-- Impiego come sistema per la gestione della conoscenza (KBS).
+- Natural language interface.
+- FileManager (requires XAMPP and PHP code installation).
+- Calendar view.
+- GPS coordinate support for OpenStreetMap connection.
+- Interaction with Internet of Things (IoT) devices.
+- Theremino.
+- ESP8266.
+- Personal Virtual Assistant
+- Use as a knowledge management system (KBS).
