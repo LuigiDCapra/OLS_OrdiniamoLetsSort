@@ -35,7 +35,6 @@
 * ### Specifications
 * ### Functional Requirements
 * ### Non Functional Requirements
-*
 */
 "use strict";
 
