@@ -5,7 +5,7 @@
 * File        : position.js
 * Function    : Position Management.
 * FirstEdit   : 14/07/2021
-* LastEdit    : 19/01/2026
+* LastEdit    : 05/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -57,7 +57,7 @@ function U_Posiz()
            szErr = "User denied the request for Geolocation.";
       } break;
       case P_szErr.POSITION_UNAVAILABLE: {
-           szErr = "Location information is unavailable.";
+           szErr = "Location information is unavailable.<br><br><b>You should enable Network connection.</b>";
       } break;
       case P_szErr.TIMEOUT: {
            szErr = "The request to get user location timed out.";

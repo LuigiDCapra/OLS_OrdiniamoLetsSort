@@ -5,7 +5,7 @@
 * File        : table.js
 * Function    : DDJ's table display
 * FirstEdit   : 15/12/2019
-* LastEdit    : 27/01/2026
+* LastEdit    : 04/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -191,12 +191,21 @@ function U_Upd_Cursor(UsrView0, P_Elem)
   var ElemPrv = UsrView0.ElemPrv;
   
   if (ElemPrv !== null) {
-     ElemPrv.parentElement.bgColor = "";                    /* LowLight previously selected Row and Cell. */
-     ElemPrv.style.backgroundColor = "";
-     ElemPrv.contentEditable = false;        
-   
-     if (ElemPrv.tagName == "TD") {
-         U_SaveChange(UsrView0);                            /* Save changes. */
+/* if the user 
+      1) jump to a different collection 
+      2) then sort the table without selecting a cell 
+      3) try to select a cell 
+      then ElemPrv.parentElement could be undefined.
+      It is necessary to check the following condition to prevent errors.
+*/
+     if (ElemPrv.parentElement) {
+        ElemPrv.parentElement.bgColor = "";                /* LowLight previously selected Row and Cell. */
+        ElemPrv.style.backgroundColor = "";
+        ElemPrv.contentEditable = false;        
+       
+        if (ElemPrv.tagName == "TD") {
+            U_SaveChange(UsrView0);                        /* Save changes. */
+        } /* if */
      } /* if */
   } /* if */
   if (!UsrView0.fReadOnly) {
@@ -204,7 +213,7 @@ function U_Upd_Cursor(UsrView0, P_Elem)
      S_ValPrv = P_Elem.innerText;
   } /* if */
 
-  P_Elem.parentElement.bgColor = $Style.F_szBG();           /* HiLight the selected Row and Cell. */
+  P_Elem.parentElement.bgColor = $Style.F_szBG();          /* HiLight the selected Row and Cell. */
   P_Elem.style.backgroundColor = $Style.F_szBackGround();
 
   UsrView0.ElemPrv = P_Elem;

@@ -5,7 +5,7 @@
 * File        : xtg.js
 * Function    : XTG like functions
 * FirstEdit   : 11/01/2025
-* LastEdit    : 11/01/2026
+* LastEdit    : 04/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -29,8 +29,8 @@ const $XTG = (function () {
   _XTG.U_XTG           = U_XTG;             // function U_XTG();
   _XTG.U_OSCmd         = U_OSCmd;           // function U_OSCmd(P_szCmd);
   _XTG.U_Shell         = U_Shell;           // function U_Shell();
-  _XTG.U_Edit_Res      = U_Edit_Res;        // function U_Edit_Res();
-  _XTG.U_Edit_File     = U_Edit_File;       // function U_Edit_File();
+  _XTG.U_Edit_Res      = U_Edit_Res;        // function U_Edit_Res(P_fDashboard=false);
+  _XTG.U_Edit_File     = U_Edit_File;       // function U_Edit_File(P_fDashboard=false);
   _XTG.U_Edit_Coll     = U_Edit_Coll;       // function U_Edit_Coll();
   _XTG.U_New_File      = U_New_File;        // function U_New_File();
   _XTG.U_Del_File      = U_Del_File;        // function U_Del_File();
@@ -111,22 +111,6 @@ function U_OSCmd(P_szCmd, P_CB_LH=U_CB_LH)
   var szCmd = 'http://localhost/Relay/irc/batt321.php/?szCmd=' + P_szCmd;  
   $IPCF.U_DownLoad_File(szCmd, P_CB_LH, U_CB_Err_LH, true, false);
 } /* U_OSCmd */
-
-/*-----U_Edit_Res_2 --------------------------------------------------------
-*
-*/ 
-function U_Edit_Res_2()
-{
-  $XTG.U_Edit_Res(true);
-} /* U_Edit_Res_2 */
-
-/*-----U_Edit_File_2 --------------------------------------------------------
-*
-*/ 
-function U_Edit_File_2()
-{
-  $XTG.U_Edit_File(true);
-} /* U_Edit_File_2 */
 
 /*-----U_Edit_Res --------------------------------------------------------
 * http://localhost/Relay/irc/batt321.php/?szCmd=E:/Programmi/PSPad/PSPad.exe r:/prova.arcd

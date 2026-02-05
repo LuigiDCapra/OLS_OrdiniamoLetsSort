@@ -5,7 +5,7 @@
 * File        : ols.js
 * Function    : OLS' js file.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 15/01/2026
+* LastEdit    : 05/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -45,7 +45,9 @@
 const $OLS = (function () {
   var _OLS = {};
   _OLS.U_Init           = U_Init_OLS;        // function U_Init_OLS();
-  _OLS.U_Ld_Coll        = U_Ld_Coll;         // function U_Ld_Coll();
+  _OLS.U_Initialize     = U_Initialize;      // function U_Initialize();
+
+  _OLS.U_Ld_Coll        = U_Ld_Coll;         // function U_Ld_Coll(P_fUpdate=false);
   _OLS.U_Collections    = U_Collections;     // function U_Collections();
   _OLS.U_History        = U_History;         // function U_History();
   _OLS.U_Dashboard      = U_Dashboard;       // function U_Dashboard();
@@ -323,7 +325,7 @@ function U_History()
 *
 * Automatic Collections Loading.
 */ 
-function U_Ld_Coll()
+function U_Ld_Coll(P_fUpdate=false)
 {
   const C_jLd_Bak_szNm    = 0;
   const C_jLd_Bak_szPath  = 1;
@@ -340,7 +342,7 @@ function U_Ld_Coll()
       if (Tup0[C_jLd_Bak_fLoad]) {
          szNmColl = Tup0[C_jLd_Bak_szNm];
          UsrView0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView(szNmColl, true);
-         if (UsrView0) {
+         if (!P_fUpdate && UsrView0) {
             continue;
          } /* if */
          szPath = Tup0[C_jLd_Bak_szPath];
@@ -348,7 +350,6 @@ function U_Ld_Coll()
             $LdFile.U_DownLoad_NDU(szDNS, szPath, (C_WwFlag_Null));  /* Load file. */
          }
          else {
-            //debugger;
             var szDNS = "localhost";
             $FileMan.U_Get_Dir(szDNS, szPath, C_Undefined, true);  /* Load Directory. true +++ */
          } /* if */
@@ -399,6 +400,17 @@ function U_BackUp_Coll()
       } /* if */
   } /* for */
 } /* U_BackUp_Coll */
+
+/*-----U_Initialize --------------------------------------------------------
+*
+*/ 
+function U_Initialize(P_Files_Ld_Bak)
+{
+//   var U_Ld_Coll_Bnd = U_Ld_Coll.bind({szNmColl:P_Files_Ld_Bak});
+//   var U_BackUp_Coll_Bnd = U_BackUp_Coll.bind({szNmColl:P_Files_Ld_Bak});
+//   setTimeout(U_Ld_Coll_Bnd, 1000); /* Load external Collections. */
+//   setTimeout(U_BackUp_Coll_Bnd, 10000);
+} /* U_Initialize */
 
 /*-----U_Init_OLS --------------------------------------------------------
 *

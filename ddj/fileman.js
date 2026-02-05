@@ -6,7 +6,7 @@
 * Function    : code FileMan
 * FirstEdit   : 21/04/2024
 * FirstEdit   : 11/01/2025
-* LastEdit    : 28/01/2026
+* LastEdit    : 04/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -67,7 +67,7 @@ const $FileMan = (function () {
   _FileMan.U_URL               = U_URL;               // function U_URL(P_szURL);
   _FileMan.F_szURL             = F_szURL;             // function F_szURL();
 
-  _FileMan.U_Show_Res          = U_Show_Res;          // function U_Show_Res();
+  _FileMan.U_Show_Res          = U_Show_Res;          // function U_Show_Res(P_fDashboard=false);
   _FileMan.U_Root              = U_Root;              // function U_Root();
   _FileMan.U_Back              = U_Back;              // function U_Back();
   _FileMan.U_Get_Dir           = U_Get_Dir;           // function U_Get_Dir(P_szDNS, P_szURL, P_CB_GetDir=U_CB_GetDir, P_fInit= true);
@@ -81,7 +81,7 @@ const $FileMan = (function () {
   _FileMan.U_Aspect_GetDir     = U_Aspect_GetDir;     // function U_Aspect_GetDir();
   
   _FileMan.U_Open_PATH_2       = U_Open_PATH_2;       // function U_Open_PATH_2(P_szPath, P_Tup0);
-  _FileMan.U_Open_XTG          = U_Open_XTG;          // function U_Open_XTG(P_fImg=false);
+  _FileMan.U_Open_XTG          = U_Open_XTG;          // function U_Open_XTG(P_fImg=false, P_fDashboard=false);
 
   _FileMan.U_CB_GetDir         = U_CB_GetDir;         // function U_CB_GetDir(P_szTxt, R_DDJ);
 

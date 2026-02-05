@@ -5,7 +5,7 @@
 * File        : ddj.js
 * Function    : Data Disk Jockey ex CL-DAP
 * FirstEdit   : 15/12/2019
-* LastEdit    : 03/02/2026
+* LastEdit    : 05/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -1038,8 +1038,8 @@ function U_Refresh()
   if (window.fLcdLcd) {   /* $VERSIONING */
       var UsrView0 = CL_UsrView0.F_UsrView_Selected();
       if (UsrView0.XDB0.szNm_aFld == "aFld_sinottico") {
-         // debugger;
-         $Sinottico.U_Dashboard();
+        // debugger;
+         $Sinottico.U_Dashboard();    // $LCD non serve a niente!
       }
       else {
          $Table.U_Display_Table();
