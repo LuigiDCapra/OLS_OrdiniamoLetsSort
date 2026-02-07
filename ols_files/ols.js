@@ -35,6 +35,7 @@
 * ### Specifications
 * ### Functional Requirements
 * ### Non Functional Requirements
+*
 */
 "use strict";
 
@@ -437,11 +438,12 @@ function U_Init_OLS()
      new CL_XDB(['asaMnEntry',     C_JKndTup_Obj,  G_asaMnEntry,          null, 'AutoDetect', 'List of Tool Bar Menus', (C_WwFlag_fReadOnly | C_WwFlag_fLive | C_WwFlag_fService), C_jCd_Cur, C_Bag_UsrView_Dflt]);
      new CL_XDB(['Config (State)', C_JKndTup_Obj,  $VConfig.F_ValPrivate_Sts(), null, 'AutoDetect', 'Configuration', (C_WwFlag_fReadOnly | C_WwFlag_fLive | C_WwFlag_fService), C_jCd_Cur, C_Bag_UsrView_Dflt]);    
      new CL_XDB(['G_DDJ',          C_JKndTup_Obj,  G_DDJ, null, 'AutoDetect', 'Configuration', (C_WwFlag_fReadOnly | C_WwFlag_fLive | C_WwFlag_fService), C_jCd_Cur, C_Bag_UsrView_Dflt]);
+  } /* if */
+  if (typeof($LcdLcd) != "undefined") {
+     setTimeout(U_Ld_Coll, 1000); /* Load external Collections. */
+     setTimeout(U_Ld_Coll, 2000);
+     setTimeout(U_BackUp_Coll, 10000);
   } /* if */ 
-
-  setTimeout(U_Ld_Coll, 1000); /* Load external Collections. */
-  setTimeout(U_Ld_Coll, 2000);
-  setTimeout(U_BackUp_Coll, 10000);
   
   U_Root0("$OLS", C_jCd_Cur, 2);  
 } /* U_Init_OLS */

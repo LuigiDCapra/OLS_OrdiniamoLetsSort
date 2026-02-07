@@ -5,7 +5,7 @@
 * File        : dbox.js
 * Function    : Dialogue-Box.
 * FirstEdit   : 06/12/2019
-* LastEdit    : 09/01/2026
+* LastEdit    : 07/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -243,8 +243,11 @@ function U_Hub(P_JPnl, P_Bag=null)
 
              if (this.szSCtx && (this.szSCtx != "none") && $Root.F_fExist("$SemCtx")) {
                 /* If Context is available use it */
-                this.szSCtx_Prv = $SemCtx.F_szSCtx_Cur();             /* Save previous Context */
-                $SemCtx.U_Sel_TBM("Id_Nav_DBox", this.szSCtx, true);  /* Load ToolBar Menu battons/icons. */
+                this.szSCtx_Prv = $SemCtx.F_szSCtx_Cur();            /* Save previous Context */
+                if (P_Bag) {
+                    var szSCtx = P_Bag[0];
+                    $SemCtx.U_Sel_TBM("Id_Nav_DBox", szSCtx, true);  /* Load ToolBar Menu battons/icons. */
+                } /* if */
              } /* if */
 
              var Elem3 = document.getElementById("Id_Form_DBox");

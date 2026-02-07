@@ -5,7 +5,7 @@
 * File        : xdb.js ex xarr2.js
 * Function    : Data_Structure MetaData (Layout) management.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 25/01/2026
+* LastEdit    : 06/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -102,7 +102,7 @@ const C_WwFlag_fService   = 0x0200;      /* Collection of data used internally b
 const C_WwFlag_fGetDir    = 0x0400;      /* Collection loaded via GetDir. ($ASPECT FileMan) */
 const C_WwFlag_fDisplay   = 0x0800;      /* Display Collection after Selection. */
 const C_WwFlag_fSearchCS  = 0x1000;      /* Look for Collection Name doing a Case Sensitive search. */
-const C_WwFlag_fAutoExec  = 0x2000;      /* Execute autoexec code at downloading. */
+const C_WwFlag_fEdtTup    = 0x2000;      /* Edit Card */
 const C_WwFlag_fUnSort    = 0x4000;      /* */
 
 const C_jCnf_Public   = 0; /* Public */

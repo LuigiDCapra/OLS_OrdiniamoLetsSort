@@ -5,7 +5,7 @@
 * File        : inpdata.js
 * Function    : Input Data / Data Loading
 * FirstEdit   : 15/12/2019
-* LastEdit    : 30/01/2026
+* LastEdit    : 05/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -90,10 +90,11 @@ var G_szHTML_DBox_InpData  = `
           <button onclick="Id_Inp_URL.value = ''">clear</button> <button onclick="window.open(Id_Inp_URL.value)">open in a window</button>
           <datalist id="Id_Li_Inp_URL"><!-- $VERSIONING --> 
                       
-            <option value="https://capralezioni.altervista.org/2025_26/ols_002/dbase/Prova_all.OLS">https://capralezioni.altervista.org/2025_26/ols_002/dbase/Prova_all.OLS</option>
-            <option value="https://capralezioni.altervista.org/2025_26/ols_002/dbase/italia.OLS">https://capralezioni.altervista.org/2025_26/ols_002/dbase/italia.OLS</option>
-            <option value="https://capralezioni.altervista.org/2025_26/ols_002/dbase/dirty.csv">https://capralezioni.altervista.org/2025_26/ols_002/dbase/dirty.csv</option>
-            <option value="https://capralezioni.altervista.org/2025_26/ols_002/read.php?szTopic=italia.OLS">https://capralezioni.altervista.org/2025_26/ols_002/read.php?szTopic=italia.OLS</option>
+            <option value="https://capralezioni.altervista.org/2025_26/ols_003/dbase/flash_card.OLS">https://capralezioni.altervista.org/2025_26/ols_003/dbase/flash_card.OLS</option>
+            <option value="https://capralezioni.altervista.org/2025_26/ols_003/dbase/Prova_all.OLS">https://capralezioni.altervista.org/2025_26/ols_003/dbase/Prova_all.OLS</option>
+            <option value="https://capralezioni.altervista.org/2025_26/ols_003/dbase/italia.OLS">https://capralezioni.altervista.org/2025_26/ols_003/dbase/italia.OLS</option>
+            <option value="https://capralezioni.altervista.org/2025_26/ols_003/dbase/dirty.csv">https://capralezioni.altervista.org/2025_26/ols_003/dbase/dirty.csv</option>
+            <option value="https://capralezioni.altervista.org/2025_26/ols_003/read.php?szTopic=italia.OLS">https://capralezioni.altervista.org/2025_26/ols_003/read.php?szTopic=italia.OLS</option>
 
             <option value="https://tuisys.altervista.org/ols/dbase/Prova_all.OLS">https://tuisys.altervista.org/ols/dbase/Prova_all.OLS</option>
             <option value="https://tuisys.altervista.org/ols/dbase/dirty.csv">https://tuisys.altervista.org/ols/dbase/dirty.csv</option>
@@ -894,7 +895,6 @@ function U_Load0(R_DDJ)
           Coll_Empty0 = aColl_Empty[R_DDJ.JKndTup0];
                   
           new CL_XDB([R_DDJ.szNmColl, R_DDJ.JKndTup0, Coll_Empty0, R_DDJ.aFld, R_DDJ.szNm_aFld, "Function", C_WwFlag_fOverWrite, C_jCd_Cur, C_Bag_UsrView_Dflt]);
-//          UsrView0 = CL_UsrView0.F_UsrView_Select(R_DDJ.szNmColl, C_WwFlag_Null);  // 23/12/2025
           UsrView0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView(R_DDJ.szNmColl, true);
           $InpData.iMin   = +Id_Div_Function_iMin.value;
           $InpData.iMax   = +Id_Div_Function_iMax.value; 

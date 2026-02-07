@@ -403,27 +403,8 @@ function U_DispColl(P_Bag_XDB)
 
   P_Bag_XDB[C_jWwFlag0] &= ~C_WwFlag_fDisplay;        /* Disable C_WwFlag_fDisplay to prevent double display. */
   var XDB_Cur = new CL_XDB(P_Bag_XDB);                /* If the Collection has changed update XDB */
-//  var UsrView_Cur = CL_UsrView0.F_UsrView_Select(P_szNmColl, (P_WwFlag0 | C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
   var UsrView_Cur = CL_UsrView0.F_UsrView_Select(P_szNmColl, (P_WwFlag0 | C_WwFlag_fSearchCS));
 } /* U_DispColl */
-
-/*-----U_Config --------------------------------------------------------
-*
-*/ 
-function xxx_U_Config()
-{
-  function U_CB_Config()
-  {
-    var Config = $TabPrm.F_Coll_Get("Config");
-    CL_UsrView0.F_UsrView_Select(szNmColl, C_WwFlag_fDisplay);   /* Restore the Collection previously selected. */
-  } /* U_CB_Config */
- 
-  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
-  var szNmColl = UsrView0.szNmColl;
-  var Val0 = $VConfig.F_ValPrivate_Sts();
-  debugger;
-  $Panel.U_Display("Config", U_CB_Config, Val0);
-} /* U_Config */
 
 /*-----U_Config --------------------------------------------------------
 *
@@ -688,8 +669,7 @@ function U_Planes()
     var szPlane = +$TabPrm.F_ValSts_Get("Planes", "Seleziona il piano");
     
     $Value.U_Sel_szPlane(szPlane);
-    CL_UsrView0.F_UsrView_Select(szNmColl, C_WwFlag_fDisplay);   /* Restore the Collection previously selected. */  
-//    $Table.U_ArrowMove(UsrView0, iRow +G_iDelta_Planes, 1, C_fScroll);
+    CL_UsrView0.F_UsrView_Select(szNmColl, C_WwFlag_fDisplay);   /* Restore the Collection previously selected. */
     U_Refresh();
   } /* U_CB_Ins_NLP */
 
@@ -1907,8 +1887,7 @@ function U_Set_MinMax()
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var szNmColl = UsrView0.szNmColl.substr(11);
   var Coll0 = UsrView0.XDB0.Coll0;
-  var iLen = Coll0.length;
- //  var UsrView1 = CL_UsrView0.F_UsrView_Select(szNmColl, C_WwFlag_Null);  // 23/12/2025 
+  var iLen = Coll0.length; 
   var UsrView1 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView(szNmColl, true);
   var aFld1 = UsrView1.aFld1;
   var i; 
@@ -1946,7 +1925,6 @@ function U_LinkClicked(P_Event) {
            if (0 < iPos) {
               szNm_UsrView = szHREF.substring(4, iPos);
               k = +szHREF.substring(iPos +1);               /* $NOTE: k should be a number. */
-              // debugger;
               var UsrView0 = CL_UsrView0.F_UsrView_Select(szNm_UsrView, C_WwFlag_fDisplay);
               $Table.U_ArrowMove(UsrView0, k +G_iDelta_Goto, 1, C_fScroll);
            }

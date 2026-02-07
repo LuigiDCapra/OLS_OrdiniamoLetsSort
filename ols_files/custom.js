@@ -5,10 +5,10 @@
 * File        : custom.js
 * Function    : User defined code
 * FirstEdit   : 15/12/2019
-* LastEdit    : 05/11/2025
+* LastEdit    : 02/02/2026
 * System      : Mozilla FireFox 80+
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 *
 *  ----- LICENSE -----
 *
@@ -118,3 +118,79 @@ function U_Init_Custom()
   U_Root0("$Custom", C_jCd_Cur, 1);
   return(_Custom);
 })();  /* $Custom */
+
+/* ********************* Flash-Cards ******************** */
+
+function U_Esatta()
+{
+  var szMsg = "Corretto, la risposta è esatta."; 
+   $TTS.U_Long_speech(szMsg);
+   alert(szMsg);
+   $ExeCmd.U_Next_Tup();
+} /* U_Esatta */
+
+function U_Errata()
+{
+   var szMsg = "Mi dispiace la risposta è sbagliata."; 
+   $TTS.U_Long_speech(szMsg);
+   alert(szMsg);
+} /* U_Errata */
+
+/*-----U_Make_Quest --------------------------------------------------------
+*
+* [TextArea, answer, question, 1-Option, 2-Option, 3-Option, 4-Option]. 
+*/ 
+function U_Make_Quest(P_Item, P_Fld1, P_UsrView0)
+{
+  var aaScrambler = [
+[6,3,4,5], [6,3,5,4], [6,4,3,5], [6,4,5,3], [6,5,3,4], [6,5,4,3],
+[3,4,5,6], [3,4,6,5], [3,5,4,6], [3,5,6,4], [3,6,4,5], [3,6,5,4],
+[4,6,3,5], [4,6,5,3], [4,3,5,6], [4,3,6,5], [4,5,3,6], [4,5,6,3],
+[5,6,3,4], [5,6,4,3], [5,3,4,6], [5,3,6,4], [5,4,6,3], [5,4,3,6]
+  ];
+  
+  var XDB0 = P_UsrView0.XDB0;
+  var Tup_Sel = XDB0.Tup_Sel;
+  var iRnd = $Math_DDJ.F_iRND(0, (aaScrambler.length -1));
+  var aScrambler = aaScrambler[iRnd];
+  var i, j;
+  var szTmp = "<ol><b>" + Tup_Sel[2] + "</b><br><br>";
+  
+  P_UsrView0.jCorrect = aScrambler.indexOf(3);     /* Set the correct answer. */
+ 
+  for (i = 0; i < 4; i++) {
+      j = aScrambler[i];
+      if (j == 3) {
+         szTmp += "<li onclick='U_Esatta()'>" + Tup_Sel[j] + "<br>&nbsp;</li>";
+      }
+      else {
+         szTmp += "<li onclick='U_Errata()'>" + Tup_Sel[j] + "<br>&nbsp;</li>";
+      } /* if */
+  } /* for */
+  szTmp += "</ol>";
+  
+  Tup_Sel[0] = szTmp;  
+  $TTS.U_Long_speech(Tup_Sel[2]);
+  
+  return(szTmp);
+} /* U_Make_Quest */
+
+
+/*-----U_Check_Answer --------------------------------------------------------
+*
+*/ 
+function U_Check_Answer(P_1, P_2, P_3, P_4)
+{
+  switch (P_1) {
+    case "1": 
+    case "2": 
+    case "3": 
+    case "4": {
+         P_2.Val_New = P_1;
+    } break;
+    default : {
+         P_2.Val_New = "";
+    } break;
+  } /* switch */
+} /* U_Check_Answer */
+

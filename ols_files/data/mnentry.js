@@ -50,14 +50,22 @@ var G_asaMnEntry =
 ["Select Collection.", "$DDJ.U_InputData", "Select Collection", "ols_files/ico/input.svg", "seleziona la collezione"],
 ["Reload collection.", "$DDJ.U_Reload", "Reload Collection", "ols_files/ico/reload.svg", "ricarica"], 
 ["Save All Changes.",  "$DDJ.U_SaveAllChanges", "Save All Changes", "ols_files/ico/save3.svg", "salva tutte le modifiche", "opt_auth"],
+["Save Changes 4.",    "$DDJ.U_SaveChanges4", "Save Changes 4", "ols_files/ico/save4.svg", "salva le modifiche 4", "opt_auth"],
 ["Save As.",           "$DDJ.U_SaveAs", "Save As", "ols_files/ico/save_as.svg", "salva con nome"],
 ["Refresh view.",      "$DDJ.U_Refresh", "Refresh View", "ols_files/ico/refresh.svg", "rinfresca"],
-["Reset",              "$InpData.U_Reset_Sts", "Reset", "ols_files/ico/reset_sts.svg", "reset"]
+//["Close Collection.",  "rem $DDJ.U_Close_Coll", "Close Collection", "ols_files/ico/close_coll.svg", "Chiudi la collezione"],
+["Reset",              "$InpData.U_Reset_Sts", "Reset", "ols_files/ico/reset_sts.svg", "reset"],
+["Snap shot",          "$DDJ.U_Snap", "Snap", "ols_files/ico/snap.svg", "fotografa"],
+["Collections",        "$OLS.U_Collections", "Collections", "ols_files/ico/collections.svg", "lista collezioni"],
+["History",            "$OLS.U_History", "History", "ols_files/ico/history.svg", "cronologia"],
+["Log",                "$OLS.U_Log", "log", "ols_files/ico/log.svg", "log"],
+["tree",               "$OLS.U_Tree", "tree", "ols_files/ico/tree.svg", "albero"],
+["Disk",               "$OLS.U_Disk", "Disk", "ols_files/ico/disk.svg", "dischi"],
+["XTG",                "$XTG.U_XTG", "Xtg", "ols_files/ico/xtg.svg", "xtg", ""]
 ],
 
 "+++ block Development +++":[    /* $LCD */
-["Dashboard",          "$OLS.U_Dashboard", "dashboard", "ols_files/ico/dashboard.svg", "sinottico"],
-["Luigi",              "$LcdLcd.U_Home",   "luigi", "ols_files/ico/home2.svg", "luigi"]
+["x4",         "$DDJ.U_BrkPnt", "x3", "ols_files/ico/show.svg", "x4"]
 ],
 
 "+++ block LdSv Layout +++":[
@@ -74,7 +82,8 @@ var G_asaMnEntry =
 ["",                   "$DDJ.U_EdtTup_DDJ", "Edit Record", "ols_files/ico/edit_tuple.svg", "edit record", "opt_auth"],
 ["New Record.",        "$DDJ.U_NewTup_DDJ", "New Record", "ols_files/ico/new_tuple.svg", "nuovo record", "opt_auth"],
 ["New n Records.",     "$DDJ.U_New_n_Tup", "New n Records", "ols_files/ico/new_n_tuple.svg", "nuovi record", "opt_auth"],
-["Delete Record.",     "$DDJ.U_DelTup_DDJ", "Delete Record", "ols_files/ico/delete_tuple.svg", "cancella il record", "opt_auth"]
+["Delete Record.",     "$DDJ.U_DelTup_DDJ", "Delete Record", "ols_files/ico/delete_tuple.svg", "cancella il record", "opt_auth"],
+["Calendar",           "$Calendar.U_Show0", "Calendar", "ols_files/ico/calendar.svg", "calendario"]
 ],
 
 "+++ block Filter +++":[
@@ -94,12 +103,12 @@ var G_asaMnEntry =
 ],
 
 "+++ block PlaceHolder +++":[     /* $LCD */
-["x1",         "$DDJ.U_BrkPnt", "x1", "ols_files/ico/show.svg", "x1"],
-["x2",         "$DDJ.U_BrkPnt", "x2", "ols_files/ico/show.svg", "x2"],
 ["x3",         "$DDJ.U_BrkPnt", "x3", "ols_files/ico/show.svg", "x3"]
 ],
 
-"+++ block CFG +++":[
+"+++ block CFG +++":[    
+["Insert remark",      "$Remarks.U_Ins_Rem", "Insert Remark", "ols_files/ico/sv_rem.svg", "annota"],    
+["Remarks",            "$Remarks.U_Open", "Remarks", "ols_files/ico/remarks.svg", "annotazioni"],
 ["Configure.",         "$DDJ.U_Config", "Config", "ols_files/ico/config.svg", "configura"],
 ["",                   "$DDJ.U_Config", "Config", "ols_files/ico/config.svg", "configurazione"],
 ["Help.",              "$DDJ.U_Help", "Help", "ols_files/ico/help.svg", "aiuto"],
@@ -114,30 +123,30 @@ var G_asaMnEntry =
 ["Edit Collection",    "$XTG.U_Edit_Coll",   "Edit Collection", "ols_files/ico/edit_coll.svg", "edita collezione"]
 ],
 
-"+++ block Tools +++":[    /* $LCD */
+"+++ block Tools +++":[
 ["JS-Int",             "$OLS.U_JSInt", "JS-Int", "ols_files/ico/js-int.svg", "interprete javascript", "opt_auth"],
 ["Calculator",         "$OLS.U_Calculator", "Calculator", "ols_files/ico/calculator.svg", "calcolatrice"],
 ["VLS",                "$OLS.U_VLS", "VLS", "ols_files/ico/vls.svg", "Vediamo/Let's See", ""],
 ["WE4",                "$OLS.U_WE4", "WE4", "ols_files/ico/we4.svg", "Editor WE4", ""]
 ],
 
-"+++ block PATH-GO +++":[
+"+++ rem block PATH-GO +++":[
 ["PATH",               "U_Path0", "Path", "ols_files/ico/inbox.svg", "Percorso", "input", ["text"]],
 ["Submit PATH",        'U_Path', "Submit Path", "ols_files/ico/exe.svg", "imposta", "button", ["GO"]]
 ],
 
-"+++ rem block PATH-GO +++":[
+"+++ block PATH-GO +++":[
 ["PATH",               "U_Null", "Path", "", "Percorso", "input", ["text"]],
 ["Submit PATH",        'U_Path', "Submit Path", "", "imposta", "button", ["GO"]]
 ],
 
-"+++ block PATH-SET +++":[
+"+++ rem block PATH-SET +++":[
 ["PATH",               "U_Path0", "Path", "ols_files/ico/inbox.svg", "Percorso", "input", ["text"]],
 ["Load PATH",          'U_SetPath', "Load Path", "ols_files/ico/exe.svg", "carica", "button", ["SET"]],
 ["Submit PATH",        'U_Path', "Submit Path", "ols_files/ico/exe.svg", "imposta", "button", ["GO"]]
 ],
 
-"+++ rem block PATH-SET +++":[
+"+++ block PATH-SET +++":[
 ["PATH",               "U_Null", "Path", "", "Percorso", "input", ["text"]],
 ["Load PATH",          'U_SetPath', "Load Path", "", "carica", "button", ["SET"]],
 ["Submit PATH",        'U_Path', "Submit Path", "", "imposta", "button", ["GO"]]
@@ -148,17 +157,6 @@ var G_asaMnEntry =
 ["",                   "$FileMan.U_Show_Res", "Open Resources", "ols_files/ico/show.svg", "apri risorsa"],
 ["Edit Resources",     "$XTG.U_Edit_Res",     "Edit Resources", "ols_files/ico/edit_res.svg",  "edita risorsa"],
 ["Edit",               "$XTG.U_Edit_File",    "Edit",           "ols_files/ico/edit_file.svg", "edita"]
-],
-
-"+++ block Resources Sinottico +++":[
-["Aggiorna",           "$Sinottico.U_Dashboard","Update",         "ols_files/ico/update.svg", "aggiorna"],
-["Open Resources",     "$Sinottico.U_Show_Res", "Open Resources", "ols_files/ico/show.svg", "mostra risorsa"],
-["",                   "$Sinottico.U_Show_Res", "Open Resources", "ols_files/ico/show.svg", "apri risorsa"],
-["Edit Resources",     "$Sinottico.U_Edit_Res", "Edit Resources", "ols_files/ico/edit_res.svg",  "edita risorsa"],
-["Edit",               "$Sinottico.U_Edit_File","Edit",           "ols_files/ico/edit_file.svg", "edita"],
-   
-["Planes View.",       "$DDJ.U_Planes", "Planes View", "ols_files/ico/planes.svg", "piani di memoria"], 
-["Span another OLS",   "$OLS.U_Span_OLS2","Span another OLS",     "ols_files/ico/ols2.svg", "esegui ols2"]
 ],
 
 "+++ block NL command +++":[
@@ -233,18 +231,28 @@ var G_asaMnEntry =
 ["Flank collections side by side.", "U_AddCol", "AddCol", "ols_files/ico/addcol.svg", "affianca"],
 ["JsonPath",           "U_JsonPath", "JsonPath", "ols_files/ico/jsonpath.svg", "jsonpath"],
 ["Draw",               "$DDJ.U_PlotData", "Plot", "ols_files/ico/draw.svg", "grafico"],
-["Chart",              "$Chart.U_Chart", "Chart", "ols_files/ico/chart.svg", "diagramma"]
+["Chart",              "$Chart.U_Chart", "Chart", "ols_files/ico/chart.svg", "diagramma"],
+["iStep",              "$DDJ.U_Set_iStep", "Sample Step", "", "Passo di campionamento", "select", ["Passo", 1, 2, 3, 4, 5, 8, 10, 16, 20, 32, 50, 64, 100]],
+
+["Sort.",              "$DDJ.U_SetSort", "Sort Wizard", "ols_files/ico/sort.svg", "ordina"],
+["Aggreg.",            "$DDJ.U_SetAggreg", "Aggregation Wizard", "ols_files/ico/aggreg.svg", "aggrega"],
+
+["Custom",             "$DDJ.U_Custom_Card", "Custom", "ols_files/ico/custom.svg", "custom"]
 ],
 
 "Standard":[
 ["",                   "Expand", "", "", "+++ block PrevNext +++"],
 ["",                   "Expand", "", "", "+++ block LoadSave +++"],
-
+["",                   "Expand", "", "", "+++ block Development +++"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
-
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Standard +++"],
-["",                   "Expand", "", "", "+++ block CFG +++"],  
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
+["",                   "Expand", "", "", "+++ block CFG +++"],
+["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Expand", "", "", "+++ block NL command +++"],
+["",                   "Insert", "", "", "++ block NLP ++"],  
 ["",                   "Insert", "", "", "PopUp"]       
 ],
 
@@ -271,7 +279,6 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Development +++"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["ToDay.",             "$Calendar.U_ToDay0", "To Day", "ols_files/ico/oggi.svg", "oggi"],
-["ToDo",               "$Agenda.U_ToDo", "Impegni di Oggi.","ols_files/ico/todo.svg", "cose da fare"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
@@ -375,23 +382,6 @@ var G_asaMnEntry =
 ["",                   "Insert", "", "", "PopUp"]       
 ],
 
-"Sinottico":[
-["",                   "Expand", "", "", "+++ block PrevNext +++"],
-["",                   "Expand", "", "", "+++ block LoadSave +++"],
-["",                   "Expand", "", "", "+++ block Development +++"],
-["",                   "Expand", "", "", "+++ block Resources Sinottico +++"],
-["",                   "Expand", "", "", "+++ block Edit +++"],    
-["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"], 
-["",                   "Expand", "", "", "+++ block Tools +++"], 
-["",                   "Expand", "", "", "+++ block CFG +++"],
-["",                   "Expand", "", "", "+++ block PATH-SET +++"],  
-["",                   "Expand", "", "", "+++ block Test +++"],
-["",                   "Expand", "", "", "+++ block NL command +++"],
-["",                   "Insert", "", "", "++ block NLP ++"],  
-["",                   "Insert", "", "", "PopUp"]       
-],
-
 "Log":[
 ["",                   "Expand", "", "", "+++ block PrevNext +++"],
 ["jLvl",               "$DDJ.U_Set_jLvl_Log", "Level", "", "livello", "select", ["Level", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
@@ -480,6 +470,17 @@ var G_asaMnEntry =
 ["Help",             "$DDJ.U_Help",      "Help",   "ols_files/ico/help.svg", "aiuto"],
 ["Snap shot.",         "$DDJ.U_Snap", "Snap", "ols_files/ico/snap.svg", "fotografa"], 
 
+["",           "Insert", "", "", "++ Card ++"]
+],
+
+"Basic Card": [
+["First Record",     "$ExeCmd.U_First_Tup1",  "First",     "ols_files/ico/first.svg", "inizio"],
+["Previous Record",  "$ExeCmd.U_Prev_Tup",    "Prev",      "ols_files/ico/prev.svg", "precedente"],
+["Next Record",      "$ExeCmd.U_Next_Tup",    "Next",      "ols_files/ico/next.svg", "seguente"],
+["Last Record",      "$ExeCmd.U_Last_Tup1",   "Last",      "ols_files/ico/last.svg", "fine"],
+["Read Aloud",       "$Card.U_Read_Tup",      "Read Aloud","ols_files/ico/read.svg", "leggi"],
+["Shut Up",          "$Card.U_ShutUp",        "Shut Up",   "ols_files/ico/shutup.svg", "zitta"],
+["Help",             "$DDJ.U_Help",      "Help",   "ols_files/ico/help.svg", "aiuto"],
 ["",           "Insert", "", "", "++ Card ++"]
 ],
 
@@ -662,6 +663,9 @@ var G_asaMnEntry =
 ["", "Insert", "", "", "++ block Chiudi ++"]
 ],
 
+"Camera": [
+],
+
 "Remarks":[
 ["",                   "Expand", "", "", "+++ block PrevNext +++"], 
 ["",                   "Expand", "", "", "+++ block PlaceHolder +++"],
@@ -671,7 +675,7 @@ var G_asaMnEntry =
 ["Show Images",        "$Remarks.U_Show_Img", "Show Images", "ols_files/ico/thumbnails.svg", "mostra immagini"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
-["SemTree",            "$SemTree.U_SemTree3", "SemTree", "ols_files/ico/semtree.svg", "FiltSemTree 3", ""],
+
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
 ["",                   "Expand", "", "", "+++ block Tools +++"], 
 

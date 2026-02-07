@@ -722,9 +722,12 @@ class CL_UsrView0 {
   
        $Table.U_Display_Table(P_WwFlag);
        var iGoto = UsrView0.iRow_Item_Sel;
-      // $Table.U_Scroll(iGoto +G_iDelta_Goto);
        
        $Table.U_ArrowMove(UsrView0, iGoto +G_iDelta_Goto, 1, C_fScroll);        // 31/12/2025
+    } /* if */
+
+    if (P_WwFlag & C_WwFlag_fEdtTup) {
+       $DDJ.U_EdtTup_DDJ();       /* Show the Collection as a deck of Card. */
     } /* if */
     return(UsrView0); 
   } /* F_UsrView_SelIns */ 

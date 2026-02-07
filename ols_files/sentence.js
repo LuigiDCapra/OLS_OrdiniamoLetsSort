@@ -199,7 +199,7 @@ function U_Domanda(R_VCtx_Cur, P_i)
                  szCode = `szRes = ${pFn}` ;
                  eval(szCode);
                         if (szRes == C_Undefined) {
-                           szRes = R_VCtx_Cur.szRes; /* Manage Procedure, that is U_XXX() */
+                           szRes = R_VCtx_Cur.szRes; /* Manage Procedure */
                         } /* if */
                  R_VCtx_Cur.szRes = F_szAnswer(szKey0, szKey1, szRes);
                  return;

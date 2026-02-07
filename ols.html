@@ -5,7 +5,7 @@ Revision    : 0.021
 File        : ols.htm
 Function    : Ordiniamo/Let's Sort ex Data Jockey (ex CL-DAP)
 FirstEdit   : 15/12/2019
-LastEdit    : 25/01/2026
+LastEdit    : 07/02/2026
 Author      : Luigi D. Capra
 Copyright(c): Luigi D. Capra 2017, 2026
 System      : HTML-5 + CSS3 + JavaScript
@@ -237,17 +237,6 @@ TBM = ToolBar Menu
 <!-- $DEBUG $LCD $Versioning -->
 <!-- -->
 
-<script src="http://helios:27015/D:/viola/lcd/agenda.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/diz.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/fintech.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/kbase.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/natlang.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/release.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/semtree.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/voiceint.js"></script>
-<script src="http://helios:27015/D:/viola/lcd/sinottico.js"></script>
-<!-- script src="http://helios:27015/D:/dbase/dict.js"></script -->
-<script src="http://helios:27015/D:/viola/lcd/lcdlcd.js"></script>
 
 <-- -->
 
@@ -646,14 +635,14 @@ function U_Open_XTG()
 function U_Init()
 {
   var DDJSts = {};
-  DDJSts.iRel_KNS        = 20250922;          /* Cfg. release number. */
+  DDJSts.iRel_KNS        = 20260207;          /* Cfg. release number. */
   DDJSts.szUser          = "";                // Luigi
   DDJSts.szURL_Relay     = "";                // http://helios:27015/
   DDJSts.szjDate         = "YYYYMMDD";
   DDJSts.szURL_Srv       = "localhost";
   DDJSts.szSrv_Knd       = "PHP-DDJ";
-//  DDJSts.szDir_Data      = "https://tuisys.altervista.org/ols/dbase/";          // $VERSIONING
-  DDJSts.szDir_Data      = "d:/dbase/";
+  DDJSts.szDir_Data      = "https://capralezioni.altervista.org/2025_26/ols_003/dbase/";          // $VERSIONING
+//  DDJSts.szDir_Data      = "d:/dbase/";
   DDJSts.szFlNm_Remarks  = "d:/dbase/remarks.OLS";
   DDJSts.iWdt_Tab        = screen.width;
   DDJSts.iSmpl_Step      = 1;

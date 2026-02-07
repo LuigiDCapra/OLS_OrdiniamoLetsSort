@@ -73,8 +73,6 @@ const $FileMan = (function () {
   _FileMan.U_Get_Dir           = U_Get_Dir;           // function U_Get_Dir(P_szDNS, P_szURL, P_CB_GetDir=U_CB_GetDir, P_fInit= true);
   _FileMan.U_GetOS             = U_GetOS;             // function U_GetOS();
   
-//  _FileMan.U_Preview           = U_Preview;           // function U_Preview();
-  
   _FileMan.F_JKndTup_Mp_szExt  = F_JKndTup_Mp_szExt;  // function F_JKndTup_Mp_szExt(P_szExt);
   _FileMan.F_JKndTup_Mp_szFlNm = F_JKndTup_Mp_szFlNm; // function F_JKndTup_Mp_szFlNm(P_szFlNm);
 

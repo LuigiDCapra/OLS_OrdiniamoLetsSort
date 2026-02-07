@@ -37,6 +37,7 @@ Comunque, come misura precauzionale, le collezioni di dati vengono aperte per de
 - Supporto di differenti schemi di rappresentazione dei dati in formato JSON (array, oggetti, array di record, array di oggetti, array associativi di record e array associativi di oggetti).
 - Supporto tracciati record arbitrari.
 - Possibilità di esplorare le collezioni di dati rappresentandole sotto forma di tabelle o di schede.
+- Possibilità di abbinare ad una stessa collezione di dati viste utente (UsrView) alternative.
 - Possibilità di trasporre le righe con le colonne.
 - Possibilità di convertire automaticamente le collezioni di dati da uno schema JSON all'altro e di salvarle.
 - Possibilità di estrarre e riorganizzare sottoinsiemi di dati e di salvarli.

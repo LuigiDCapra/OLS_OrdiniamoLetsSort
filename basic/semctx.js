@@ -5,7 +5,7 @@
 * File        : semctx.js
 * Function    : Semantic Context
 * FirstEdit   : 22/01/2024
-* LastEdit    : 09/01/2026
+* LastEdit    : 06/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+

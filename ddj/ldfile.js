@@ -5,7 +5,7 @@
 * File        : ldfile.js
 * Function    : Load File.
 * FirstEdit   : 10/04/2024
-* LastEdit    : 30/01/2026
+* LastEdit    : 06/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -237,7 +237,7 @@ function U_CB_Err(P_XHR, P_szURL)
   if ($VDebug.F_iDebug() <= C_iDebug_Dflt) {
      P_szURL = "";
   } /* if */ 
-  $Error.U_Warning(C_jCd_Cur, 2, szMsg, P_szURL, fSilent);  
+  $Error.U_Warning(C_jCd_Cur, 1, szMsg, P_szURL, fSilent);  
 } /* U_CB_Err */
 
 /*-----U_CB_DownLoad --------------------------------------------------------
@@ -250,12 +250,12 @@ function U_CB_DownLoad(P_szTxt, R_DDJ)
      /* The file is empty! */
      var fjRow = $XDB.F_fjRow_Mp_JKndTup(R_DDJ.JKndTup0);
      P_szTxt = (fjRow)? "[]": "{}";
-     $Error.U_Warning(C_jCd_Cur, 3, "The file is empty!", R_DDJ.szNmColl, true, false);
+     $Error.U_Warning(C_jCd_Cur, 2, "The file is empty!", R_DDJ.szNmColl, true, false);
      return;
   } /* if */
   var iPos404 = P_szTxt.indexOf("404 File not Found");
   if ((0 <= iPos404) && (iPos404 < 10)) {
-     $Error.U_Warning(C_jCd_Cur, 4, "404 File not Found", R_DDJ.szNmColl, true, false);
+     $Error.U_Warning(C_jCd_Cur, 3, "404 File not Found", R_DDJ.szNmColl, true, false);
      return;
   } /* if */
   U_Make_Coll(R_DDJ, P_szTxt);
@@ -388,7 +388,7 @@ function F_Coll_Mp_Text(R_DDJ, P_szTxt)
         case C_JKndTup_DBF:
         case C_JKndTup_Blob: {                         /* Blob & DBF */
              /* $NOTE: BLOB and DBF require specific conversion routines */
-             $Error.U_Error(C_jCd_Cur, 1, "Wrong BLOB converter", P_JKndTup0, false);
+             $Error.U_Error(C_jCd_Cur, 4, "Wrong BLOB converter", P_JKndTup0, false);
         } break;
         case C_JKndTup_OLS: {                          /* OLS */
              Coll0 = F_Coll_Mp_OLS(R_DDJ, P_szTxt);
@@ -399,7 +399,7 @@ function F_Coll_Mp_Text(R_DDJ, P_szTxt)
              R_DDJ.JKndTup0 = JKndTup0;
         } break;
         default : {
-             $Error.U_Error(C_jCd_Cur, 2, "Unknow data format", P_JKndTup0, false);
+             $Error.U_Error(C_jCd_Cur, 5, "Unknow data format", P_JKndTup0, false);
         } break;
      } /* switch */
   } /* if */
@@ -441,7 +441,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
          continue; 
       }
       else {
-         $Error.U_Error(C_jCd_Cur, 3, szNm_URL + `Unexepected char '${ch}' in position `, j, false);
+         $Error.U_Error(C_jCd_Cur, 6, szNm_URL + `Unexepected char '${ch}' in position `, j, false);
          return;
       } /* if */
   } /* for */
@@ -451,7 +451,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
      if (ch == "}") {
         /* $ASSUME: special case in witch [] has been omitted because data will be recorded in the collection in incremental way. */
         P_fEmbed = true;         
-        // $Error.U_Warning(C_jCd_Cur, 8, "[] has been omitted", "", true);  
+        // $Error.U_Warning(C_jCd_Cur, 7, "[] has been omitted", "", true);  
      } /* if */
   } /* if */
   
@@ -468,7 +468,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
                       Coll0 = JSON.parse(szTxt);
                   } catch (P_Err1) {
                       szMsg = P_Err1.message;  
-                      $Error.U_Error(C_jCd_Cur, 4, szNm_URL + "JSON conversion failed.", szMsg, false);
+                      $Error.U_Error(C_jCd_Cur, 8, szNm_URL + "JSON conversion failed.", szMsg, false);
                   } /* try catch */  
               } /* try catch */          
     } break;
@@ -485,7 +485,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
                       Coll0 = JSON.parse(szTxt);
                   } catch (P_Err1) {
                       szMsg = P_Err1.message; 
-                      $Error.U_Error(C_jCd_Cur, 5, szNm_URL + "JSON conversion failed.", szMsg, false);
+                      $Error.U_Error(C_jCd_Cur, 9, szNm_URL + "JSON conversion failed.", szMsg, false);
                   } /* try catch */  
               } /* try catch */  
     } break;
@@ -499,13 +499,13 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
                         P_DDJ.JKndTup0 = C_JKndTup_Obj;
                     } catch (P_Err1) {
                         szMsg = P_Err1.message; 
-                        $Error.U_Error(C_jCd_Cur, 6, szNm_URL + "JSON conversion failed.", szMsg, false);
+                        $Error.U_Error(C_jCd_Cur, 10, szNm_URL + "JSON conversion failed.", szMsg, false);
                     } /* try catch */  
                 return(Coll0);
             } catch (P_Err) {
             } /* try catch */
          } /* if */
-         $Error.U_Error(C_jCd_Cur, 7, szNm_URL + "Unknow data format", P_JKndTup0, false);
+         $Error.U_Error(C_jCd_Cur, 11, szNm_URL + "Unknow data format", P_JKndTup0, false);
     } break;
   } /* switch */
   
@@ -515,20 +515,18 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
 /*-----F_Coll_Mp_OLS --------------------------------------------------------
 *
 * Given a file in OLS format create the collections in it.
+*
+* szNmColl : name of the collection saved.
+* JKndTup0 : kind of the collection saved.
+* szNm_aFld: name of the layout.
+* szNote:    remarks (description of the Collection).
+* szPre:     preprocessing code (JS represented as a string).
+* szPost:    postprocessing code (JS represented as a string).
+* szCfg:     configuration parameters specific of the Collection.
+* szAlt:     string indicating if it is an alternative UsrView.
 */ 
 function F_Coll_Mp_OLS(R_DDJ, P_szTxt)
 {
-const C_jHdrOls_szNm   = 0;
-const C_jHdrOls_szType = 1;
-const C_jHdrOls_szCap_0  = 2;
-
-//const C_jHdrOls_szNm   = 0;
-//const C_jHdrOls_szType = 1;
-const C_jHdrOls_szNm_aFld = 2;
-const C_jHdrOls_szCap_1   = 3;
-const C_jHdrOls_szPre     = 4;
-const C_jHdrOls_szPost    = 5;
-
  var fAutoExec = false;
  var szCode = "";
  var Coll0;
@@ -538,24 +536,28 @@ const C_jHdrOls_szPost    = 5;
  try {
      JSON0 = JSON.parse(P_szTxt);
  } catch (P_Err1) {
-     $Error.U_Error(C_jCd_Cur, 8, "The text loaded is not compliant with JSON's specs.\n" + R_DDJ.szNm_URL + "\n", P_Err1.message, false);
+     $Error.U_Error(C_jCd_Cur, 12, "The text loaded is not compliant with JSON's specs.\n" + R_DDJ.szNm_URL + "\n", P_Err1.message, false);
      return;
  } /* try catch */
  
  var Hdr0 = F_ValFld_Obj(JSON0, "_Hdr0_");
  if (Hdr0 == C_Undefined) {
     /* Rel. 0.0 */
+const C_jHdrOLS_szNm    = 0;
+const C_jHdrOLS_szType  = 1;
+const C_jHdrOLS_szCap_0 = 2;
+
     var aHdr = JSON0.aHdr;
    
     for (let j = 1; j < aHdr.length; j++) {
-        let szNmColl = aHdr[j][C_jHdrOls_szNm];
+        let szNmColl = aHdr[j][C_jHdrOLS_szNm];
         Coll0 = JSON0[szNmColl];
         if (j & 1) {
            new CL_XDB0([szNmColl, C_JKndTup_aObj, Coll0, null, "aFld_aFld", "Layout.", C_WwFlag_fOverWrite, C_jCd_Cur]);
         }
         else {
-           let szNm_aFld = aHdr[j-1][C_jHdrOls_szNm];
-           new CL_XDB([szNmColl, aHdr[j][C_jHdrOls_szType], Coll0, JSON0[szNm_aFld], szNm_aFld,  aHdr[j][C_jHdrOls_szCap_0], (C_WwFlag_fOverWrite | C_WwFlag_fSample), C_jCd_Cur, C_Bag_UsrView_Dflt]);
+           let szNm_aFld = aHdr[j-1][C_jHdrOLS_szNm];
+           new CL_XDB([szNmColl, aHdr[j][C_jHdrOLS_szType], Coll0, JSON0[szNm_aFld], szNm_aFld,  aHdr[j][C_jHdrOLS_szCap_0], (C_WwFlag_fOverWrite | C_WwFlag_fSample), C_jCd_Cur, C_Bag_UsrView_Dflt]);
         } /* if */
     } /* for */
 
@@ -568,31 +570,57 @@ const C_jHdrOls_szPost    = 5;
     szCode = JSON0["autoexec"];
  }
  else {
+const C_jHdrOLS_szNm      = 0;   /* $NOTE the firsts two constant work both for _aaFld_ and _aColl_ */
+const C_jHdrOLS_szType    = 1;
+
+const C_jHdrOLS_szNm_aFld = 2;
+const C_jHdrOLS_szNote    = 3;
+const C_jHdrOLS_szPre     = 4;
+const C_jHdrOLS_szPost    = 5;
+const C_jHdrOLS_szCfg     = 6;
+
+const C_jHdrOLS_szAlt     = 7;   /* Alternative UserView for a given Collection. */
+const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
+
     if (Hdr0.iRel == 1.0) {
-        var _Hdr0_ = JSON0._Hdr0_;
-        var aaFld = F_ValFld_Obj(JSON0, "_aaFld_");
-        var aColl = F_ValFld_Obj(JSON0, "_aColl_");
+        var _Hdr0_  = JSON0._Hdr0_;
+        var aaFld   = F_ValFld_Obj(JSON0, "_aaFld_");
+        var aHdrOLS = F_ValFld_Obj(JSON0, "_aColl_");
+
         fAutoExec = Hdr0["szAutoExec"];
         if (fAutoExec) {
            szCode = JSON0["autoexec"];
         } /* if */
          
         for (let j = 0; j < aaFld.length; j++) {    
-            let szNmColl = aaFld[j][C_jHdrOls_szNm]; 
+            let szNmColl = aaFld[j][C_jHdrOLS_szNm]; 
             Coll0 = JSON0[szNmColl];
             new CL_XDB0([szNmColl, C_JKndTup_aObj, Coll0, null, "aFld_aFld", "Layout.", C_WwFlag_fOverWrite, C_jCd_Cur]);
         } /* for */    
-        for (let j = 0; j < aColl.length; j++) {
-            let BagColl0  = aColl[j];
-            let szNmColl, szType, szNm_aFld, szCap_1, szPre, szPost, szCfgUV;      /* $DEBUG: see Init.OLS */
-            [szNmColl, szType, szNm_aFld, szCap_1, szPre, szPost, szCfgUV] = BagColl0;    
+        for (let j = 0; j < aHdrOLS.length; j++) {
+            let HdrOLS0  = aHdrOLS[j];
+            let szNmColl, szType, szNm_aFld, szNote, szPre, szPost, szCfgUV, szAlt, szNmAlt;      /* $DEBUG: see Init.OLS */
+            [szNmColl, szType, szNm_aFld, szNote, szPre, szPost, szCfgUV, szAlt, szNmAlt] = HdrOLS0;    
             
             if (typeof(szPre) == "string") {
                $Error.U_Try(szPre);              /* Try to execute Collection preprocessing code*/
             } /* if */
             Coll0 = JSON0[szNmColl];
             let Bag_UsrView0 = [R_DDJ.szNm_URL, C_jPg_0, '', _Hdr0_, JSON0];
-            new CL_XDB([szNmColl, szType, Coll0, null, szNm_aFld, szCap_1, (C_WwFlag_fOverWrite | C_WwFlag_fSample), C_jCd_Cur, Bag_UsrView0]);
+
+            if ((szAlt == "Alt") && (szNmAlt)) {
+               var UsrView1 = CL_UsrView0.F_UsrView_Select(szNmColl, (C_WwFlag_fSearchCS));
+               if (UsrView1) {
+                  Coll0 = UsrView1.XDB0.Coll0;
+               }
+               else {
+                  $Error.U_Error(C_jCd_Cur, 13, "Referred Collection NOT found.", P_JKndTup0, false);
+               } /* if */
+               szNmColl = szNmAlt; /* Register the UsrView with the Alternative name. */
+               R_DDJ.WwFlag0 |= C_WwFlag_fReadOnly;
+            } /* if */
+
+            new CL_XDB([szNmColl, szType, Coll0, null, szNm_aFld, szNote, (R_DDJ.WwFlag0 | C_WwFlag_fOverWrite | C_WwFlag_fSample), C_jCd_Cur, Bag_UsrView0]);
             if (typeof(szPost) == "string") {
                $Error.U_Try(szPost);             /* Try to execute Collection postprocessing code*/
             } /* if */    
@@ -600,13 +628,13 @@ const C_jHdrOls_szPost    = 5;
     
         /* If fDisplay then change R_DDJ.szNmColl selecting the first Collection stored in the .OLS file and show it. */
         if (R_DDJ.WwFlag0 & C_WwFlag_fDisplay) {
-            var szNmColl   = aColl[0][C_jHdrOls_szNm];
+            var szNmColl   = aHdrOLS[0][C_jHdrOLS_szNm];
             R_DDJ.szNmColl = szNmColl;
-            var UsrView0 = CL_UsrView0.F_UsrView_Select(szNmColl, (R_DDJ.fReadOnly | C_WwFlag_fSearchCS));    
+            var UsrView0 = CL_UsrView0.F_UsrView_Select(szNmColl, (R_DDJ.WwFlag0 | C_WwFlag_fSearchCS));    
         } /* if */    
     }
     else {
-        $Error.U_Error(C_jCd_Cur, 9, "OLS Version unknown: ", Hdr0.iRes, false);
+        $Error.U_Error(C_jCd_Cur, 14, "OLS Version unknown: ", Hdr0.iRes, false);
     } /* if */
  } /* if */
  if (fAutoExec) {
@@ -616,7 +644,7 @@ const C_jHdrOls_szPost    = 5;
         eval(szCode);
     } catch (P_Err) {
         var szErr = $Error.F_szErr_Catch(P_Err); 
-        $Error.U_Error(C_jCd_Cur, 10, "F_Coll_Mp_OLS - ", szErr, false);
+        $Error.U_Error(C_jCd_Cur, 15, "F_Coll_Mp_OLS - ", szErr, false);
     } /* try catch */
  } /* if */
 

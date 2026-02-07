@@ -538,12 +538,14 @@ function F_Val_Mp_Tup_jaFld1(P_JKndTup0, P_UsrView)
 /*-----U_Display_Table --------------------------------------------------------
 *
 * Display the Collection Selected as a Table.
+* 
+* $NOTE: (P_WwFlag0 & C_WwFlag_fDisplay) condition was already checked in $UsrView.F_UsrView_SelIns()
 */ 
 function U_Display_Table(P_WwFlag0 = C_WwFlag_Null)
 {
   $Log.U_Log(C_jCd_Cur, 5, C_iLvl_DispTbl, "U_Display_Table", "");
 
-  var UsrView0    = CL_UsrView0.F_UsrView_Selected();
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   if (!UsrView0) {
      $Error.U_Error(C_jCd_Cur, 3, "No UsrView selected", "", false);
   } /* if */
@@ -552,11 +554,6 @@ function U_Display_Table(P_WwFlag0 = C_WwFlag_Null)
   var szNmColl    = UsrView0.szNmColl;
   var szTBM_Table = UsrView0.szTBM_Table;
   var szTBM_PopUp = UsrView0.szTBM_PopUp;
-  
-  if (P_WwFlag0 & C_WwFlag_fDisplay) {
-     var yyy = szNmColl;
-     var xxx = 0;
-  } /* if */
   
   if (UsrView0.XDB0.fLive) {
      UsrView0.U_Upd_aNdx();

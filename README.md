@@ -35,6 +35,7 @@ However, as a precaution, data collections are opened by default in Read-Only mo
 - Support for various data representation schemes in JSON format (arrays, objects, record arrays, object arrays, record-associative arrays, and object-associative arrays).
 - Support for arbitrary record layouts.
 - Ability to explore data collections by representing them as tables or cards.
+- Ability to combine alternative user views with the same data collection.
 - Ability to transpose rows with columns.
 - Ability to automatically convert data collections from one JSON schema to another and save them.
 - Ability to extract and reorganize data subsets and save them.

@@ -5,10 +5,10 @@
 * File        : test.js
 * Function    : Test procedures.
 * FirstEdit   : 15/12/2019
-* LastEdit    : 17/01/2026
-* System      : Mozilla FireFox 80+
+* LastEdit    : 25/01/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
+* System      : Mozilla FireFox 80+
 *
 *  ----- LICENSE -----
 *
@@ -86,7 +86,7 @@ function U_AddFld(P_UsrView, P_iNn_Fld)
 /*-----F_szTOON --------------------------------------------------------
 *
 */ 
-function F_szTOON(P_Val, P_iIndent=0)
+function F_szTOON_Lcd(P_Val, P_iIndent=0)
 {
   var aszIndent = ["", "  ", "    ", "      ", "        ", "          ", "            ", "              ", "                "];
 
@@ -102,10 +102,10 @@ function F_szTOON(P_Val, P_iIndent=0)
         Val0 = P_Val[Key];
         sz0 = F_szTOON_Term(Val0, iIndent);
         if (Val0 instanceof Object) {
-           szObj += szIndent + Key + ':\r' + sz0;
+           szObj += szIndent + Key + ':\n' + sz0;
         }
         else {
-           szObj += szIndent + Key + ': ' + sz0 + "\r";
+           szObj += szIndent + Key + ': ' + sz0 + "\n";
         } /* if */
         szIndent = (P_fFirst)? "": aszIndent[P_iIndent];
     } /* for */
@@ -195,16 +195,16 @@ function F_szTOON(P_Val, P_iIndent=0)
                      for (i = 0; i < iLen; i++) {
                          szIndent = aszIndent[P_iIndent];
 
-                            szArr += "\r" + szIndent + "- ";                       
+                            szArr += "\n" + szIndent + "- ";                       
 
                          sz0 = F_szTOON_Term(P_Val[i], P_iIndent +1);
                          szArr += sz0;
-                          $LcdLcd.U_Write("R:/toon_a.txt", szArr, false);
+                        // $LcdLcd.U_Write("R:/toon_a.txt", szArr, false);
                           var x = i;
                      } /* for */                  
                   }
                   else {
-                     szArr += "\r";
+                     szArr += "\n";
                      for (i = 0; i < iLen; i++) {
                          szIndent = aszIndent[P_iIndent];
 
@@ -212,7 +212,7 @@ function F_szTOON(P_Val, P_iIndent=0)
 
                          sz0 = F_szTOON_Term(P_Val[i], P_iIndent +1);
                          szArr += sz0;
-                          $LcdLcd.U_Write("R:/toon_b.txt", szArr, false);
+                         // $LcdLcd.U_Write("R:/toon_b.txt", szArr, false);
                           var x = i;
                      } /* for */  
                   } /* if */
@@ -221,7 +221,7 @@ function F_szTOON(P_Val, P_iIndent=0)
              szTOON = szArr;
            }
            else if (P_Val instanceof Date) {      // DATE
-              szTOON = P_Val.toISOString();
+              szTOON = `"${P_Val.toISOString()}"`;
            }
            else if (P_Val === null) {             // NULL
                 szTOON = "null";
@@ -263,6 +263,35 @@ function F_szTOON(P_Val, P_iIndent=0)
   return(szToon);
 } /* F_szTOON */
 
+/*-----F_szTOON_Foreign --------------------------------------------------------
+*
+*/ 
+function F_szTOON_Foreign(P_Val)
+{
+  try {
+      var szToon = encode(P_Val);
+  } catch (P_Err) {
+      alert("Error: " + P_Err);
+  } /* try catch */
+  return(szToon);
+} /* F_szTOON_Foreign */
+
+/*-----U_Compare --------------------------------------------------------
+*
+*/ 
+function U_Compare(P_Val)
+{
+  var szForeign = F_szTOON_Foreign(P_Val);
+  var szLCD     = F_szTOON_Lcd(P_Val);
+  if (szForeign != szLCD) {
+
+      $LcdLcd.U_Write("R:/orig.txt", JSON.stringify(P_Val), false);
+
+      $LcdLcd.U_Write("R:/foreign.txt", szForeign, false);
+      $LcdLcd.U_Write("R:/lcd.txt", szLCD, false);
+     ALERT("diversi", 1);
+  } /* if */
+} /* U_Compare */
 
 /*-----U_Test1 --------------------------------------------------------
 *
@@ -284,33 +313,38 @@ const C_asRcd = {"Key0":["asRcd", 100, true], "Key1":["bbb", 101, true], "key2":
 const C_asObj = {"Key0":{"sz0":"asObj", "iNum":100, "fBool":true}, "Key1":{"sz0":"bbb", "iNum":101, "fBool":true}, "key2":{"sz0":"ccc", "iNum":102, "fBool":true}};            
 const C_as_   = {"dog":"cane", "cat":"gatto"};
 
- $LcdLcd.U_Write("R:/toon4.txt", "---", false);
-  
-//  var s1 = F_szTOON("cane");
-//  var s0 = F_szTOON(123);
-//  var s2 = F_szTOON(true);
-//  var s3 = F_szTOON(null);
-//  var s4 = F_szTOON(undefined);
-//  var s5 = F_szTOON(Symbol0);
-//  var s6 = F_szTOON(NaN);
-//  var s7 = F_szTOON(Infinity);
-//  var s8 = F_szTOON(-Infinity);
-//  var s9 = F_szTOON(-0);
-//  var s10 = F_szTOON(Number.MIN_SAFE_INTEGER);
-//  var s11 = F_szTOON(Number.MAX_SAFE_INTEGER);
-//  var s12 = F_szTOON(BigInt(9876543210987654));
-//  var s13 = F_szTOON(123e4);
-//  var s14 = F_szTOON(-0001);
-//  var s15 = F_szTOON(Date0);
-//  var a1 = F_szTOON([]);
-//  var a2 = F_szTOON(C_Arr);
-//  var a3 = F_szTOON(C_aRcd);
-//  var a4 = F_szTOON(C_aObj);
+var aTest = [
+123,                            
+"cane",
+true,                            
+null,                           
+undefined,                      
+Symbol0,                        
+NaN,                            
+Infinity,                       
+-Infinity,                      
+-0,                             
+Number.MIN_SAFE_INTEGER,        
+Number.MAX_SAFE_INTEGER,        
+BigInt(9876543210987654),       
+123e4,                          
+-0001,                          
+Date0,                          
+[],                             
+C_Arr,                          
+C_aRcd,                         
+C_aObj                         
+];
 
-//debugger;
-  var a5 = F_szTOON(C_asRcd);
+var i;
+
+for (i = 0; i < aTest.length; i++) {
+     U_Compare(aTest[i]);
+} /* for */
+
+ALERT("OK1",1);
  
- $LcdLcd.U_Write("R:/toon5.txt", a5, false);
+ $LcdLcd.U_Write("R:/toon5.txt", s0, false);
 // debugger;
  var x = 5;
 } /* U_Test1 */

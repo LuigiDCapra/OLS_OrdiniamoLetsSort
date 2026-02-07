@@ -1775,6 +1775,9 @@ function F_szFLR_Mp_Coll(P_UsrView0)
 /*-----F_szOLS_Mp_Coll --------------------------------------------------------
 *
 * Return the string corresponding to OLS representation of the given Collection (P_UsrView0).
+* 
+* $NOTE: some of the functions involved in Collection saving could require the creation of new Collections, 
+* so at the end of the process it is necessary to select again the Collection that was saved (szNmColl_Prv).
 */ 
 function F_szOLS_Mp_Coll(P_UsrView0, P_szNm_Sav, P_jPrimKey, P_fAll=true)
 {
@@ -1842,16 +1845,30 @@ function F_szOLS_Mp_Coll(P_UsrView0, P_szNm_Sav, P_jPrimKey, P_fAll=true)
      szAutoExec = `,\n\n"autoexec":"${XDB0.OLS_Ld["autoexec"]}"`;
      szRem = XDB0.OLS_Ld["_Hdr0_"]["szRem"];
   } /* if */
+/*
+* szNmColl : name of the collection saved.
+* JKndTup0 : kind of the collection saved.
+* szNm_aFld: name of the layout.
+* szNote:    remarks (description of the Collection).
+* szPre:     preprocessing code (JS represented as a string).
+* szPost:    postprocessing code (JS represented as a string).
+* szCfg:     configuration parameters specific of the Collection.
+* szAlt:     string indicating if it is an alternative UsrView. $NOTE: szAlt="" because when a Collection is saved the selected UserView become its Primary UsrView.
+* szNmAlt:   name of the Alternative UserView.
+*/
+  var szAlt = "";
+  var szNmAlt = "";
+  
   szTxt = `{
 "_Hdr0_":{"iRel":1.0, "szAutoExec":"autoexec", "szRem":"${szRem}"},
 "_aaFld_":[["${szNm_aFld}", 4]],
-"_aColl_":[["${szNmColl}", ${XDB0.JKndTup0}, "${szNm_aFld}", "${szNote}", "${szPre}", "${szPost}", "${szCfg}"]],\n
+"_aColl_":[["${szNmColl}", ${XDB0.JKndTup0}, "${szNm_aFld}", "${szNote}", "${szPre}", "${szPost}", "${szCfg}", "${szAlt}", "${szNmAlt}"]],\n
 "${szNm_aFld}":${szJSON2},\n
 "${szNmColl}":${szJSON1},\n
 "${szCfg}":${szJSON4}${szAutoExec}
 }`;
   
-  CL_UsrView0.F_UsrView_Select(szNmColl_Prv, (C_WwFlag_fSearchCS | C_WwFlag_fSample));
+  CL_UsrView0.F_UsrView_Select(szNmColl_Prv, (C_WwFlag_fSearchCS | C_WwFlag_fSample));   /* Select again the Collection that was saved. */
   return(szTxt);
 } /* F_szOLS_Mp_Coll */
 

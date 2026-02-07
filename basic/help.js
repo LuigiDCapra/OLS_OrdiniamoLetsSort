@@ -50,7 +50,6 @@ const C_jCd_Cur = C_jCd_Tag;
 */ 
 function U_HelpFile(P_szHelp)
 {
-//debugger;
   var szDir = C_szApp.trim().toLowerCase() + "_files";
   var szNat = "it-IT";
   $DDJ.F_Window_open(`${szDir}/help/${szNat}/${P_szHelp}.html`);  

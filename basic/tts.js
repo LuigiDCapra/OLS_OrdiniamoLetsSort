@@ -5,7 +5,7 @@
 * File        : tts.js
 * Function    : Text to speech
 * FirstEdit   : 03/01/2021
-* LastEdit    : 09/01/2026
+* LastEdit    : 06/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -17,7 +17,7 @@
 * ### Specifications
 * ### Functional Requirements
 * ### Non Functional Requirements
-*
+*     $ASSUME: The present code requires the presence of a special HTML element called Id_Msg.
 */
 
 "use strict";
@@ -63,35 +63,34 @@ function F_fActive_TTS()
 
 /*-----U_Speak0 --------------------------------------------------------
 *
+* $NOTE: P_szText could be a string of pure Text or a piece od HTML code containing a text, in the last case HTML tags should be deleted.
 */ 
 function U_Speak0(P_szText, P_rVolume, P_rPitch, P_rRate, P_szLang, P_szName)
 {
   if (!S_fActive_TTS) {
      U_Init_TTS();
   } /* if */
-//  S_Elem_Div_Speech.innerHTML = P_szText;
-//  var szText = S_Elem_Div_Speech.innerText;
-//  S_Utterance.text = szText;
-  S_Utterance.text = P_szText;
-//  debugger;
+  
+  Id_Msg.innerHTML = P_szText;          /* Get the pure text deleting HTML tags. */
+  S_Utterance.text = Id_Msg.innerText; 
+
   if (P_szLang) {
      S_Utterance.lang = P_szLang;
-       for (let i = 0; i < S_aVoices.length ; i++) {
-        var Tmp = S_aVoices[i];  
-        if(Tmp.lang == P_szLang) {            /* BCP 47 language code (it-IT en-US fr-FR es-ES de-DE ja-JP ru-RU zh-CN) */
-//          Tmp.default = true;
-          S_Utterance.voice = Tmp;
-          S_Utterance.lang  = Tmp.lang;
-          if (P_szName) {
+     for (let i = 0; i < S_aVoices.length ; i++) {
+         var Tmp = S_aVoices[i];  
+         if (Tmp.lang == P_szLang) {    /* BCP 47 language code (it-IT en-US fr-FR es-ES de-DE ja-JP ru-RU zh-CN) */
+           S_Utterance.voice = Tmp;
+           S_Utterance.lang  = Tmp.lang;
+           if (P_szName) {
               if (Tmp.name.indexOf(P_szName) >= 0) {
                  break;
               } /* if */          
-          }
-          else {
-             break;
-          } /* if */
+           }
+           else {
+              break;
+           } /* if */
         } /* if */
-      } /* for */
+    } /* for */
   } /* if */
 
   S_Utterance.rate   = (P_rRate)?   P_rRate:   $VConfig.F_rRate();
@@ -161,7 +160,6 @@ function F_fSpeaking()
 function U_Long_speech(P_szMsg, P_szLang, P_rRate, P_szName)
 {
   U_Speak(P_szMsg, P_szLang, P_rRate, P_szName);
-//  $Viola.Set_jCB_jStsCmd(C_jCB_Listen, C_jStsCmd_Speaking);
 } /* U_Long_speech */
 
 /*-----U_Sel_Voice --------------------------------------------------------
@@ -176,14 +174,11 @@ function U_Sel_Voice()
    for (let i = 0; i < S_aVoices.length ; i++) {
     var Tmp = S_aVoices[i];  
     if(Tmp.lang == "it-IT") {            /* BCP 47 language code (it-IT en-US fr-FR es-ES de-DE ja-JP ru-RU zh-CN) */
-//      Tmp.default = true;
       S_Utterance.voice = Tmp;
       S_Utterance.lang  = Tmp.lang;
-      //break; 
     } /* if */
   } /* for */
   S_fActive_TTS = true;
-//  console.log(S_aVoices);
 } /* U_Sel_Voice */
 
 /*-----U_Prepare_Speech --------------------------------------------------------
@@ -237,7 +232,6 @@ function U_Init_TTS()
       //Chrome gets the voices asynchronously so this is needed
       speechSynthesis.onvoiceschanged = U_Sel_Voice;
     }
-    // setUpVoices(); //for all the other browsers
   } /* if */
   
   U_Root0("$TTS", C_jCd_Cur, 2);
