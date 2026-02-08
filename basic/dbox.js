@@ -5,7 +5,7 @@
 * File        : dbox.js
 * Function    : Dialogue-Box.
 * FirstEdit   : 06/12/2019
-* LastEdit    : 07/02/2026
+* LastEdit    : 08/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -258,10 +258,10 @@ function U_Hub(P_JPnl, P_Bag=null)
         } break;
         case C_JPnl_Cancel: {
              this.DBox1.U_Close(this.DBox1.szId);
-             this.DBox1.U_Cancel2(P_Bag);           /* Call User defined function. */
              if (this.szSCtx && this.szSCtx_Prv) {
                 $SemCtx.U_Restore(this.szSCtx_Prv); /* Restore previous Context. */
-             } /* if */
+             } /* if */            
+             this.DBox1.U_Cancel2(P_Bag);           /* Call User defined function. */
              this.DBoxPrv = null;
         } break;
         case C_JPnl_Confirm: {

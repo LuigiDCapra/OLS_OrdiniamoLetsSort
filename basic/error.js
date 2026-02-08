@@ -5,7 +5,7 @@
 * File        : error.js
 * Function    : Error Management.
 * FirstEdit   : 03/01/2021
-* LastEdit    : 09/01/2026
+* LastEdit    : 08/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -226,7 +226,7 @@ function U_Catch(P_jCd, P_1, P_Err)
       $Error.U_Error(C_jCd_Error, 2, "Unexpected Error Catched X\n" + P_jCd + "." + P_1 + "\n", 0);
   }
   else if (!P_Err.Knd) {
-      $Error.U_Error(C_jCd_Error, 3, "Unexpected Error Catched Y\n" + P_jCd + "." + P_1 + "\n" + P_Err.filename + "\nline: " + P_Err.lineNumber +  "\n" + P_Err.message, "");
+      $Error.U_Error(C_jCd_Error, 3, "Unexpected Error Catched Y\n" + P_jCd + "." + P_1 + "\n" + P_Err.fileName + "\nline: " + P_Err.lineNumber +  "\n" + P_Err.message, "");
   }
   else {
      /* Regenerate error report */

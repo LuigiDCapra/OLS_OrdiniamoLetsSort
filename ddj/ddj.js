@@ -5,7 +5,7 @@
 * File        : ddj.js
 * Function    : Data Disk Jockey ex CL-DAP
 * FirstEdit   : 15/12/2019
-* LastEdit    : 05/02/2026
+* LastEdit    : 08/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -666,9 +666,9 @@ function U_Planes()
 {
   function U_CB_Ins_Planes()
   {
-    var szPlane = +$TabPrm.F_ValSts_Get("Planes", "Seleziona il piano");
+    var szPlane = +$TabPrm.F_ValSts_Get("Planes", "Seleziona il piano");        // $$$ number or string?
     
-    $Value.U_Sel_szPlane(szPlane);
+    $Value.U_Sel_szPlane(szPlane, true);
     CL_UsrView0.F_UsrView_Select(szNmColl, C_WwFlag_fDisplay);   /* Restore the Collection previously selected. */
     U_Refresh();
   } /* U_CB_Ins_NLP */
@@ -677,9 +677,6 @@ function U_Planes()
   var szNmColl  = UsrView0.szNmColl;
 
   $Panel.U_Display("Planes", U_CB_Ins_Planes);
-
-//   G_szPlane = prompt("Select plane:", "");
-//   U_Refresh();
 } /* U_Planes */
 
 /*-----U_GoTo --------------------------------------------------------
@@ -1943,6 +1940,8 @@ function U_LinkClicked(P_Event) {
               szKnd = "file";
            } /* if */
            $FileMan.U_Open_PATH_2(szNm_UsrView, szKnd);
+        }
+        else if (szPfx == 'blob') {
         }
         else if (S_fShow && (szHREF != "JavaScript:void(0)")) {
            F_Window_open(szHREF);

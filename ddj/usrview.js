@@ -5,7 +5,7 @@
 * File        : usrview.js
 * Function    : User's View management.
 * FirstEdit   : 30/06/2022
-* LastEdit    : 30/01/2026
+* LastEdit    : 08/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -341,13 +341,13 @@ class CL_UsrView0 {
        this.fShow_Icon  = CfgUV.fShow_Icon;
        this.fLoadRes    = CfgUV.fLoadRes;
        this.fDistinct   = CfgUV.fDistinct;
-       this.fLoadRem    = CfgUV.fLoadRem;      
-       this.szPlane     = CfgUV.szPlane; 
+       this.fLoadRem    = CfgUV.fLoadRem;
        this.jaFld1_aNdx = CfgUV.jaFld1_aNdx;
        this.fAsc        = CfgUV.fAsc;
        this.iDay_BackUp = CfgUV.iDay_BackUp;
        this.iWdt_Image  = CfgUV.iWdt_Image;
-       this.iRow_Item_Sel = CfgUV.iRow_Item_Sel ?? -1;      
+       this.iRow_Item_Sel = CfgUV.iRow_Item_Sel ?? -1;
+       this.szPlane     = CfgUV.szPlane ?? -1;      
        szTBM_Table      = CfgUV.szTBM_Table;
        szTBM_Card       = CfgUV.szTBM_Card;
        szTBM_PopUp      = CfgUV.szTBM_PopUp;
@@ -698,13 +698,11 @@ class CL_UsrView0 {
        $Error.U_Warning(C_jCd_UsrView, 5, "UsrView not found:", P_szNm_UsrView, true);
        return(null);
     } /* if */
-//     var szPlane = UsrView0.szPlane;
-//     if ((szPlane === C_Undefined) || (szPlane === "") || (szPlane === -1)) {
-//        $Value.U_Sel_szPlane(-1);
-//     } /* if */
+
     CL_UsrView0.S_UsrView_Selected = UsrView0;
     $Log.U_Log(C_jCd_Cur, 1, C_iLvl_Select, "Select", P_szNm_UsrView);
-
+    $Value.U_Sel_szPlane_2(UsrView0);           /* 08/02/2026 */
+    
     if ($DDJ.F_fOverride_RO()) {
        fReadOnly = false;
     } /* if */
