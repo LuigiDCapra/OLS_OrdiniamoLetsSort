@@ -1,9 +1,9 @@
 {
 "_Hdr0_":{"iRel":1.0, "szAutoExec":"autoexec", "szRem":""},
-"_aaFld_":[["aFld_flash_card", 4]],
-"_aColl_":[["flash_card", 3, "aFld_flash_card", "New", "", "", "_CfgUV_"]],
+"_aaFld_":[["aFld_flash_card", 4], ["aFld_flash_card_Devel", 4]],
+"_aColl_":[["flash_card", 3, "aFld_flash_card_Devel", "Flash Cards Inserimento", "", "", "_CfgUV_"], ["flash_card", 3, "aFld_flash_card", "Flash Cards Utilizzo", "", "", "_CfgUV_", "Alt", "Flash Card"]],
 
-"aFld_flash_card0":[
+"aFld_flash_card_Devel":[
 {"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Quesito","szCaption":"Quesito","szType":"HTML","iLen":20,"fCaseSens":true,"fRecalc":false,"szCode":"","szRem":"","szU_PreProc":""},
 {"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Risposta","szCaption":"Risposta","szType":"string","iLen":20,"fCaseSens":true,"fRecalc":false,"szCode":"","szRem":"","szU_PostProc":""},
 {"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"Domanda","szCaption":"Domanda","szType":"HTML","iLen":20,"fCaseSens":true,"fRecalc":false,"szCode":"","szRem":""},
@@ -72,7 +72,7 @@
 "szURL_Remarks":"",
 "szStyle":"",
 "szTBM_Table":"Standard",
-"szTBM_Card":"Card",
+"szTBM_Card":"Basic Card",
 "szTBM_PopUp":"PopUp",
 "szHelp_Table":"",
 "szHelp_Card":"",
@@ -81,5 +81,5 @@
 "szCodeRun":"",
 "szCodeCheck":""},
 
-"autoexec":""
+"autoexec":"setTimeout(CL_UsrView0.F_UsrView_Select, 10, 'Flash Card', '0x2800');"
 }
