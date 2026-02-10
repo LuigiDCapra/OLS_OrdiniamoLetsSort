@@ -60,14 +60,12 @@ var G_asaMnEntry =
 ["History",            "$OLS.U_History", "History", "ols_files/ico/history.svg", "cronologia"],
 ["Log",                "$OLS.U_Log", "log", "ols_files/ico/log.svg", "log"],
 ["tree",               "$OLS.U_Tree", "tree", "ols_files/ico/tree.svg", "albero"],
-["cdf",                "$OLS.U_CdF", "cdf", "ols_files/ico/cose_da_fare.svg", "cose_da_fare"],  // $LCD
 ["Disk",               "$OLS.U_Disk", "Disk", "ols_files/ico/disk.svg", "dischi"],
 ["XTG",                "$XTG.U_XTG", "Xtg", "ols_files/ico/xtg.svg", "xtg", ""]
 ],
 
 "+++ block Development +++":[    /* $LCD */
-["Dashboard",          "$OLS.U_Dashboard", "dashboard", "ols_files/ico/dashboard.svg", "sinottico"],
-["Luigi",              "$LcdLcd.U_Home",   "luigi", "ols_files/ico/home2.svg", "luigi"]
+["x4",         "$DDJ.U_BrkPnt", "x3", "ols_files/ico/show.svg", "x4"]
 ],
 
 "+++ block LdSv Layout +++":[
@@ -105,8 +103,6 @@ var G_asaMnEntry =
 ],
 
 "+++ block PlaceHolder +++":[     /* $LCD */
-["x1",         "$DDJ.U_BrkPnt", "x1", "ols_files/ico/show.svg", "x1"],
-["x2",         "$DDJ.U_BrkPnt", "x2", "ols_files/ico/show.svg", "x2"],
 ["x3",         "$DDJ.U_BrkPnt", "x3", "ols_files/ico/show.svg", "x3"]
 ],
 
@@ -127,7 +123,7 @@ var G_asaMnEntry =
 ["Edit Collection",    "$XTG.U_Edit_Coll",   "Edit Collection", "ols_files/ico/edit_coll.svg", "edita collezione"]
 ],
 
-"+++ block Tools +++":[    /* $LCD */
+"+++ block Tools +++":[
 ["JS-Int",             "$OLS.U_JSInt", "JS-Int", "ols_files/ico/js-int.svg", "interprete javascript", "opt_auth"],
 ["Calculator",         "$OLS.U_Calculator", "Calculator", "ols_files/ico/calculator.svg", "calcolatrice"],
 ["VLS",                "$OLS.U_VLS", "VLS", "ols_files/ico/vls.svg", "Vediamo/Let's See", ""],
@@ -161,17 +157,6 @@ var G_asaMnEntry =
 ["",                   "$FileMan.U_Show_Res", "Open Resources", "ols_files/ico/show.svg", "apri risorsa"],
 ["Edit Resources",     "$XTG.U_Edit_Res",     "Edit Resources", "ols_files/ico/edit_res.svg",  "edita risorsa"],
 ["Edit",               "$XTG.U_Edit_File",    "Edit",           "ols_files/ico/edit_file.svg", "edita"]
-],
-
-"+++ block Resources Sinottico +++":[   /* $LCD */
-["Update",             "$Sinottico.U_Update",   "Update",         "ols_files/ico/update.svg", "aggiorna"],
-["Open Resources",     "$Sinottico.U_Show_Res", "Open Resources", "ols_files/ico/show.svg", "mostra risorsa"],
-["",                   "$Sinottico.U_Show_Res", "Open Resources", "ols_files/ico/show.svg", "apri risorsa"],
-["Edit Resources",     "$Sinottico.U_Edit_Res", "Edit Resources", "ols_files/ico/edit_res.svg",  "edita risorsa"],
-["Edit",               "$Sinottico.U_Edit_File","Edit",           "ols_files/ico/edit_file.svg", "edita"],
-   
-["Planes View.",       "$DDJ.U_Planes", "Planes View", "ols_files/ico/planes.svg", "piani di memoria"], 
-["Span another OLS",   "$OLS.U_Span_OLS2","Span another OLS",     "ols_files/ico/ols2.svg", "esegui ols2"]
 ],
 
 "+++ block NL command +++":[
@@ -261,7 +246,6 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Development +++"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
-["SemTree",            "$SemTree.U_SemTree", "SemTree", "ols_files/ico/semtree.svg", "Filtro Semantico", ""],    /* $LCD */
 ["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
 ["",                   "Expand", "", "", "+++ block Tools +++"], 
@@ -295,7 +279,6 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Development +++"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["ToDay.",             "$Calendar.U_ToDay0", "To Day", "ols_files/ico/oggi.svg", "oggi"],
-["ToDo",               "$Agenda.U_ToDo", "Impegni di Oggi.","ols_files/ico/todo.svg", "cose da fare"],   /* $LCD */
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
@@ -336,22 +319,6 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
 ["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["",                   "Expand", "", "", "+++ block CFG +++"],
-["",                   "Expand", "", "", "+++ block Test +++"],
-["",                   "Expand", "", "", "+++ block NL command +++"],
-["",                   "Insert", "", "", "++ block NLP ++"],  
-["",                   "Insert", "", "", "PopUp"]       
-],
-
-"Diario":[    /* $LCD */
-["",                   "Expand", "", "", "+++ block PrevNext +++"],
-["",                   "Expand", "", "", "+++ block LoadSave +++"],
-["",                   "Expand", "", "", "+++ block Development +++"],
-["",                   "Expand", "", "", "+++ block Edit +++"],
-["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Standard +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"],  
-["",                   "Expand", "", "", "+++ block Tools +++"], 
-["",                   "Expand", "", "", "+++ block CFG +++"],  
 ["",                   "Expand", "", "", "+++ block Test +++"],
 ["",                   "Expand", "", "", "+++ block NL command +++"],
 ["",                   "Insert", "", "", "++ block NLP ++"],  
@@ -415,23 +382,6 @@ var G_asaMnEntry =
 ["",                   "Insert", "", "", "PopUp"]       
 ],
 
-"Sinottico":[    /* $LCD */
-["",                   "Expand", "", "", "+++ block PrevNext +++"],
-["",                   "Expand", "", "", "+++ block LoadSave +++"],
-["",                   "Expand", "", "", "+++ block Development +++"],
-["",                   "Expand", "", "", "+++ block Resources Sinottico +++"],
-["",                   "Expand", "", "", "+++ block Edit +++"],    
-["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"], 
-["",                   "Expand", "", "", "+++ block Tools +++"], 
-["",                   "Expand", "", "", "+++ block CFG +++"],
-["",                   "Expand", "", "", "+++ block PATH-SET +++"],  
-["",                   "Expand", "", "", "+++ block Test +++"],
-["",                   "Expand", "", "", "+++ block NL command +++"],
-["",                   "Insert", "", "", "++ block NLP ++"],  
-["",                   "Insert", "", "", "PopUp"]       
-],
-
 "Log":[
 ["",                   "Expand", "", "", "+++ block PrevNext +++"],
 ["jLvl",               "$DDJ.U_Set_jLvl_Log", "Level", "", "livello", "select", ["Level", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
@@ -440,21 +390,6 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
 ["",                   "Expand", "", "", "+++ block Tools +++"], 
-["",                   "Expand", "", "", "+++ block CFG +++"],
-["",                   "Expand", "", "", "+++ block Test +++"],
-["",                   "Insert", "", "", "++ block NLP ++"],  
-["",                   "Insert", "", "", "PopUp"]       
-],
-
-"Budget":[    /* $LCD */
-["",                   "Expand", "", "", "+++ block PrevNext +++"],
-["",                   "Expand", "", "", "+++ block LoadSave +++"],
-["",                   "Expand", "", "", "+++ block Development +++"],
-["",                   "Expand", "", "", "+++ block Edit +++"],
-["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"], 
-["",                   "Expand", "", "", "+++ block Tools +++"],  
-["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
 ["",                   "Insert", "", "", "++ block NLP ++"],  
@@ -472,42 +407,6 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
-["",                   "Insert", "", "", "++ block NLP ++"],  
-["",                   "Insert", "", "", "PopUp"]       
-],
-
-"Gloss":[    /* $LCD */
-["",                   "Expand", "", "", "+++ block PrevNext +++"],
-["jLvl",               "$DDJ.U_Set_jLvl_Gloss", "Level", "", "livello", "select", ["Level", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
-["",                   "Expand", "", "", "+++ block LoadSave +++"],
-["",                   "Expand", "", "", "+++ block Development +++"],
-["",                   "Expand", "", "", "+++ block Edit +++"],
-["",                   "Expand", "", "", "+++ block Filter +++"],
-["SemTree",            "$SemTree.U_SemTree0", "SemTree", "ols_files/ico/semtree.svg", "FiltSemTree 0", ""],
-["",                   "Expand", "", "", "+++ block Layout +++"],  
-["",                   "Expand", "", "", "+++ block Tools +++"], 
-["",                   "Expand", "", "", "+++ block Standard +++"],
-["",                   "Expand", "", "", "+++ block CFG +++"],
-["",                   "Expand", "", "", "+++ block Test +++"],
-["",                   "Expand", "", "", "+++ block NL command +++"],
-["",                   "Insert", "", "", "++ block NLP ++"],  
-["",                   "Insert", "", "", "PopUp"]       
-],
-
-"Sked":[    /* $LCD */
-["",                   "Expand", "", "", "+++ block PrevNext +++"],
-["jLvl",               "$DDJ.U_Set_jLvl_Gloss", "Level", "", "livello", "select", ["Level", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
-["",                   "Expand", "", "", "+++ block LoadSave +++"],
-["",                   "Expand", "", "", "+++ block Development +++"],
-["",                   "Expand", "", "", "+++ block Edit +++"],
-["",                   "Expand", "", "", "+++ block Filter +++"],
-["SemTree",            "$SemTree.U_SemTree3", "SemTree", "ols_files/ico/semtree.svg", "FiltSemTree 3", ""],
-["",                   "Expand", "", "", "+++ block Layout +++"],  
-["",                   "Expand", "", "", "+++ block Tools +++"], 
-["",                   "Expand", "", "", "+++ block Standard +++"],
-["",                   "Expand", "", "", "+++ block CFG +++"],
-["",                   "Expand", "", "", "+++ block Test +++"],
-["",                   "Expand", "", "", "+++ block NL command +++"],
 ["",                   "Insert", "", "", "++ block NLP ++"],  
 ["",                   "Insert", "", "", "PopUp"]       
 ],
@@ -729,10 +628,6 @@ var G_asaMnEntry =
 ["Help","$DDJ.U_Help","Help file", "ols_files/ico/help.svg", "aiuto"]
 ],
 
-"SQL": [    /* $LCD */
-["Help file","$DDJ.U_Help","Help", "ols_files/ico/help.svg", "aiuto"]
-],
-
 "Calendar": [
 ["Giorno",   "$Calendar.U_UpdDay",   "Giorno",    "", "giorno", "select", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21,22,23,24,25,26,27,28,29,30,31]],
 ["Mese",     "$Calendar.U_UpdMonth", "Mese",      "", "mese",   "select", ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]],
@@ -768,7 +663,7 @@ var G_asaMnEntry =
 ["", "Insert", "", "", "++ block Chiudi ++"]
 ],
 
-"Camera": [    /* $LCD */
+"Camera": [
 ],
 
 "Remarks":[
@@ -780,7 +675,7 @@ var G_asaMnEntry =
 ["Show Images",        "$Remarks.U_Show_Img", "Show Images", "ols_files/ico/thumbnails.svg", "mostra immagini"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
-["SemTree",            "$SemTree.U_SemTree3", "SemTree", "ols_files/ico/semtree.svg", "FiltSemTree 3", ""],  /* $LCD */
+
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
 ["",                   "Expand", "", "", "+++ block Tools +++"], 
 
