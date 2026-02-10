@@ -5,7 +5,7 @@
 * File        : xtg.js
 * Function    : XTG like functions
 * FirstEdit   : 11/01/2025
-* LastEdit    : 04/02/2026
+* LastEdit    : 08/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -77,8 +77,7 @@ function U_XTG()
          break;
       } /* if */
   } /* for */
-   
-  $Value.U_Sel_szPlane(-1);
+
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
   var Coll0 = UsrView0.XDB0.Coll0;
   var Tup3  = Coll0[3];

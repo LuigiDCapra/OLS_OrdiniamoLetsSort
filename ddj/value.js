@@ -5,7 +5,7 @@
 * File        : value.js
 * Function    : Data's value Editing
 * FirstEdit   : 05/09/2022
-* LastEdit    : 02/02/2026
+* LastEdit    : 08/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -90,6 +90,7 @@ const $Value = (function () {
   _Value.U_Set_iWdt_Image = U_Set_iWdt_Image;  // function U_Set_iWdt_Image(P_iWdt_Image);
   
   _Value.U_Sel_szPlane    = U_Sel_szPlane;     // function U_Sel_szPlane(P_szPlane);
+  _Value.U_Sel_szPlane_2  = U_Sel_szPlane_2;   // function U_Sel_szPlane_2(P_UsrView);
         
 /*----- Local Constants ----------------------------------------------*/
 
@@ -111,6 +112,7 @@ var S_fCaption = false;
 var S_iWdt_Image = "10";
 
 var S_szPlane ="";
+var S_fOverride = false;
 
 /*
 *  Edit single value.
@@ -165,12 +167,30 @@ var S_szDate0 = "";
 
 var S_iHgt = "300px";             /* picture height MAX */
 
+/*-----U_Sel_szPlane_2 --------------------------------------------------------
+*
+* Select Plane that should be displayed.
+*/ 
+function U_Sel_szPlane_2(P_UsrView)
+{
+  U_Sel_szPlane(P_UsrView.szPlane, false);
+} /* U_Sel_szPlane_2 */
+
 /*-----U_Sel_szPlane --------------------------------------------------------
 *
 * Select Plane that should be displayed.
 */ 
-function U_Sel_szPlane(P_szPlane=-1)
+function U_Sel_szPlane(P_szPlane, P_fOverride=false)
 {
+  if (P_fOverride) {
+     S_fOverride = true;
+  }
+  else {
+     if (S_fOverride) {
+        S_fOverride = false;
+        return;
+     } /* if */
+  } /* if */
   S_szPlane = P_szPlane;
 } /* U_Sel_szPlane */
 

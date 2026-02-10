@@ -5,7 +5,7 @@
 * File        : usrview.js
 * Function    : User's View management.
 * FirstEdit   : 30/06/2022
-* LastEdit    : 30/01/2026
+* LastEdit    : 10/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -204,8 +204,8 @@ function F_fFilter_Null(P_pF, P_Tup)
 */ 
 class CL_UsrView0 {    
   constructor(R_XDB, P_aFld, P_Bag_UsrView) {  // new CL_UsrView0
-    var szNm_URL, jPg, ch, _Hdr0_, OLS_Ld, szTBM_Table, szTBM_Card, szTBM_PopUp, szHelp_Table, szHelp_Card, szHelp_PopUp; 
-    [szNm_URL, jPg, ch, _Hdr0_, OLS_Ld, szTBM_Table, szTBM_Card, szTBM_PopUp, szHelp_Table, szHelp_Card, szHelp_PopUp] = P_Bag_UsrView ?? ["", C_jPg_0, '', null, null, "Standard"];       
+    var szNm_URL, jPg, ch, _Hdr0_, OLS_Ld, szTBM_Table, szTBM_Card, szTBM_PopUp, szHelp_Table, szHelp_Card, szHelp_PopUp, szCSS_Usr; 
+    [szNm_URL, jPg, ch, _Hdr0_, OLS_Ld, szTBM_Table, szTBM_Card, szTBM_PopUp, szHelp_Table, szHelp_Card, szHelp_PopUp, szCSS_Usr] = P_Bag_UsrView ?? ["", C_jPg_0, '', null, null, "Standard"];       
     U_Root0("CL_UsrView0", R_XDB.szNmColl);
     var CfgUV;
     var aFldTmp;
@@ -341,19 +341,20 @@ class CL_UsrView0 {
        this.fShow_Icon  = CfgUV.fShow_Icon;
        this.fLoadRes    = CfgUV.fLoadRes;
        this.fDistinct   = CfgUV.fDistinct;
-       this.fLoadRem    = CfgUV.fLoadRem;      
-       this.szPlane     = CfgUV.szPlane; 
+       this.fLoadRem    = CfgUV.fLoadRem;
        this.jaFld1_aNdx = CfgUV.jaFld1_aNdx;
        this.fAsc        = CfgUV.fAsc;
        this.iDay_BackUp = CfgUV.iDay_BackUp;
        this.iWdt_Image  = CfgUV.iWdt_Image;
-       this.iRow_Item_Sel = CfgUV.iRow_Item_Sel ?? -1;      
+       this.iRow_Item_Sel = CfgUV.iRow_Item_Sel ?? -1;
+       this.szPlane     = CfgUV.szPlane ?? -1;      
        szTBM_Table      = CfgUV.szTBM_Table;
        szTBM_Card       = CfgUV.szTBM_Card;
        szTBM_PopUp      = CfgUV.szTBM_PopUp;
        szHelp_Table     = CfgUV.szHelp_Table;
        szHelp_Card      = CfgUV.szHelp_Card;
        szHelp_PopUp     = CfgUV.szHelp_PopUp;
+       szCSS_Usr        = CfgUV.szCSS_Usr;
        szURL_Remarks    = CfgUV.szURL_Remarks ?? "";
        szStyle          = CfgUV.szStyle ?? $VConfig.F_ValSts_Get("szStyle");
        szAux            = CfgUV.szAux ?? "";
@@ -366,6 +367,7 @@ class CL_UsrView0 {
     szHelp_Table = szHelp_Table ?? "";
     szHelp_Card  = szHelp_Card  ?? "";
     szHelp_PopUp = szHelp_PopUp ?? "";
+    szCSS_Usr    = szCSS_Usr    ?? "";
     szStyle      = szStyle      ?? "Ligth";
     
     if (!G_asaMnEntry[szTBM_Table]) {           /* if TBM not exists set default */
@@ -396,6 +398,7 @@ class CL_UsrView0 {
     this.szHelp_Table = szHelp_Table;
     this.szHelp_Card  = szHelp_Card;
     this.szHelp_PopUp = szHelp_PopUp;
+    this.szCSS_Usr    = szCSS_Usr;
 /*
 * $NOTE: check also U_Cfg_UV(); code.
 */
@@ -421,6 +424,7 @@ class CL_UsrView0 {
       szHelp_Table:szHelp_Table,
       szHelp_Card:szHelp_Card,
       szHelp_PopUp:szHelp_PopUp,
+      szCSS_Usr:szCSS_Usr,
       szAux:szAux,
       szCodeRun: "",
       szCodeCheck: ""
@@ -698,15 +702,19 @@ class CL_UsrView0 {
        $Error.U_Warning(C_jCd_UsrView, 5, "UsrView not found:", P_szNm_UsrView, true);
        return(null);
     } /* if */
-//     var szPlane = UsrView0.szPlane;
-//     if ((szPlane === C_Undefined) || (szPlane === "") || (szPlane === -1)) {
-//        $Value.U_Sel_szPlane(-1);
-//     } /* if */
+
     CL_UsrView0.S_UsrView_Selected = UsrView0;
     $Log.U_Log(C_jCd_Cur, 1, C_iLvl_Select, "Select", P_szNm_UsrView);
-
+    $Value.U_Sel_szPlane_2(UsrView0);           /* 08/02/2026 */
+    
     if ($DDJ.F_fOverride_RO()) {
        fReadOnly = false;
+    } /* if */
+    if (UsrView0.szCSS_Usr) {
+       Id_Style_2.innerHTML = UsrView0.szCSS_Usr;    
+    }
+    else {
+       Id_Style_2.innerHTML = "";
     } /* if */
     
     var fDisplay = (P_WwFlag & C_WwFlag_fDisplay);
@@ -1138,6 +1146,7 @@ function U_Cfg_UV()
     "Help - Table":CfgUV0.szHelp_Table,
     "Help - Card":CfgUV0.szHelp_Card,
     "Help - PopUp":CfgUV0.szHelp_PopUp,
+    "User defined CSS":CfgUV0.szCSS_Usr,
     "SortField":CfgUV0.jaFld1_aNdx,
     "Ascending Order":CfgUV0.fAsc,
     "iWdt_Image":CfgUV0.iWdt_Image,
@@ -1186,6 +1195,7 @@ function U_Confirm_2(P_Bag)
     szHelp_Table:  CfgUV1["Help - Table"],
     szHelp_Card:   CfgUV1["Help - Card"],
     szHelp_PopUp:  CfgUV1["Help - PopUp"],
+    szCSS_Usr:     CfgUV1["User defined CSS"],
     jaFld1_aNdx:   CfgUV1["SortField"],
     szAux:         CfgUV1["szAux"],
   }; 
@@ -1209,17 +1219,19 @@ function U_Set_P_CfgUV(R_UsrView0, P_CfgUV)
   var szTBM_Table        = P_CfgUV.szTBM_Table;
   var szTBM_Card         = P_CfgUV.szTBM_Card;
   var szTBM_PopUp        = P_CfgUV.szTBM_PopUp;
+  var szCSS_Usr          = P_CfgUV.szCSS_Usr;
   var szHelp_Table       = P_CfgUV.szHelp_Table;
   var szHelp_Card        = P_CfgUV.szHelp_Card;
   var szHelp_PopUp       = P_CfgUV.szHelp_PopUp;
 
   szTBM_Table  = szTBM_Table  ?? "Standard";    
   szTBM_Card   = szTBM_Card   ?? "Card";    
-  szTBM_PopUp  = szTBM_PopUp  ?? "PopUp";     /* Mouse right-click menu */
+  szTBM_PopUp  = szTBM_PopUp  ?? "PopUp";     /* Mouse right-click menu */    
   szHelp_Table = szHelp_Table ?? "";
   szHelp_Card  = szHelp_Card  ?? "";
   szHelp_PopUp = szHelp_PopUp ?? "";
-  
+  szCSS_Usr    = szCSS_Usr    ?? "";
+
   if (!G_asaMnEntry[szTBM_Table]) {           /* if TBM not exists set default */
      $Error.U_Warning(C_jCd_UsrView, 12, "TBM not found. Set default.", szTBM_Table, true);
      szTBM_Table = "Standard";
@@ -1244,6 +1256,7 @@ function U_Set_P_CfgUV(R_UsrView0, P_CfgUV)
   R_UsrView0.szHelp_Table = szHelp_Table;
   R_UsrView0.szHelp_Card  = szHelp_Card;
   R_UsrView0.szHelp_PopUp = szHelp_PopUp;
+  R_UsrView0.szCSS_Usr    = szCSS_Usr;
 } /* U_Set_P_CfgUV */
 
 /*-----U_Init_UsrView --------------------------------------------------------

@@ -5,7 +5,7 @@
 * File        : card.js
 * Function    : Card Editing
 * FirstEdit   : 15/12/2019
-* LastEdit    : 30/01/2026
+* LastEdit    : 10/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -249,9 +249,12 @@ function U_Paste_Tup()
 {
   if (!CL_UsrView0.F_fReadOnly()) {
       var UsrView0 = CL_UsrView0.F_UsrView_Selected();
-      var XDB0 = UsrView0.XDB0;
-      
-      var TupCopy = XDB0.Tup_Copy; 
+      var XDB0 = UsrView0.XDB0;      
+      var TupCopy = XDB0.Tup_Copy;
+      if (!TupCopy) {
+         $Error.U_Error(C_jCd_Cur, 1, "Sorry there is nothing to paste.", "", false);
+         return;
+      } /* if */ 
      
       U_OpenCard(XDB0, C_jOpt_Confirm_Paste);  
   }

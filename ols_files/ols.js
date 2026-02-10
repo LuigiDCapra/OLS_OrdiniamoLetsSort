@@ -5,7 +5,7 @@
 * File        : ols.js
 * Function    : OLS' js file.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 05/02/2026
+* LastEdit    : 08/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -242,8 +242,6 @@ function U_Apps()
 function U_Dashboard()
 {
   var szHome = "sinottico";
-  $Value.U_Sel_szPlane(0);
-
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
   $FileMan.U_URL("");
   if (UsrView0 == null) {
@@ -296,7 +294,6 @@ function U_Tree()
 function U_Collections()
 {
   var szHome = "Collections";
-  $Value.U_Sel_szPlane(-1);
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
   $FileMan.U_URL("");
   if (UsrView0 == null) {
@@ -310,7 +307,6 @@ function U_Collections()
 function U_History()
 {
   var szHome = "History";
-  $Value.U_Sel_szPlane(-1);
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
   var Coll0 = UsrView0.XDB0.Coll0;
   var Tup3  = Coll0[3];
@@ -439,7 +435,7 @@ function U_Init_OLS()
      new CL_XDB(['Config (State)', C_JKndTup_Obj,  $VConfig.F_ValPrivate_Sts(), null, 'AutoDetect', 'Configuration', (C_WwFlag_fReadOnly | C_WwFlag_fLive | C_WwFlag_fService), C_jCd_Cur, C_Bag_UsrView_Dflt]);    
      new CL_XDB(['G_DDJ',          C_JKndTup_Obj,  G_DDJ, null, 'AutoDetect', 'Configuration', (C_WwFlag_fReadOnly | C_WwFlag_fLive | C_WwFlag_fService), C_jCd_Cur, C_Bag_UsrView_Dflt]);
   } /* if */
-  if (typeof($LcdLcd) != "undefined") {
+  if (window.fLcdLcd) {
      setTimeout(U_Ld_Coll, 1000); /* Load external Collections. */
      setTimeout(U_Ld_Coll, 2000);
      setTimeout(U_BackUp_Coll, 10000);
