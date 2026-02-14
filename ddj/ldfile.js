@@ -5,7 +5,7 @@
 * File        : ldfile.js
 * Function    : Load File.
 * FirstEdit   : 10/04/2024
-* LastEdit    : 06/02/2026
+* LastEdit    : 13/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -52,7 +52,9 @@ const $LdFile = (function () {
   _LdFile.U_DwLd_Update   = U_DwLd_Update;       // function U_DwLd_Update(P_szNmColl_Orig, P_szNmServer, P_szNm_URL, P_fEmbed=false);  
   _LdFile.F_Coll_Mp_JSON  = F_Coll_Mp_JSON;      // function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, R_DDJ);
   _LdFile.F_Coll_Mp_Text  = F_Coll_Mp_Text;      // function F_Coll_Mp_Text(R_DDJ, P_szTxt);
-  _LdFile.U_Make_Coll     = U_Make_Coll;         // function U_Make_Coll(R_DDJ, P_szTxt)
+  _LdFile.U_Make_Coll     = U_Make_Coll;         // function U_Make_Coll(R_DDJ, P_szTxt);
+
+  _LdFile.F_aRcd_Mp_szCSV = F_aRcd_Mp_szCSV;     // function F_aRcd_Mp_szCSV(P_szCSV, R_DDJ);
 
 /*----- Local Constants ----------------------------------------------*/
 

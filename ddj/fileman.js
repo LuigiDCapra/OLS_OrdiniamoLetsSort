@@ -103,7 +103,7 @@ var S_szOS = "";               /* Operating System release. */
 
 /*-----U_Write --------------------------------------------------------
 *
-* $LcdLcd.U_Write();
+* $FileMan.U_Write();
 */ 
 function U_Write(P_szFlNm, P_szBuff, P_fBinary)
 {

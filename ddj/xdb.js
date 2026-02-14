@@ -5,7 +5,7 @@
 * File        : xdb.js ex xarr2.js
 * Function    : Data_Structure MetaData (Layout) management.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 06/02/2026
+* LastEdit    : 13/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -275,7 +275,7 @@ class CL_XDB0 {
            
            aFld0 = $AutoDetect.F_aFld_Make(Coll0, JKndTup0, fszFldNm_1);        /* Analize the given Collection to build the Collection Layout */
            
-           var XDB_AutoDetect = new CL_XDB0([szNm_aFld, C_JKndTup_aObj, aFld0, null, "aFld_aFld", "--- Auto ---", (WwFlag0 | C_WwFlag_fOverWrite), jCd_]);    
+           var XDB_AutoDetect = new CL_XDB0([szNm_aFld, C_JKndTup_aObj, aFld0, null, "aFld_aFld", "--- Auto ---", (C_WwFlag_fOverWrite), jCd_]);    
        }
        else {
            var aFld0 = CL_Layout.F_UsrView_Mp_szNm_aFld(szNm_aFld);

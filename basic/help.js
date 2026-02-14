@@ -5,7 +5,7 @@
 * File        : help.js
 * Function    : Help management.
 * FirstEdit   : 15/12/2019
-* LastEdit    : 20/01/2026
+* LastEdit    : 13/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -78,7 +78,9 @@ function U_Help(P_szHelp)
 */ 
 function U_Tutorial(P_szHelp)
 {
-  $DDJ.F_Window_open("../bin/anim.html"); 
+  if (window.G_fSaved != undefined) {
+     $DDJ.F_Window_open("../bin/anim.html");
+  } /* if */ 
 } /* U_Tutorial */
 
 /*-----U_Init_Help --------------------------------------------------------

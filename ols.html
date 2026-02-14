@@ -5,7 +5,7 @@ Revision    : 0.021
 File        : ols.htm
 Function    : Ordiniamo/Let's Sort ex Data Jockey (ex CL-DAP)
 FirstEdit   : 15/12/2019
-LastEdit    : 10/02/2026
+LastEdit    : 14/02/2026
 Author      : Luigi D. Capra
 Copyright(c): Luigi D. Capra 2017, 2026
 System      : HTML-5 + CSS3 + JavaScript
@@ -40,7 +40,7 @@ TBM = ToolBar Menu
 <html lang="it">
   <head>
   <meta content="text/html; charset=utf-8" http-equiv="content-type">    
-    <title>CL-Eidos Data Analysis Package</title>
+    <title>OLS (Open)</title>
     <meta content="Luigi D. CAPRA" name="author">
     <meta content="TUISys' Ordiniamo/Let's Sort" name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,8 +51,7 @@ TBM = ToolBar Menu
     <link rel="stylesheet" href="basic/mrmenu.css">
     <link rel="stylesheet" href="ddj/ddj.css">    
     <link rel="stylesheet" href="basic/camera.css" type="text/css" media="all">   
-    <!-- $VERSIONING -->    
-    <link rel="stylesheet" href="lcd/lcdlcd.css">
+    <!-- $VERSIONING -->
     
     <style id="Id_Style_1"></style>   <!-- CSS styles set by JS code --->
     <style id="Id_Style_2"></style>   <!-- CSS styles set by JS code --->
@@ -135,8 +134,8 @@ TBM = ToolBar Menu
   
   <div id="Id_Msg" hidden>&nbsp; </div>  <!-- STT -->
   <div id="Id_select_language" hidden>&nbsp; </div>  <!-- STT -->
+  <div id="Id_BackUp" hidden>&nbsp; </div>  <!-- STT -->
   <div class="Cl_ReadOnly">x</div>
-</body>
 
 <script src="ols_files/data/mnentry.js"></script>
        
@@ -250,8 +249,6 @@ const C_szApp  = "OLS  ";
 const C_szFlNm = "ols.html";
 const C_fMain  = C_szApp;     /* flag: Enable DDJ's page Update */
 
-const C_fReload = false;      // $LCD
-
 const C_jaszHelp_Main    = 0;
 const C_jaszHelp_aFld0   = 1;
 const C_jaszHelp_aFld1   = 2;
@@ -264,7 +261,7 @@ var G_U_FlMan_Exec;         /* Procedure that receives commands from FlMan and e
 var G_szApp = C_szApp;
 
 var G_szBuff_WE4 = "";
-var G_Pippo = {};
+var G_fSaved = false;
 
 /*-----U_Set_TabFix_iWdt --------------------------------------------------------
 *
@@ -303,19 +300,6 @@ function U_JsonPath()
   
   $JSonPath.DBox_JsonPath.U_Hub(C_JPnl_Open);
 } /* U_JsonPath */
-
-// /*-----U_Home --------------------------------------------------------
-// *
-// */ 
-// function U_Home()
-// {
-//   if (window.isSecureContext) {
-//      $DDJ.F_Window_open("file:///I:/siti/luigi.htm", "Tg_Home");
-//   }
-//   else {
-//      $Error.U_Error(C_jCd_Cur, 1, "Not secure", "", false);
-//   } /* if */ 
-// } /* U_Home */
 
 /*-----U_Toggle_Debug --------------------------------------------------------
 *
@@ -459,14 +443,6 @@ function U_Test1()
   $Test.U_Test1();
 } /* U_Test1 */
 
-/*-----U_Test1 --------------------------------------------------------
-*
-*/ 
-function xxx_U_Test1()
-{
-
-} /* U_Test1 */
-
 /*-----U_Test2 --------------------------------------------------------
 *
 * Spare routine for code testing.
@@ -586,8 +562,10 @@ function U_Open_XTG()
 */ 
 function U_Init()
 {
+  G_fSaved = (Id_Tbl0_H.innerText != "");
+
   var DDJSts = {};
-  DDJSts.iRel_KNS        = 20250922;          /* Cfg. release number. */
+  DDJSts.iRel_KNS        = 20260214;          /* Cfg. release number. */
   DDJSts.szUser          = "";                // Luigi
   DDJSts.szURL_Relay     = "";                // http://helios:27015/
   DDJSts.szjDate         = "YYYYMMDD";
@@ -615,7 +593,26 @@ function U_Init()
   DDJSts.fEnaPeriodic    = false;              /* true - enable commands introduced using "tele.htm" */
   DDJSts.fIcons          = true;
   DDJSts.fVoice_Error    = true; 
-  DDJSts.fEcho_Commands  = false; 
+  DDJSts.fEcho_Commands  = false;
+
+  if (G_fSaved) {
+     /* OLS just saved on local disk. */
+
+     var szTxt = Id_Tbl0_H.innerText + "\n" + Id_Tbl0_B.innerText;
+     var szTitle = document.title.substr(6);
+     var iPos = szTitle.indexOf("[");    
+     var szTitle = szTitle.substr(0, iPos);
+     
+     var href = window.location.href;
+     var iPos0 = href.lastIndexOf("/");
+     var iPos1 = href.lastIndexOf(".");
+     var szPath = href.substring(iPos0 +1, iPos1); 
+     $SemCtx.szDir_Ico = szPath + "_files/"; 
+  }
+  else {
+     /* Regular installation: that is OLS downloaded from web-site or development installation on local disk. */
+     $SemCtx.szDir_Ico = "ols_files/ico/";        /* relative PATH used to access Icons' repository */
+  } /* if */
 
   $VConfig.U_Init_DDJSts(C_szApp, DDJSts, $DDJ.U_CB_Update, $DDJ.U_WellCome);
   CL_UsrView0.U_SetDefaults(0, "Id_Div01", 'Id_Tbl0', 'Id_Tbl3', "Id_Tbl0_H", "Id_Tbl0_B");
@@ -637,7 +634,29 @@ function U_Init()
   } catch (P_Err) {
       debugger;                                                                                                                                                                                                               
       $Error.U_Catch(C_jCd_Cur, 2, P_Err);
-  } /* try catch */  
+  } /* try catch */
+
+  if (G_fSaved) {
+     var DDJ0 = {};
+     
+     DDJ0.JKndTup0 = C_JKndTup_aRcd;
+     DDJ0.aFld = null;
+     DDJ0.szNm_aFld = "AutoDetect";
+     
+     DDJ0.chSep1 = "\t";
+     DDJ0.chSep2 = "";
+     DDJ0.iSkip = 0;
+     DDJ0.fAlgCSV1 = false;
+     DDJ0.fszFldNm_1 = true;
+     DDJ0.fLnNum = false;
+     
+     var aRcd0 = $LdFile.F_aRcd_Mp_szCSV(szTxt, DDJ0);
+     var sz0 = JSON.stringify(aRcd0);
+     $FileMan.U_Write("r:/all2.txt", sz0, false);
+     
+     new CL_XDB([szTitle, C_JKndTup_aRcd, aRcd0, null, "AutoDetect", "", (C_WwFlag_fOverWrite | C_WwFlag_fDisplay | C_WwFlag_fszFldNm_1), C_jCd_Cur, C_Bag_UsrView_Dflt]); 
+  } /* if */
+   
   $DDJ.U_UnLoad = U_UnLoad;   /* $Register */
 
   var szDateTime = $TimeDate.F_szDate_Now("datetime"); 
@@ -690,19 +709,32 @@ function U_Start()
   } /* if */
 } /* U_Start */
 
-
-/*-----U_XXX --------------------------------------------------------
-*
-*/ 
-function U_XXX(P_1, P_2, P_3)
-{
-  debugger;
-} /* U_XXX */
-
 U_Init();
 
 //]]></script>
 
+
+<div hidden>
+<!-- $Versioning. Preload resoureces -->
+
+<img alt="" src="ols_files/ico/edit_res.svg">
+<img alt="" src="ols_files/ico/edit_file.svg">
+<img alt="" src="ols_files/ico/first.svg">
+<img alt="" src="ols_files/ico/last.svg">
+
+<img alt="" src="ols_files/ico/save2.svg">
+<img alt="" src="ols_files/ico/reload_card.svg">
+<img alt="" src="ols_files/ico/copy.svg">
+<img alt="" src="ols_files/ico/paste.svg">
+<img alt="" src="ols_files/ico/clear.svg">
+<img alt="" src="ols_files/ico/read.svg">
+<img alt="" src="ols_files/ico/shutup.svg">
+<img alt="" src="ols_files/ico/toggle_type.svg">
+<img alt="" src="ols_files/ico/toggle_ro.svg">
+<img alt="" src="ols_files/ico/move_up.svg">
+<img alt="" src="ols_files/ico/move_dn.svg">
+</div>
+</body>
 </html>     
 
 

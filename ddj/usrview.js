@@ -5,11 +5,7 @@
 * File        : usrview.js
 * Function    : User's View management.
 * FirstEdit   : 30/06/2022
-<<<<<<< HEAD
-* LastEdit    : 10/02/2026
-=======
-* LastEdit    : 08/02/2026
->>>>>>> 83e4c808f5ddd6ea487e5cfe31465876550abb7a
+* LastEdit    : 14/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -219,10 +215,6 @@ class CL_UsrView0 {
     var aFld1 = [];
     var aiPos = [];
     var fSet = false;  /* Set P_aFld values. */
-    
-//     if (R_XDB.szNmColl == "Log") {
-//        debugger;
-//     } /* if */
     
     if (!R_XDB) {
        $Error.U_Error(C_jCd_UsrView, 1, "Missing R_XDB", "", false);
@@ -726,6 +718,7 @@ class CL_UsrView0 {
        CL_UsrView0.U_ReadOnly(fReadOnly, "");
        if (fInsert) {
           CL_History.U_Insert(P_szNm_UsrView, UsrView0);
+          // Id_BackUp.innerText = JSON.stringify(UsrView0.XDB0.Coll_Bak);
        } /* if */
 
        $VConfig.U_Set_ValSts("fLoadRes", UsrView0.fLoadRes);

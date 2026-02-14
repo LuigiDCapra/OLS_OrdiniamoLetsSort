@@ -5,7 +5,7 @@
 * File        : ddj.js
 * Function    : Data Disk Jockey ex CL-DAP
 * FirstEdit   : 15/12/2019
-* LastEdit    : 08/02/2026
+* LastEdit    : 14/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -470,22 +470,19 @@ function U_Reload()
   var szNm_aFld0 = XDB0.szNm_aFld;
 
   if ((szNm_aFld0 == "aFld_FlDsc") || (szNm_aFld0 == "aFld_Disk")) {
-
      if (szNm_aFld0 == "aFld_FlDsc") {
-        $FileMan.U_Get_Dir(null, XDB0.szNmColl);             // Reload Directory     
+        $FileMan.U_Get_Dir(null, XDB0.szNmColl);                 // Reload Directory     
      }
      else {
-        $FileMan.U_Get_Dir("", "");                          // Reload Disks list 
+        $FileMan.U_Get_Dir("", "");                              // Reload Disks list 
      } /* if */
   } else if (XDB0.szNm_aFld == "aFld_aFld1") {
-        debugger;                                            // Restore Layout's BackUp.
+        debugger;                                                // Restore Layout's BackUp.
         XDB0.Coll0 = XDB0.Coll_Bak;
-        $Table.U_Display_Table();                               // Reshow file
+        $Table.U_Display_Table();                                // Reshow file
   } else if (XDB0.szNm_URL) {
      $LdFile.U_DownLoad_URL(XDB0.szNm_URL, C_WwFlag_fDisplay);   // Reload file
   } else {
-//     $Table.U_Display_Table();                               // Reshow file
-
       $DBox_Error.U_Set_CB($DDJ.U_InputData, $DDJ.U_InputData);
       $Error.U_Error(C_jCd_Cur, 3, "Sorry the collection cannot be reloaded because the URL is missing.\nYou should use 'Select Collection' again.", "");
   } /* if */
@@ -563,7 +560,7 @@ function U_SaveChanges4()
   var szNm_URL = XDB0.szNm_URL;
   if (!szNm_URL) {
      $DBox_Error.U_Set_CB($DDJ.U_SaveAs, $DDJ.U_SaveAs);
-     $Error.U_Error(C_jCd_Cur, 4, "Sorry, the 'Save' function cannot be used because the URL is missing.\nYou should use 'Save AS' instead.", "");
+     $Error.U_Error(C_jCd_Cur, 7, "Sorry, the 'Save' function cannot be used because the URL is missing.\nYou should use 'Save AS' instead.", "");
      return;
   } /* if */
 
@@ -581,7 +578,7 @@ function U_SaveChanges4()
 * If the user wants to save a reduced table should presse "Save Data" and confirm!
 */
   if (UsrView0.fFlt) {
-     $Error.U_Error(C_jCd_Cur, 5, "There is a Filter active.\n Overwriting file you can lose significant Data.")
+     $Error.U_Error(C_jCd_Cur, 8, "There is a Filter active.\n Overwriting file you can lose significant Data.")
      return;
   } /* if */
 
@@ -748,6 +745,11 @@ function U_GoTo_Nxt()
 */ 
 function U_Help()
 {
+  if (G_fSaved) {
+     $Error.U_Error(C_jCd_Cur, 9, "Sorry HELP not available.");
+     return;
+  } /* if */
+  
   var szSCtx_Cur = $SemCtx.F_szSCtx_Cur();
   var UsrView0;
   var szHelp;
@@ -813,7 +815,7 @@ function U_Read_Record()
   var XDB0     = UsrView0.XDB0;
   var Tup_Sel = XDB0.Tup_Sel;
   if (!Tup_Sel) {
-     $Error.U_Error(C_jCd_Cur, 7, "I cannot read because no row has been selected.", "");
+     $Error.U_Error(C_jCd_Cur, 10, "I cannot read because no row has been selected.", "");
   } /* if */
   UsrView0.F_szHTML_OpenCard(UsrView0, C_jOpt_Confirm_Edit);
   $TTS.U_Prepare_Speech("", false, true);
@@ -842,11 +844,11 @@ function U_New_n_Tup()
   var Tup0, i, szDate, Date0;
   
   if (XDB0.JKndTup0 > C_JKndTup_aObj) {
-     $Error.U_Error(C_jCd_Cur, 8, "Sorry, multiple records creation is not supported for this JKndTup0.", XDB0.JKndTup0, false);
+     $Error.U_Error(C_jCd_Cur, 11, "Sorry, multiple records creation is not supported for this JKndTup0.", XDB0.JKndTup0, false);
      return;
   } /* if */
   if (CL_UsrView0.F_fReadOnly()) {
-     $Error.U_Error(C_jCd_Cur, 9, "The creation of New Tuples is not allowed because the Collection is Read Only.", "", false);
+     $Error.U_Error(C_jCd_Cur, 12, "The creation of New Tuples is not allowed because the Collection is Read Only.", "", false);
      return;
   } /* if */
 
@@ -883,7 +885,7 @@ function U_New_n_Tup()
 function U_NewTup_DDJ()
 {
   if (CL_UsrView0.F_fReadOnly()) {
-     $Error.U_Error(C_jCd_Cur, 10, "The creation of New Tuples is not allowed because the Collection is Read Only.", "", false);
+     $Error.U_Error(C_jCd_Cur, 13, "The creation of New Tuples is not allowed because the Collection is Read Only.", "", false);
   }
   else {
      var UsrView0 = CL_UsrView0.F_UsrView_Selected();  
@@ -947,7 +949,7 @@ function U_EdtVal_DDJ()
          Val0 = Tup0[Fld1.szNm];
     } break;
     default : {
-         $Error.U_Error(C_jCd_Cur, 11, "Wrong JKndTup0.", JKndTup0, false);
+         $Error.U_Error(C_jCd_Cur, 14, "Wrong JKndTup0.", JKndTup0, false);
     } break;
   } /* switch */
 
@@ -983,7 +985,7 @@ function U_EdtVal_DDJ()
                 $Object.U_Display(UsrView0, Val0, null);
              }
              else {             
-                $Error.U_Error(C_jCd_Cur, 12, "Sorry null objects {} cannot be expanded!", "", false);
+                $Error.U_Error(C_jCd_Cur, 15, "Sorry null objects {} cannot be expanded!", "", false);
              } /* if */
          } /* if */
     } break;    
@@ -1167,10 +1169,10 @@ function U_Data_SetReset()
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var jaFld1 = UsrView0.jaFld1;
   if ((UsrView0.XDB0.JKndTup0 == C_JKndTup_Obj) || (UsrView0.XDB0.JKndTup0 == C_JKndTup_as_)) {
-     $Error.U_Error(C_jCd_Cur, 13, "Data Set/Reset cannot be used with Objects.", "", false);
+     $Error.U_Error(C_jCd_Cur, 16, "Data Set/Reset cannot be used with Objects.", "", false);
   } /* if */
   if (jaFld1 < 0) {
-     $Error.U_Error(C_jCd_Cur, 14, "No column selected", "");
+     $Error.U_Error(C_jCd_Cur, 17, "No column selected", "");
   } /* if */
   $Value.DBox_SetReset.U_Hub(C_JPnl_Open);
 } /* U_Data_SetReset() */
@@ -1183,10 +1185,10 @@ function U_Tag_SetReset()
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var jaFld1 = UsrView0.jaFld1;
   if ((UsrView0.XDB0.JKndTup0 == C_JKndTup_Obj) || (UsrView0.XDB0.JKndTup0 == C_JKndTup_as_)) {
-     $Error.U_Error(C_jCd_Cur, 15, "Tags Set/Reset cannot be used with Objects.", "", false);
+     $Error.U_Error(C_jCd_Cur, 18, "Tags Set/Reset cannot be used with Objects.", "", false);
   } /* if */
   if (jaFld1 < 0) {
-     $Error.U_Error(C_jCd_Cur, 16, "No column selected", "");
+     $Error.U_Error(C_jCd_Cur, 19, "No column selected", "");
   } /* if */
   
   $Value.DBox_Tags.U_Hub(C_JPnl_Open);
@@ -1211,7 +1213,7 @@ function U_CB_Update()
       $Value.U_Set_szjDate(DDJSts0.szjDate);
       U_Set_TabFix_iWdt(DDJSts0.iWdt_Tab);
   } catch (P_Err) {
-      $Error.U_Error(C_jCd_Cur, 17, "U_CB_Update", P_Err.message);
+      $Error.U_Error(C_jCd_Cur, 20, "U_CB_Update", P_Err.message);
   } /* try catch */
 } /* U_CB_Update */
 
@@ -1519,7 +1521,7 @@ function U_Set_iNnCol(P_iNnCol)
 function U_Get_Info()
 {
   if (!navigator.clipboard) {
-     $Error.U_Error(C_jCd_Cur, 18, "Cannot access clipboard.", "");
+     $Error.U_Error(C_jCd_Cur, 21, "Cannot access clipboard.", "");
   } /* if */
   navigator.clipboard.readText().then((P_szTxt) => {
     var szSearch = `https://www.google.com/search?q=${P_szTxt}&ie=utf-8&oe=utf-8`;
@@ -1711,7 +1713,7 @@ function U_Slide()
 */ 
 function U_WellCome()
 {
-  if (!window.fLcdLcd) {
+  if (!window.G_fSaved) {
      $DDJ.DBox_WellCome.U_Hub(C_JPnl_Open);
   } /* if */
 } /* U_WellCome */

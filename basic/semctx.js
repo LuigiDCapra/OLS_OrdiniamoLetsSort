@@ -5,7 +5,7 @@
 * File        : semctx.js
 * Function    : Semantic Context
 * FirstEdit   : 22/01/2024
-* LastEdit    : 06/02/2026
+* LastEdit    : 12/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -39,6 +39,8 @@ const $SemCtx = (function () {
   _SemCtx.F_szSCtx_Cur    = F_szSCtx_Cur;         // function F_szSCtx_Cur();
   _SemCtx.U_Restore       = U_Restore;            // function U_Restore(P_szSCtx);
   _SemCtx.U_Sel_TBM       = U_Sel_TBM;            // function U_Sel_TBM(P_szId, P_szSCtx, P_fieldset=false);
+  
+  _SemCtx.szDir_Ico       = "";                   // relative PATH used to access Icons' repository
 
 /*----- Local Constants ----------------------------------------------*/
 
@@ -133,15 +135,13 @@ function U_Sel_TBM(P_szId, P_szSCtx, P_fieldset=false)
          /* Skip auxilary definitions. */
          continue;
       } /* if */
-      
-      // VDebug.F_iDebug
 
 //      szTit = (fKey)? MnEntry0[C_jaMnEntry_Key]: MnEntry0[C_jaMnEntry_Title];
       szTit = MnEntry0[jaMnEntry0];
       
       if (fIcons && MnEntry0[C_jaMnEntry_Icon]) {
          var szButton = `$DDJ.U_Button('${MnEntry0[C_jaMnEntry_pFn]}', 'Pos-2');`;
-         sz0  += `<input class="Cl_input_Image_Button" type="image" title="${szTit}" onclick="${szButton}" src="${MnEntry0[C_jaMnEntry_Icon]}">\n`;
+         sz0  += `<input class="Cl_input_Image_Button" type="image" title="${szTit}" onclick="${szButton}" src="${_SemCtx.szDir_Ico}${MnEntry0[C_jaMnEntry_Icon]}" alt="${szTit}">\n`;
       }
       else {
          var szOpt = MnEntry0[C_jaMnEntry_Opt];
@@ -215,6 +215,7 @@ function U_Init_SemCtx()
   var aFunct = [];
   var fRegen = false; /* Regenerate help_funct.OLS */
   var szType;
+
   try {
     /* Make S_asObj_Entry */
     /* Iterate through the SCtx Contexts. */
