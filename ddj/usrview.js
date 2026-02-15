@@ -5,7 +5,7 @@
 * File        : usrview.js
 * Function    : User's View management.
 * FirstEdit   : 30/06/2022
-* LastEdit    : 14/02/2026
+* LastEdit    : 15/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+

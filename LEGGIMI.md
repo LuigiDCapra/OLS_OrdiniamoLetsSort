@@ -54,6 +54,8 @@ Comunque, come misura precauzionale, le collezioni di dati vengono aperte per de
 - Riconoscimento automatico dello schema di rappresentazione dei dati.
 - Funzioni automatiche di validazione e colorazione dei dati con segnalazione delle incongruenze.
 - Help contestuale.
+- Il software Ordiniamo/Let's Sort (OLS) non richiede installazione. La corrispondente pagina Web può essere salvata direttamente sul harddisk locale.
+  Nota: le collezioni di dati devono essere salvate separatamente dall'applicazione.
 - Codice open-source rilasciato con licenza GNU GPL v. 3.0 e GNU LGPL v. 3.0.
 
 ## Caratteristiche della versione Sperimentale (NON ancora Rilasciate)

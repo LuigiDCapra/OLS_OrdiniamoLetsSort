@@ -52,6 +52,8 @@ However, as a precaution, data collections are opened by default in Read-Only mo
 - Automatic recognition of the data representation scheme.
 - Automatic data validation and coloring functions with inconsistencies flagged.
 - Contextual help.
+- The Ordiniamo/Let's Sort (OLS) software does not require installation. The corresponding web page can be saved directly to your local hard drive.
+  Note: Data collections must be saved separately from the application.
 - Open-source code released under the GNU GPL v. 3.0 and GNU LGPL v. 3.0 licenses.
 
 ## Features of the Experimental Version (NOT yet released)

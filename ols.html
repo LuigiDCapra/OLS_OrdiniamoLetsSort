@@ -5,7 +5,7 @@ Revision    : 0.021
 File        : ols.htm
 Function    : Ordiniamo/Let's Sort ex Data Jockey (ex CL-DAP)
 FirstEdit   : 15/12/2019
-LastEdit    : 14/02/2026
+LastEdit    : 15/02/2026
 Author      : Luigi D. Capra
 Copyright(c): Luigi D. Capra 2017, 2026
 System      : HTML-5 + CSS3 + JavaScript
@@ -590,7 +590,7 @@ function U_Init()
   DDJSts.fInitialize     = false;
   DDJSts.fLoadExamples   = false; 
   DDJSts.fLoadRemarks    = false;  
-  DDJSts.fEnaPeriodic    = false;              /* true - enable commands introduced using "tele.htm" */
+  DDJSts.fEnaPeriodic    = false;             /* true - enable commands introduced using "tele.htm" */
   DDJSts.fIcons          = true;
   DDJSts.fVoice_Error    = true; 
   DDJSts.fEcho_Commands  = false;
@@ -598,12 +598,16 @@ function U_Init()
   if (G_fSaved) {
      /* OLS just saved on local disk. */
 
-     var szTxt = Id_Tbl0_H.innerText + "\n" + Id_Tbl0_B.innerText;
-     var szTitle = document.title.substr(6);
-     var iPos = szTitle.indexOf("[");    
-     var szTitle = szTitle.substr(0, iPos);
+//      /* Recover saved table */
+//      var szTxt = Id_Tbl0_H.innerText + "\n" + Id_Tbl0_B.innerText;
+//      var szTitle = document.title.substr(6);
+//      var iPos = szTitle.indexOf("[");    
+//      var szTitle = szTitle.substr(0, iPos);
      
-     var href = window.location.href;
+     Id_Tbl0_H.innerText = "";                /* Clear screen resetting table. */
+     Id_Tbl0_B.innerText = "";
+     
+     var href = window.location.href;         /* Build icons' path. */
      var iPos0 = href.lastIndexOf("/");
      var iPos1 = href.lastIndexOf(".");
      var szPath = href.substring(iPos0 +1, iPos1); 
@@ -611,7 +615,7 @@ function U_Init()
   }
   else {
      /* Regular installation: that is OLS downloaded from web-site or development installation on local disk. */
-     $SemCtx.szDir_Ico = "ols_files/ico/";        /* relative PATH used to access Icons' repository */
+     $SemCtx.szDir_Ico = "ols_files/ico/";    /* relative PATH used to access Icons' repository */
   } /* if */
 
   $VConfig.U_Init_DDJSts(C_szApp, DDJSts, $DDJ.U_CB_Update, $DDJ.U_WellCome);
@@ -636,26 +640,27 @@ function U_Init()
       $Error.U_Catch(C_jCd_Cur, 2, P_Err);
   } /* try catch */
 
-  if (G_fSaved) {
-     var DDJ0 = {};
-     
-     DDJ0.JKndTup0 = C_JKndTup_aRcd;
-     DDJ0.aFld = null;
-     DDJ0.szNm_aFld = "AutoDetect";
-     
-     DDJ0.chSep1 = "\t";
-     DDJ0.chSep2 = "";
-     DDJ0.iSkip = 0;
-     DDJ0.fAlgCSV1 = false;
-     DDJ0.fszFldNm_1 = true;
-     DDJ0.fLnNum = false;
-     
-     var aRcd0 = $LdFile.F_aRcd_Mp_szCSV(szTxt, DDJ0);
-     var sz0 = JSON.stringify(aRcd0);
-     $FileMan.U_Write("r:/all2.txt", sz0, false);
-     
-     new CL_XDB([szTitle, C_JKndTup_aRcd, aRcd0, null, "AutoDetect", "", (C_WwFlag_fOverWrite | C_WwFlag_fDisplay | C_WwFlag_fszFldNm_1), C_jCd_Cur, C_Bag_UsrView_Dflt]); 
-  } /* if */
+//   if (G_fSaved) {
+//      /* 2025-02-15 Removed. - The following code doesn't work in the case of multidimensional structure then is better to suggest the user to save the Collection in advance before save ols.html on the local HD. */
+//      var DDJ0 = {};
+//      
+//      DDJ0.JKndTup0 = C_JKndTup_aRcd;
+//      DDJ0.aFld = null;
+//      DDJ0.szNm_aFld = "AutoDetect";
+//      
+//      DDJ0.chSep1 = "\t";
+//      DDJ0.chSep2 = "";
+//      DDJ0.iSkip = 0;
+//      DDJ0.fAlgCSV1 = false;
+//      DDJ0.fszFldNm_1 = true;
+//      DDJ0.fLnNum = false;
+//      
+//      var aRcd0 = $LdFile.F_aRcd_Mp_szCSV(szTxt, DDJ0);
+//      var sz0 = JSON.stringify(aRcd0);
+//      $FileMan.U_Write("r:/all2.txt", sz0, false);
+//      
+//      new CL_XDB([szTitle, C_JKndTup_aRcd, aRcd0, null, "AutoDetect", "", (C_WwFlag_fOverWrite | C_WwFlag_fDisplay | C_WwFlag_fszFldNm_1), C_jCd_Cur, C_Bag_UsrView_Dflt]); 
+//   } /* if */
    
   $DDJ.U_UnLoad = U_UnLoad;   /* $Register */
 
