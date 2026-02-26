@@ -5,7 +5,7 @@
 * File        : value.js
 * Function    : Data's value Editing
 * FirstEdit   : 05/09/2022
-* LastEdit    : 08/02/2026
+* LastEdit    : 16/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -98,6 +98,8 @@ const C_jCd_Cur = C_jCd_Value;
 
 const C_aszType_JS   = ["string", "number", "boolean", "object", "function", "bigint", "symbol", "undefined"]; /* JS' Types */
 const C_aszType_HTML = ["button", "checkbox", "color", "date", "datetime", "datetime-local", "email", "file", "hidden", "image", "month", "number", "password", "radio", "range", "reset", "search", "submit", "tel", "text", "time", "url", "week", "textarea"];  /* HTML <input> types. */
+
+const C_i80 = 150;
 
 /*----- Local Variables ----------------------------------------------*/
 
@@ -1132,11 +1134,11 @@ function F_szHTML_TR_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
   /* Show the input box. */
   switch (szType_Out) {
     case "string": {
-          var iSize = 80; // $DEBUG  // 30/01/2026
+          var iSize = C_i80; // $DEBUG  // 30/01/2026
           szRow = `<tr><td width="10%;"><label for="${szId0}" title="${szTitle0}">${P_j})&nbsp; ${szNm}</label></td><td><input type="text" id="${szId0}" ${szDisabled} value="${szVal}" title="${szTitle1}" size=${iSize}></td>${szInfo}</tr>`;
     } break;
     case "textarea": {
-          szRow = `<tr><td width="10%;"><label for="${szId0}" title="${szTitle0}">${szNm} (1)</label></td><td><fieldset><legend>${szNm}</legend><textarea id="Id_Card_${P_j}" rows="5" cols="80">${szVal}</textarea></fieldset></td>${szInfo}</tr>`; 
+          szRow = `<tr><td width="10%;"><label for="${szId0}" title="${szTitle0}">${szNm} (1)</label></td><td><fieldset><legend>${szNm}</legend><textarea id="Id_Card_${P_j}" rows="5" cols="${C_i80}">${szVal}</textarea></fieldset></td>${szInfo}</tr>`; 
     } break;
     case "date" :   
     case "datetime-local" :
@@ -1184,10 +1186,10 @@ function F_szHTML_TR_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
     case "Video": {
 //          if (S_fLoad0 && S_fLoad1) {
           if (S_fLoad0) {
-             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${szVal}" style="width:${S_iWdt_Image}%;" ${szDisabled}> ${szVal}</td>${szInfo}</tr>`;
+             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${P_Item}" ${szDisabled}> ${szVal}</td>${szInfo}</tr>`;
           }
           else {
-             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${szVal}" style="width:${S_iWdt_Image}%;" ${szDisabled}></td>${szInfo}</tr>`;
+             szRow = `<tr><td><label>${szNm}</label></td><td><input type="text" id="Id_Card_${P_j}" value="${P_Item}" ${szDisabled}></td>${szInfo}</tr>`;
           } /* if */
     } break;
     default : {
@@ -1670,7 +1672,7 @@ function F_szHTML_TD_Card(P_Item, P_Fld1, P_j, P_fReadOnly)
   var szRes = P_Item;
   switch (szType_Item) {
     case "string": {
-          szRes = P_Item.substr(0, 80);  /* Return the firsts 80 chars of the string. */   // 30/01/2026
+          szRes = P_Item.substr(0, C_i80);  /* Return the firsts 80 chars of the string. */   // 30/01/2026
           //szRes = "" + P_Item;
     } break;
     case "number":
@@ -3056,8 +3058,8 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var szNm = P_Fld1.szNm;
    var Val0 = (!S_fLoad1)? P_Val0: P_Val0.replace("file:///", S_szURL_Local);
 
-   var szHTML = `<img id="Id_xKrW98717_a" src=${Val0} width="100%" alt="" style="width:80%;"><br><br>
-                 ${szNm} = <input id="Id_xKrW98717_b" ${P_szDisabled} type="text" value=${Val0} size="80" onchange="Id_xKrW98717_a.src = Id_xKrW98717_b.value;"> <button onclick="$Value.U_Grab();">Grab photo.</button>`;
+   var szHTML = `<img id="Id_xKrW98717_a" src=${Val0} width="100%" alt=""><br><br>
+                 ${szNm} = <input id="Id_xKrW98717_b" ${P_szDisabled} type="text" value=${Val0} size="${C_i80}" onchange="Id_xKrW98717_a.src = Id_xKrW98717_b.value;"> <button onclick="$Value.U_Grab();">Grab photo.</button>`;
     
    return(szHTML);  
 } /* U_Open_V1 */
@@ -3082,9 +3084,6 @@ function F_szHTML_TD_Table(P_Item, P_Fld1)
      return("");
   } /* if */
   if (S_fLoad1 || S_fLoad2) {
-      if (P_Item.indexOf("DeskTop.OLS") >= 0) {
-         debugger;
-      } /* if */
       var szItem = P_Item.replace("file:///", S_szURL_Local);
       if (S_fCaption) {
           szHTML = `${P_Fld1.szNm} = "${P_Item}" <img alt="" src="${szItem}" title="${P_Item}" style="width:${S_iWdt_Image}%;">`;
@@ -3144,7 +3143,7 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0 = (!S_fLoad1)? P_Val0: P_Val0.replace("file:///", S_szURL_Local);
 
    var szHTML = `<audio id="Id_xKrW98717_a" src="${Val0}" controls="controls"><source src="${Val0}" ${P_szDisabled} type="audio/ogg"> Your browser does not support the audio element. </audio><br><br>
-                 ${szNm} = <input id="Id_xKrW98717_b" ${P_szDisabled} type="text" value=${Val0} size="80" onchange="Id_xKrW98717_a.src = Id_xKrW98717_b.value;">`;
+                 ${szNm} = <input id="Id_xKrW98717_b" ${P_szDisabled} type="text" value=${Val0} size="${C_i80}" onchange="Id_xKrW98717_a.src = Id_xKrW98717_b.value;">`;
     
    return(szHTML);  
 } /* U_Open_V1 */
@@ -3199,7 +3198,7 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0 = (!S_fLoad1)? P_Val0: P_Val0.replace("file:///", S_szURL_Local);
 
    var szHTML = `<video id="Id_xKrW98717_a" poster="" controls="controls" style="width:90%;"> <source src="${Val0}" ${P_szDisabled} type="video/mp4"> Your browser does not support HTML5 video. </video><br><br>
-                 ${szNm} = <input id="Id_xKrW98717_b" ${P_szDisabled} type="text" value=${Val0} size="80" onchange="Id_xKrW98717_a.src = Id_xKrW98717_b.value;">`;
+                 ${szNm} = <input id="Id_xKrW98717_b" ${P_szDisabled} type="text" value=${Val0} size="${C_i80}" onchange="Id_xKrW98717_a.src = Id_xKrW98717_b.value;">`;
     
    return(szHTML);  
 } /* U_Open_V1 */

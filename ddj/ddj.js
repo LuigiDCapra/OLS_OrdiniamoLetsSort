@@ -5,7 +5,7 @@
 * File        : ddj.js
 * Function    : Data Disk Jockey ex CL-DAP
 * FirstEdit   : 15/12/2019
-* LastEdit    : 14/02/2026
+* LastEdit    : 17/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -338,6 +338,7 @@ function F_DDJ_Default()
 
 /*-----U_Log_Command --------------------------------------------------------
 *
+* P_ch: "B" button, "D" direct command, "Q" query, "E" error
 */ 
 function U_Log_Command(P_ch, P_szCmd)
 {
@@ -441,7 +442,9 @@ function U_Reopen(P_fEnaErr=true)
   var szURL_Reload;
   if (szURL_Relay) {
      var szTmp = $NDU.F_szDir_Server(szURL_Relay);
-     var szURL_Reload = szTmp + "D:/viola/" + C_szFlNm;
+//     debugger;
+//     var szURL_Reload = szTmp + "D:/viola/" + C_szFlNm;
+     var szURL_Reload = szTmp + window.location.pathname.substr(1);
      F_Window_open(szURL_Reload, '_self');  
   }
   else {
@@ -746,7 +749,13 @@ function U_GoTo_Nxt()
 function U_Help()
 {
   if (G_fSaved) {
-     $Error.U_Error(C_jCd_Cur, 9, "Sorry HELP not available.");
+     // $Error.U_Error(C_jCd_Cur, 9, "Sorry HELP not available.");
+     debugger;
+     var szLanguage = $VConfig.F_ValSts_Get("szLanguage");
+     if (szLanguage != "it-IT") {
+        szLanguage = "en-US";
+     } /* if */
+     F_Window_open(`https://capralezioni.altervista.org/2025_26/ols_003/ols_files/help/${szLanguage}/std_presentation.html`, "_blank"); 
      return;
   } /* if */
   
@@ -1218,23 +1227,6 @@ function U_CB_Update()
 } /* U_CB_Update */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-/*-----U_Show_szURL --------------------------------------------------------
-*
-* Show Collection's URL
-*/ 
-function xxxU_Show_szURL()
-{
-  function U_CB_Show_szURL()
-  {
-    F_Window_open(szNm_URL);
-  } /* U_CB_Show_szURL */
-
-  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
-  $DDJ.U_CB_Show_szURL = U_CB_Show_szURL;
-  var szNm_URL = UsrView0.XDB0.szNm_URL;
-  $ACP.U_Open_Alert(szNm_URL + `<br<br><br><br><button onclick="$DDJ.U_CB_Show_szURL()">Look the original file.</button>`, 3);
-} /* U_Show_szURL */
 
 /*-----U_Show_szURL --------------------------------------------------------
 *
@@ -1975,6 +1967,7 @@ function U_Init_DDJ()
   G_szBrowser = F_szBrowser();
   G_fMobile   = F_fMobile();
   G_fLocal    = (window.location.protocol == "file:");     /* Web-Page loaded from user's harddisk. */
+
   U_Detect_AdBlock();
                                   
   _DDJ.DBox_About    = new CL_DBox('Id_Div_DBox0', '$DDJ.DBox_About', 'About', S_szHTML_DBox_About, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, G_DBox_Null.U_Cancel, null, 'About');

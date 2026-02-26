@@ -5,7 +5,7 @@ Revision    : 0.021
 File        : ols.htm
 Function    : Ordiniamo/Let's Sort ex Data Jockey (ex CL-DAP)
 FirstEdit   : 15/12/2019
-LastEdit    : 15/02/2026
+LastEdit    : 25/02/2026
 Author      : Luigi D. Capra
 Copyright(c): Luigi D. Capra 2017, 2026
 System      : HTML-5 + CSS3 + JavaScript
@@ -51,7 +51,8 @@ TBM = ToolBar Menu
     <link rel="stylesheet" href="basic/mrmenu.css">
     <link rel="stylesheet" href="ddj/ddj.css">    
     <link rel="stylesheet" href="basic/camera.css" type="text/css" media="all">   
-    <!-- $VERSIONING -->
+    <!-- $VERSIONING -->    
+    <link rel="stylesheet" href="ols_files/custom.css">
     
     <style id="Id_Style_1"></style>   <!-- CSS styles set by JS code --->
     <style id="Id_Style_2"></style>   <!-- CSS styles set by JS code --->
@@ -562,7 +563,20 @@ function U_Open_XTG()
 */ 
 function U_Init()
 {
-  G_fSaved = (Id_Tbl0_H.innerText != "");
+  G_fSaved = (Id_Tbl0_H.innerText != "");     /* OLS was just saved on local HD. */
+
+  var szURL = document.URL;
+  var szParam;
+  var iPos  = szURL.lastIndexOf("?");
+  if (iPos >= 0) {
+     szParam = szURL.substr(iPos +1);        // Get parameters passed with the URL. E.g. https://capralezioni.altervista.org/2025_26/ols_003/ols.html?load=dbase/flash_card.OLS
+     if (szParam.substr(0,5) == "load=") {
+         var szPfx = szURL.substr(0, iPos);
+         var iPos2 = szPfx.lastIndexOf("/");
+         var szFlNm = szPfx.substr(0, iPos2) + "/" + szParam.substr(5);
+         $LdFile.U_DownLoad_URL(szFlNm, C_WwFlag_fDisplay);
+     } /* if */ 
+  } /* if */
 
   var DDJSts = {};
   DDJSts.iRel_KNS        = 20260214;          /* Cfg. release number. */

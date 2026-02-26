@@ -6,7 +6,7 @@
 * Function    : code FileMan
 * FirstEdit   : 21/04/2024
 * FirstEdit   : 11/01/2025
-* LastEdit    : 04/02/2026
+* LastEdit    : 24/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -674,7 +674,7 @@ function U_Get_Dir(P_szDNS, P_szURL, P_CB_GetDir=U_CB_GetDir, P_fInit= true)
   U_URL(P_szURL);  
   G_DDJ.JKndTup0 = C_JKndTup_aRcd;
   G_DDJ.szNmColl = P_szURL;
-//  G_DDJ.WwFlag0  = (C_WwFlag_fDisplay);
+  G_DDJ.WwFlag0  = (C_WwFlag_fDisplay);       // $LCD ripristinato 24/02/2026 - questa linea serve quando si clicca sul nome di una directory presente in un riassunto del sinottico
 //  G_DDJ.WwFlag0  = (C_WwFlag_Null);    // 28/01/2026
 
   if (window.fLcdLcd) {   /* $VERSIONING */

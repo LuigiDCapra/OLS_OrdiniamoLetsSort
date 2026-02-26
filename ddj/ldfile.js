@@ -5,7 +5,7 @@
 * File        : ldfile.js
 * Function    : Load File.
 * FirstEdit   : 10/04/2024
-* LastEdit    : 13/02/2026
+* LastEdit    : 24/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -530,6 +530,8 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
 function F_Coll_Mp_OLS(R_DDJ, P_szTxt)
 {
  var fAutoExec = false;
+ var fDisplay = (R_DDJ.WwFlag0 & C_WwFlag_fDisplay);
+ R_DDJ.WwFlag0 = R_DDJ.WwFlag0 & ~C_WwFlag_fDisplay; /* Disable C_WwFlag_fDisplay 24/02/2026 */
  var szCode = "";
  var Coll0;
  var JSON0;
@@ -619,7 +621,7 @@ const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
                   $Error.U_Error(C_jCd_Cur, 13, "Referred Collection NOT found.", P_JKndTup0, false);
                } /* if */
                szNmColl = szNmAlt; /* Register the UsrView with the Alternative name. */
-               R_DDJ.WwFlag0 |= C_WwFlag_fReadOnly;
+//               R_DDJ.WwFlag0 |= C_WwFlag_fReadOnly;
             } /* if */
 
             new CL_XDB([szNmColl, szType, Coll0, null, szNm_aFld, szNote, (R_DDJ.WwFlag0 | C_WwFlag_fOverWrite | C_WwFlag_fSample), C_jCd_Cur, Bag_UsrView0]);
@@ -629,10 +631,10 @@ const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
         } /* for */
     
         /* If fDisplay then change R_DDJ.szNmColl selecting the first Collection stored in the .OLS file and show it. */
-        if (R_DDJ.WwFlag0 & C_WwFlag_fDisplay) {
+        if (fDisplay) {
             var szNmColl   = aHdrOLS[0][C_jHdrOLS_szNm];
             R_DDJ.szNmColl = szNmColl;
-            var UsrView0 = CL_UsrView0.F_UsrView_Select(szNmColl, (R_DDJ.WwFlag0 | C_WwFlag_fSearchCS));    
+            var UsrView0 = CL_UsrView0.F_UsrView_Select(szNmColl, (R_DDJ.WwFlag0 | C_WwFlag_fDisplay | C_WwFlag_fSearchCS));      /* 24/02/2026 - Enable again C_WwFlag_fDisplay */
         } /* if */    
     }
     else {

@@ -546,6 +546,9 @@ function U_Display_Table(P_WwFlag0 = C_WwFlag_Null)
   $Log.U_Log(C_jCd_Cur, 5, C_iLvl_DispTbl, "U_Display_Table", "");
 
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+//   if (UsrView0.szNmColl == "sinottico") {
+//      debugger;
+//   } /* if */
   if (!UsrView0) {
      $Error.U_Error(C_jCd_Cur, 3, "No UsrView selected", "", false);
   } /* if */

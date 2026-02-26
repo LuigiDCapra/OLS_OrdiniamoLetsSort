@@ -1,0 +1,57 @@
+@import url("lcd_zero_21.css");
+
+main {  
+  width: 80%;  
+  margin-left: 10%;
+}
+
+p {  
+  margin-bottom: 0%;  
+  margin-top: 0%;
+}
+
+.Cl_Flex_Row {  
+  display: -webkit-flex;
+  display: flex;  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+#Id_Item_ASide0 {  
+  position: fixed;  
+  height: 90%;  
+  width: 20%;
+}
+
+.Cl_MargLft {  
+  width: 20%;
+}
+
+.Cl_Note {  
+  background-color: #ffff99;  
+  padding: 1%;  
+  margin: 1%;  
+}
+
+.Cl_Img90 {
+width:90%;
+}
+
+.Cl_Ico_TBM {
+width:30px;
+}
+
+h1 {  
+  font-size: 200%;  
+  font-weight: bold;  
+  text-align: center;  
+  padding-top: 2em;
+}
+
+.Cl_LcdLcd { 
+  display: none;
+}
+
+.Cl_100 {
+  width:100%;
+}

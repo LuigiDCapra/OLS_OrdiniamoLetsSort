@@ -5,7 +5,7 @@
 * File        : custom.js
 * Function    : User defined code
 * FirstEdit   : 15/12/2019
-* LastEdit    : 02/02/2026
+* LastEdit    : 25/02/2026
 * System      : Mozilla FireFox 80+
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
@@ -124,7 +124,9 @@ function U_Init_Custom()
 function U_Esatta()
 {
   var szMsg = "Corretto, la risposta è esatta."; 
-   $TTS.U_Long_speech(szMsg);
+   if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
+      $TTS.U_Long_speech(szMsg);
+   } /* if */
    alert(szMsg);
    $ExeCmd.U_Next_Tup();
 } /* U_Esatta */
@@ -132,7 +134,9 @@ function U_Esatta()
 function U_Errata()
 {
    var szMsg = "Mi dispiace la risposta è sbagliata."; 
-   $TTS.U_Long_speech(szMsg);
+   if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
+      $TTS.U_Long_speech(szMsg);
+   } /* if */
    alert(szMsg);
 } /* U_Errata */
 
@@ -168,10 +172,12 @@ function U_Make_Quest(P_Item, P_Fld1, P_UsrView0)
       } /* if */
   } /* for */
   szTmp += "</ol>";
+  szTmp += "<fieldset><b>Cliccate sulla riga corrispondente alla risposta ritenuta corretta.</b></fieldset>";
   
   Tup_Sel[0] = szTmp;  
-  $TTS.U_Long_speech(Tup_Sel[2]);
-  
+  if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
+     $TTS.U_Long_speech(Tup_Sel[2]);
+  } /* if */  
   return(szTmp);
 } /* U_Make_Quest */
 

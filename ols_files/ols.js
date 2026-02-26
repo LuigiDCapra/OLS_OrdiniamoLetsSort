@@ -5,7 +5,7 @@
 * File        : ols.js
 * Function    : OLS' js file.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 08/02/2026
+* LastEdit    : 24/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -437,7 +437,7 @@ function U_Init_OLS()
   } /* if */
   if (window.fLcdLcd) {
      setTimeout(U_Ld_Coll, 1000); /* Load external Collections. */
-     setTimeout(U_Ld_Coll, 2000);
+//     setTimeout(U_Ld_Coll, 2000);
      setTimeout(U_BackUp_Coll, 10000);
   } /* if */ 
   
@@ -451,6 +451,7 @@ function U_Init_OLS()
 
 var Files_Ld_Bak = [
   ["D:/dbase/lcd/KBS/","D:/dbase/lcd/KBS/",1,0],  
+  ["D:/dbase/examp/","D:/dbase/examp/",1,0],  
   ["D:/dbase/lcd/Progetti/","D:/dbase/lcd/Progetti/",1,0],
   ["D:/viola/ddj/","D:/viola/ddj/",1,0],
   ["D:/viola/ols_files/","D:/viola/ols_files/",1,0],
@@ -468,12 +469,13 @@ var Files_Ld_Bak = [
   ["santi","D:/dbase/lcd/KBS/santi.OLS",1,0],
   ["pasqua","D:/dbase/lcd/KBS/pasqua.OLS",1,0],
   ["dove","D:/dbase/lcd/KBS/dove.OLS",0,0],
-  ["remarks","D:/dbase/lcd/remarks.OLS",1,0, "R:/TMP/remarks.OLS"],  
+  ["remarks","D:/dbase/lcd/remarks.OLS",1,0, "R:/TMP/remarks.OLS"],               // $VERSIONING
   ["remarks","D:/dbase/lcd/alt-remarks.OLS",1,0, "R:/TMP/alt-remarks.OLS"],  
   ["panel.asobj","D:/dbase/viola/panel.asobj",1,0],
   ["impegni","D:/dbase/sync/impegni.OLS",0,0],
 
   ["Cose_da_Fare","D:/dbase/lcd/Progetti/Cose_da_Fare.OLS",1,0],
+  ["Attivita_in_Corso","D:/dbase/lcd/Progetti/Attivita_in_Corso.OLS",1,0],
   ["Note","D:/dbase/lcd/Note/Note.OLS",1,0],
   ["Prova_all","D:/dbase/examp/Prova_all.OLS",0,0],
   ["appunti","C:/Users/Luigi/Desktop/appunti.txt",0,0],
