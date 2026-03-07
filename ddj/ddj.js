@@ -5,7 +5,7 @@
 * File        : ddj.js
 * Function    : Data Disk Jockey ex CL-DAP
 * FirstEdit   : 15/12/2019
-* LastEdit    : 17/02/2026
+* LastEdit    : 05/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -195,6 +195,7 @@ const $DDJ = (function () {
   
   _DDJ.U_BrkPnt         = U_BrkPnt;          // function U_BrkPnt();
   _DDJ.U_Set_MinMax     = U_Set_MinMax;      // function U_Set_MinMax();
+  _DDJ.U_Set_MinMax_Q   = U_Set_MinMax_Q;    // function U_Set_MinMax_Q();
 
 /*----- Local Constants ----------------------------------------------*/
 
@@ -442,8 +443,6 @@ function U_Reopen(P_fEnaErr=true)
   var szURL_Reload;
   if (szURL_Relay) {
      var szTmp = $NDU.F_szDir_Server(szURL_Relay);
-//     debugger;
-//     var szURL_Reload = szTmp + "D:/viola/" + C_szFlNm;
      var szURL_Reload = szTmp + window.location.pathname.substr(1);
      F_Window_open(szURL_Reload, '_self');  
   }
@@ -1956,6 +1955,52 @@ function U_UnLoad()
 //  ALERT("Window Closing", 1);
 } /* U_UnLoad */
 
+/*-----U_Set_MinMax_Q --------------------------------------------------------
+*
+* Given a Collection of data get Min and Max values for every field.
+*/ 
+function U_Set_MinMax_Q()
+{
+  var UsrView_Layout = CL_UsrView0.F_UsrView_Selected();       /* Layout of the Collection */
+  
+  var iPos = "aFld0_".length;                                  /* Given the Layout of the Collection get the Collection */
+  var szNmColl = UsrView_Layout.szNmColl.substr(iPos -1);
+  var UsrView0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView(szNmColl, true);  
+  var Coll0    = UsrView0.XDB0.Coll0;
+  var iCard_Coll0 = Coll0.length;
+
+  var aFld1 = UsrView0.aFld1;
+  var iCard_aFld1 = aFld1.length;
+  var Fld1, Arr0, Val0, iMin, iMax, i, j;
+  
+  for (let i = 0; i < iCard_aFld1; i++) {
+      iMin = Number.MAX_VALUE;
+      iMax = Number.MIN_VALUE;
+      Fld1 = aFld1[i];
+      Arr0 = UsrView0.F_Arr_Mp_Field(UsrView0, i, false);  /* Get the column corresponding to the Field Fld1. */
+      Val0 = Arr0[0];
+      switch (typeof(Val0)) {
+        case "number" : {
+             for (j = 0; j < iCard_Coll0; j++) {
+                 if (Arr0[j] < iMin) {
+                    iMin = Arr0[j];
+                 } /* if */
+                 if (iMax < Arr0[j]) {
+                    iMax = Arr0[j];
+                 } /* if */
+             } /* for */
+           Fld1.iMin_Q = iMin;
+           Fld1.iMax_Q = iMax;
+        } break;
+        default : {
+           Fld1.iMin_Q = "";
+           Fld1.iMax_Q = "";
+        } break;
+      } /* switch */ 
+  } /* for */
+  $DDJ.U_Refresh();
+} /* U_Set_MinMax_Q */
+
 /*-----U_Init_DDJ --------------------------------------------------------
 *
 */
@@ -1966,7 +2011,7 @@ function U_Init_DDJ()
   G_szSecure  = (window.isSecureContext)? "secure": "not secure";  
   G_szBrowser = F_szBrowser();
   G_fMobile   = F_fMobile();
-  G_fLocal    = (window.location.protocol == "file:");     /* Web-Page loaded from user's harddisk. */
+  G_fLocal    = (window.location.protocol == "file:");         /* Web-Page loaded from user's harddisk. */
 
   U_Detect_AdBlock();
                                   
@@ -1985,7 +2030,7 @@ function U_Init_DDJ()
   window.addEventListener("beforeunload", U_UnLoad);
 
   if (typeof($FileMan) != "undefined") {
-     $FileMan.U_Get_Dir("", "");    /* Get list of Disk installed. Initialize the Collection Disk. */
+     $FileMan.U_Get_Dir("", "");                               /* Get list of Disks installed. Initialize the Collection Disk. */
   } /* if */
   U_Root0("$DDJ", C_jCd_Cur, 2);
 } /* U_Init_DDJ */

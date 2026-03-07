@@ -5,7 +5,7 @@
 * File        : stat_ddj.js
 * Function    : Statistics.
 * FirstEdit   : 11/10/2022
-* LastEdit    : 09/01/2026
+* LastEdit    : 05/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -127,7 +127,7 @@ function U_Stat_Field()
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var XDB0  = UsrView0.XDB0;
   var jaFld = UsrView0.jaFld1;
-  var Fld1  = UsrView0.aFld1[jaFld] // ++++
+  var Fld1  = UsrView0.aFld1[jaFld];
    
   S_Stat0 = F_Stat_Field(UsrView0, jaFld, Fld1);
   
@@ -143,8 +143,8 @@ function U_Stat_Record()
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var XDB0 = UsrView0.XDB0;
   var iCard0 = XDB0.Coll0.length;
-  var aFld = UsrView0.aFld1;
-  var iCard_aFld1 = UsrView0.aFld1.length;
+  var aFld1 = UsrView0.aFld1;
+  var iCard_aFld1 = aFld1.length;
   var aStat0 = [];
   var WwFlag0 = C_WwFlag_Null; 
   var Fld1;
@@ -155,7 +155,7 @@ function U_Stat_Record()
       S_aRcd_Cnds[i] = [];
   } /* for */
   
-  if ((iCard_aFld1 == 2) && (aFld[1].szType == "AbsFreq")) {         // ?????
+  if ((iCard_aFld1 == 2) && (aFld1[1].szType == "AbsFreq")) {         // ?????
      /* Given a frequency table calculate the corresponding statistics. */
       ALERT("check Fld1", 1);
       aStat0[0] = F_Stat_Field_Freq(UsrView0, 0, Fld1);
@@ -164,14 +164,14 @@ function U_Stat_Record()
   else {
      /* Calculate the statistics for the selected columns. */
      for (let i = 0; i < iCard_aFld1; i++) {
-         Fld1 = aFld[i];
+         Fld1 = aFld1[i];
          aStat0[i] = F_Stat_Field(UsrView0, i, Fld1); 
      } /* for */
   } /* if */
   if (S_fCnds) {
      S_aFld_Cnds = [];
-     for (let i = 0; i < aFld.length; i++) {
-         S_aFld_Cnds[i] = {"szNm":aFld[i].szNm, "szType":"number", "iLen":8};
+     for (let i = 0; i < aFld1.length; i++) {
+         S_aFld_Cnds[i] = {"szNm":aFld1[i].szNm, "szType":"number", "iLen":8};
      } /* for */ 
    
      new CL_XDB0(["S_aFld_Cnds", C_JKndTup_aObj, S_aFld_Cnds, null, "aFld_aFld", "", (C_WwFlag_fReadOnly | C_WwFlag_fOverWrite), C_jCd_Cur]);
@@ -257,7 +257,7 @@ function F_Stat_Arr(P_UsrView0, P_Arr0, P_jaFld, P_Fld1)
   var i3 = 3;
   var i4 = 4;
   var i, j, k;
-  var fCheck = true; /* Check type compatibility. */
+  var fCheck = true;       /* Check type compatibility. */
   var szType_Val;
   var iWdt;                /* length of the string including leading and trailing spaces */
   var iWdtMin = 1000000;
@@ -315,21 +315,21 @@ function F_Stat_Arr(P_UsrView0, P_Arr0, P_jaFld, P_Fld1)
                 szType_Val = typeof(Val);
                 if (szType_Val == "string") {
                    Arr0[k++] = Val;
-                        iWdt = Val.length;
-                        if (iWdt < iWdtMin) {
-                           iWdtMin = iWdt;
-                        } /* if */
-                        if (iWdtMax < iWdt) {
-                           iWdtMax = iWdt;
-                        } /* if */
-                        var szTrimmed = Val.trim();
-                        iLen = szTrimmed.length;
-                        if (iLen < iLenMin) {
-                           iLenMin = iLen;
-                        } /* if */
-                        if (iLenMax < iLen) {
-                           iLenMax = iLen;
-                        } /* if */
+                   iWdt = Val.length;
+                   if (iWdt < iWdtMin) {
+                      iWdtMin = iWdt;
+                   } /* if */
+                   if (iWdtMax < iWdt) {
+                      iWdtMax = iWdt;
+                   } /* if */
+                   var szTrimmed = Val.trim();
+                   iLen = szTrimmed.length;
+                   if (iLen < iLenMin) {
+                      iLenMin = iLen;
+                   } /* if */
+                   if (iLenMax < iLen) {
+                      iLenMax = iLen;
+                   } /* if */
                 }
                 else {
                    U_ErrMng();
@@ -473,7 +473,7 @@ function F_Stat_Arr(P_UsrView0, P_Arr0, P_jaFld, P_Fld1)
      let pF = (szType_JS == "bigint")? (P_A, P_B) => ( (P_A - P_B)? 1:0): (P_A, P_B) => (P_A - P_B);
 
      Arr0.sort(pF);
-     iMedian = ((iNnRow & 1) == 1)? Arr0[iNnRow_Div2]: (Arr0[iNnRow_Div2] +  Arr0[iNnRow_Div2 -1])/i2;
+     iMedian = ((iNnRow & 1) == 1)? Arr0[iNnRow_Div2]: (Arr0[iNnRow_Div2] + Arr0[iNnRow_Div2 -1])/i2;
      i1Quart = ((iNnRow_Div2 & 1) == 1)? Arr0[iNnRow_Div4]: (Arr0[iNnRow_Div4] + Arr0[iNnRow_Div4 -1])/i2;
      i3Quart = ((iNnRow_Div2 & 1) == 1)? Arr0[iNnRow - iNnRow_Div4]: (Arr0[iNnRow - iNnRow_Div4] +  Arr0[iNnRow - iNnRow_Div4 -1])/i2;
   }
@@ -483,7 +483,7 @@ function F_Stat_Arr(P_UsrView0, P_Arr0, P_jaFld, P_Fld1)
      i1Quart = Arr0[iNnRow_Div4];
      i3Quart = Arr0[iNnRow - iNnRow_Div4];
   } /* if */
-  iMin = Arr0[0];
+  iMin = Arr0[0];                 /* $NOTE: Arr0 was sorted to compute quartiles. */
   iMax = Arr0[iNnRow -1];
    
 var Stat0 = {

@@ -5,7 +5,7 @@
 * File        : value.js
 * Function    : Data's value Editing
 * FirstEdit   : 05/09/2022
-* LastEdit    : 16/02/2026
+* LastEdit    : 04/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -31,6 +31,8 @@ var GP_iStart = 0;
 var GP_iStop  = 1;
 var GP_szFormula = "";
 var GP_szAction = "";
+
+var S_fPuzzola = false;
 
 /*----- Module $Value --------------------------------------------------------
 *
@@ -1538,11 +1540,11 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0  = +P_Val0;
    var fInt  = (Val0 - Math.trunc(Val0) == 0);     /* Val0 is an Integer or a Float? */
    
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min"  in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max"  in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
            szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */
@@ -1651,11 +1653,12 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var szNm  = P_Fld1.szNm;
    var Val0 = P_Val0;
   
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min" in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max" in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
+           szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */
 
@@ -1990,11 +1993,11 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var szNm  = P_Fld1.szNm;
    var Val0  = F_BigInt_Mp_Val(P_Val0);
    
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min"  in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max"  in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
            szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */
@@ -2199,16 +2202,17 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0 = +P_Val0;
    var szId_a = "Id_xKrW98717_a" + szNm;
    var szId_b = "Id_xKrW98717_b" + szNm;
-
-    if ("Aux0" in P_Fld1) {
+   
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
+   if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           var szMin  = ("Min"  in Aux0)? `min=${Aux0.Min} `: "";
-           var szMax  = ("Max"  in Aux0)? `min=${Aux0.Max} `: "";
-           var szStep = ("Step" in Aux0)? `min=${Aux0.Step} `: "";
-           szTmp +=  szMin + szMax + szStep + " " + P_szDisabled + " ";
+       if (typeof(Aux0) == "object") { 
+           szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
+           szTmp +=  szMin + szMax + szStep + " ";
        } /* if */ 
    } /* if */
+   szTmp += P_szDisabled + " ";
 
    var szHTML = `<label for="${szId_a}" = </label> <input id="${szId_a}" ${szTmp} type="number" value="${Val0}" onchange="${szId_b}.value = ${szId_a}.value;"> 
                                                    <input id="${szId_b}" ${szTmp} type="range"  value="${Val0}" onchange="${szId_a}.value = ${szId_b}.value;">`;   
@@ -3332,11 +3336,11 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var szVal0 = F_szHOB_Mp_iNum(Val0, iBase, P_Fld1);
    var fInt = (Val0 - Math.trunc(Val0) == 0);     /* Val0 is an Integer or a Float? */
    
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min"  in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max"  in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
            szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */
@@ -3854,6 +3858,13 @@ function F_szHTML_TD_Table(P_Item, P_Fld1)
   if (szFilterStr != "") {
      P_Item = P_Item.replaceAll(`${szFilterStr}`, `<hili>${szFilterStr}</hili>`); 
   } /* if */
+  
+   if (S_fPuzzola) {
+      Id_szMonitor.innerHTML = P_Item;
+      var szTxt = Id_szMonitor.innerText; 
+      P_Item = $NatLang.F_szColor(szTxt);
+   } /* if */
+     
   return(P_Item); 
 } /* F_szHTML_TD_Table */
 
@@ -3866,7 +3877,7 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var szNm = P_Fld1.szNm;
    var Val0 = P_Val0;
   
-   var szHTML = `<label for="Id_xKrW98717_a">${szNm} = HTML</label><fieldset><div id="Id_xKrW98717_a" contenteditable="true">${Val0}</div></fieldset>`;   
+   var szHTML = `<label for="Id_xKrW98717_a">${szNm} = HTML</label><fieldset><div id="Id_xKrW98717_a" contenteditable="true">${Val0}</div></fieldset>`; 
    return(szHTML);  
 } /* U_Open_V1 */
 
@@ -4191,11 +4202,11 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0  = +P_Val0.toExponential(S_iNnDec);
    var fInt  = (Val0 - Math.trunc(Val0) == 0);     /* Val0 is an Integer or a Float? */
    
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min"  in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max"  in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
            szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */
@@ -4335,11 +4346,11 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0  = +P_Val0;
    var fInt  = (Val0 - Math.trunc(Val0) == 0);     /* Val0 is an Integer or a Float? */
    
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min"  in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max"  in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
            szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */
@@ -4549,11 +4560,11 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0  = +P_Val0;
    var fInt  = (Val0 - Math.trunc(Val0) == 0);     /* Val0 is an Integer or a Float? */
    
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min"  in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max"  in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
            szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */
@@ -4677,11 +4688,11 @@ function U_Open_V1(P_Val0, P_Fld1, P_szDisabled)
    var Val0  = +P_Val0;
    var fInt  = (Val0 - Math.trunc(Val0) == 0);     /* Val0 is an Integer or a Float? */
    
+   szTmp += (P_Fld1.iMin_Q != "")? `min=${P_Fld1.iMin_Q} `: ""; 
+   szTmp += (P_Fld1.iMax_Q != "")? `max=${P_Fld1.iMax_Q} `: "";              
    if ("Aux0" in P_Fld1) {
        var Aux0 = P_Fld1.Aux0;
-       if (typeof(Aux0) == "object") {
-           szTmp += ("Min"  in Aux0)? `min=${Aux0.Min} `: ""; 
-           szTmp += ("Max"  in Aux0)? `max=${Aux0.Max} `: ""; 
+       if (typeof(Aux0) == "object") { 
            szTmp += ("Step" in Aux0)? `step=${Aux0.Step} `: "";
        } /* if */ 
    } /* if */

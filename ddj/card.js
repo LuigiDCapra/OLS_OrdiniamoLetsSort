@@ -5,7 +5,7 @@
 * File        : card.js
 * Function    : Card Editing
 * FirstEdit   : 15/12/2019
-* LastEdit    : 10/02/2026
+* LastEdit    : 03/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -445,7 +445,6 @@ function U_EditCard(P_XDB, P_jOpt_Confirm, P_fCustom=false)
   else {
      szHTML_Card = szRowEdt + "\n" + UsrView0.F_szHTML_OpenCard(UsrView0, P_jOpt_Confirm, fReadOnly);   /* Insert <input> for fields. */
   } /* if */
-//  $LcdLcd.U_Write("r:/szHTML_Card.txt", szHTML_Card, false);   // +++
 
   $OPrn.U_Prn_Elem(szHTML_Card, false);
   $OPrn.U_Upd_Elem(szId_Tbl_Card, true);

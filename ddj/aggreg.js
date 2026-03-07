@@ -5,9 +5,9 @@
 * File        : aggreg.js
 * Function    : Aggregate Functions management.
 * FirstEdit   : 12/07/2025
-* LastEdit    : 09/08/2025
+* LastEdit    : 03/03/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -146,15 +146,12 @@ function U_Confirm(P_Bag)
       iCnt += Coll1[k].length; 
       aStat0 = {};
       for (let i = 0; i < iCard_aFld1; i++) {
-//      for (let i = 5; i < 6; i++) {
           Fld1 = aFld1[i];
           szNm_Fld = Fld1.szNm;
           aStat0[szNm_Fld] = $Stat_DDJ.F_Stat_Field(UsrView1, i, Fld1); 
       } /* for */      
       aaStat0[szKey] = aStat0;
   } /* for */  
- 
-//  $LcdLcd.U_Dbg_Sav(aaStat0);
 
   new CL_XDB(["Aggregate", C_JKndTup_asObj, aaStat0, null, "AutoDetect", "", (C_WwFlag_fOverWrite | C_WwFlag_fDisplay), C_jCd_Cur, C_Bag_UsrView_Dflt]); 
 } /* U_Confirm */

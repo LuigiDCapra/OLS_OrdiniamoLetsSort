@@ -5,7 +5,7 @@
 * File        : table.js
 * Function    : DDJ's table display
 * FirstEdit   : 15/12/2019
-* LastEdit    : 04/02/2026
+* LastEdit    : 03/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -341,7 +341,8 @@ function U_Upd_UsrView(P_UsrView, P_iRow, P_iCol=1)
   
   if ((jaNdx_Sel < 0) || (iCard <= jaNdx_Sel)) {
      /* Prevent selection of Tuples which do not exists because outside Collection boundaries. */
-     if ((JKndTup0 != C_JKndTup_Obj) && (JKndTup0 != C_JKndTup_as_)) {
+//     if ((JKndTup0 != C_JKndTup_Obj) && (JKndTup0 != C_JKndTup_as_)) {
+     if ($XDB.F_fjRow_Mp_JKndTup(JKndTup0)) {
         $Error.U_Warning(C_jCd_Cur, 2, "", "", true, true);                     /* Warning and throw error */
      } /* if */
   } /* if */

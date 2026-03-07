@@ -5,7 +5,7 @@
 * File        : outdata.js
 * Function    : Data Saving.
 * FirstEdit   : 15/12/2019
-* LastEdit    : 29/01/2026
+* LastEdit    : 03/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -298,8 +298,8 @@ function U_SaveChanges(P_UsrView0, P_szNm_URL, P_szNmColl, P_fAll=true)
   var fBinary = G_DDJ.fKrypt;   
   var szBuff = $OutData.F_szOLS_Mp_Coll(P_UsrView0, P_szNm_URL, P_UsrView0.jaFld1_aNdx, P_fAll);
   
-  if (fBinary) {
-     $LcdLcd.U_Write("D:/Dbase/BakDbg/" + P_szNmColl, szBuff);  // $LCD $DEBUG
+  if (window.fLcdLcd) {
+     $LcdLcd.U_BackUp(P_szNmColl, szBuff, fBinary);  // $LCD $DEBUG
   } /* if */
   if (G_DDJ.fKrypt) {
     szBuff = $DSaft.F_szTxt_Krypt(szBuff);
@@ -353,7 +353,9 @@ function U_Save(P_szDest, P_szNm_Sav, P_JKndTup, P_jPrimKey)
      return;
   } /* if */
   if (G_DDJ.fKrypt) {
-     $LcdLcd.U_Write("D:/Dbase/BakDbg/" + P_szNm_Sav, szTxt);                   // $LCD $DEBUG
+     if (window.fLcdLcd) {
+        $LcdLcd.U_BackUp(P_szNm_Sav, szTxt);                // $LCD $DEBUG
+     } /* if */
      szTxt = $DSaft.F_szTxt_Krypt(szTxt);
   } /* if */  
   switch (P_szDest) {

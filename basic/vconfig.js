@@ -5,7 +5,7 @@
 * File        : ddj_cfg.js
 * Function    : DDJ's configuration
 * FirstEdit   : 02/02/2021
-* LastEdit    : 09/01/2026
+* LastEdit    : 07/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -101,13 +101,20 @@ function U_Clear_LocalStorage()
 */ 
 function U_Load_DDJSts(P_WellCome)
 {
-  var szDDJSts = localStorage.getItem(S_szNm_LocStg);
+  var szDDJSts;
   var DDJSts0;
         
   try {
+      szDDJSts = localStorage.getItem(S_szNm_LocStg);
       DDJSts0 = JSON.parse(szDDJSts);
   } catch (P_Err) {
-      $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+      if (P_Err.name == "NS_ERROR_FILE_CORRUPTED") {
+         /* $NOTE: manage FireFox bug. */
+         DDJSts0 = null;      
+      }
+      else {
+         $Error.U_Catch(C_jCd_Cur, 1, P_Err);
+      } /* if */
   } /* try catch */
   
   if (!DDJSts0 || (S_DDJSts.iRel_KNS != DDJSts0.iRel_KNS)) {
@@ -142,7 +149,16 @@ function U_Store_DDJSts()
   S_DDJSts.iMDay_KNS   = iMDay;
   S_DDJSts.iSec70_KNS  = imSec70;
   var szJSON = JSON.stringify(S_DDJSts);
-  localStorage.setItem(S_szNm_LocStg, szJSON);
+
+  try {      
+      localStorage.setItem(S_szNm_LocStg, szJSON);
+  } catch (P_Err) {
+      if (P_Err.name == "NS_ERROR_FILE_CORRUPTED") {
+         /* $NOTE: FireFox bug. */
+         /* OLS was installed in D:\Viola instead than in D:\viola (localstorage path seem to be case sensitive) */     
+      } /* if */
+      $Error.U_Catch(C_jCd_Cur, 2, P_Err);
+  } /* try catch */
 } /* U_Store_DDJSts */
 
 /*-----U_Reset --------------------------------------------------------
