@@ -5,7 +5,7 @@
 * File        : ldfile.js
 * Function    : Load File.
 * FirstEdit   : 10/04/2024
-* LastEdit    : 24/02/2026
+* LastEdit    : 22/02/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -530,8 +530,13 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
 function F_Coll_Mp_OLS(R_DDJ, P_szTxt)
 {
  var fAutoExec = false;
- var fDisplay = (R_DDJ.WwFlag0 & C_WwFlag_fDisplay);
- R_DDJ.WwFlag0 = R_DDJ.WwFlag0 & ~C_WwFlag_fDisplay; /* Disable C_WwFlag_fDisplay 24/02/2026 */
+ 
+ var fDeBug = false;  /* 10/03/2026 */
+ if (fDeBug) {
+     var fDisplay = (R_DDJ.WwFlag0 & C_WwFlag_fDisplay);
+     R_DDJ.WwFlag0 = R_DDJ.WwFlag0 & ~C_WwFlag_fDisplay; /* Disable C_WwFlag_fDisplay 24/02/2026 */
+ } /* if */
+
  var szCode = "";
  var Coll0;
  var JSON0;
@@ -629,13 +634,25 @@ const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
                $Error.U_Try(szPost);             /* Try to execute Collection postprocessing code*/
             } /* if */    
         } /* for */
-    
+
+ if (fDeBug) {   /* 10/03/2026 */
         /* If fDisplay then change R_DDJ.szNmColl selecting the first Collection stored in the .OLS file and show it. */
-        if (fDisplay) {
+        if (fDisplay) { /* 24/02/2026 */
             var szNmColl   = aHdrOLS[0][C_jHdrOLS_szNm];
             R_DDJ.szNmColl = szNmColl;
             var UsrView0 = CL_UsrView0.F_UsrView_Select(szNmColl, (R_DDJ.WwFlag0 | C_WwFlag_fDisplay | C_WwFlag_fSearchCS));      /* 24/02/2026 - Enable again C_WwFlag_fDisplay */
-        } /* if */    
+        } /* if */  
+ }
+ else {
+         /* If fDisplay then change R_DDJ.szNmColl selecting the first Collection stored in the .OLS file and show it. */
+        if (R_DDJ.WwFlag0 & C_WwFlag_fDisplay) {
+            var szNmColl   = aHdrOLS[0][C_jHdrOLS_szNm];
+            R_DDJ.szNmColl = szNmColl;
+            var UsrView0 = CL_UsrView0.F_UsrView_Select(szNmColl, (R_DDJ.WwFlag0 | C_WwFlag_fSearchCS));    
+        } /* if */
+ } /* if */
+
+    
     }
     else {
         $Error.U_Error(C_jCd_Cur, 14, "OLS Version unknown: ", Hdr0.iRes, false);
@@ -662,8 +679,8 @@ const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
 */ 
 function F_Coll_Mp_TOON(R_DDJ, P_szTxt)
 {
- var Coll0 = decode(P_szTxt);
- return(Coll0);
+  var Coll0 = decode(P_szTxt);
+  return(Coll0);
 } /* F_Coll_Mp_TOON */
 
 /*-----F_aRcd_Mp_szText --------------------------------------------------------

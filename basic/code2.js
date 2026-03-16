@@ -5,7 +5,7 @@
 * File        : code2.js
 * Function    : Global Costants Definitions.
 * FirstEdit   : 01/02/2022
-* LastEdit    : 26/02/2026
+* LastEdit    : 11/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -148,9 +148,9 @@ const C_jCd_Test        = 999;   /* */
 
 const C_iIllegal_Value  = -1;
 
-const C_szDate_EdtLst = "February 26th, 2026";
-const C_szVer_EdtLst  = "Seq. 1.390 \n 26/02/2026\n";
-const C_szRel_EdtLst  = "Release 1.0 - 1390";
+const C_szDate_EdtLst = "March 11th, 2026";
+const C_szVer_EdtLst  = "Seq. 1.4 \n 11/03/2026\n";
+const C_szRel_EdtLst  = "Release 1.4 - 1400";
 const C_szCopyright   = "Copyright(c): Luigi D. CAPRA, 2020..2026";
 
 const C_jaMnEntry_Title = 0;    /* HTML's elements 'title' */

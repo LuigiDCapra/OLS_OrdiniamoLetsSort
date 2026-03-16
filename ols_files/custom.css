@@ -1,2 +1,9 @@
 /* Custom style-sheet. Do not delete this file. */
 
+#Id_Flash li:hover {  
+  background-color: yellow;
+}
+
+#Id_Flash li {  
+  width:100%;
+}

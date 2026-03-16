@@ -383,7 +383,8 @@ var G_asaMnEntry =
 ["",                   "Insert", "", "", "PopUp"]       
 ],
 
-"++ Card ++": [
+"++ Card ++": [     /* NLP-Commands */
+
 ["","$Card.U_First_Cell","", "","prima"],
 ["","$Card.U_First_Cell","", "","inizio"],
 ["","$Card.U_First_Cell","", "","principio"],
@@ -456,7 +457,22 @@ var G_asaMnEntry =
 ["",           "Insert", "", "", "++ Card ++"]
 ],
 
-"++ InpVal ++": [
+"Flash-Cards": [
+["First Record",     "$ExeCmd.U_First_Tup1",  "First",     "first.svg", "inizio"],
+["Previous Record",  "$ExeCmd.U_Prev_Tup",    "Prev",      "prev.svg", "precedente"],
+["Next Record",      "$ExeCmd.U_Next_Tup",    "Next",      "next.svg", "seguente"],
+["Last Record",      "$ExeCmd.U_Last_Tup1",   "Last",      "last.svg", "fine"],
+["Read Aloud",       "$Card.U_Read_Tup",      "Read Aloud","read.svg", "leggi"],
+["Reset counters",   "$Custom.U_Reset_iCnt",  "Reset counters","reset_cnt.svg", "azzera"],
+["Shut Up",          "$Card.U_ShutUp",        "Shut Up",   "shutup.svg", "zitta"],
+["Help",             "$DDJ.U_Help",      "Help",   "help.svg", "aiuto"],
+
+["",                 "Expand", "", "", "+++ block NL command +++"],
+["",           "Insert", "", "", "++ Card ++"]
+],
+
+"++ InpVal ++": [     /* NLP-Commands */
+
 ["","U_Cancel","", "","chiudi la scheda"],
 ["","U_Cancel","", "","chiudi il record"],
 ["","U_Cancel","", "","chiudi"],
@@ -472,13 +488,13 @@ var G_asaMnEntry =
 ["",                   "Insert", "", "", "++ InpVal ++"]
 ],
 
-"++ SetReset ++": [
+"++ SetReset ++": [     /* NLP-Commands */
 
 ["","U_Cancel","", "","chiudi la scheda"],
 ["","U_Cancel","", "","annulla"],
 ["","U_Cancel","", "","chiudi"],
 ["","$Card.U_Confirm","", "","conferma"],
-["","$Card.U_Confirm","", "","conferma le modifiche"], // $DEBUG
+["","$Card.U_Confirm","", "","conferma le modifiche"],
 ["","$Card.U_Confirm","", "","esegui"],
 
 ["","$Card.U_Input", "", "", "inserisci"]
@@ -616,7 +632,8 @@ var G_asaMnEntry =
 ["About.",             "$DDJ.U_About", "About", "about.svg", "informazioni"]
 ],
 
-"++ block Chiudi ++": [
+"++ block Chiudi ++": [      /* NLP-Commands */
+
 ["","U_Cancel","", "","chiudi la scheda"],
 ["","U_Cancel","", "","chiudi il record"],
 ["","U_Cancel","", "","chiudi"]

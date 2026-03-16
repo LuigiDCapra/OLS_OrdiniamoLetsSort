@@ -5,7 +5,7 @@
 * File        : custom.js
 * Function    : User defined code
 * FirstEdit   : 15/12/2019
-* LastEdit    : 25/02/2026
+* LastEdit    : 14/03/2026
 * System      : Mozilla FireFox 80+
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
@@ -53,6 +53,8 @@ const $Custom = (function () {
   _Custom.U_CmdInt        = U_CmdInt;          // function U_CmdInt();
 
   _Custom.U_UsrDef_Ext    = U_UsrDef_Ext;      // function U_UsrDef_Ext();
+
+  _Custom.U_Reset_iCnt    = U_Reset_iCnt;      // function U_Reset_iCnt();
 
 /*----- Local Constants ----------------------------------------------*/
 
@@ -121,23 +123,42 @@ function U_Init_Custom()
 
 /* ********************* Flash-Cards ******************** */
 
+var S_iCnt_Try   = 0;
+var S_iCnt_Exact = 0;
+
+/*-----U_Reset_iCnt --------------------------------------------------------
+*
+*/ 
+function U_Reset_iCnt()
+{
+  S_iCnt_Try   = 0;
+  S_iCnt_Exact = 0;
+  Id_Upd.innerText=   S_iCnt_Exact + "/" + S_iCnt_Try; 
+} /* U_Reset_iCnt */
+
 function U_Esatta()
 {
   var szMsg = "Corretto, la risposta è esatta."; 
-   if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
-      $TTS.U_Long_speech(szMsg);
-   } /* if */
-   alert(szMsg);
-   $ExeCmd.U_Next_Tup();
+  if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
+     $TTS.U_Long_speech(szMsg);
+  } /* if */
+  alert(szMsg);
+  $ExeCmd.U_Next_Tup();
+
+  S_iCnt_Try   = S_iCnt_Try +1;
+  S_iCnt_Exact = S_iCnt_Exact +1;
+  Id_Upd.innerText=   S_iCnt_Exact + "/" + S_iCnt_Try; 
 } /* U_Esatta */
 
 function U_Errata()
 {
-   var szMsg = "Mi dispiace la risposta è sbagliata."; 
-   if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
-      $TTS.U_Long_speech(szMsg);
-   } /* if */
-   alert(szMsg);
+  var szMsg = "Mi dispiace la risposta è sbagliata."; 
+  if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
+     $TTS.U_Long_speech(szMsg);
+  } /* if */
+  alert(szMsg);
+  S_iCnt_Try   = S_iCnt_Try +1;
+  Id_Upd.innerText=   S_iCnt_Exact + "/" + S_iCnt_Try;  
 } /* U_Errata */
 
 /*-----U_Make_Quest --------------------------------------------------------
@@ -158,7 +179,7 @@ function U_Make_Quest(P_Item, P_Fld1, P_UsrView0)
   var iRnd = $Math_DDJ.F_iRND(0, (aaScrambler.length -1));
   var aScrambler = aaScrambler[iRnd];
   var i, j;
-  var szTmp = "<ol><b>" + Tup_Sel[2] + "</b><br><br>";
+  var szTmp = '<ol id="Id_Flash"><b>' + Tup_Sel[2] + "</b><br><br>";
   
   P_UsrView0.jCorrect = aScrambler.indexOf(3);     /* Set the correct answer. */
  
@@ -172,8 +193,15 @@ function U_Make_Quest(P_Item, P_Fld1, P_UsrView0)
       } /* if */
   } /* for */
   szTmp += "</ol>";
-  szTmp += "<fieldset><b>Cliccate sulla riga corrispondente alla risposta ritenuta corretta.</b></fieldset>";
   
+  if (Tup_Sel[9]) {
+//     szTmp += `<picture><img alt="" src="file:///L:/TMP/calendar.svg" width="20%;"><br></picture>`; 
+     szTmp += `<picture><img alt="" src="${Tup_Sel[9]}" width="20%;"><br></picture>`; 
+  } /* if */
+
+  szTmp += "<fieldset><b>Cliccate sulla riga corrispondente alla risposta ritenuta corretta.</b></fieldset>";
+  szTmp += "Punteggio (esatte/tentativi): (<span id='Id_Upd'>" + S_iCnt_Exact + "/" + S_iCnt_Try + "</span>)";
+
   Tup_Sel[0] = szTmp;  
   if ($VConfig.F_ValSts_Get("fEcho_Commands")) {
      $TTS.U_Long_speech(Tup_Sel[2]);
@@ -181,22 +209,4 @@ function U_Make_Quest(P_Item, P_Fld1, P_UsrView0)
   return(szTmp);
 } /* U_Make_Quest */
 
-
-/*-----U_Check_Answer --------------------------------------------------------
-*
-*/ 
-function U_Check_Answer(P_1, P_2, P_3, P_4)
-{
-  switch (P_1) {
-    case "1": 
-    case "2": 
-    case "3": 
-    case "4": {
-         P_2.Val_New = P_1;
-    } break;
-    default : {
-         P_2.Val_New = "";
-    } break;
-  } /* switch */
-} /* U_Check_Answer */
 
