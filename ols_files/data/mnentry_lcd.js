@@ -53,13 +53,21 @@ var G_asaMnEntry =
 ["Save Changes 4.",    "$DDJ.U_SaveChanges4", "Save Changes 4", "save4.svg", "salva le modifiche 4", "opt_auth"],
 ["Save As.",           "$DDJ.U_SaveAs", "Save As", "save_as.svg", "salva con nome"],
 ["Refresh view.",      "$DDJ.U_Refresh", "Refresh View", "refresh.svg", "rinfresca"],
+//["Close Collection.",  "rem $DDJ.U_Close_Coll", "Close Collection", "close_coll.svg", "Chiudi la collezione"],
 ["Reset",              "$InpData.U_Reset_Sts", "Reset", "reset_sts.svg", "reset"],
 ["Snap shot",          "$DDJ.U_Snap", "Snap", "snap.svg", "fotografa"],
-["Collections",        "$OLS.U_Collections", "Collections", "collections.svg", "lista collezioni"]
+["Collections",        "$OLS.U_Collections", "Collections", "collections.svg", "lista collezioni"],
+["History",            "$OLS.U_History", "History", "history.svg", "cronologia"],
+["Log",                "$OLS.U_Log", "log", "log.svg", "log"],
+["tree",               "$OLS.U_Tree", "tree", "tree.svg", "albero"],
+["cdf",                "$OLS.U_CdF", "cdf", "cose_da_fare.svg", "cose_da_fare"],  // $LCD
+["Disk",               "$OLS.U_Disk", "Disk", "disk.svg", "dischi"],
+["XTG",                "$XTG.U_XTG", "Xtg", "xtg.svg", "xtg", ""]
 ],
 
 "+++ block Development +++":[    /* $LCD */
-["x4",         "$DDJ.U_BrkPnt", "x3", "inbox.svg", "x4"]
+["Dashboard",          "$OLS.U_Dashboard", "dashboard", "dashboard.svg", "sinottico"],
+["Luigi",              "$LcdLcd.U_Home",   "luigi", "home2.svg", "luigi"]
 ],
 
 "+++ block LdSv Layout +++":[
@@ -97,10 +105,14 @@ var G_asaMnEntry =
 ],
 
 "+++ block PlaceHolder +++":[     /* $LCD */
+["x1",         "$DDJ.U_BrkPnt", "x1", "show.svg", "x1"],
+["x2",         "$DDJ.U_BrkPnt", "x2", "show.svg", "x2"],
 ["x3",         "$DDJ.U_BrkPnt", "x3", "show.svg", "x3"]
 ],
 
-"+++ block CFG +++":[
+"+++ block CFG +++":[    
+["Insert remark",      "$Remarks.U_Ins_Rem", "Insert Remark", "sv_rem.svg", "annota"],    
+["Remarks",            "$Remarks.U_Open", "Remarks", "remarks.svg", "annotazioni"],
 ["Configure.",         "$DDJ.U_Config", "Config", "config.svg", "configura"],
 ["",                   "$DDJ.U_Config", "Config", "config.svg", "configurazione"],
 ["Help.",              "$DDJ.U_Help", "Help", "help.svg", "aiuto"],
@@ -111,7 +123,15 @@ var G_asaMnEntry =
 ["Layout",             "$DDJ.U_LayoutColl", "Layout", "layout0.svg", "layout"],
 ["Field Layout",       "$DDJ.U_LayoutFld", "Field Layout", "layout.svg", "field layout"],
 ["Config. UsrView",    "$UsrView.U_Cfg_UV", "Config", "cfg_uv.svg", "configura vista utente"],
-["Collection URL",     "$DDJ.U_Show_szURL", "Show Collection URL", "show_url.svg", "Show Collection URL"]
+["Collection URL",     "$DDJ.U_Show_szURL", "Show Collection URL", "show_url.svg", "Show Collection URL"],
+["Edit Collection",    "$XTG.U_Edit_Coll",   "Edit Collection", "edit_coll.svg", "edita collezione"]
+],
+
+"+++ block Tools +++":[    /* $LCD */
+["JS-Int",             "$OLS.U_JSInt", "JS-Int", "js-int.svg", "interprete javascript", "opt_auth"],
+["Calculator",         "$OLS.U_Calculator", "Calculator", "calculator.svg", "calcolatrice"],
+["VLS",                "$OLS.U_VLS", "VLS", "vls.svg", "Vediamo/Let's See", ""],
+["WE4",                "$OLS.U_WE4", "WE4", "we4.svg", "Editor WE4", ""]
 ],
 
 "+++ rem block PATH-GO +++":[
@@ -143,11 +163,22 @@ var G_asaMnEntry =
 ["Edit",               "$XTG.U_Edit_File",    "Edit",           "edit_file.svg", "edita"]
 ],
 
-"+++ block NL command +++":[
-["NL command",         "U_Null", "NL commands", "", "comando LN", "input", ["text"]],
-["Submit command",     'U_NL_Cmd', "Submit commands", "", "esegui", "button", ["RUN"]]
+"+++ block Resources Sinottico +++":[   /* $LCD */
+["Update",             "$Sinottico.U_Update",   "Update",         "update.svg", "aggiorna"],
+["Open Resources",     "$Sinottico.U_Show_Res", "Open Resources", "show.svg", "mostra risorsa"],
+["",                   "$Sinottico.U_Show_Res", "Open Resources", "show.svg", "apri risorsa"],
+["Edit Resources",     "$Sinottico.U_Edit_Res", "Edit Resources", "edit_res.svg",  "edita risorsa"],
+["Edit",               "$Sinottico.U_Edit_File","Edit",           "edit_file.svg", "edita"],
+   
+["Planes View.",       "$DDJ.U_Planes", "Planes View", "planes.svg", "piani di memoria"], 
+["Span another OLS",   "$OLS.U_Span_OLS2","Span another OLS",     "ols2.svg", "esegui ols2"]
 ],
 
+"+++ block NL command +++":[
+["NL command",         "U_Null", "NL commands", "", "comando_LN", "input", ["text"]],
+["Submit command",     'U_NL_Cmd', "Submit commands", "", "esegui", "button", ["RUN"]]
+],
+     
 "+++ block NL command FK +++":[
 ["Random questions",   "U_Null", "Random questions", "", "domande_casuali", "checkbox", ["Random"]],
 ["NL command",         "U_Null", "NL commands", "", "comando_LN", "input", ["text"]],
@@ -170,7 +201,8 @@ var G_asaMnEntry =
 ["",  "U_Null",              "----","", ""],
 ["", "$FileMan.U_Show_Res", "Open Resources", "show.svg", "apri risorse"],
 ["", "$DDJ.U_SetAnchor",    "Set anchor", "anchor.svg", "ancora"],   
-["", "U_NL_Cmd_PopUp",      "+++ NL Command +++", "exe.svg", "Comando"],   
+["", "U_NL_Cmd_PopUp",        "+++ NL Command +++", "exe.svg", "Comando"],    
+["", "$Remarks.U_Ins_Rem",  "Remarks", "sv_rem.svg", "annota"],
 ["",  "U_Null",              "----","", ""],
 ["", "U_Stat_Field",        "Column Statistics.","stat.svg", "statistiche campo"],
 ["", "U_Stat_Record",       "Table  Statistics.","stat.svg", "statistiche record"],
@@ -224,7 +256,9 @@ var G_asaMnEntry =
 ["iStep",              "$DDJ.U_Set_iStep", "Sample Step", "", "Passo di campionamento", "select", ["Passo", 1, 2, 3, 4, 5, 8, 10, 16, 20, 32, 50, 64, 100]],
 
 ["Sort.",              "$DDJ.U_SetSort", "Sort Wizard", "sort.svg", "ordina"],
-["Aggreg.",            "$DDJ.U_SetAggreg", "Aggregation Wizard", "aggreg.svg", "aggrega"]
+["Aggreg.",            "$DDJ.U_SetAggreg", "Aggregation Wizard", "aggreg.svg", "aggrega"],
+
+["Custom",             "$DDJ.U_Custom_Card", "Custom", "custom.svg", "custom"]
 ],
 
 "Standard":[
@@ -233,8 +267,10 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Development +++"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
+["SemTree",            "$SemTree.U_SemTree", "SemTree", "semtree.svg", "Filtro Semantico", ""],    /* $LCD */
 ["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
 ["",                   "Expand", "", "", "+++ block NL command +++"],
@@ -249,7 +285,8 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Standard +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["Image width",        "$DDJ.U_Set_iWdt",  "Image Width", "", "Larghezza immagini", "select", ["larghezza", 5, 10, 15, 20, 25, 33, 50, 80, 100, 200, 400]],
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
@@ -264,9 +301,11 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Development +++"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["ToDay.",             "$Calendar.U_ToDay0", "To Day", "oggi.svg", "oggi"],
+["ToDo",               "$Agenda.U_ToDo", "Impegni di Oggi.","todo.svg", "cose da fare"],   /* $LCD */
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"],  
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
 ["",                   "Expand", "", "", "+++ block NL command +++"],
@@ -283,9 +322,10 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
-
+    
 ["Set min Max",        "$DDJ.U_Set_MinMax_All", "Set min Max", "setminmax.svg", "Set min Max"], 
 ["",                   "Expand", "", "", "+++ block NL command +++"],
 ["",                   "Insert", "", "", "++ block NLP ++"],  
@@ -299,7 +339,8 @@ var G_asaMnEntry =
 ["Change value.",      "$DDJ.U_EdtVal_DDJ", "Edit Value", "edit_value.svg", "modifica il valore", "opt_auth"],
 ["Tags.",              "$DDJ.U_Tag_SetReset", "Tags", "tag.svg", "tag", "opt_auth"],      
 ["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
 ["",                   "Expand", "", "", "+++ block NL command +++"],
@@ -316,7 +357,8 @@ var G_asaMnEntry =
 ["Planes View.",       "$DDJ.U_Planes", "Planes View", "planes.svg", "piani di memoria"], 
 ["Tags.",              "$DDJ.U_Tag_SetReset", "Tags", "tag.svg", "tag", "opt_auth"],      
 ["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
 ["",                   "Expand", "", "", "+++ block NL command +++"],
@@ -324,6 +366,21 @@ var G_asaMnEntry =
 ["",                   "Insert", "", "", "PopUp"]       
 ],
 
+"Diario":[    /* $LCD */
+["",                   "Expand", "", "", "+++ block PrevNext +++"],
+["",                   "Expand", "", "", "+++ block LoadSave +++"],
+["",                   "Expand", "", "", "+++ block Development +++"],
+["",                   "Expand", "", "", "+++ block Edit +++"],
+["",                   "Expand", "", "", "+++ block Filter +++"],
+["",                   "Expand", "", "", "+++ block Standard +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"],  
+["",                   "Expand", "", "", "+++ block Tools +++"], 
+["",                   "Expand", "", "", "+++ block CFG +++"],  
+["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Expand", "", "", "+++ block NL command +++"],
+["",                   "Insert", "", "", "++ block NLP ++"],  
+["",                   "Insert", "", "", "PopUp"]       
+],
 
 "XTG":[
 ["",                   "Expand", "", "", "+++ block PrevNext +++"],
@@ -352,7 +409,8 @@ var G_asaMnEntry =
 ["Slide",              "$XTG.U_Slide", "Slide", "slide.svg", "diapositive"],
 ["Show Images",        "$XTG.U_Show_Img", "Show Images", "thumbnails.svg", "mostra immagini"],
 ["Number of columns ", "$DDJ.U_Set_iNnCol",  "Number of Image's columns", "", "Numero immagini", "select", ["N. colonne", 1,2,3,4,5,6,8,10, 16, 20, 25, 32]],
-["",                   "Expand", "", "", "+++ block Layout +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["Image width",        "$DDJ.U_Set_iWdt",  "Image Width", "", "Larghezza immagini", "select", ["larghezza", 5, 10, 15, 20, 25, 33, 50, 80, 100, 200, 400]],
 
 ["Rem Scan",           "$XTG.U_Rem_Scan", "Rem Scan", "rem_scan.svg", "rem scan"],
@@ -371,7 +429,25 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Resources +++"],
 ["",                   "Expand", "", "", "+++ block Edit +++"],    
 ["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
+["",                   "Expand", "", "", "+++ block CFG +++"],
+["",                   "Expand", "", "", "+++ block PATH-SET +++"],  
+["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Expand", "", "", "+++ block NL command +++"],
+["",                   "Insert", "", "", "++ block NLP ++"],  
+["",                   "Insert", "", "", "PopUp"]       
+],
+
+"Sinottico":[    /* $LCD */
+["",                   "Expand", "", "", "+++ block PrevNext +++"],
+["",                   "Expand", "", "", "+++ block LoadSave +++"],
+["",                   "Expand", "", "", "+++ block Development +++"],
+["",                   "Expand", "", "", "+++ block Resources Sinottico +++"],
+
+["Change value.",      "$DDJ.U_EdtVal_Dash", "Edit Value", "edit_value.svg", "modifica il valore", "opt_auth"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block PATH-SET +++"],  
 ["",                   "Expand", "", "", "+++ block Test +++"],
@@ -387,6 +463,22 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Development +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
+["",                   "Expand", "", "", "+++ block CFG +++"],
+["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Insert", "", "", "++ block NLP ++"],  
+["",                   "Insert", "", "", "PopUp"]       
+],
+
+"Budget":[    /* $LCD */
+["",                   "Expand", "", "", "+++ block PrevNext +++"],
+["",                   "Expand", "", "", "+++ block LoadSave +++"],
+["",                   "Expand", "", "", "+++ block Development +++"],
+["",                   "Expand", "", "", "+++ block Edit +++"],
+["",                   "Expand", "", "", "+++ block Filter +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"],  
+["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
 ["",                   "Insert", "", "", "++ block NLP ++"],  
@@ -400,9 +492,46 @@ var G_asaMnEntry =
 ["",                   "Expand", "", "", "+++ block Edit +++"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
 ["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"],  
 ["",                   "Expand", "", "", "+++ block Standard +++"],
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Insert", "", "", "++ block NLP ++"],  
+["",                   "Insert", "", "", "PopUp"]       
+],
+
+"Gloss":[    /* $LCD */
+["",                   "Expand", "", "", "+++ block PrevNext +++"],
+["jLvl",               "$DDJ.U_Set_jLvl_Gloss", "Level", "", "livello", "select", ["Level", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+["",                   "Expand", "", "", "+++ block LoadSave +++"],
+["",                   "Expand", "", "", "+++ block Development +++"],
+["",                   "Expand", "", "", "+++ block Edit +++"],
+["",                   "Expand", "", "", "+++ block Filter +++"],
+["SemTree",            "$SemTree.U_SemTree0", "SemTree", "semtree.svg", "FiltSemTree 0", ""],
+["",                   "Expand", "", "", "+++ block Layout +++"],  
+["",                   "Expand", "", "", "+++ block Tools +++"], 
+["",                   "Expand", "", "", "+++ block Standard +++"],
+["",                   "Expand", "", "", "+++ block CFG +++"],
+["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Expand", "", "", "+++ block NL command +++"],
+["",                   "Insert", "", "", "++ block NLP ++"],  
+["",                   "Insert", "", "", "PopUp"]       
+],
+
+"Sked":[    /* $LCD */
+["",                   "Expand", "", "", "+++ block PrevNext +++"],
+["jLvl",               "$DDJ.U_Set_jLvl_Gloss", "Level", "", "livello", "select", ["Level", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+["",                   "Expand", "", "", "+++ block LoadSave +++"],
+["",                   "Expand", "", "", "+++ block Development +++"],
+["",                   "Expand", "", "", "+++ block Edit +++"],
+["",                   "Expand", "", "", "+++ block Filter +++"],
+["SemTree",            "$SemTree.U_SemTree3", "SemTree", "semtree.svg", "FiltSemTree 3", ""],
+["",                   "Expand", "", "", "+++ block Layout +++"],  
+["",                   "Expand", "", "", "+++ block Tools +++"], 
+["",                   "Expand", "", "", "+++ block Standard +++"],
+["",                   "Expand", "", "", "+++ block CFG +++"],
+["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Expand", "", "", "+++ block NL command +++"],
 ["",                   "Insert", "", "", "++ block NLP ++"],  
 ["",                   "Insert", "", "", "PopUp"]       
 ],
@@ -467,6 +596,7 @@ var G_asaMnEntry =
 ["Help",             "$DDJ.U_Help",      "Help",   "help.svg", "aiuto"],
 ["Snap shot.",         "$DDJ.U_Snap", "Snap", "snap.svg", "fotografa"], 
 
+["",                 "Expand", "", "", "+++ block NL command +++"],
 ["",           "Insert", "", "", "++ Card ++"]
 ],
 
@@ -477,32 +607,53 @@ var G_asaMnEntry =
 ["Last Record",      "$ExeCmd.U_Last_Tup1",   "Last",      "last.svg", "fine"],
 ["Read Aloud",       "$Card.U_Read_Tup",      "Read Aloud","read.svg", "leggi"],
 ["Shut Up",          "$Card.U_ShutUp",        "Shut Up",   "shutup.svg", "zitta"],
-["Help",             "$DDJ.U_Help",      "Help",   "help.svg", "aiuto"],
+["Help",             "$DDJ.U_Help",           "Help",      "help.svg", "aiuto"],
 ["",           "Insert", "", "", "++ Card ++"]
 ],
 
 "++ Flash ++": [     /* NLP-Commands */
 
-["","$Card.U_First_Cell","", "","prima"],
-["","$Card.U_First_Cell","", "","inizio"],
-["","$Card.U_First_Cell","", "","principio"],
-["","$Card.U_First_Cell","", "","in cima"], 
+["","U_Null","", "","flash"],
 
-["","$Card.U_Last_Cell","", "","ultimo"],
-["","$Card.U_Last_Cell","", "","fondo"],
-["","$Card.U_Last_Cell","", "","fine"],
+["","$Flash_Cards.U_Uno","", "","uno"],
+["","$Flash_Cards.U_Due","", "","due"],
+["","$Flash_Cards.U_Tre","", "","tre"],
+["","$Flash_Cards.U_Quattro","", "","quattro"],
 
-["","$Card.U_Prev_Cell", "", "", "indietro"],
-["","$Card.U_Prev_Cell", "", "", "precedente"],
-["","$Card.U_Prev_Cell","", "","su"],
-["","$Card.U_Prev_Cell","", "","sali"],
-["","$Card.U_Prev_Cell","", "","sopra"], 
+["","$Flash_Cards.U_Uno","", "","la risposta giusta è uno"],
+["","$Flash_Cards.U_Due","", "","la risposta giusta è due"],
+["","$Flash_Cards.U_Tre","", "","la risposta giusta è tre"],
+["","$Flash_Cards.U_Quattro","", "","la risposta giusta è quattro"],
+["","$Flash_Cards.U_Uno","", "","la risposta giusta è 1"],
+["","$Flash_Cards.U_Due","", "","la risposta giusta è 2"],
+["","$Flash_Cards.U_Tre","", "","la risposta giusta è 3"],
+["","$Flash_Cards.U_Quattro","", "","la risposta giusta è 4"],
+
+["","$Flash_Cards.U_Uno","", "","1"],
+["","$Flash_Cards.U_Due","", "","2"],
+["","$Flash_Cards.U_Tre","", "","3"],
+["","$Flash_Cards.U_Quattro","", "","4"],
+
+["","$Flash_Cards.U_First_Quest","", "","prima"],
+["","$Flash_Cards.U_First_Quest","", "","inizio"],
+["","$Flash_Cards.U_First_Quest","", "","principio"],
+["","$Flash_Cards.U_First_Quest","", "","in cima"], 
+
+["","$Flash_Cards.U_Last_Quest","", "","ultima"],
+["","$Flash_Cards.U_Last_Quest","", "","fondo"],
+["","$Flash_Cards.U_Last_Quest","", "","fine"],
+
+["","$Flash_Cards.U_Prev_Quest", "", "", "indietro"],
+["","$Flash_Cards.U_Prev_Quest", "", "", "precedente"],
+["","$Flash_Cards.U_Prev_Quest","", "","su"],
+["","$Flash_Cards.U_Prev_Quest","", "","sali"],
+["","$Flash_Cards.U_Prev_Quest","", "","sopra"], 
         
-["","$Card.U_Next_Cell", "", "", "avanti"], 
-["","$Card.U_Next_Cell", "", "", "prossima"],
-["","$Card.U_Next_Cell","", "","giù"],
-["","$Card.U_Next_Cell","", "","scendi"],
-["","$Card.U_Next_Cell","", "","sotto"],
+["","$Flash_Cards.U_Next_Quest", "", "", "avanti"], 
+["","$Flash_Cards.U_Next_Quest", "", "", "prossima"],
+["","$Flash_Cards.U_Next_Quest","", "","giù"],
+["","$Flash_Cards.U_Next_Quest","", "","scendi"],
+["","$Flash_Cards.U_Next_Quest","", "","sotto"],
 
 ["","U_Cancel","", "","chiudi la scheda"],
 ["","U_Cancel","", "","chiudi il record"],
@@ -512,6 +663,7 @@ var G_asaMnEntry =
 
 ["","$Card.U_Input", "", "", "inserisci"]
 ],
+
 
 "Flash-Cards": [
 ["First Record",     "$ExeCmd.U_First_Tup1",  "First",     "first.svg", "inizio"],
@@ -525,6 +677,7 @@ var G_asaMnEntry =
 
 ["",                 "Expand", "", "", "+++ block NL command FK +++"],
 
+["Snap shot",          "$DDJ.U_Snap", "Snap", "snap.svg", "fotografa"],
 ["",           "Insert", "", "", "++ Flash ++"]
 ],
 
@@ -551,7 +704,7 @@ var G_asaMnEntry =
 ["","U_Cancel","", "","annulla"],
 ["","U_Cancel","", "","chiudi"],
 ["","$Card.U_Confirm","", "","conferma"],
-["","$Card.U_Confirm","", "","conferma le modifiche"],
+["","$Card.U_Confirm","", "","conferma le modifiche"], // $DEBUG
 ["","$Card.U_Confirm","", "","esegui"],
 
 ["","$Card.U_Input", "", "", "inserisci"]
@@ -623,7 +776,8 @@ var G_asaMnEntry =
 ["",                   "$DDJ.U_EdtTup_DDJ", "Edit Record", "edit_tuple.svg", "apri il record", "opt_auth"],
 ["",                   "$DDJ.U_EdtTup_DDJ", "Edit Record", "edit_tuple.svg", "edit record", "opt_auth"],
 ["",                   "Expand", "", "", "+++ block Filter +++"],
-["",                   "Expand", "", "", "+++ block Layout +++"],
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
 ["",                   "Expand", "", "", "+++ block CFG +++"],
 ["",                   "Expand", "", "", "+++ block Test +++"], 
 ["Set Min Max.",       "$DDJ.U_Set_MinMax", "Set Min Max", "setminmax.svg", "imposta"],
@@ -672,6 +826,10 @@ var G_asaMnEntry =
 ["Help","$DDJ.U_Help","Help file", "help.svg", "aiuto"]
 ],
 
+"SQL": [    /* $LCD */
+["Help file","$DDJ.U_Help","Help", "help.svg", "aiuto"]
+],
+
 "Calendar": [
 ["Giorno",   "$Calendar.U_UpdDay",   "Giorno",    "", "giorno", "select", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21,22,23,24,25,26,27,28,29,30,31]],
 ["Mese",     "$Calendar.U_UpdMonth", "Mese",      "", "mese",   "select", ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]],
@@ -708,7 +866,42 @@ var G_asaMnEntry =
 ["", "Insert", "", "", "++ block Chiudi ++"]
 ],
 
-"Camera": [
+"Camera": [    /* $LCD */
+],
+
+"Remarks":[
+["",                   "Expand", "", "", "+++ block PrevNext +++"], 
+["",                   "Expand", "", "", "+++ block PlaceHolder +++"],
+["",                   "Expand", "", "", "+++ block LoadSave +++"],
+["",                   "Expand", "", "", "+++ block Development +++"],
+["Get Remarks",        "$Remarks.U_GetTup", "Get remarks", "show.svg", "vai a nota"],
+["Show Images",        "$Remarks.U_Show_Img", "Show Images", "thumbnails.svg", "mostra immagini"],
+["",                   "Expand", "", "", "+++ block Edit +++"],
+["",                   "Expand", "", "", "+++ block Filter +++"],
+["SemTree",            "$SemTree.U_SemTree3", "SemTree", "semtree.svg", "FiltSemTree 3", ""],  /* $LCD */
+["",                   "Expand", "", "", "+++ block Layout +++"], 
+["",                   "Expand", "", "", "+++ block Tools +++"], 
+
+["Planes View.",       "$DDJ.U_Planes", "Planes View", "planes.svg", "piani di memoria"], 
+["Tags.",              "$DDJ.U_Tag_SetReset", "Tags", "tag.svg", "tag", "opt_auth"],    
+
+["Chain collections.", "U_Concat", "Concatenate", "concatenate.svg", "concatena"],
+["Flank collections side by side.", "U_AddCol", "AddCol", "addcol.svg", "affianca"],
+["JsonPath",           "U_JsonPath", "JsonPath", "jsonpath.svg", "jsonpath"],
+["Draw",               "$DDJ.U_PlotData", "Plot", "draw.svg", "grafico"],
+["Chart",              "$Chart.U_Chart", "Chart", "chart.svg", "diagramma"],
+["iStep",              "$DDJ.U_Set_iStep", "Sample Step", "", "Passo di campionamento", "select", ["Passo", 1, 2, 3, 4, 5, 8, 10, 16, 20, 32, 50, 64, 100]],
+
+["Sort.",              "$DDJ.U_SetSort", "Sort Wizard", "sort.svg", "ordina"],
+["",                   "Expand", "", "", "+++ block CFG +++"],
+["",                   "Expand", "", "", "+++ block PATH-SET +++"],   
+["",                   "Expand", "", "", "+++ block Test +++"],
+["",                   "Insert", "", "", "++ block NLP ++"],  
+["",                   "Insert", "", "", "PopUp"]       
+],
+
+"Rem_Pnl": [
+["Help",             "$DDJ.U_Help",      "Help",   "help.svg", "aiuto"]
 ],
 
 "NLP_Pnl": [

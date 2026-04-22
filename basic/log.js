@@ -5,7 +5,7 @@
 * File        : log.js
 * Function    : Log debug infos.
 * FirstEdit   : 01/02/2021
-* LastEdit    : 06/01/2026
+* LastEdit    : 03/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -97,6 +97,9 @@ function U_Log(P_jCd, P_jReg, P_iSig, P_szKnd, P_szMsg)
 {
   var ims70_Now = Date.now();
   var is_Ela = (ims70_Now - S_ims70_Ini) / 1000;
+  P_szKnd = "" + P_szKnd;   /* Be sure that it is a string. */
+  P_szMsg = "" + P_szMsg;
+
   G_aRcd_Log.push([is_Ela, P_jCd, P_jReg, P_iSig, P_szKnd, P_szMsg]);
 
   if ($Root.F_fExist("$VConfig")) { 

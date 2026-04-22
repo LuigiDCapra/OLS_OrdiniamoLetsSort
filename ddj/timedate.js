@@ -5,10 +5,10 @@
 * File        : timedate.js
 * Function    : Date and time management
 * FirstEdit   : 18/10/2023
-* LastEdit    : 27/11/2025
+* LastEdit    : 11/04/2026
 * System      : Mozilla FireFox 80+
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -113,6 +113,8 @@ const $TimeDate = (function () {
   _TimeDate.F_szTime_Make         = F_szTime_Make;         // function F_szTime_Make(P_Date); 
   _TimeDate.F_szDate_Mp_Date_2    = F_szDate_Mp_Date_2;    // function F_szDate_Mp_Date_2(P_Date, P_szDateKind="date", P_szjDate="YYYYMMDD")   /* Return date in national format. */
 
+  _TimeDate.F_jYDay_Mp_szDate_Saints = F_jYDay_Mp_szDate_Saints; // function F_jYDay_Mp_szDate_Saints(P_iYear);
+
   _TimeDate.aYear;
 
 /*----- Local Constants ----------------------------------------------*/ 
@@ -124,6 +126,7 @@ const C_jCd_Cur = C_jCd_TimeDate;
 var S_aYear = [];
 
 var S_szjDate;
+var S_iYear_Cur; /* Current Year */
 
 /*--------------------------------------------------------------------*/
 
@@ -148,7 +151,7 @@ function F_fDate(P_sz)
 */ 
 function F_ims_Sec70_Now()
 {
-  return(new Date().getTime());
+  return(Date.now());
 } /* F_ims_Sec70_Now */
 
 /*-----F_Date_Now --------------------------------------------------------
@@ -210,11 +213,11 @@ function F_ims_Sec70_Mp_Date(P_Date)
 /*-----F_szDate_Mp_Date --------------------------------------------------------
 *
 * Convert a Date in a string in YYYY-MM-DDThh:mm:ss.sss format.
-* $TimeDate.F_szDate_Mp_Date(); 
+* $TimeDate.F_szDate_Mp_Date();
 */ 
 function F_szDate_Mp_Date(P_Date, P_szDateKind)
 {
-  if (!P_Date) {
+  if (P_Date == C_Undefined) {
      P_Date = new Date();
   } /* if */
   let iYear = P_Date.getFullYear();
@@ -263,7 +266,7 @@ function F_ims_Sec70_Mp_szDate(P_szDate)
 * $Note: about P_iMonth note that January is encoded as zero (0).
 * $TimeDate.F_szDate_Make(); 
 */ 
-function F_szDate_Make(P_iYear=2023, P_iMonth=1, P_iDay=1, P_iHour=0, P_iMinutes=0, P_iSeconds=0, P_imSec=0, P_iMin_TZ=0, P_szDateKind="date")
+function F_szDate_Make(P_iYear=S_iYear_Cur, P_iMonth=1, P_iDay=1, P_iHour=0, P_iMinutes=0, P_iSeconds=0, P_imSec=0, P_iMin_TZ=0, P_szDateKind="date")
 {
   var szDate;
 
@@ -318,7 +321,7 @@ function F_Date_Make(P_iYear=0, P_iMonth=1, P_iDay=1, P_iHour=0, P_iMinutes=0, P
 */ 
 function F_ai_Date_Mp_Date(P_Date)
 {
-  if (!P_Date) {
+  if (P_Date == C_Undefined) {
      P_Date = new Date();
   } /* if */
   let iYear = P_Date.getFullYear();
@@ -612,7 +615,7 @@ function F_szTime_Make(P_Date)
 {
   var szDate;
 
-  if (!P_Date) {
+  if (P_Date == C_Undefined) {
      P_Date = new Date();
   } /* if */
   
@@ -636,7 +639,7 @@ function F_szDate_Mp_Date_2(P_Date, P_szDateKind="date", P_szjDate="YYYYMMDD")
 {
   var szDate;
 
-  if (!P_Date) {
+  if (P_Date == C_Undefined) {
      P_Date = new Date();
   } /* if */
   let iYear  = P_Date.getFullYear();
@@ -694,6 +697,39 @@ function F_szDate_Mp_Date_2(P_Date, P_szDateKind="date", P_szjDate="YYYYMMDD")
   return(szDate);
 } /* F_szDate_Mp_Date_2 */
 
+/* -----F_fLeap_Calendar -----------------------------------------------------------
+*
+* Check if it is a Leap Year.
+*/
+function F_fLeap_Calendar(P_iYear=S_iYear_Cur, P_JCalendar=C_JCalendar_Gregorian)
+{
+  var iYearMod4 = (P_iYear & 0x3);
+  var fLeap = (iYearMod4 == 0);
+
+  if ((C_iYearGregRef < P_iYear) && (P_JCalendar == C_JCalendar_Gregorian)) {
+     if ((P_iYear % 100 == 0) && !(P_iYear % 400 == 0)) {
+        fLeap = FALSE;
+     } /* if */
+  } /* if */
+  return(fLeap);
+} /* F_fLeap_Calendar */
+
+/*-----F_jYDay_Mp_szDate_Saints --------------------------------------------------------
+*
+* Correct F_jYDay_Mp_szDate(); sequence used to extract Day's Saint from santi.OLS because leap Year.
+*/ 
+function F_jYDay_Mp_szDate_Saints(P_iYear)
+{
+  const jYDay_March_1 = 31 + 28;
+  
+  var fLeap = F_fLeap_Calendar(S_iYear_Cur, C_JCalendar_Gregorian);
+  var jYDay = F_jYDay_Mp_szDate();
+  if (!fLeap && (jYDay < jYDay_March_1)) {
+     jYDay = jYDay -1;
+  } /* if */
+  return(jYDay);
+} /* F_jYDay_Mp_szDate_Saints */
+
 /*-----U_Init_TimeDate --------------------------------------------------------
 * 
 */ 
@@ -701,6 +737,9 @@ function U_Init_TimeDate()
 {
   U_Root0("$TimeDate", C_jCd_Cur);
   var aRcd0, iInc, i;
+  
+  var Date0 = new Date();
+  S_iYear_Cur = Date0.getFullYear();
 
   S_szjDate = $VConfig.F_szjDate();
   

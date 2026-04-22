@@ -5,9 +5,9 @@
 * File        : as_.js
 * Function    : Associative Array
 * FirstEdit   : 28/04/2025
-* LastEdit    : 13/10/2025
+* LastEdit    : 22/03/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -304,7 +304,7 @@ function F_szHTML_OpenCard(P_UsrView, P_jOpt_Confirm, P_fReadOnly)
 {
   var XDB0 = P_UsrView.XDB0;
   var aFld = P_UsrView.aFld1;
-  var szKey  = P_UsrView.KeyTup;                       /* Index of the element in the unsorted array. */
+  var szKey  = (P_jOpt_Confirm == C_jOpt_Confirm_Edit)? P_UsrView.KeyTup: "";                       /* Index of the element in the unsorted array. */
   var Fld0   = aFld[P_UsrView.jaFld1];
   var szDisabled = (P_fReadOnly)? "disabled": "";
   var szItem = XDB0.Tup_Sel;
@@ -324,6 +324,8 @@ function F_szHTML_OpenCard(P_UsrView, P_jOpt_Confirm, P_fReadOnly)
   var szType = typeof(szItem);
   var szType_Out = $Type.F_szType_Out(szType);
   var szValCur = $Value.F_szHTML_TD_Card(szItem, aFld[0], P_fReadOnly);
+
+  szRow += '<tr><td>Key</td><td><input id="Id_Card_K' + '" placeholder="' + "enter the <key>" + '" type="text" style="color:red;"' + '></td></tr>';
   szRow += '<tr><td width="10%">' + szKey + '</td>' + '<td><input id="Id_Card_' + 0 + `" ${szDisabled} type="` + szType_Out + '" value="' + szValCur + '"></td></tr>';  
    
   return(szRow);
@@ -339,13 +341,14 @@ function U_ConfirmCard(P_UsrView, P_jOpt_Confirm)
   var Fld1 = aFld1[P_UsrView.jaFld1];
   var Val0 = XDB0.Tup_Sel;
   var ElemPrv = P_UsrView.ElemPrv;
-  var ValInput   = Id_Card_0.value;
+  var ValInput = Id_Card_0.value;
   var szTypeDst = typeof(Val0);
   var TupVal = $Value.F_Val_Inp_Table(szTypeDst, Fld1, ValInput, P_jOpt_Confirm);
 
   switch (P_jOpt_Confirm) {
     case C_jOpt_Confirm_New: {
-         XDB0.Coll0[XDB0.Coll0.length] = TupVal;
+         var szKey = Id_Card_K.value;
+         XDB0.Coll0[szKey] = TupVal;
     } break;
     case C_jOpt_Confirm_Edit: {
          XDB0.Coll0[P_UsrView.KeyTup] = TupVal;

@@ -5,7 +5,7 @@
 * File        : xtg.js
 * Function    : XTG like functions
 * FirstEdit   : 11/01/2025
-* LastEdit    : 08/02/2026
+* LastEdit    : 19/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -26,6 +26,7 @@
 const $XTG = (function () {
   var _XTG = {};
   _XTG.U_Init          = U_Init_XTG;        // function U_Init_XTG();
+  _XTG.U_Initialize    = U_Initialize;      // function U_Initialize();
   _XTG.U_XTG           = U_XTG;             // function U_XTG();
   _XTG.U_OSCmd         = U_OSCmd;           // function U_OSCmd(P_szCmd);
   _XTG.U_Shell         = U_Shell;           // function U_Shell();
@@ -56,6 +57,31 @@ var S_szCpMv = "COPY";
 var S_szFlNm_CpMv = "";
 var S_fAltRem = false;
 
+var S_szApp = {
+"mpeg":"browser",
+"mpg":"browser",
+"html":"browser",
+"htm":"browser",
+"jpeg":"browser",
+"jpg":"browser",
+"png":"browser",
+"bmp":"browser",
+"webp":"browser",
+"tif":"browser",
+"tiff":"browser",
+"bat":"browser",
+"svg":"browser",
+"doc":"browser",
+"docx":"browser",
+"ppt":"browser",
+"xls":"browser",
+"odt":"browser",
+"ods":"browser",
+"odp":"browser",
+"pdf":"browser",
+"default":"browser"
+};
+ 
 /*--------------------------------------------------------------------*/
 
 /*-----U_XTG --------------------------------------------------------
@@ -82,7 +108,7 @@ function U_XTG()
   var Coll0 = UsrView0.XDB0.Coll0;
   var Tup3  = Coll0[3];
 
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 3, "Sorry,\nXTG not found!", "", false);
   } /* if */
@@ -114,31 +140,6 @@ function U_OSCmd(P_szCmd, P_CB_LH=U_CB_LH)
 /*-----U_Edit_Res --------------------------------------------------------
 * http://localhost/Relay/irc/batt321.php/?szCmd=E:/Programmi/PSPad/PSPad.exe r:/prova.arcd
 */
-var S_szApp = {
-"mpeg":"E:/Programmi/VLC/vlc.exe",
-"mpg":"E:/Programmi/VLC/vlc.exe",
-"html":"E:/Programmi/BlueGriffon/bluegriffon.exe",
-"htm":"E:/Programmi/BlueGriffon/bluegriffon.exe",
-"jpeg":"D:/res/lnk/gimp.exe_link.lnk",
-"jpg":"D:/res/lnk/gimp.exe_link.lnk",
-"png":"D:/res/lnk/gimp.exe_link.lnk",
-"bmp":"D:/res/lnk/gimp.exe_link.lnk",
-"webp":"D:/res/lnk/gimp.exe_link.lnk",
-"tif":"D:/res/lnk/gimp.exe_link.lnk",
-"tiff":"D:/res/lnk/gimp.exe_link.lnk",
-"bat":"bat",
-"svg":"E:/Programmi/Inkscape/bin/inkscape.exe",
-"doc":"browser",
-"docx":"browser",
-"ppt":"browser",
-"xls":"browser",
-"odt":"browser",
-"ods":"browser",
-"odp":"browser",
-"pdf":"browser",
-"default":"E:/Programmi/PSPad/PSPad.exe"
-};
- 
 function U_Edit_Res(P_fDashboard=false)
 {
   var UsrView0  = CL_UsrView0.F_UsrView_Selected();
@@ -194,7 +195,7 @@ function U_Edit_File(P_fDashboard=false)
     szFlNm = szFlNm.replaceAll("/", "\\"); 
   } /* if */
 
-  U_OSCmd("E:/Programmi/PSPad/PSPad.exe " + szFlNm);
+  U_OSCmd(S_szApp["default"] + " " + szFlNm);
 } /* U_Edit_File */
 
 /*-----U_Edit_Coll --------------------------------------------------------
@@ -211,7 +212,7 @@ function U_Edit_Coll()
   } /* if */
   var iLen     = "szTopic=".length;
   var szFlNm   = szTmp.substr(szTmp.indexOf("szTopic=") + iLen);
-  U_OSCmd("E:/Programmi/PSPad/PSPad.exe " + szFlNm);
+  U_OSCmd(S_szApp["default"] + " " + szFlNm);
 } /* U_Edit_Coll */
  
 /*-----U_New_File --------------------------------------------------------
@@ -224,7 +225,7 @@ function U_New_File()
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var szPath = UsrView0.szNmColl;
 
-  if (szFlNm.indexOf("//") >= 0) {
+  if (szFlNm.indexOf("/") >= 0) {
      $Error.U_Error(C_jCd_Cur, 2, "Illegal character '/' in the filename.", szFlNm);
   } /* if */
   var iPos = szFlNm.indexOf(".");
@@ -234,7 +235,8 @@ function U_New_File()
      if (j >= 0) {
         debugger;
         var szPath = UsrView0.szNmColl;
-        U_OSCmd("COPY " + "D:/viola_template/Default." + szExt + " " + szPath + szFlNm);
+        var szDir_Data = $VConfig.F_ValSts_Get("szDir_Data"); 
+        U_OSCmd("COPY " + szDir_Data + "template/Default." + szExt + " " + szPath + szFlNm);
         setTimeout($DDJ.U_Reload, 1000);
      }
      else {
@@ -258,7 +260,7 @@ function U_Del_File()
   var szCmd;
   var chBackSpace = String.fromCharCode(92);
   
-  if (G_szOS == "Windows") {
+  if (G_Bag0.szOS == "Windows") {
      szNmColl = szNmColl.replaceAll("/", chBackSpace);
   } /* if */ 
   
@@ -413,8 +415,6 @@ function U_GTK(P_This)
 </script>
 </html>`;
 
-  window.pippo = F_Obj_Clone(aNdx0);
-
   var szPfx = $NDU.F_szDir_Server("localhost") + "read.php/?szTopic=";
 
   k = 0;
@@ -533,7 +533,8 @@ const C_jszRem     = 2;
 
 /*-----U_Rem_Scan --------------------------------------------------------
 *
-* Scan directory list looking for .OLS files and extract "szRem" info from Hdr0.   Function    : Eidos' Image Sequence File (ISQ)
+* Scan directory list looking for .OLS files and extract "szRem" info from Hdr0.   
+* Function: Eidos' Image Sequence File (ISQ)
 */ 
 function U_Rem_Scan()
 {
@@ -587,11 +588,11 @@ function U_Rem_Scan()
          UsrView1.U_Upd_aNdx();       // Remake index.
          var szTxt = $OutData.F_szOLS_Mp_Coll(UsrView1, "remarks", -1, false);
     
-         var szFlNm_Remarks = UsrView0.F_szVal_CfgUV0("szURL_Remarks");
+         szFlNm_Remarks = UsrView0.F_szVal_CfgUV0("szURL_Remarks");
          if (!szFlNm_Remarks) {
-            szFlNm_Remarks = $VConfig.F_ValSts_Get("szFlNm_Remarks");
+            szFlNm_Remarks = szDir_Remarks + "remarks.OLS";
          } /* if */ 
-         $LcdLcd.U_Write(szFlNm_Remarks, szTxt);     
+         $LcdLcd.U_Write(szFlNm_Remarks, szTxt);    
      }
      else {
          setTimeout(U_CB_End, 1000); 
@@ -646,6 +647,14 @@ function U_Rem_Scan()
 
   setTimeout(U_CB_End, 1000);  
 } /* U_Rem_Scan */
+
+/*-----U_Initialize --------------------------------------------------------
+*
+*/ 
+function U_Initialize(P_szApp)
+{
+  S_szApp = P_szApp;
+} /* U_Initialize */
 
 /*-----U_Init_XTG --------------------------------------------------------
 *

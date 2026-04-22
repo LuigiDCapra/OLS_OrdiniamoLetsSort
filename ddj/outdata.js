@@ -5,7 +5,7 @@
 * File        : outdata.js
 * Function    : Data Saving.
 * FirstEdit   : 15/12/2019
-* LastEdit    : 03/03/2026
+* LastEdit    : 19/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -1373,12 +1373,12 @@ function U_Write_File(P_szFlNm, P_szTxt, P_szType)
 */ 
 function U_Write_Storage(P_szFlNm, P_szTxt, P_fLocal)
 {
+  debugger;
   if (P_fLocal) {
-     // localStorage.setItem(P_szFlNm, P_szTxt);
-     $IPCF.U_Set_Reg(P_szFlNm, P_szTxt);
+     $IPCF.U_Set_Reg(P_szFlNm, P_szTxt, true);
   }
   else {;
-     sessionStorage.setItem(P_szFlNm, P_szTxt);
+     $IPCF.U_Set_Reg(P_szFlNm, P_szTxt, false);
   } /* if */
 } /* U_Write_Storage */
 

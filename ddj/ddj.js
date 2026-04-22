@@ -5,7 +5,7 @@
 * File        : ddj.js
 * Function    : Data Disk Jockey ex CL-DAP
 * FirstEdit   : 15/12/2019
-* LastEdit    : 05/03/2026
+* LastEdit    : 20/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -55,7 +55,16 @@ const C_jPg_1 = 1;
 
 /*----- Global Variables ---------------------------------------------*/
 
-var G_szOS = "Windows";
+var G_Bag0 = {
+  szOS:      "Windows",
+  szSecure:  "",
+  szBrowser: "",
+  fMobile:   false,
+  fLocal:    false,   /* Web-Page loaded from user's harddisk. */
+  fAdBlock:  false,   /* AdBlock detected */
+  fSaved:    false,   /* Current Web Page was saved on local harddisk and the run from it. */
+  szTxt_Sel: "",      /* Text selected */
+};
 
 var GP_iLvl_Log   = C_iLvl_Dflt;
 var GP_iLvl_Gloss = C_iLvl_Dflt;
@@ -63,19 +72,20 @@ var G_iDelta_Goto = 1;
 
 var G_szUndefined = "undefined-V" /* Centralized management of word "undefined" */
 
-var G_szSecure  = "";
-var G_szBrowser = '';
-var G_fMobile;
-var G_fLocal;     /* Web-Page loaded from user's harddisk. */
-var G_fAdBlock;   /* AdBlock detected */
-
 var G_Layout = {};
-
 var G_fRefresh = false;
 
-var G_Poly_Req_IPC;  /* Opener's request */
-var G_Poly_Res_IPC;  /* Response */
-var G_UsrView_IPC;
+/*
+* $NOTE: the following variables contains valid value only if the current window has spanned some children windows.
+*/
+
+var G_Poly_Req_IPC = {};  /* Opener's request (Parent only) */
+var G_Poly_Res_IPC = {};  /* Response (Parent only) */
+var G_UsrView_IPC  = {};  /* UsrView passed to children. (Parent only) */
+
+var G_IPC = {};           /* (Parent only) */
+var G_Child_IPC;
+var G_szNm_Child = "Father";
 
 //  var G_szEncoding = 'windows-1252';
 //  var G_szEncoding = 'greek';
@@ -135,6 +145,7 @@ const $DDJ = (function () {
   _DDJ.U_EdtTup_DDJ     = U_EdtTup_DDJ;      // function U_EdtTup_DDJ(P_fCustom=false);
   _DDJ.U_DelTup_DDJ     = U_DelTup_DDJ;      // function U_DelTup_DDJ();
   _DDJ.U_EdtVal_DDJ     = U_EdtVal_DDJ;      // function U_EdtVal_DDJ();
+  _DDJ.U_EdtVal_Dash    = U_EdtVal_Dash;     // function U_EdtVal_Dash();
   _DDJ.U_Refresh        = U_Refresh;         // function U_Refresh();
   _DDJ.U_Done           = U_Done;            // function U_Done();
   _DDJ.U_Transpose      = U_Transpose;       // function U_Transpose();
@@ -175,7 +186,8 @@ const $DDJ = (function () {
   _DDJ.F_szBrowser      = F_szBrowser;       // function F_szBrowser();
   _DDJ.F_fMobile        = F_fMobile;         // function F_fMobile();
   _DDJ.F_fPopUp         = F_fPopUp;          // function F_fPopUp();
-  _DDJ.U_Detect_AdBlock = U_Detect_AdBlock;  // function U_Detect_AdBlock();
+  _DDJ.U_Detect_AdBlock   = U_Detect_AdBlock;    // function U_Detect_AdBlock();
+  _DDJ.F_fActive_Debugger = F_fActive_Debugger;  // function F_fActive_Debugger();
 
   _DDJ.F_WwFlag_Mp_DDJ  = F_WwFlag_Mp_DDJ;   // function F_WwFlag_Mp_DDJ(P_DDJ);
   _DDJ.F_DDJ_Set_WwFlag = F_DDJ_Set_WwFlag;  // function F_DDJ_Set_WwFlag(R_DDJ, P_WwFlag0);
@@ -195,7 +207,7 @@ const $DDJ = (function () {
   
   _DDJ.U_BrkPnt         = U_BrkPnt;          // function U_BrkPnt();
   _DDJ.U_Set_MinMax     = U_Set_MinMax;      // function U_Set_MinMax();
-  _DDJ.U_Set_MinMax_Q   = U_Set_MinMax_Q;    // function U_Set_MinMax_Q();
+  _DDJ.U_Set_MinMax_All   = U_Set_MinMax_All;    // function U_Set_MinMax_All();
 
 /*----- Local Constants ----------------------------------------------*/
 
@@ -272,18 +284,6 @@ var S_szHTML_DBox_WellCome = `<div style='padding:10%;'>
   - Otherwise click on the 'X' on the right upper corner of this window to go on using OLS.
   <br><br><br><br>
 </div>`;
-
-var S_aFld_Disk = [
-{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Path","szCaption":"value","szType":"PATH","iLen":8,"fRecalc":false,"szCode":""},
-{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Ext","szCaption":"Ext","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
-{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"iSize","szCaption":"Free RAM (GB)","szType":"number","iLen":8,"fRecalc":false,"szCode":""},
-{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"szMTime","szCaption":"szMTime","szType":"datetime-local","iLen":8,"fRecalc":false,"szCode":""},
-{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"szPerms","szCaption":"Perms+","szType":"hex","iLen":8,"fRecalc":false,"szCode":""},
-{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"szType","szCaption":"szType","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
-{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"Note","szCaption":"Note","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
-{"fVisible":false,"szNm":"szTBM_Table", "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":"XTG"},
-{"fVisible":false,"szNm":"jaFld1_aNdx", "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":-1}
-];
 
 var S_Disk = [
 ["C:/","",0,"2023-12-23T15:52:07",0,"dir",""]
@@ -466,17 +466,26 @@ function U_InputData()
 * Reload Collection.
 */ 
 function U_Reload()
-{ 
+{
+  debugger; 
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var XDB0     = UsrView0.XDB0;
   var szNm_aFld0 = XDB0.szNm_aFld;
 
   if ((szNm_aFld0 == "aFld_FlDsc") || (szNm_aFld0 == "aFld_Disk")) {
      if (szNm_aFld0 == "aFld_FlDsc") {
-        $FileMan.U_Get_Dir(null, XDB0.szNmColl);                 // Reload Directory     
+        switch (XDB0.szNmColl) {                                 // Reload Directory
+          case "LocalStorage": {
+          } break;
+          case "SessionStorage": {
+          } break;
+          default : {
+               $FileMan.U_Get_Dir(null, XDB0.szNmColl);
+          } break;
+        } /* switch */    
      }
      else {
-        $FileMan.U_Get_Dir("", "");                              // Reload Disks list 
+        $FileMan.U_Get_Dir("", "");                              // Reload Disk list 
      } /* if */
   } else if (XDB0.szNm_aFld == "aFld_aFld1") {
         debugger;                                                // Restore Layout's BackUp.
@@ -747,7 +756,7 @@ function U_GoTo_Nxt()
 */ 
 function U_Help()
 {
-  if (G_fSaved) {
+  if (G_Bag0.fSaved) {
      // $Error.U_Error(C_jCd_Cur, 9, "Sorry HELP not available.");
      debugger;
      var szLanguage = $VConfig.F_ValSts_Get("szLanguage");
@@ -1004,6 +1013,92 @@ function U_EdtVal_DDJ()
   } /* switch */
 } /* U_EdtVal_DDJ */
 
+
+/*-----U_EdtVal_Dash --------------------------------------------------------
+*
+* Open linked document/resource.
+*/ 
+function U_EdtVal_Dash()
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var XDB0     = UsrView0.XDB0;
+  var JKndTup0 = XDB0.JKndTup0;
+  var Tup0 = XDB0.Tup_Sel;
+  var Fld1 = $Value.F_Fld_Cell_Selected(UsrView0);
+
+  var jaFld1 = UsrView0.jaFld1;
+
+  
+  var szType = Fld1.szType;
+  var Val0;
+
+  switch (JKndTup0) {
+    case C_JKndTup_Arr: 
+    case C_JKndTup_aRcd: {
+         Val0 = Tup0[jaFld1];
+    } break; 
+    case C_JKndTup_asRcd: {
+         Val0 = Tup0[jaFld1 -C_iDelta_asRcd];
+    } break;
+    case C_JKndTup_as_:
+    case C_JKndTup_Obj: {
+         Val0 = Tup0;
+    } break;     
+    case C_JKndTup_aObj: 
+    case C_JKndTup_asObj: {
+         Val0 = Tup0[Fld1.szNm];
+    } break;
+    default : {
+         $Error.U_Error(C_jCd_Cur, 14, "Wrong JKndTup0.", JKndTup0, false);
+    } break;
+  } /* switch */
+
+  switch (szType) {
+    case "Txt": {
+         F_Window_open(Val0);
+    } break;
+    case "Doc": {
+         F_Window_open(Val0);
+    } break;
+    case "html": {
+         F_Window_open(Val0);
+    } break;
+    case "Array":
+    case "object": {
+         /* Edit arrays and Objects. */
+         debugger;
+         var Fld_Obj = Fld1;
+         if (Fld_Obj.Aux0) {
+             /* We have the layout of the selected field. */
+             var Aux0 = Fld_Obj.Aux0;
+             if (Aux0.U_CalcVal) {
+                Aux0.szNm_aFltObj = Tup0[C_jaFld_S_aXDBAux_szNmLayout];
+                Aux0.aFltObj = Tup0[C_jaFld_S_aXDBAux_Layout];
+             } /* if */
+             var szNm_aFltObj = Aux0.szNm_aFltObj;
+             var aFltObj = Aux0.aFltObj;     
+             $Object.U_Display(UsrView0, Val0, aFltObj, szNm_aFltObj);
+         }
+         else {
+             /* The layout of the selected field is unknown. */
+             if (Val0) {
+                /* Use autodetect. */
+                var Val1 = [Val0];
+                $Object.U_Display(UsrView0, Val1, G_aFld_Dash);  // ++++++ null ???
+                //$Object.U_Display(UsrView0, Val1, null);         // ++++++ null ???
+             }
+             else {             
+                $Error.U_Error(C_jCd_Cur, 15, "Sorry null objects {} cannot be expanded!", "", false);
+             } /* if */
+         } /* if */
+    } break;    
+    default : {
+         /* Edit simple types (number, string, date, etc.). */
+         $Value.DBox_InpVal.U_Hub(C_JPnl_Open);
+    } break;
+  } /* switch */
+} /* U_EdtVal_Dash */
+
 /*-----U_CB_EdtVal_2 --------------------------------------------------------
 *
 * Callback called at the end of file downloading.
@@ -1252,7 +1347,7 @@ function U_Show_szURL()
      szNm_URL = "file:///" + szNmColl + szFlNm;  // ++++
      szPath   = szNmColl + szFlNm;
   } /* if */
-  if (G_szOS == "Windows") {
+  if (G_Bag0.szOS == "Windows") {
      szPath = szPath.replaceAll("/", "\\");
   } /* if */
 
@@ -1400,8 +1495,8 @@ function U_Detect_AdBlock()
     );
    
     fetch(test)
-    .then(res => G_fAdBlock = false)
-    .catch(err => G_fAdBlock = true);
+    .then(res => G_Bag0.fAdBlock = false)
+    .catch(err => G_Bag0.fAdBlock = true);
   });
 } /* U_Detect_AdBlock */
 
@@ -1504,20 +1599,15 @@ function U_Set_iNnCol(P_iNnCol)
 
 /*-----U_Get_Info --------------------------------------------------------
 *
-* Get the text in the clipboard then search for it using Google.
+* Search for the text selected using Google.
 * 
 * $NOTE:
 * To use this option, you must first select a word with the mouse cursor and then click on the tool icon.
 */ 
 function U_Get_Info()
 {
-  if (!navigator.clipboard) {
-     $Error.U_Error(C_jCd_Cur, 21, "Cannot access clipboard.", "");
-  } /* if */
-  navigator.clipboard.readText().then((P_szTxt) => {
-    var szSearch = `https://www.google.com/search?q=${P_szTxt}&ie=utf-8&oe=utf-8`;
-    F_Window_open(szSearch, "_blank"); 
-  });
+  var szSearch = `https://www.google.com/search?q=${G_Bag0.szTxt_Sel}&ie=utf-8&oe=utf-8`;
+  F_Window_open(szSearch, "_blank");
 } /* U_Get_Info */
 
 /*-----F_WwFlag_Mp_DDJ --------------------------------------------------------
@@ -1704,7 +1794,7 @@ function U_Slide()
 */ 
 function U_WellCome()
 {
-  if (!window.G_fSaved) {
+  if (!G_Bag0.fSaved) {
      $DDJ.DBox_WellCome.U_Hub(C_JPnl_Open);
   } /* if */
 } /* U_WellCome */
@@ -1805,7 +1895,6 @@ function U_Move_Dn()
 */ 
 function F_Window_open(P_szURL, P_szOpt, P_szReq)
 {
-  G_Poly_Res_IPC = null;
   G_Poly_Req_IPC = P_szReq;
   var Win0 = window.open(P_szURL, P_szOpt);
   return(Win0);
@@ -1892,74 +1981,11 @@ function U_Set_MinMax()
   } /* for */
 } /* U_Set_MinMax */
 
-/*----- U_LinkClicked --------------------------------------------------------
-*
-* Manage OLS' internal links.
-* Example:
-* <a href="ddj:Log">Jump Log Collection</a>
-*/
-function U_LinkClicked(P_Event) {
-    var target = P_Event.target || P_Event.srcElement;
-    var iPos, k, szKnd;
-
-    if (target.tagName === 'A') {
-        var szHREF = target.getAttribute('href');
-        var szPfx = szHREF.substr(0,4);
-        var szNm_UsrView;
-
-        if (szPfx == 'ddj:') {
-           // $ACP.U_Open_Alert('CLICKED');
-           //tell the browser not to respond to the link click
-           P_Event.preventDefault();
-           iPos = szHREF.indexOf("#");
-           if (0 < iPos) {
-              szNm_UsrView = szHREF.substring(4, iPos);
-              k = +szHREF.substring(iPos +1);               /* $NOTE: k should be a number. */
-              var UsrView0 = CL_UsrView0.F_UsrView_Select(szNm_UsrView, C_WwFlag_fDisplay);
-              $Table.U_ArrowMove(UsrView0, k +G_iDelta_Goto, 1, C_fScroll);
-           }
-           else {
-              szNm_UsrView = szHREF.substr(4);
-              CL_UsrView0.F_UsrView_Select(szNm_UsrView, C_WwFlag_fDisplay);
-           } /* if */
-        } else if (szPfx == 'flk:') {
-           P_Event.preventDefault();                        /* file link */
-           szNm_UsrView = szHREF.substr(4);
-           if (szNm_UsrView.indexOf("/ / ") >= 0) {
-              szKnd = "dir";
-              szNm_UsrView = szNm_UsrView.replaceAll("/ / ", "/");
-           }
-           else {
-              szKnd = "file";
-           } /* if */
-           $FileMan.U_Open_PATH_2(szNm_UsrView, szKnd);
-        }
-        else if (szPfx == 'blob') {
-        }
-        else if (S_fShow && (szHREF != "JavaScript:void(0)")) {
-           F_Window_open(szHREF);
-           S_fShow = false;
-        }
-        else {
-          F_Window_open(szHREF); // 02/02/2026
-        } /* if */
-    } /* if */
-} /* U_LinkClicked */
-
-/*-----U_UnLoad --------------------------------------------------------
-*
-* Menage window closing event. This routine will be executed when the user close the window.
-*/ 
-function U_UnLoad()
-{
-//  ALERT("Window Closing", 1);
-} /* U_UnLoad */
-
-/*-----U_Set_MinMax_Q --------------------------------------------------------
+/*-----U_Set_MinMax_All --------------------------------------------------------
 *
 * Given a Collection of data get Min and Max values for every field.
 */ 
-function U_Set_MinMax_Q()
+function U_Set_MinMax_All()
 {
   var UsrView_Layout = CL_UsrView0.F_UsrView_Selected();       /* Layout of the Collection */
   
@@ -1999,7 +2025,115 @@ function U_Set_MinMax_Q()
       } /* switch */ 
   } /* for */
   $DDJ.U_Refresh();
-} /* U_Set_MinMax_Q */
+} /* U_Set_MinMax_All */
+
+/*----- U_LinkClicked --------------------------------------------------------
+*
+* Manage OLS' internal links.
+* Example:
+* <a href="ddj:Log">Jump Log Collection</a>
+*/
+function U_LinkClicked(P_Event) {
+    var target = P_Event.target || P_Event.srcElement;
+    var iPos, k, szKnd;
+    var szHREF = null;
+    
+    /* $NOTE: Linked documents will only open ONLY if the user clicks on an <a>..</a> or <a><img>..</img></a> any other combination of tag will be ignored! */
+    /* For instance <a><p>...</p></a> doesnt work!*/
+    
+    if (target.tagName === 'A') {
+       szHREF = target.getAttribute('href');
+    }
+    else if (target.parentElement.tagName === 'A') {
+       szHREF = target.parentElement.getAttribute('href');
+    }
+    else {
+       return;
+    } /* if */
+
+    var szPfx = szHREF.substr(0,4);
+    var szNm_UsrView;
+
+    if (szPfx == 'ddj:') {
+       // $ACP.U_Open_Alert('CLICKED');
+       //tell the browser not to respond to the link click
+       P_Event.preventDefault();
+       iPos = szHREF.indexOf("#");
+       if (0 < iPos) {
+          szNm_UsrView = szHREF.substring(4, iPos);
+          k = +szHREF.substring(iPos +1);               /* $NOTE: k should be a number. */
+          var UsrView0 = CL_UsrView0.F_UsrView_Select(szNm_UsrView, C_WwFlag_fDisplay);
+          $Table.U_ArrowMove(UsrView0, k +G_iDelta_Goto, 1, C_fScroll);
+       }
+       else {
+          szNm_UsrView = szHREF.substr(4);
+          CL_UsrView0.F_UsrView_Select(szNm_UsrView, C_WwFlag_fDisplay);
+       } /* if */
+    } else if (szPfx == 'flk:') {
+       P_Event.preventDefault();                        /* file link */
+       szNm_UsrView = szHREF.substr(4);
+       if (szNm_UsrView.indexOf("/ / ") >= 0) {
+          szKnd = "dir";
+          szNm_UsrView = szNm_UsrView.replaceAll("/ / ", "/");
+       }
+       else {
+          szKnd = "file";
+       } /* if */
+       $FileMan.U_Open_PATH_2(szNm_UsrView, szKnd);
+    }
+    else if (szPfx == 'blob') {
+    }
+    else if (S_fShow && (szHREF != "JavaScript:void(0)")) {
+       F_Window_open(szHREF);
+       S_fShow = false;
+    }
+    else {
+      F_Window_open(szHREF); // 02/02/2026
+    } /* if */
+} /* U_LinkClicked */
+
+/*-----U_UnLoad --------------------------------------------------------
+*
+* Menage window closing event. This routine will be executed when the user close the window.
+*/ 
+function U_UnLoad()
+{
+//  ALERT("Window Closing", 1);
+} /* U_UnLoad */
+
+/*-----F_fActive_Debugger --------------------------------------------------------
+*
+* Check if the debugger is active.
+* $NOTE: 
+* because browsers do not signal browser activity, we deduce browser activity looking at windows Width.
+* If innerWidth < 0.9 * window.outerWidth we assume that the programmer was using the debugger! 
+*/ 
+function F_fActive_Debugger()
+{
+  return(innerWidth < (0.9 * window.outerWidth));
+} /* F_fActive_Debugger */
+
+/*-----F_szOS --------------------------------------------------------
+*
+*/ 
+function F_szOS()
+{
+  var szOS = "";
+  if (G_Bag0.szBrowser == "Firefox") {
+     szOS = navigator.oscpu; 
+  }
+  else {
+     szOS = navigator.userAgentData.platform;
+  } /* if */
+
+  if (szOS.indexOf("Windows") >= 0) {
+     szOS = "Windows";
+  }
+  else {
+     szOS = "Linux";
+  } /* if */ 
+  return(szOS);
+} /* F_szOS */
 
 /*-----U_Init_DDJ --------------------------------------------------------
 *
@@ -2008,21 +2142,21 @@ function U_Init_DDJ()
 {
   U_Root0("$DDJ", C_jCd_Cur);
 
-  G_szSecure  = (window.isSecureContext)? "secure": "not secure";  
-  G_szBrowser = F_szBrowser();
-  G_fMobile   = F_fMobile();
-  G_fLocal    = (window.location.protocol == "file:");         /* Web-Page loaded from user's harddisk. */
+  G_Bag0.szSecure  = (window.isSecureContext)? "secure": "not secure";  
+  G_Bag0.szBrowser = F_szBrowser();
+  G_Bag0.szOS      = F_szOS();
+  G_Bag0.fMobile   = F_fMobile();
+  G_Bag0.fLocal    = (window.location.protocol == "file:");          /* Web-Page loaded from user's harddisk. */
 
   U_Detect_AdBlock();
                                   
   _DDJ.DBox_About    = new CL_DBox('Id_Div_DBox0', '$DDJ.DBox_About', 'About', S_szHTML_DBox_About, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, G_DBox_Null.U_Cancel, null, 'About');
   _DDJ.DBox_WellCome = new CL_DBox('Id_Div_DBox0', '$DDJ.DBox_WellCome', 'WellCome', S_szHTML_DBox_WellCome, G_DBox_Null.U_Open, G_DBox_Null.U_Cancel, $Help.U_Tutorial, null, 'WellCome');
-
-  S_Disk = $IPCF.F_JSON_Get(".");
+  S_Disk = $IPCF.F_JSON_Get(".", true);
 
   if (typeof(CL_XDB0) != "undefined") {
-     new CL_XDB0(["aFld_Disk", C_JKndTup_aObj, S_aFld_Disk, null,   "aFld_aFld", "S_Disk Layout.", (C_WwFlag_fReadOnly), C_jCd_Cur]);         
-     new CL_XDB(["DSK",        C_JKndTup_aRcd, S_Disk, S_aFld_Disk, "aFld_Disk", "Disks mounted.", (C_WwFlag_fReadOnly), C_jCd_Cur, C_Bag_UsrView_Dflt]);
+     new CL_XDB0(["aFld_Disk", C_JKndTup_aObj, G_aFld1_Disk, null,   "aFld_aFld", "S_Disk Layout.", (C_WwFlag_fReadOnly), C_jCd_Cur]);         
+     new CL_XDB(["DSK",        C_JKndTup_aRcd, S_Disk, G_aFld1_Disk, "aFld_Disk", "Disks mounted.", (C_WwFlag_fReadOnly), C_jCd_Cur, C_Bag_UsrView_Dflt]);
   } /* if */
 
 /* listen for link-click events at the document level */
@@ -2030,7 +2164,7 @@ function U_Init_DDJ()
   window.addEventListener("beforeunload", U_UnLoad);
 
   if (typeof($FileMan) != "undefined") {
-     $FileMan.U_Get_Dir("", "");                               /* Get list of Disks installed. Initialize the Collection Disk. */
+     $FileMan.U_Get_Dir("", "");                                     /* Get list of Disks installed. Initialize the Collection Disk. */
   } /* if */
   U_Root0("$DDJ", C_jCd_Cur, 2);
 } /* U_Init_DDJ */

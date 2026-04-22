@@ -5,9 +5,9 @@
 * File        : vip.js
 * Function    : Virtual Image Processor
 * FirstEdit   : 01/06/2015
-* LastEdit    : 08/09/2025
+* LastEdit    : 27/03/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -174,7 +174,7 @@ var S_jIP_RFE = 0;                         /* Instruction Pointer */
 var S_jStk = C_iCard_aiStk;                /* Stack Pointer */
 
 var S_VCodeCur;                            /* VCode corresponding to current instruction */
-var S_pF_RFE;
+var S_F_RFE;
 var S_jIstruCur = 0;
 var S_iDst_RFE  = 0;
 var S_iSrc1_RFE = 0;
@@ -482,34 +482,34 @@ function U_RFE_Cycle_VIP(P_jIP_Start)
               
                if (S_iDst_RFE < C_JRg0) {
                   /* Generic function */
-                  S_pF_RFE = S_aFnInstru_Ari[S_jIstruCur];
-                  S_pF_RFE();
+                  S_F_RFE = S_aFnInstru_Ari[S_jIstruCur];
+                  S_F_RFE();
                } else if (S_iDst_RFE < C_iBase_JAdr) {
                   /* Image processing instructions */
-                  S_pF_RFE = S_aFnInstru_Img[S_jIstruCur];
+                  S_F_RFE = S_aFnInstru_Img[S_jIstruCur];
           
                   if (S_jIstruCur < C_JMOV) {
                      U_Error_VIP(3, "RFE-3");
                      return;
                   } else if (S_jIstruCur <= C_JMOD) {         
-                     U_Scan3(S_iDst_RFE, S_iSrc1_RFE, S_iSrc2_RFE, S_pF_RFE, true);
+                     U_Scan3(S_iDst_RFE, S_iSrc1_RFE, S_iSrc2_RFE, S_F_RFE, true);
                   } else {
-                     S_pF_RFE();
+                     S_F_RFE();
                   } /* if */
                } else {
                   /* Branch and Arithmetic-Logical instructions */
-                  S_pF_RFE = S_aFnInstru_Ari[S_jIstruCur];
+                  S_F_RFE = S_aFnInstru_Ari[S_jIstruCur];
                      iOp0 = F_iPrmGet_VIP(S_iDst_RFE);
                      iOp1 = F_iPrmGet_VIP(S_iSrc1_RFE);
                      iOp2 = F_iPrmGet_VIP(S_iSrc2_RFE);
                  
                   if ((C_JJEQ <= S_jIstruCur) && (S_jIstruCur < C_JJMulti)) {
-                     S_pF_RFE(iOp0, iOp1, S_iSrc2_RFE);
+                     S_F_RFE(iOp0, iOp1, S_iSrc2_RFE);
                   } else if (S_jIstruCur <= C_JMOD) {
-                     iRes = S_pF_RFE(iOp1, iOp2);
+                     iRes = S_F_RFE(iOp1, iOp2);
                      U_PrmSet_VIP(S_iDst_RFE, iRes);
                   } else {
-                     S_pF_RFE();
+                     S_F_RFE();
                   } /* if */          
                } /* if */
             } /* if */
@@ -2291,14 +2291,14 @@ function U_Init_Faltung(P_iSizeRowSrc)
   var x, y;
   var pDataSrc = imageDataSrc.data;
   var pDataTmp = imageDataTmp.data;  
-  var P_pF_i = F_iFalt1;
+  var P_F_i = F_iFalt1;
     
   i = iSizeRowSrc * yIni;
   for (y = yIni; y < yToA; y++) {
       j = i + xIni;
-      P_pF_i(imageDataTmp, imageDataSrc, j, true);
+      P_F_i(imageDataTmp, imageDataSrc, j, true);
       for (x = xIni; x < xToA; x++) {
-          pDataTmp[j] = P_pF_i(pDataTmp, pDataSrc, j, false);
+          pDataTmp[j] = P_F_i(pDataTmp, pDataSrc, j, false);
           j += 1;
       } /* for */
       i += iSizeRowSrc;

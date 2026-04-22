@@ -5,7 +5,7 @@
 * File        : ipcf.js
 * Function    : Viola's InterProcess Communication functions.
 * FirstEdit   : 01/07/2015
-* LastEdit    : 18/01/2026
+* LastEdit    : 16/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -26,6 +26,10 @@
 "use strict";
 
 /*----- Global Constants ---------------------------------------------*/
+
+const C_is_Chk_OnLine  = 10;   /* Check Internet connection every 10s */
+const C_ims_Chk_OnLine = (C_is_Chk_OnLine * 1000);
+
 /*----- Global Variables ---------------------------------------------*/
 
 /*----- Module $IPCF --------------------------------------------------------
@@ -57,7 +61,8 @@ const C_jCd_Cur = C_jCd_IPCF;
 
 /*----- Local Variables ----------------------------------------------*/
 
-var S_fOnLine = false;
+var S_ims_Time70_Tx = 0;
+var S_ims_Time70_Rx = 0;
 var S_szBuffer_RX = "";
 var S_iCnt0 = 0;
 var S_CB_Rx;
@@ -98,12 +103,12 @@ function U_Create_JSFS(P_fLocalStorage=true)
   if (P_fLocalStorage) {
      S_JSFS_LS  = {};
      S_JSFS_LS["."] = szTmp;
-     U_Set_JSON(".", S_JSFS_LS, P_fLocalStorage);  
+     U_Set_JSON(".", S_JSFS_LS, P_fLocalStorage);           /* Init localstorage directory list. */
   }
   else {
      S_JSFS_SS  = {};
      S_JSFS_SS["."] = szTmp;
-     U_Set_JSON(".", S_JSFS_SS, P_fLocalStorage); 
+     U_Set_JSON(".", S_JSFS_SS, P_fLocalStorage);           /* Init sessionstorage directory list. */
   } /* if */  
 } /* U_Create_JSFS */
 
@@ -120,7 +125,7 @@ function U_Set_Reg(P_szReg, P_szVal, P_fLocalStorage=true)
   else {
      sessionStorage.setItem(P_szReg, P_szVal);
   } /* if */
-  if (S_fJSFS && (P_szReg != ".")) {
+  if (S_fJSFS && (P_szReg != ".")) {                        /* Insert entry in localstorage or sessionstorage directory list. */
       if (P_fLocalStorage) {
          S_JSFS_LS[P_szReg] = ["",0x41ff,$TimeDate.F_szDate_Now("datetime-local"),0,"file",""];
          U_Set_JSON(".", S_JSFS_LS, P_fLocalStorage);      
@@ -173,7 +178,7 @@ function F_JSON_Get(P_szReg, P_fLocalStorage=true)
 */ 
 function U_Active(P_szReg)
 {
-  var ims_Time70_1 = +new Date();
+  var ims_Time70_1 = Date.now();
   localStorage.setItem("IPC_" + P_szReg, ims_Time70_1);
 } /* U_Active */
 
@@ -183,7 +188,7 @@ function U_Active(P_szReg)
 */ 
 function F_fActive(P_szReg)
 {
-  var ims_Time70_1 = +new Date();
+  var ims_Time70_1 = Date.now();
   var ims_Time70_0 = localStorage.getItem("IPC_" + P_szReg);
   var iRes = ims_Time70_1 - ims_Time70_0;
   return(iRes < 2000);
@@ -194,36 +199,26 @@ function F_fActive(P_szReg)
 /*-----U_Chk_OnLine --------------------------------------------------------
 *
 * Test Internet availability (online condition).
-* The result is stored in S_fOnLine.
 * Because "Mixed content" (see https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content) the test must do reference to a resource served by a HTTPS server.
 */ 
 async function U_Chk_OnLine(P_fErr) {
   var fOnLine0 = false;
   function U_CB_OnLine(P_Sts)
   {
-    S_fOnLine = true;
-    fOnLine0  = true;
+    S_ims_Time70_Rx = new Date();
   } /* U_CB_OnLine */
 
-  function U_NotOnLine()
-  {
-    S_fOnLine = fOnLine0;
-    if (!fOnLine0 && P_fErr) {
-       $Error.U_Error(C_jCd_Cur, 1, "Internet connection missing!", "", false);
-    } /* if */
-  } /* U_NotOnLine */
-
-  fOnLine0 = false; /* $DEBUG Bug Management  */
-  setTimeout(U_NotOnLine, 2000);
+  S_ims_Time70_Tx = new Date();
   $IPCF.U_DownLoad_File('https://luigidcapra.altervista.org/connesso.php', U_CB_OnLine, U_Null, true, false);
 } /* U_Chk_OnLine */
 
 /*-----F_fOnLine --------------------------------------------------------
 *
 */ 
-function F_fOnLine(P_x=0)
+function F_fOnLine()
 {
-  return(S_fOnLine);
+  var ims_Time70_Cur = new Date();
+  return(ims_Time70_Cur - S_ims_Time70_Rx < C_ims_Chk_OnLine);
 } /* F_fOnLine */
 
 /*-----U_Chk_Conn --------------------------------------------------------
@@ -295,7 +290,7 @@ function F_fChk_URL(P_szURL, P_fErr)
 */ 
 function F_szEnc(P_szTxt)
 {
-  var szTxt = P_szTxt.replaceAll("&", "%26");   /* $NOTE: x-www-form-urlencoded forbids "&" and '+' chars!!! */
+  var szTxt = P_szTxt.replaceAll("&", "%26");               /* $NOTE: x-www-form-urlencoded forbids "&" and '+' chars!!! */
       szTxt =   szTxt.replaceAll("+", "%2b");
   return(szTxt);
 } /* F_szEnc */
@@ -461,12 +456,12 @@ function U_Init_IPCF(P_Handler)
 { 
   U_Chk_OnLine(false);
   if (S_fJSFS) {
-     S_JSFS_LS = F_JSON_Get(".", true);
+     S_JSFS_LS = F_JSON_Get(".", true);                     /* Get localstorage directory list if do not exist create it. */
      if (!S_JSFS_LS) {
          U_Create_JSFS(true);
      } /* if */
      
-     S_JSFS_SS = F_JSON_Get(".", false);
+     S_JSFS_SS = F_JSON_Get(".", false);                    /* Get sessionstorage directory list if do not exist create it. */
      if (!S_JSFS_SS) {
          U_Create_JSFS(false);
      } /* if */

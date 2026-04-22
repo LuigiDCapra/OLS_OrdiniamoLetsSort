@@ -5,9 +5,9 @@
 * File        : rpc_exec.js
 * Function    : Remote Procedure Call executer
 * FirstEdit   : 01/09/2023
-* LastEdit    : 22/12/2025
+* LastEdit    : 27/03/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 *
@@ -160,14 +160,11 @@ function U_GoTo_Key(P_szKey)
   var szKey = decodeURLComponent(P_szKey);
   var fAsc  = UsrView0.fAsc;
   var i, j;
-  
-  var kkk = window.pippo;
 
   for (i = 0; i < iCard_aNdx; i++) {
       j = aNdx[i];
       Rcd0 = Coll0[j];
       if (Rcd0[0] == szKey) {
-//         debugger;
          j = (fAsc)? j: iCard_aNdx - j;         
          $Table.U_GoTo(j);
          return;

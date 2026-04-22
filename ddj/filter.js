@@ -46,7 +46,7 @@ const $Filter = (function () {
   _Filter.U_Invert_Filter = U_Invert_Filter;  // function U_Invert_Filter();                                                                                                                           
   _Filter.U_Clear_Filter  = U_Clear_Filter;   // function U_Clear_Filter();
   
-  _Filter.U_SetFilter     = U_SetFilter;      // function (P_pF_fFilter, P_szCond0);
+  _Filter.U_SetFilter     = U_SetFilter;      // function (P_F_fFilter, P_szCond0);
 
   _Filter.U_Filter_JS     = U_Filter_JS;      // function U_Filter_JS()
 
@@ -886,7 +886,7 @@ function U_Make_Filter(R_UsrView0, P_szCond0)
 *
 * Apply Filter conditions.
 */ 
-function U_SetFilter(P_pF_fFilter, P_szCond0)
+function U_SetFilter(P_F_fFilter, P_szCond0)
 {
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
   var XDB0 = UsrView0.XDB0;
@@ -904,7 +904,7 @@ function U_SetFilter(P_pF_fFilter, P_szCond0)
   var jF = 0;
   var f0;
      
-  if (!P_pF_fFilter) {
+  if (!P_F_fFilter) {
      $Error.U_Error(C_jCd_Cur, 7, "Missing Filter function.", "", false);
   } /* if */
   if (XDB0.JKndTup0 == C_JKndTup_asObj) {
@@ -919,7 +919,7 @@ function U_SetFilter(P_pF_fFilter, P_szCond0)
   P_szCond0 = P_szCond0.replaceAll('"undefined"',"undefined");
   P_szCond0 = P_szCond0.replaceAll('$[-1]',"Key");
 
-  UsrView0.pF_fFilter = P_pF_fFilter;
+  UsrView0.pF_fFilter = P_F_fFilter;
   UsrView0.szCond0 = P_szCond0;
   UsrView0.U_Clear_Filter(false);
   UsrView0.fFlt = true;

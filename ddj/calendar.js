@@ -53,6 +53,8 @@
 
 const C_JCalendar_Julian    = 0;
 const C_JCalendar_Gregorian = 1;
+
+const C_iYearGregRef       =   1582;
     
 const C_iNN_Sec_Min_       = 60;
 const C_iNN_Sec_Hour_      = (60 * C_iNN_Sec_Min_);
@@ -547,7 +549,7 @@ function F_szMonth(P_iMonth)
 
 const C_iDeltaSunday       = (C_iNN_Day_Week_ - 2 -1);  /* 02/01/01 was Sunday */
 
-const C_iYearGregRef       =   1582;
+// const C_iYearGregRef       =   1582;
 const C_iDay01_04_10_1582  = 577737;             /* 04/10/1582 Thursday */
 const C_iDay01_15_10_1582  = 577738;             /* 15/10/1582 Friday */
 const C_iNNDayDeleted      =     10;             /* 15/10/1582 - 05/10/1582 */

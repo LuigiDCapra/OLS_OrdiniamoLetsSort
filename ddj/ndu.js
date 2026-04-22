@@ -5,9 +5,9 @@
 * File        : ndu.js
 * Function    : Network Disk Units.
 * FirstEdit   : 15/06/2024
-* LastEdit    : 01/09/2025
+* LastEdit    : 05/04/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 *
 *  ----- LICENSE -----
 *
@@ -74,27 +74,28 @@ const $NDU = (function () {
   _NDU.F_szURL_Mp_szFlNm  = F_szURL_Mp_szFlNm;   // function F_szURL_Mp_szFlNm(P_szDNS, P_szNmFl);
   _NDU.F_szDNS_Server     = F_szDNS_Server;      // function F_szDNS_Server(P_szNm); 
   _NDU.F_szDir_Server     = F_szDir_Server;      // function F_szDir_Server(P_szNm); 
+  _NDU.F_szDir_Root       = F_szDir_Root;        // function F_szDir_Root(P_szNm); 
   _NDU.F_U_CB_Chk         = F_U_CB_Chk;          // function F_U_CB_Chk(P_szNm);
 
 /*----- Local Constants ----------------------------------------------*/
 
-const C_j_szDNS     = 0;   /* DNS */
-const C_j_szDir     = 1;   /* Directory in which reside the Server. */
-const C_j_szSrv_Knd = 2;   /* Server kind. */
-const C_j_szUsr     = 3;   /* User name. */
-const C_j_szPass    = 4;   /* Password. */
-const C_j_Obj       = 5;
-const C_j_U_CB_Chk  = 6;
+const C_j_szDNS      = 0;   /* Domain */
+const C_j_szDir      = 1;   /* Directory in which reside the Server. */
+const C_j_szSrv_Knd  = 2;   /* Server kind. */
+const C_j_szUsr      = 3;   /* User name. */
+const C_j_szPass     = 4;   /* Password. */
+const C_j_szDir_Root = 5;   /* Directory where the root of the website is located. */
+const C_j_U_CB_Chk   = 6;
 
 /*----- Local Constants ----------------------------------------------*/
 
 const C_jCd_Cur = C_jCd_NDU;
 
 var S_asServer1 = {
-  "localhost":    ["http://localhost/",                  "http://localhost/Relay/irc/",                    "PHP-DDJ", "user", "password", U_CB_Chk_Dflt, "NDU"], 
-  "sql":          ["http://localhost/",                  "http://localhost/Relay/irc/",                    "PHP-SQL", "user", "password", U_CB_Chk_Dflt],                                      
-  "canavesehub.altervista.org":  ["http://canavesehub.altervista.org/", "http://canavesehub.altervista.org/Big/LCD/irc/", "PHP-DDJ", "user", "password", U_CB_Chk_Dflt],                                      
-  "helios:27015": ["http://helios:27015/",               "http://helios:27015/",                           "C",       "user", "password", U_CB_Chk_Dflt]  
+  "localhost":    ["http://localhost/",    "http://localhost/Relay/irc/", "PHP-LH",  "user", "password", "",  U_CB_Chk_Dflt], 
+  "sql":          ["http://localhost/",    "http://localhost/Relay/irc/", "PHP-SQL", "user", "password", "",  U_CB_Chk_Dflt],
+  "helios:27015": ["http://helios:27015/", "http://helios:27015/",        "C",       "user", "password", "",  U_CB_Chk_Dflt],                                        
+  "canavesehub.altervista.org":  ["http://canavesehub.altervista.org/", "http://canavesehub.altervista.org/Big/LCD/irc/", "PHP-DDJ", "user", "password", "Big/LCD/irc/",  U_CB_Chk_Dflt]
 };
 
 /*--------------------------------------------------------------------*/
@@ -111,7 +112,7 @@ function U_CB_Chk_Dflt(P_0, P_1, P_2)
 *
 * Given the name of the Server build the URL for the requested command.
 *
-* P_szDNS   - website name (short)
+* P_szDNS  - website name (short)
 * P_szCmd  - service name with constant parameters
 * P_szNmFl - filename of the Collection.
 * 
@@ -125,7 +126,16 @@ function F_szURL_Mp_Cmd_Res(P_szDNS, P_szCmd, P_szNmFl)
   var szCmd   = "";
   
   switch (Server0[C_j_szSrv_Knd]) {
-    case "PHP-DDJ": {
+    case "PHP-LH": {     /* XAMPP LocalHost */
+         szCmd = `${szDir}${P_szCmd}.php/?szUser=${szUser}&szTopic=${P_szNmFl}`;
+    } break;    
+    case "PHP-DDJ": {    /* Remote WebSite */
+         var szDir_Root = Server0[C_j_szDir_Root];
+         if (szDir_Root != "") {
+            var iLen = szDir_Root.length;
+            var iPos = P_szNmFl.indexOf(szDir_Root);
+            P_szNmFl = P_szNmFl.substr(iPos + iLen);
+         } /* if */
          szCmd = `${szDir}${P_szCmd}.php/?szUser=${szUser}&szTopic=${P_szNmFl}`;
     } break;
     default : {
@@ -150,9 +160,7 @@ function F_szURL_Mp_szFlNm(P_szDNS, P_szNmFl)
 /*-----F_szDNS_Server --------------------------------------------------------
 *
 * Directory in which is located the server.
-* $NDU.F_szDNS_Server();
-* 
-* Given   "localhost": ["http://localhost/", "http://localhost/Relay/irc/", "PHP-DDJ", "user", "password", U_CB_Chk_Dflt, "NDU"] returns "http://localhost/". 
+* $NDU.F_szDNS_Server(); 
 */ 
 function F_szDNS_Server(P_szDNS)
 {
@@ -168,9 +176,7 @@ function F_szDNS_Server(P_szDNS)
 /*-----F_szDir_Server --------------------------------------------------------
 *
 * Directory in which is located the server.
-* $NDU.F_szDir_Server();
-* 
-* Given   "localhost": ["http://localhost/", "http://localhost/Relay/irc/", "PHP-DDJ", "user", "password", U_CB_Chk_Dflt, "NDU"] returns "http://localhost/Relay/irc/". 
+* $NDU.F_szDir_Server(); 
 */ 
 function F_szDir_Server(P_szDNS)
 {
@@ -183,6 +189,22 @@ function F_szDir_Server(P_szDNS)
   } /* if */
 } /* F_szDir_Server */
 
+/*-----F_szDir_Root --------------------------------------------------------
+*
+* Directory in which is located the WebSite's root.
+* $NDU.F_szDir_Root(); 
+*/ 
+function F_szDir_Root(P_szDNS)
+{
+  var Server0 = S_asServer1[P_szDNS];
+  if (Server0) {
+     return(Server0[C_j_szDir_Root]);
+  }
+  else {
+     return(null);
+  } /* if */
+} /* F_szDir_Root */
+
 /*-----F_U_CB_Chk --------------------------------------------------------
 *
 */ 
@@ -192,6 +214,9 @@ function F_U_CB_Chk(P_szNm)
   var U_CB_Chk   = "";
   
   switch (Server0[C_j_szSrv_Knd]) {
+    case "PHP-LH": {
+         U_CB_Chk = null;
+    } break;
     case "PHP-DDJ": {
          U_CB_Chk = null;
     } break;

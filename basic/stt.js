@@ -5,9 +5,9 @@
 * File        : stt.js
 * Function    : Speach to Text
 * FirstEdit   : 03/01/2021
-* LastEdit    : 28/12/2025
+* LastEdit    : 25/03/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2025
+* Copyright(c): Luigi D. Capra 2017, 2026
 *
 *  ----- LICENSE -----
 *

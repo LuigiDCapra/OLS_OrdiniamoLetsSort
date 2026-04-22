@@ -218,14 +218,12 @@ var S_ims_Ini_Timer = 0;
 
 function U_OpenTab_VLS_Timer()
 {
-  var Date0 = new Date();
-  S_ims_Ini_Timer = Date0.getTime();
+  S_ims_Ini_Timer = Date.now();
 } /* U_OpenTab_VLS_Timer */
 
 function F_ims_Elap_Timer()
 {
-  var Date0 = new Date();
-  var ims_Cur = Date0.getTime();
+  var ims_Cur = Date.now();
   var ims_Ela = ims_Cur - S_ims_Ini_Timer;
   return(ims_Ela);
 } /* F_ims_Elap_Timer */

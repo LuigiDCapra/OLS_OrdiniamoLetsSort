@@ -5,9 +5,9 @@
 * File        : execmd.js
 * Function    : Objects ExeCmd
 * FirstEdit   : 30/11/2023
-* LastEdit    : 11/12/2024
+* LastEdit    : 20/03/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2017, 2024
+* Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -55,6 +55,7 @@ const $ExeCmd = (function () {
   _ExeCmd.U_Prev_Tup      = U_Prev_Tup;        // function U_Prev_Tup ();
   _ExeCmd.U_Next_Tup      = U_Next_Tup;        // function U_Next_Tup ();
   _ExeCmd.U_Last_Tup1     = U_Last_Tup1;       // function U_Last_Tup ();
+  _ExeCmd.U_Random_Tup    = U_Random_Tup;      // function U_Random_Tup ();
  
 /*----- Local Constants ----------------------------------------------*/
 
@@ -132,6 +133,18 @@ function U_Next_Tup()
   $Card.F_Tup_Selection(C_jTup_Nxt);
   $Card.U_OpenCard(XDB0, C_jOpt_Confirm_Edit);
 } /* U_Next_Tup */
+
+/*-----U_Random_Tup --------------------------------------------------------
+*
+*/ 
+function U_Random_Tup()
+{
+  var UsrView0 = CL_UsrView0.F_UsrView_Selected();
+  var XDB0 = UsrView0.XDB0;
+  
+  $Card.F_Tup_Selection(C_jTup_Rnd);
+  $Card.U_OpenCard(XDB0, C_jOpt_Confirm_Edit);
+} /* U_Random_Tup */
 
 /*
 * +++++++ Keys pressed in the Table +++++++

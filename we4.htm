@@ -5,9 +5,9 @@ Revision    : 0.021
 File        : we4.html
 Function    : WebEditor-4 (WE4)
 FirstEdit   : 05/06/2020
-LastEdit    : 23/09/2025
-Author      : Luigi D. CAPRA
-Copyright(c): Luigi D. CAPRA 2025
+LastEdit    : 20/04/2026
+Author      : Luigi D. Capra
+Copyright(c): Luigi D. Capra 2017, 2026
 System      : HTML-5 + CSS3 + JavaScript
 
 ----- LICENSE -----
@@ -41,13 +41,13 @@ https://dev.to/_moehab/documentexeccommand-alternative-5a55   +++++++++++++++++
 <!DOCTYPE html>
 <html lang="it">
   <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta charset="utf-8">
     <title>Web Editor 4 (WE4)</title>
     <meta content="Luigi D. CAPRA" name="author">
     <meta content="Web Editor 4 (WE4)" name="description">
-    <link rel="stylesheet" href="basic/dbox.css">
-    <link rel="stylesheet" href="basic/mrmenu.css">
-    <link rel="stylesheet" href="we4_files/we4.css">
+    <link rel="stylesheet" href="basic/dbox.css?v=1434.a">
+    <link rel="stylesheet" href="basic/mrmenu.css?v=1434.a">
+    <link rel="stylesheet" href="we4_files/we4.css?v=1434.a">
     <link rel="shortcut icon" href="we4_files/ico/we4.svg">
     <style id="Id_Style_0"></style> <!-- CSS styles set by JS code --->
 <style>
@@ -98,29 +98,29 @@ https://dev.to/_moehab/documentexeccommand-alternative-5a55   +++++++++++++++++
     </footer>
 </body>
  <span id="Id_szSCtx" hidden>&nbsp;</span>
-<script src="we4_files/data/mnentry.js"></script>
+<script src="we4_files/data/mnentry.js?v=1434.a"></script>
   
-    <script src="basic/code2.js"></script>
-    <script src="basic/root.js"></script>
-    <script src="basic/uti.js"></script>
-    <script src="basic/log.js"></script>
-    <script src="basic/error.js"></script>
-    <script src="basic/nation.js"></script>
-    <script src="basic/ipcf.js"></script>
-    <script src="basic/dbox.js"></script>
-    <script src="basic/mrmenu.js"></script>
-    <script src="basic/pers.js"></script>
-    <script src="basic/vconfig.js"></script>
-    <script src="basic/vdebug.js"></script>
-    <script src="basic/tts.js"></script>
-    <script src="basic/stt.js"></script>
-    <script src="basic/help.js"></script>
-    <script src="basic/semctx.js"></script>
-    <script src="ddj/ddj.js"></script>
-    <script src="ddj/ndu.js"></script>
+    <script src="basic/code2.js?v=1434.a"></script>
+    <script src="basic/root.js?v=1434.a"></script>
+    <script src="basic/uti.js?v=1434.a"></script>
+    <script src="basic/log.js?v=1434.a"></script>
+    <script src="basic/error.js?v=1434.a"></script>
+    <script src="basic/nation.js?v=1434.a"></script>
+    <script src="basic/ipcf.js?v=1434.a"></script>
+    <script src="basic/dbox.js?v=1434.a"></script>
+    <script src="basic/mrmenu.js?v=1434.a"></script>
+    <script src="basic/pers.js?v=1434.a"></script>
+    <script src="basic/vconfig.js?v=1434.a"></script>
+    <script src="basic/vdebug.js?v=1434.a"></script>
+    <script src="basic/tts.js?v=1434.a"></script>
+    <script src="basic/stt.js?v=1434.a"></script>
+    <script src="basic/help.js?v=1434.a"></script>
+    <script src="basic/semctx.js?v=1434.a"></script>
+    <script src="ddj/ddj.js?v=1434.a"></script>
+    <script src="ddj/ndu.js?v=1434.a"></script>
 
-    <script src="ddj/style.js"></script>
-    <script src="ddj/periodic.js"></script>
+    <script src="ddj/style.js?v=1434.a"></script>
+    <script src="ddj/periodic.js?v=1434.a"></script>
 
     <script type="text/javascript">//<![CDATA[
 "use strict";
@@ -128,108 +128,12 @@ https://dev.to/_moehab/documentexeccommand-alternative-5a55   +++++++++++++++++
 
 const C_jCd_Cur = C_jCd_HTML;
 
-const C_szApp = "WE4";
-const C_fMain = C_szApp;     /* flag: Enable HTML page Update */
-
-// var G_aMnEntry_Sources = [
-// ["Graphics",      "U_Wysiwyg",    "HTML Text",   "we4_files/ico/wysiwyg.svg",   "grafica"],
-// ["Ext",           'U_SetExt',     "App",         "", "applicazione", "select",  ["txt", "html", "c", "h", "js"]],  
-// ["New File.",     "U_New_File",   "New File",    "we4_files/ico/new_file.svg",  "nuovo file", ""],
-// ["Lorem Ipsum",   "U_Lorem",      "Lorem Ipsum", "we4_files/ico/lorem.svg",     "lorem", ""],
-// 
-// ["File Name",     'U_Ld_File',    "File Name",    "", "szFlNm", "input", ["file"]],
-// ["Load File",     'U_Ld_File',    "Load File",   "we4_files/ico/load_file.svg", "carica il file"],
-// ["Reload File.",  "U_Reload",     "Reload File", "we4_files/ico/reload.svg",    "ricarica"],
-// ["Save",          "U_Sv_Back",    "Save",        "we4_files/ico/save3.svg",     "salva", "opt_auth"],
-// ["Save File",     'U_Sv_File',    "Save File",   "we4_files/ico/save_as.svg",   "salva il file"],
-//  
-// ["Spell Check","U_SpellCheck", "spell check", "we4_files/ico/spell.svg",  "controllo lessicale"],
-// 
-// ["Test-1",        "U_Test1", "test-1", "we4_files/ico/test-1.svg", "test-1"],
-// 
-// ["Help",     'U_Help',     "Help",     "we4_files/ico/help.svg",      "aiuto"],
-// ["Configure","U_Config",   "Config",   "we4_files/ico/config.svg",    "configura"],
-// ["About",    'U_About',    "About",    "we4_files/ico/about.svg",     "about"],
-// ["License",  'U_License',  "Licenza",  "we4_files/ico/licence.svg",   "licenza"]
-// ];
-// 
-// var G_aMnEntry_Wysiwyg = [
-// ["Sources",       "U_Sources",    "Text sources","we4_files/ico/sources.svg",   "testo"],
-// ["Ext",           'U_SetExt',     "App",         "", "applicazione", "select",  ["txt", "html", "c", "h", "js"]],  
-// ["New File.",     "U_New_File",   "New File",    "we4_files/ico/new_file.svg",  "nuovo file", ""],
-// ["Lorem Ipsum",   "U_Lorem",      "Lorem Ipsum", "we4_files/ico/lorem.svg",     "lorem", ""],
-// 
-// ["File Name",     'U_Ld_File',    "File Name",    "", "szFlNm", "input", ["file"]],
-// ["Load File",     'U_Ld_File',    "Load File",   "we4_files/ico/load_file.svg", "carica il file"],
-// ["Reload File.",  "U_Reload",     "Reload File", "we4_files/ico/reload.svg",    "ricarica"],
-// ["Save",          "U_Sv_Back",    "Save",        "we4_files/ico/save3.svg",     "salva", "opt_auth"],
-// ["Save File",     'U_Sv_File',    "Save File",   "we4_files/ico/save_as.svg",   "salva il file"],
-// 
-// ["bold",       "U_Bold",       "bold",     "we4_files/ico/bold.gif",      "grassetto"],
-// ["italics",    "U_Italic",     "italics",  "we4_files/ico/italics.gif",   "corsivo"], 
-// ["underline",  "U_Underline",  "underline","we4_files/ico/underline.gif", "sottolineato"],
-// ["strike",     "U_Strike",     "strike",   "we4_files/ico/strike.gif",    "sbarrato"], 
-// ["superscript","U_SuperScript","superscript","we4_files/ico/sup.gif",     "apici"], 
-// ["subscript",  "U_SubScript",  "subscript","we4_files/ico/sub.gif",       "pedici"],
-// 
-// ["Tag",        'U_SetTag',     "Tag",      "", "pippo", "select",  [
-// "-- Tag --", "a", "abbr", "acronym", "address", "applet", "article", "aside", "audio", "b", "big", "blockquote", "canvas", "caption", "center", "cite", "code", "del", "details", "dfn", "div", "em", "embed", 
-// "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "i", "iframe", "img", "ins", "kbd", "label", "legend", "mark", "menu", "nav", 
-// "object", "ol", "output", "p", "pre", "q", "ruby", "s", "samp", "section", "small", "span", "strike", "strong", "sub", "summary", "sup", "table", "tbody", "tfoot", "thead", "time", "tt", "u", "ul", "var", "video"
-// ]],
-//  
-// ["left",       "U_Left",       "left",     "we4_files/ico/left.gif",      "sinistra"], 
-// ["center",     "U_Center",     "center",   "we4_files/ico/center.gif",    "centrato"], 
-// ["right",      "U_Right",      "right",    "we4_files/ico/right.gif",     "destra"], 
-// ["justify",    "U_Justify",    "justify",  "we4_files/ico/justify.gif",   "giustificato"], 
-// ["indent",     "U_Indent",     "indent",   "we4_files/ico/indent.gif",    "indenta"], 
-// ["outdent",    "U_Outdent",    "outdent",  "we4_files/ico/outdent.gif",   "indietro"], 
-// ["ol",         "U_Ordered",    "ol",       "we4_files/ico/ol.gif",        "ol"],  
-// ["ul",         "U_Unordered",  "ul",       "we4_files/ico/ul.gif",        "ul"],  
-// ["Spell Check","U_SpellCheck", "spell check", "we4_files/ico/spell.svg",  "controllo lessicale"],
-// 
-// 
-// ["Font",       'U_Font',     "Font",         "", "font", "select",  ["-- Font --", "Arial", "Verdana", "Times", "Courier", "Digital-7 Mono"]],
-// ["Template",   'U_Template', "Template",     "", "template", "select", ["-- Template --", "div", "button", "input", "table"]],
-//  
-// ["remove format",  "U_RemFormat", "remove format",  "we4_files/ico/rformat.gif",   "cancella formattazione"],  
-// ["ld_image",   "U_Ld_Image",      "ld_image",       "we4_files/ico/Ld_Image.gif",  "immagine"],    
-// ["Insert EOL", "U_Insert_EOL",    "Insert EOL",     "we4_files/ico/eol.svg",  "Insert EOL"],
-// 
-// ["Link Name",   '', "Link Name",     "", "Link_Name", "input", ["text"]],  
-// ["link",       "U_CreateLink",    "link",           "we4_files/ico/link.gif",      "collega"], 
-// ["unlink",     "U_Prev_DDJ",      "unlink",         "we4_files/ico/unlink.gif",    "scollega"], 
-// 
-// ["JSON Conversion",     "U_JSON_Mp_Text", "JSON Conversion", "we4_files/ico/json.svg", "conversione in JSON"],
-// ["Test-1",     "U_Test1", "test-1", "we4_files/ico/test-1.svg", "test-1"],
-//  
-// ["Help",     'U_Help',     "Help",     "we4_files/ico/help.svg",      "aiuto"],
-// ["Configure","U_Config",   "Config",   "we4_files/ico/config.svg",    "configura"],
-// ["About",    'U_About',    "About",    "we4_files/ico/about.svg",     "about"],
-// ["License",  'U_License',  "Licenza",  "we4_files/ico/licence.svg",   "licenza"]
-// ];
-
-// var G_aMnEntry_Cfg = [
-// ["Reset",    "$VConfig.U_Reset", "Reset", "we4_files/ico/reset.svg", "reset"],
-// ["Help file","U_Help", "Help", "we4_files/ico/help.svg", "aiuto"]
-// ];
-// 
-// var xError = [
-// ["", "", "", "", "++ Chiudi ++"]
-// ];
-// 
-// var G_aaMnEntry = {
-//   "Sources":G_aMnEntry_Sources,
-//   "Wysiwyg":G_aMnEntry_Wysiwyg,
-//   "DDJ_Cfg":G_aMnEntry_Cfg,
-// };
-
-/*
-* The following declarations overcome problems due to Modules not loaded!
-*/
-//var G_asaMnEntry = G_aaMnEntry;
-//var $DDJ = {};
-var G_DBox_About = {};
+const C_szApp  = "WE4 ";
+const C_szFlNm = "we4.htm";
+const C_fMain  = C_szApp;     /* flag: Enable DDJ's page Update */
+;
+var G_szApp = C_szApp;
+var G_DBox_About = {}
 
 var S_szExt    = "txt";
 var S_fHTML    = false;   /* Format of the original document. */
@@ -714,7 +618,6 @@ function U_Justify()
 */ 
 function U_SuperScript()
 {
-//  U_All('superscript', false, '');
   U_All2("sup");
 } /* U_SuperScript */
 
@@ -723,7 +626,6 @@ function U_SuperScript()
 */ 
 function U_SubScript()
 {
-//  U_All('subscript', false, '');
   U_All2("sub");
 } /* U_SubScript */
 
@@ -951,7 +853,7 @@ function U_Init()
   DDJSts.szURL_Relay     = "";                // https://canavesehub.altervista.org/Big/LCD/irc/
   DDJSts.szjDate         = "YYYYMMDD";
   DDJSts.szURL_Srv       = "localhost";
-  DDJSts.szSrv_Knd       = "PHP-DDJ";
+  DDJSts.szSrv_Knd       = "PHP-LH";
   DDJSts.iWdt_Tab        = screen.width;
   DDJSts.iNnRow_Page     = 25;
   DDJSts.szLanguage      = "it-IT";
@@ -977,9 +879,7 @@ function U_Init()
   } catch (P_Err) {
       debugger;
       $Error.U_Catch(C_jCd_Cur, 1, P_Err);
-  } /* try catch */  
-//   $DDJ.U_UnLoad = U_UnLoad;   /* $Register */ 
-//   $DDJ.U_Button = U_Button;
+  } /* try catch */
 
   S_fWysiwyg = false;
   $SemCtx.U_Sel_TBM("Id_Nav", "Sources", false);  

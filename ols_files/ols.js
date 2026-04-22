@@ -5,7 +5,7 @@
 * File        : ols.js
 * Function    : OLS' js file.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 24/02/2026
+* LastEdit    : 08/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -86,6 +86,8 @@ var S_Win_WE4;
 var S_Win_VLS;
 var S_Win_Tele;
 
+var S_Files_Ld_Bak;
+
 /*--------------------------------------------------------------------*/
 
 /*-----U_Span_OLS2 --------------------------------------------------------
@@ -94,8 +96,15 @@ var S_Win_Tele;
 */ 
 function U_Span_OLS2()
 {
-  window.open('ols.html', '_blank', 'titlebar=no,toolbar=no,scrollbars=no,menubar=no,status=no,location=no,resizable=yes,top=0,left=0,  width=960');
-  window.open('ols.html', '_blank', 'titlebar=no,toolbar=no,scrollbars=no,menubar=no,status=no,location=no,resizable=yes,top=0,left=960,width=960');
+  var szPath = window.location.pathname;
+  var szNm_1 = window.location.pathname + "_1";
+  var szNm_2 = window.location.pathname + "_2";
+  
+  G_IPC["Child_1"] == null;  /* Create empty window's flags. */
+  G_IPC["Child_2"] == null;
+
+  window.open(szPath, '_blank', 'titlebar=no,toolbar=no,scrollbars=no,menubar=no,status=no,location=no,resizable=yes,top=0,left=0,  width=960');
+  window.open(szPath, '_blank', 'titlebar=no,toolbar=no,scrollbars=no,menubar=no,status=no,location=no,resizable=yes,top=0,left=960,width=960');
 } /* U_Span_OLS2 */
 
 /*-----U_Calculator --------------------------------------------------------
@@ -112,7 +121,7 @@ function U_Calculator()
 */ 
 function U_FlMan()
 {
-  if (!G_fLocal) {
+  if (!G_Bag0.fLocal) {
       $DDJ.DBox_InpData.U_Hub(C_JPnl_Cancel);
       S_Win_FlMan = window.open('flman.html', '_FlMan', 'titlebar=no,toolbar=no,scrollbars=no,menubar=no,status=no,location=no,resizable=yes,top=0,left=600,width=1200,height=800');
       var Doc0 = S_Win_FlMan.document;  
@@ -129,7 +138,7 @@ function U_FlMan()
 */
 function U_JSInt()
 {
-  if (!G_fLocal) {     
+  if (!G_Bag0.fLocal) {     
       S_Win_JSInt = $DDJ.F_Window_open('js_int.htm', '_Js_Int');
       var Doc0 = S_Win_JSInt.document;  
   }
@@ -149,7 +158,7 @@ function U_JSInt()
 */ 
 function U_WE4()
 {
-  if (!G_fLocal) {     
+  if (!G_Bag0.fLocal) {     
       var UsrView0 = CL_UsrView0.F_UsrView_Selected();
       G_UsrView_IPC = UsrView0;  
       S_Win_WE4 = $DDJ.F_Window_open('we4.htm', '_WE4');
@@ -172,7 +181,7 @@ function U_VLS()
 {
   S_Win_VLS = $DDJ.F_Window_open('vls.htm', '_VLS');
   
-//   if (!G_fLocal) {     
+//   if (!G_Bag0.fLocal) {     
 //       var UsrView0 = CL_UsrView0.F_UsrView_Selected();
 //       G_UsrView_IPC = UsrView0;  
 //       S_Win_VLS = $DDJ.F_Window_open('vls.htm', '_VLS');
@@ -194,7 +203,7 @@ function U_VLS()
 */
 function U_Tele()
 {
-  if (!G_fLocal) {     
+  if (!G_Bag0.fLocal) {     
       S_Win_Tele = $DDJ.F_Window_open('tele.htm', '_Tele');
       var Doc0 = S_Win_Tele.document;  
   }
@@ -220,7 +229,7 @@ function U_Disk()
   } /* if */
     
   CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
 } /* U_Disk */
 
 /*-----U_Apps --------------------------------------------------------
@@ -230,7 +239,7 @@ function U_Apps()
 {
   var szHome = "Apps";
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 1, "Sorry,\nHome collection was not provided!", "", false);
   } /* if */
@@ -243,7 +252,7 @@ function U_Dashboard()
 {
   var szHome = "sinottico";
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 1, "Sorry,\nDashboard was not provided!", "", false);
   } /* if */
@@ -256,7 +265,7 @@ function U_Log()
 {
   var szHome = "Log";
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 1, "Sorry,\nLog was not provided!", "", false);
   } /* if */
@@ -269,7 +278,7 @@ function U_CdF()
 {
   var szHome = "Cose_da_Fare";
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 1, "Sorry,\nCdF was not provided!", "", false);
   } /* if */
@@ -282,7 +291,7 @@ function U_Tree()
 {
   var szHome = "tree";
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 1, "Sorry,\nTree was not provided!", "", false);
   } /* if */
@@ -295,7 +304,7 @@ function U_Collections()
 {
   var szHome = "Collections";
   var UsrView0 = CL_UsrView0.F_UsrView_Select(szHome, (C_WwFlag_fDisplay | C_WwFlag_fSearchCS));
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 2, "Sorry,\nList of collections not found!", "", false);
   } /* if */
@@ -311,7 +320,7 @@ function U_History()
   var Coll0 = UsrView0.XDB0.Coll0;
   var Tup3  = Coll0[3];
 
-  $FileMan.U_URL("");
+  $FileMan.U_szRoot_URL("", "");
   if (UsrView0 == null) {
      $Error.U_Error(C_jCd_Cur, 3, "Sorry,\nHistory not found!", "", false);
   } /* if */
@@ -329,12 +338,12 @@ function U_Ld_Coll(P_fUpdate=false)
   const C_jLd_Bak_fBackUp = 3;   // automatically backup collection
   
   var szDNS = $VConfig.F_ValSts_Get("szURL_Srv");
-  var iLen = Files_Ld_Bak.length;
+  var iLen = S_Files_Ld_Bak.length;
   var szPath;
   var i, Tup0, szNmColl, UsrView0;
 
   for (i = 0; i < iLen; i++) {
-      Tup0 = Files_Ld_Bak[i];
+      Tup0 = S_Files_Ld_Bak[i];
       if (Tup0[C_jLd_Bak_fLoad]) {
          szNmColl = Tup0[C_jLd_Bak_szNm];
          UsrView0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView(szNmColl, true);
@@ -366,13 +375,13 @@ function U_BackUp_Coll()
   const C_jLd_Bak_szNmBak = 4;
 
   var szDNS = $VConfig.F_ValSts_Get("szURL_Srv");
-  var iLen = Files_Ld_Bak.length;
+  var iLen = S_Files_Ld_Bak.length;
   var szPath;
   var i, Tup0, szNmColl, UsrView0;
 
   G_DDJ = $DDJ.F_DDJ_Default();    // 26/12/2025   C_jLd_Bak_szNm
   for (i = 0; i < iLen; i++) {
-      Tup0 = Files_Ld_Bak[i];
+      Tup0 = S_Files_Ld_Bak[i];
       if (Tup0[C_jLd_Bak_fBackUp]) {
          szNmColl = Tup0[C_jLd_Bak_szNm];
          UsrView0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView(szNmColl, true);
@@ -413,6 +422,8 @@ function U_Initialize(P_Files_Ld_Bak)
 */ 
 function U_Init_OLS()
 {
+  /* Get the list of the file that should be loaded or backupped automatically. */
+  S_Files_Ld_Bak = $IPCF.F_JSON_Get("Files_Ld_Bak.aRcd", true);
 /*
 * Register internal Collections.
 */ 
@@ -437,7 +448,7 @@ function U_Init_OLS()
   } /* if */
   if (window.fLcdLcd) {
      setTimeout(U_Ld_Coll, 1000); /* Load external Collections. */
-//     setTimeout(U_Ld_Coll, 2000);
+     setTimeout(U_Ld_Coll, 2000);
      setTimeout(U_BackUp_Coll, 10000);
   } /* if */ 
   
@@ -448,46 +459,3 @@ function U_Init_OLS()
   return(_OLS);
 })();  /* $OLS */
 
-
-var Files_Ld_Bak = [
-  ["D:/dbase/lcd/KBS/","D:/dbase/lcd/KBS/",1,0],  
-  ["D:/dbase/examp/","D:/dbase/examp/",1,0],  
-  ["D:/dbase/lcd/Progetti/","D:/dbase/lcd/Progetti/",1,0],
-  ["D:/viola/ddj/","D:/viola/ddj/",1,0],
-  ["D:/viola/ols_files/","D:/viola/ols_files/",1,0],
-  ["D:/viola/lcd/","D:/viola/lcd/",1,0],
-  ["D:/viola/basic/","D:/viola/basic/",1,0],
-  ["D:/dbase/lcd/Sinottici/","D:/dbase/lcd/Sinottici/",1,0],  
-
-  ["uk.asrcd","D:/dbase/viola/Nation/en.asrcd",1,0],
-  ["agenda","D:/dbase/lcd/agenda.ols",1,0],
-  ["dirs.as_","D:/dbase/lcd/dirs.as_",1,0],
-  ["files.as_","D:/dbase/lcd/files.as_",1,0],
-  ["fin-rem","D:/dbase/lcd/fin-rem.OLS",1,0],
-  ["periodic","D:/dbase/lcd/periodic.ols",1,0],
-  ["sentence.as_","D:/dbase/lcd/sentence.as_",1,0],
-  ["santi","D:/dbase/lcd/KBS/santi.OLS",1,0],
-  ["pasqua","D:/dbase/lcd/KBS/pasqua.OLS",1,0],
-  ["dove","D:/dbase/lcd/KBS/dove.OLS",0,0],
-  ["remarks","D:/dbase/lcd/remarks.OLS",1,0, "R:/TMP/remarks.OLS"],               // $VERSIONING
-  ["remarks","D:/dbase/lcd/alt-remarks.OLS",1,0, "R:/TMP/alt-remarks.OLS"],  
-  ["panel.asobj","D:/dbase/viola/panel.asobj",1,0],
-  ["impegni","D:/dbase/sync/impegni.OLS",0,0],
-
-  ["Cose_da_Fare","D:/dbase/lcd/Progetti/Cose_da_Fare.OLS",1,0],
-  ["Attivita_in_Corso","D:/dbase/lcd/Progetti/Attivita_in_Corso.OLS",1,0],
-  ["Note","D:/dbase/lcd/Note/Note.OLS",1,0],
-  ["Prova_all","D:/dbase/examp/Prova_all.OLS",0,0],
-  ["appunti","C:/Users/Luigi/Desktop/appunti.txt",0,0],
-  ["carburante.OLS","D:/dbase/sync/carburante.OLS",0,0],
-  ["diario","D:/dbase/_KPT/Diario.OLS",0,0],
-  ["fare.OLS","D:/dbase/sync/fare.OLS",0,0],
-  ["gent.OLS","D:/dbase/sync/gent.OLS",0,0],
-  ["luoghi.OLS","D:/dbase/sync/luoghi.OLS",0,0],
-  ["pardo","D:/dbase/_KPT/Pardo.OLS",0,0],
-  ["pav.OLS","D:/dbase/sync/pav.OLS",0,0],
-  ["piante.OLS","D:/dbase/sync/piante.OLS",0,0],
-  ["asRcd_Type_JS","D:/dbase/ols_own/asRcd_Type_JS.OLS",0,0],
-  ["asRcd_Type","D:/dbase/ols_own/asRcd_Type.OLS",0,0],
-  ["tree","D:/dbase/lcd/tree.ols",1,0]
-];

@@ -139,7 +139,7 @@ function U_Load_DDJSts(P_WellCome)
 function U_Store_DDJSts()
 {
   var Date0 = new Date();
-  var imSec70 = Date0.getTime();        // $Note: Date0.getTime(); == Date.now();  we use the old function for homogeneity!
+  var imSec70 = Date0.getTime();        // $Note: Date0.getTime(); works as Date.now();  we use the old function for homogeneity!
   var iYear   = Date0.getFullYear();
   var iMonth  = Date0.getMonth() +1;
   var iMDay   = Date0.getDate();

@@ -5,7 +5,7 @@
 * File        : xdb.js ex xarr2.js
 * Function    : Data_Structure MetaData (Layout) management.
 * FirstEdit   : 03/11/2021
-* LastEdit    : 13/02/2026
+* LastEdit    : 20/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -86,7 +86,8 @@ const C_asz_JKndTup = ["Null", "Arr", "Obj", "aRcd", "aObj", "asRcd", "asObj", "
 const C_jTup_Fst  =  0;                                                                                                                                                        
 const C_jTup_Prv  = -1;                                                                                                                                                          
 const C_jTup_Nxt  = -2;                                                                                                                                                          
-const C_jTup_Lst  = -3;
+const C_jTup_Lst  = -3;                                                                                                                                                          
+const C_jTup_Rnd  = -4;
 
 const C_WwFlag_Null       = 0x0000;
 const C_WwFlag_fReadOnly  = 0x0001;      /* Set Collection Read Only. */

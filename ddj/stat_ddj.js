@@ -71,7 +71,7 @@ const $Stat_DDJ = (function(){
   _Stat_DDJ.F_rPDF_tStudent   = F_rPDF_tStudent_Stat;     // function F_rPDF_tStudent_Stat(P_rt, P_iN);
   _Stat_DDJ.F_rCDF_tStudent   = F_rCDF_tStudent_Stat;     // function F_rCDF_tStudent_Stat(P_rt, P_iN);
    
-  _Stat_DDJ.F_arICDF_Mp_CDF   = F_arICDF_Mp_CDF;          // function F_arICDF_Mp_CDF(P_pF_CDF);
+  _Stat_DDJ.F_arICDF_Mp_CDF   = F_arICDF_Mp_CDF;          // function F_arICDF_Mp_CDF(P_F_CDF);
   _Stat_DDJ.F_ai_ACF          = F_ai_ACF;                 // function F_ai_ACF(P_Coll, P_iNn);
   
   _Stat_DDJ.U_Stat_Clipboard  = U_Stat_Clipboard;         // function U_Stat_Clipboard();
@@ -1240,7 +1240,7 @@ function F_rCDF_ERF_Stat(P_rX)
 *
 * Calculate the inverse CDF (used for RND generators)
 */ 
-function F_arICDF_Mp_CDF(P_pF_CDF)
+function F_arICDF_Mp_CDF(P_F_CDF)
 {
   var aTup0 = [];
   var arICDF = [];
@@ -1252,14 +1252,14 @@ function F_arICDF_Mp_CDF(P_pF_CDF)
       aTup0[i] = [0, 0];
   } /* for */
   for (x = 0; x >= -5; x -= iDe) {
-      y = P_pF_CDF(x);
+      y = P_F_CDF(x);
       Tmp = [x, y];
       aTup0[5000 - j] = Tmp;
       j++;
   } /* for */
   j = 0;
   for (x = 0; x <= 5; x += iDe) {
-      y = P_pF_CDF(x);
+      y = P_F_CDF(x);
       Tmp = [x, y];
       aTup0[5000 + j] = Tmp;
       j++;

@@ -88,7 +88,7 @@ function F_szPad2(P_iNum)
 /*-----F_szPadLft --------------------------------------------------------
 *
 */ 
-function F_szPadLft(P_sz0, P_ch, P_iNn)
+function F_szPadLft(P_sz0, P_ch=" ", P_iNn=2)
 {
    var iLen = ("" + P_sz0).length;
    var szPad = "";
@@ -101,7 +101,7 @@ function F_szPadLft(P_sz0, P_ch, P_iNn)
  /*-----F_szPadRgt --------------------------------------------------------
 *
 */ 
-function F_szPadRgt(P_sz0, P_ch, P_iNn)
+function F_szPadRgt(P_sz0, P_ch=" ", P_iNn=2)
 {
    var iLen = ("" + P_sz0).length;
    var szPad = "";

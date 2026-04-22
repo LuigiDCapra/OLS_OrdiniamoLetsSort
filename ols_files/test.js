@@ -5,7 +5,7 @@
 * File        : test.js
 * Function    : Test procedures.
 * FirstEdit   : 15/12/2019
-* LastEdit    : 12/02/2026
+* LastEdit    : 14/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -46,6 +46,9 @@
 
 /*----- Global Constants ---------------------------------------------*/
 /*----- Global Variables ---------------------------------------------*/
+
+var G_szTest = "Pippo, PLuto, Paperino.";
+var G_szVoid = "";
 
 /*----- Module $Test --------------------------------------------------------
 *
@@ -91,7 +94,8 @@ function U_AddFld(P_UsrView, P_iNn_Fld)
 */ 
 function U_Test1()
 {
- ALERT("Spare function.\nUsers can insert their code under development here.",1);
+ // ALERT("Spare function.\nUsers can insert their code under development here.",1);
+ $Sinottico.U_Copy_Cell(0, 1, 4, 5);
 } /* U_Test1 */
 
 /*-----U_Test2 --------------------------------------------------------

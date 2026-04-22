@@ -5,7 +5,7 @@
 * File        : semctx.js
 * Function    : Semantic Context
 * FirstEdit   : 22/01/2024
-* LastEdit    : 12/02/2026
+* LastEdit    : 20/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -161,15 +161,21 @@ function U_Sel_TBM(P_szId, P_szSCtx, P_fieldset=false)
            case "input": {
                 asz0 = MnEntry0[C_jaMnEntry_Lst];
                 var szType = (typeof (asz0[0]) != "undefined")? asz0[0]: "text";
-                szId = "Id_" + MnEntry0[C_jaMnEntry_Key];
+                szId = P_szId + "_" + MnEntry0[C_jaMnEntry_Key];
                 S_szId_Prv = szId;
                 sz0 += `<input type=${szType} id="${szId}" title="${szTit}" placeholder="${MnEntry0[C_jaMnEntry_Cap]}">\n`;
+           } break;
+           case "checkbox": {
+                asz0 = MnEntry0[C_jaMnEntry_Lst];
+                var szType = "checkbox";
+                szId = P_szId + "_" + MnEntry0[C_jaMnEntry_Key];
+                S_szId_Prv = szId;
+                sz0 += `<label for="${szId}" title="${szTit}">${asz0[0]}</label> <input type=${szType} id="${szId}" title="${szTit}" placeholder="${MnEntry0[C_jaMnEntry_Cap]}">\n`;
            } break;
            case "button" : {
                 asz0 = MnEntry0[C_jaMnEntry_Lst];
                 var pFn  = MnEntry0[C_jaMnEntry_pFn];
                 var szTxt  = MnEntry0[6][0]; /* caption */
-               // var szNmCB = MnEntry0[6][1]; /* callback name */
                 sz0 += `<button id="Id_${MnEntry0[C_jaMnEntry_Key]}" title="${szTit}" onclick="${pFn}('${szId}');" > ${szTxt} </button>\n`;
                 S_szId_Prv = "";
            } break;

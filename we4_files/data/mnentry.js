@@ -43,7 +43,7 @@ var G_asaMnEntry =
 ["superscript","U_SuperScript","superscript","we4_files/ico/sup.gif",     "apici"], 
 ["subscript",  "U_SubScript",  "subscript","we4_files/ico/sub.gif",       "pedici"],
 
-["Tag",        'U_SetTag',     "Tag",      "", "pippo", "select",  [
+["Tag",        'U_SetTag',     "Tag",      "", "tag", "select",  [
 "-- Tag --", "a", "abbr", "acronym", "address", "applet", "article", "aside", "audio", "b", "big", "blockquote", "canvas", "caption", "center", "cite", "code", "del", "details", "dfn", "div", "em", "embed", 
 "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "i", "iframe", "img", "ins", "kbd", "label", "legend", "mark", "menu", "nav", 
 "object", "ol", "output", "p", "pre", "q", "ruby", "s", "samp", "section", "small", "span", "strike", "strong", "sub", "summary", "sup", "table", "tbody", "tfoot", "thead", "time", "tt", "u", "ul", "var", "video"

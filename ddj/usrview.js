@@ -5,7 +5,7 @@
 * File        : usrview.js
 * Function    : User's View management.
 * FirstEdit   : 30/06/2022
-* LastEdit    : 15/02/2026
+* LastEdit    : 27/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -378,9 +378,12 @@ class CL_UsrView0 {
        $Error.U_Warning(C_jCd_UsrView, 4, "TBM not found. Set default.", szTBM_PopUp, true);
        szHelp_PopUp = "PopUp";
     } /* if */
-       
-    if ((R_XDB.JKndTup0 == C_JKndTup_Obj) || (R_XDB.JKndTup0 == C_JKndTup_as_)) {
+    
+    if (R_XDB.JKndTup0 == C_JKndTup_Obj) {
        szTBM_Table = "Obj";
+    }
+    else if (R_XDB.JKndTup0 == C_JKndTup_as_) {
+       szTBM_Table = "as_";       
     }
     else if (R_XDB.szNm_aFld == "aFld_aFld1") {
        szHelp_Table = "afld1";
@@ -429,7 +432,7 @@ class CL_UsrView0 {
     this.CfgUV0 = CfgUV0;
 
     var jPg = C_jPg_0;   
-    U_Sel_Pg(this, jPg);   // LCD 2025-10-03 Tolto // 2026/01/30 Ripristinato perché serve alla New quando si creano nuove collezioni
+    U_Sel_Pg(this, jPg);   // $LCD 2025-10-03 Tolto // 2026/01/30 Ripristinato perché serve alla New quando si creano nuove collezioni
      
     if (ch) {
        CL_as_UsrView_K.U_Insert(ch, this);

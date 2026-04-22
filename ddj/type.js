@@ -5,7 +5,7 @@
 * File        : type.js
 * Function    : Types management
 * FirstEdit   : 16/03/2022
-* LastEdit    : 31/01/2026
+* LastEdit    : 18/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -181,6 +181,8 @@ var G_aFld_aFld1 = [
   {"szNm":"fCaseSens", "szType":"Flag",     "iLen":3, "szRem":"Flag: Case Sensitive sorting"},                         /* RW Case Sensitive Sorting */
   {"szNm":"fRecalc",   "szType":"Flag",     "iLen":3, "szRem":"Flag. Enables automatic recalc of field values"},       /* RW enables automatic recalculation of field values */
   {"szNm":"szCode",    "szType":"string",   "iLen":3, "szRem":"JS expression used for recalc."},                       /* RW code that defines the new value ex. "$[5] * 2". NOTE: values will be calculated una tantum. */
+  {"szNm":"iMin_Q",    "szType":"int",      "iLen":3, "szRem":"Min value allowed"},                                    /* RW Minimum value allowed */
+  {"szNm":"iMax_Q",    "szType":"int",      "iLen":3, "szRem":"Max value allowed"},                                    /* RW Maximum value allowed */
   {"szNm":"szRem",     "szType":"string",   "iLen":10,"szRem":"Remarks"},                                              /* RW Remarks */
 
   {"fVisible":false,"szNm":"szTBM_Table",  "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":"Layout"},            /* Select Layout TBM. */
@@ -376,6 +378,13 @@ var G_aFld_Arr0 = [
 var G_aFld_Obj0 = [
   {"szNm":"Attribute", "szType":"string",  "iLen":4, "szCaption":"Attribute", "iPos0":0, "iPos1":0, "fVisible":true},
   {"szNm":"Value",     "szType":"string",  "iLen":8, "szCaption":"Value",     "iPos0":1, "iPos1":1, "fVisible":true}
+];/* 
+* Layout of a generic Dashboard.
+*/
+var G_aFld_Dash = [
+  {"szNm":"szDisplay", "szType":"string",  "iLen":8, "szCaption":"szDisplay", "iPos0":0, "iPos1":0, "fVisible":true},
+  {"szNm":"szFormula", "szType":"string",  "iLen":8, "szCaption":"szFormula", "iPos0":1, "iPos1":1, "fVisible":true},
+  {"szNm":"szAux",     "szType":"string",  "iLen":8, "szCaption":"szAux",     "iPos0":2, "iPos1":2, "fVisible":true}
 ];
 /* 
 * Layout of Function tables.
@@ -627,6 +636,20 @@ var G_aFld_FlDsc = [                                                            
   {"fVisible":false,"szNm":"iWdt_Image",  "szType":"none", "iLen":0, "szRem":"SetPar - larghezza immagini", "szCode":80},
   {"fVisible":false,"szNm":"jaFld1_aNdx", "szType":"none", "iLen":0, "szRem":"SetPar - sort by field 3 'Modified'", "szCode":3},       // sort in descending order by date (3)
   {"fVisible":false,"szNm":"fAsc",        "szType":"none", "iLen":0, "szRem":"SetPar - seleziona ordine crescente",   "szCode":false}
+];
+
+/* Disk - Disks Descriptors. $NOTE: aFld1 because captions. */
+
+var G_aFld1_Disk = [
+{"iPos0":0,"iPos1":0,"fVisible":true,"szNm":"Path","szCaption":"value","szType":"PATH","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":1,"iPos1":1,"fVisible":true,"szNm":"Ext","szCaption":"Ext","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":2,"iPos1":2,"fVisible":true,"szNm":"iSize","szCaption":"Free RAM (GB)","szType":"number","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":3,"iPos1":3,"fVisible":true,"szNm":"szMTime","szCaption":"szMTime","szType":"datetime-local","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":4,"iPos1":4,"fVisible":true,"szNm":"szPerms","szCaption":"Perms+","szType":"hex","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":5,"iPos1":5,"fVisible":true,"szNm":"szType","szCaption":"szType","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
+{"iPos0":6,"iPos1":6,"fVisible":true,"szNm":"Note","szCaption":"Note","szType":"string","iLen":8,"fRecalc":false,"szCode":""},
+{"fVisible":false,"szNm":"szTBM_Table", "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":"XTG"},
+{"fVisible":false,"szNm":"jaFld1_aNdx", "szType":"none", "iLen":0, "szRem":"SetPar", "szCode":-1}
 ];
 
 /*----- Module $Type --------------------------------------------------------
@@ -883,13 +906,13 @@ function F_fChk_Type(P_Val, P_szTypeReq, P_Fld)
      iSyndrome |= Aux0.F_fChk(P_Val);
   } /* if */
   
-  if (Aux0.Min) {
-     if (P_Val < Aux0.Min) {
+  if (P_Fld.iMin_Q) {
+     if (P_Val < P_Fld.iMin_Q) {
         iSyndrome |= 1;
      } /* if */
   } /* if */
-  if (Aux0.Max) {
-     if (Aux0.Max < P_Val) {
+  if (P_Fld.iMax_Q) {
+     if (P_Fld.iMax_Q < P_Val) {
         iSyndrome |= 2;
      } /* if */
   } /* if */     
@@ -919,16 +942,16 @@ function F_szHTML_Diagnostic(P_Val, P_Fld)
      S_aiCnt_Problem[0]++;
      return(szHTML);
   } /* if */ 
-  if (Aux0.Min) {
-     if (P_Val < Aux0.Min) {
+  if (P_Fld.iMin_Q) {
+     if (P_Val < P_Fld.iMin_Q) {
        szHTML = "<div class='Cl_HL_2'>" + P_Val + "</div>";  // red & lime
        S_iCnt_Problem++;
        S_aiCnt_Problem[1]++;
        return(szHTML);
      } /* if */
   } /* if */
-  if (Aux0.Max) {
-     if (Aux0.Max < P_Val) {
+  if (P_Fld.iMax_Q) {
+     if (P_Fld.iMax_Q < P_Val) {
        szHTML = "<div class='Cl_HL_3'>" + P_Val + "</div>";  // magenta & cyan
        S_iCnt_Problem++;
        S_aiCnt_Problem[2]++;

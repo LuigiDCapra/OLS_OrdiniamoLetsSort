@@ -5,7 +5,7 @@
 * File        : table.js
 * Function    : DDJ's table display
 * FirstEdit   : 15/12/2019
-* LastEdit    : 03/03/2026
+* LastEdit    : 19/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -180,6 +180,13 @@ function U_LM(P_Elem) {
   } /* if */
 
   U_Display_State(UsrView0, iRow, iCol);
+  
+  document.addEventListener("mouseup", () => {       /* CallBack used to manage selected text. */
+    var szTxt = window.getSelection().toString().trim();
+    if (szTxt) {
+       G_Bag0.szTxt_Sel = szTxt;
+    } /* if */
+  });
 } /* U_LM */
 
 /*-----U_Upd_Cursor --------------------------------------------------------
@@ -423,6 +430,13 @@ function U_LM_T(P_Elem) {
   } /* if */
 
   U_Display_State(UsrView0, iRow, iCol);
+
+  document.addEventListener("mouseup", () => {       /* CallBack used to manage selected text. */
+    var szTxt = window.getSelection().toString().trim();
+    if (szTxt) {
+       G_Bag0.szTxt_Sel = szTxt;
+    } /* if */
+  });
 } /* U_LM_T */
 
 /* ----- U_LH ------------------------------------------------------------------
@@ -547,9 +561,6 @@ function U_Display_Table(P_WwFlag0 = C_WwFlag_Null)
   $Log.U_Log(C_jCd_Cur, 5, C_iLvl_DispTbl, "U_Display_Table", "");
 
   var UsrView0 = CL_UsrView0.F_UsrView_Selected();
-//   if (UsrView0.szNmColl == "sinottico") {
-//      debugger;
-//   } /* if */
   if (!UsrView0) {
      $Error.U_Error(C_jCd_Cur, 3, "No UsrView selected", "", false);
   } /* if */

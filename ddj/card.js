@@ -147,9 +147,12 @@ function F_Tup_Selection(P_jTup, P_fUpd)
           case C_jTup_Lst: {
                jaNdx_Sel = iCard -1;
           } break;
+          case C_jTup_Rnd: {
+               jaNdx_Sel = $Math_DDJ.F_iRND(0, (iCard -1));
+          } break;
           default : {
                $Error.U_Error(C_jCd_UsrView, 1, "Tup Selection", "", false);
-          } break;
+          } break;  
         } /* switch */  
      }
      else {     
@@ -165,6 +168,9 @@ function F_Tup_Selection(P_jTup, P_fUpd)
           } break;
           case C_jTup_Lst: {
                jaNdx_Sel = 0;
+          } break;
+          case C_jTup_Rnd: {
+               jaNdx_Sel = $Math_DDJ.F_iRND(0, (iCard -1));
           } break;
           default : {
                $Error.U_Error(C_jCd_UsrView, 2, "Tup Selection", "", false);

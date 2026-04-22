@@ -5,7 +5,7 @@
 * File        : sentence.js
 * Function    : NLP interpreter.
 * FirstEdit   : 10/02/2024
-* LastEdit    : 11/01/2026
+* LastEdit    : 28/03/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -66,7 +66,6 @@ var S_Win_0;
 
 var S_asObj_Entry = {};  /* S_asObj_Entry: array of TBM menu descriptors. */
 
-S_asFiles
 /*
 * Context independent commands.
 */
@@ -244,7 +243,6 @@ function F_szAnswer(P_szKey0, P_szKey1, P_szRes)
   return(szRes);
 } /* F_szAnswer */
 
-
 /*--------------------------------------------------------------------*/
 /*-----U_Again --------------------------------------------------------
 *
@@ -255,6 +253,51 @@ function U_Again()
 
 } /* U_Again */
 
+/*-----F_szMsg_PreProc_Dflt --------------------------------------------------------
+*
+* Default Message's PreProcessor.
+*/ 
+function F_szMsg_PreProc_Dflt(P_szMsg)
+{
+  var szMsg0 = P_szMsg;
+  
+  szMsg0 = P_szMsg.trim().toLowerCase();
+  szMsg0 = szMsg0.replace(/\?/g, "");
+  szMsg0 = szMsg0.replace("violetta", "viola");
+//szMsg0 = szMsg0.replace("viola", "");
+//szMsg0 = szMsg0.replace("dimmi", "");
+  szMsg0 = szMsg0.replace("l'", "l' ");
+  szMsg0 = szMsg0.replace("puoi dirmi", "");
+  szMsg0 = szMsg0.replace("potresti dirmi", "");
+  szMsg0 = szMsg0.replace("sapresti dirmi", "");
+  szMsg0 = szMsg0.replace("voglio sapere", "");
+  szMsg0 = szMsg0.replace("vorrei sapere", "");
+  szMsg0 = szMsg0.replace("apre", "apri");
+  szMsg0 = szMsg0.replace(" all'", " a ");
+  szMsg0 = szMsg0.replace("quale è ", "qual'è");
+  
+  return(szMsg0); 
+} /* F_szMsg_PreProc_Dflt */
+
+/*-----F_szMsg_PreProcessor --------------------------------------------------------
+*
+* Message's PreProcessor.
+*/ 
+function F_szMsg_PreProcessor(P_szSCtx, P_szMsg)
+{
+  var szMsg0 = P_szMsg;
+  switch (P_szSCtx) {
+    case "Flash-Cards" : {
+         szMsg0 = $Flash_Cards.F_szMsg_PreProc(P_szMsg);
+    } break;
+    default : {
+         szMsg0 = F_szMsg_PreProc_Dflt(P_szMsg);
+    } break;
+  } /* switch */
+
+  return(szMsg0); 
+} /* F_szMsg_PreProcessor */
+
 /*-----U_Interpreter --------------------------------------------------------
 *
 * User's speech entry point.   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -264,24 +307,17 @@ function U_Again()
 function U_Interpreter(P_szMsg, R_BagRef={})
 {
   U_Monitor(false, P_szMsg);
-
   var szSCtx = $SemCtx.F_szSCtx_Cur();
-  var szMsg  = P_szMsg.trim().toLowerCase();
-  var szMsg  = szMsg.replace(/\?/g, "");
-  var szMsg  = szMsg.replace("violetta", "viola");
-//var szMsg  = szMsg.replace("viola", "");
-//var szMsg  = szMsg.replace("dimmi", "");
-  var szMsg  = szMsg.replace("l'", "l' ");
-  var szMsg  = szMsg.replace("puoi dirmi", "");
-  var szMsg  = szMsg.replace("potresti dirmi", "");
-  var szMsg  = szMsg.replace("sapresti dirmi", "");
-  var szMsg  = szMsg.replace("voglio sapere", "");
-  var szMsg  = szMsg.replace("vorrei sapere", "");
-  var szMsg  = szMsg.replace("apre", "apri");
-  var szMsg  = szMsg.replace(" all'", " a ");
-  var szMsg  = szMsg.replace("quale è ", "qual'è");
+  var szMsg  = F_szMsg_PreProcessor(szSCtx, P_szMsg);
   var aszKey = szMsg.split(" ");
   var szText = "";
+
+  if (szMsg == "brkpnt") {
+     /* A BRKPNT was reached executing emulation script. */
+     ALERT("BRKPNT",1);  
+     return;
+  } /* if */ 
+
   if ((aszKey[0] != "ripeti") && (aszKey[0] != "ancora")) {
      G_VCtx_Cur = {};
      G_VCtx_Cur.szMsg0 = P_szMsg;   /* Original message. */
@@ -289,7 +325,6 @@ function U_Interpreter(P_szMsg, R_BagRef={})
      G_VCtx_Cur.szSCtx = szSCtx;    /* current Contect. */
      G_VCtx_Cur.aszKey = aszKey;    /* List of the keys. */
   } /* if */
-
   
   G_VCtx_Cur.BagRef = R_BagRef;
   G_VCtx_Cur.aExec  = [-1, -1, -1];     /* List of the interpreters that could try to execute the command. */
@@ -299,12 +334,6 @@ function U_Interpreter(P_szMsg, R_BagRef={})
   G_VCtx_Cur.szRes  = S_szMsg_SyntErr;  /* "Non ho Capito." - Negative Response */
   G_VCtx_Cur.szImg  = "frown";
   G_VCtx_Cur.szErr  = "";
-
-  if (szMsg == "brkpnt") {
-     /* A BRKPNT was reached executing emulation script. */
-     ALERT("BRKPNT",1);  
-     return;
-  } /* if */ 
 /*
 * Consult knowledge base.
 * Result will be returned in G_VCtx_Cur.

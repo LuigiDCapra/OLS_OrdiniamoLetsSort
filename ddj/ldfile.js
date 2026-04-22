@@ -5,7 +5,7 @@
 * File        : ldfile.js
 * Function    : Load File.
 * FirstEdit   : 10/04/2024
-* LastEdit    : 22/02/2026
+* LastEdit    : 04/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -239,7 +239,7 @@ function U_CB_Err(P_XHR, P_szURL)
   if ($VDebug.F_iDebug() <= C_iDebug_Dflt) {
      P_szURL = "";
   } /* if */ 
-  $Error.U_Warning(C_jCd_Cur, 1, szMsg, P_szURL, fSilent);  
+  $Error.U_Warning(C_jCd_Cur, 2, szMsg, P_szURL, fSilent);  
 } /* U_CB_Err */
 
 /*-----U_CB_DownLoad --------------------------------------------------------
@@ -252,12 +252,12 @@ function U_CB_DownLoad(P_szTxt, R_DDJ)
      /* The file is empty! */
      var fjRow = $XDB.F_fjRow_Mp_JKndTup(R_DDJ.JKndTup0);
      P_szTxt = (fjRow)? "[]": "{}";
-     $Error.U_Warning(C_jCd_Cur, 2, "The file is empty!", R_DDJ.szNmColl, true, false);
+     $Error.U_Warning(C_jCd_Cur, 3, "The file is empty!", R_DDJ.szNmColl, true, false);
      return;
   } /* if */
   var iPos404 = P_szTxt.indexOf("404 File not Found");
   if ((0 <= iPos404) && (iPos404 < 10)) {
-     $Error.U_Warning(C_jCd_Cur, 3, "404 File not Found", R_DDJ.szNmColl, true, false);
+     $Error.U_Warning(C_jCd_Cur, 4, "404 File not Found", R_DDJ.szNmColl, true, false);
      return;
   } /* if */
   U_Make_Coll(R_DDJ, P_szTxt);
@@ -390,7 +390,7 @@ function F_Coll_Mp_Text(R_DDJ, P_szTxt)
         case C_JKndTup_DBF:
         case C_JKndTup_Blob: {                         /* Blob & DBF */
              /* $NOTE: BLOB and DBF require specific conversion routines */
-             $Error.U_Error(C_jCd_Cur, 4, "Wrong BLOB converter", P_JKndTup0, false);
+             $Error.U_Error(C_jCd_Cur, 5, "Wrong BLOB converter", P_JKndTup0, false);
         } break;
         case C_JKndTup_OLS: {                          /* OLS */
              Coll0 = F_Coll_Mp_OLS(R_DDJ, P_szTxt);
@@ -401,7 +401,7 @@ function F_Coll_Mp_Text(R_DDJ, P_szTxt)
              R_DDJ.JKndTup0 = JKndTup0;
         } break;
         default : {
-             $Error.U_Error(C_jCd_Cur, 5, "Unknow data format", P_JKndTup0, false);
+             $Error.U_Error(C_jCd_Cur, 6, "Unknow data format", P_JKndTup0, false);
         } break;
      } /* switch */
   } /* if */
@@ -443,7 +443,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
          continue; 
       }
       else {
-         $Error.U_Error(C_jCd_Cur, 6, szNm_URL + `Unexepected char '${ch}' in position `, j, false);
+         $Error.U_Error(C_jCd_Cur, 7, szNm_URL + `Unexepected char '${ch}' in position `, j, false);
          return;
       } /* if */
   } /* for */
@@ -453,7 +453,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
      if (ch == "}") {
         /* $ASSUME: special case in witch [] has been omitted because data will be recorded in the collection in incremental way. */
         P_fEmbed = true;         
-        // $Error.U_Warning(C_jCd_Cur, 7, "[] has been omitted", "", true);  
+        // $Error.U_Warning(C_jCd_Cur, 8, "[] has been omitted", "", true);  
      } /* if */
   } /* if */
   
@@ -470,7 +470,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
                       Coll0 = JSON.parse(szTxt);
                   } catch (P_Err1) {
                       szMsg = P_Err1.message;  
-                      $Error.U_Error(C_jCd_Cur, 8, szNm_URL + "JSON conversion failed.", szMsg, false);
+                      $Error.U_Error(C_jCd_Cur, 9, szNm_URL + "JSON conversion failed.", szMsg, false);
                   } /* try catch */  
               } /* try catch */          
     } break;
@@ -487,7 +487,7 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
                       Coll0 = JSON.parse(szTxt);
                   } catch (P_Err1) {
                       szMsg = P_Err1.message; 
-                      $Error.U_Error(C_jCd_Cur, 9, szNm_URL + "JSON conversion failed.", szMsg, false);
+                      $Error.U_Error(C_jCd_Cur, 10, szNm_URL + "JSON conversion failed.", szMsg, false);
                   } /* try catch */  
               } /* try catch */  
     } break;
@@ -501,13 +501,14 @@ function F_Coll_Mp_JSON(P_szTxt, P_JKndTup0, P_fEmbed, P_DDJ)
                         P_DDJ.JKndTup0 = C_JKndTup_Obj;
                     } catch (P_Err1) {
                         szMsg = P_Err1.message; 
-                        $Error.U_Error(C_jCd_Cur, 10, szNm_URL + "JSON conversion failed.", szMsg, false);
+                        $Error.U_Error(C_jCd_Cur, 11, szNm_URL + "JSON conversion failed.", szMsg, false);
                     } /* try catch */  
                 return(Coll0);
             } catch (P_Err) {
             } /* try catch */
          } /* if */
-         $Error.U_Error(C_jCd_Cur, 11, szNm_URL + "Unknow data format", P_JKndTup0, false);
+         debugger;
+         $Error.U_Error(C_jCd_Cur, 12, szNm_URL + "Unknow data format", P_JKndTup0, false);
     } break;
   } /* switch */
   
@@ -545,7 +546,7 @@ function F_Coll_Mp_OLS(R_DDJ, P_szTxt)
  try {
      JSON0 = JSON.parse(P_szTxt);
  } catch (P_Err1) {
-     $Error.U_Error(C_jCd_Cur, 12, "The text loaded is not compliant with JSON's specs.\n" + R_DDJ.szNm_URL + "\n", P_Err1.message, false);
+     $Error.U_Error(C_jCd_Cur, 13, "The text loaded is not compliant with JSON's specs.\n" + R_DDJ.szNm_URL + "\n", P_Err1.message, false);
      return;
  } /* try catch */
  
@@ -623,7 +624,7 @@ const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
                   Coll0 = UsrView1.XDB0.Coll0;
                }
                else {
-                  $Error.U_Error(C_jCd_Cur, 13, "Referred Collection NOT found.", P_JKndTup0, false);
+                  $Error.U_Error(C_jCd_Cur, 14, "Referred Collection NOT found.", P_JKndTup0, false);
                } /* if */
                szNmColl = szNmAlt; /* Register the UsrView with the Alternative name. */
 //               R_DDJ.WwFlag0 |= C_WwFlag_fReadOnly;
@@ -655,7 +656,7 @@ const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
     
     }
     else {
-        $Error.U_Error(C_jCd_Cur, 14, "OLS Version unknown: ", Hdr0.iRes, false);
+        $Error.U_Error(C_jCd_Cur, 15, "OLS Version unknown: ", Hdr0.iRes, false);
     } /* if */
  } /* if */
  if (fAutoExec) {
@@ -665,7 +666,7 @@ const C_jHdrOLS_szNmAlt   = 8;   /* Name of the Alternative UserView */
         eval(szCode);
     } catch (P_Err) {
         var szErr = $Error.F_szErr_Catch(P_Err); 
-        $Error.U_Error(C_jCd_Cur, 15, "F_Coll_Mp_OLS - ", szErr, false);
+        $Error.U_Error(C_jCd_Cur, 16, "F_Coll_Mp_OLS - ", szErr, false);
     } /* try catch */
  } /* if */
 

@@ -5,9 +5,9 @@
 * File        : periodic.js
 * Function    : Periodic Routines
 * FirstEdit   : 15/12/2019
-* LastEdit    : 13/12/2025
+* LastEdit    : 07/04/2026
 * Author      : Luigi D. Capra
-* Copyright(c): Luigi D. Capra 2006, 2025
+* Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
 * License     : https://www.gnu.org/licenses/lgpl-3.0.txt
 * -------------------------------------------------------------------------
@@ -180,8 +180,10 @@ function U_Periodic()
      /* Reload Collection. */
      $DDJ.U_Reload();
   } /* if */
-  if (S_iTick_Cur % 10 == 9) {
-     $IPCF.U_Chk_OnLine();
+  if (S_iTick_Cur % C_is_Chk_OnLine == 9) {
+     if ($VConfig.F_ValSts_Get("fChk_OnLine")) {
+         $IPCF.U_Chk_OnLine(false);
+     } /* if */
   } /* if */
   if (window.fLcdLcd) {   /* $VERSIONING */
      $LcdLcd.U_Periodic(S_iTick_Cur);

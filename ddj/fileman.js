@@ -6,7 +6,7 @@
 * Function    : code FileMan
 * FirstEdit   : 21/04/2024
 * FirstEdit   : 11/01/2025
-* LastEdit    : 24/02/2026
+* LastEdit    : 16/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2017, 2026
 * System      : Mozilla FireFox 80+
@@ -64,7 +64,7 @@ const C_jFlDsc_szGroup = 9;
 const $FileMan = (function () {
   var _FileMan = {};
   _FileMan.U_Init              = U_Init_FileMan;      // function U_Init_FileMan();
-  _FileMan.U_URL               = U_URL;               // function U_URL(P_szURL);
+  _FileMan.U_szRoot_URL               = U_szRoot_URL;               // function U_szRoot_URL(P_szRoot, P_szURL);
   _FileMan.F_szURL             = F_szURL;             // function F_szURL();
 
   _FileMan.U_Show_Res          = U_Show_Res;          // function U_Show_Res(P_fDashboard=false);
@@ -98,7 +98,9 @@ var S_fPopUp = false;          /* FileManager has been loaded as a PopUp. */
 
 var S_szDNS = "";
 var S_ch_Pfx = " / ";          /* Blank added as a prefix to directory names. */
-
+var S_szRoot = "";
+var S_szURL0 = "";
+  
 var S_szOS = "";               /* Operating System release. */
 
 /*-----U_Write --------------------------------------------------------
@@ -115,15 +117,25 @@ function U_Write(P_szFlNm, P_szBuff, P_fBinary)
 /*-----U_URL --------------------------------------------------------
 *
 */
-var S_szURL0 = "";
-  
-function U_URL(P_szURL)
+function xxx_U_URL(P_szURL)
 {
   if (S_f_Id_URL) {
      Id_URL.value = P_szURL;
   } /* if */
   S_szURL0 = P_szURL;
 } /* U_URL */
+
+/*-----U_szRoot_URL --------------------------------------------------------
+*
+*/
+function U_szRoot_URL(P_szRoot, P_szURL)
+{
+  if (S_f_Id_URL) {
+     Id_URL.value = P_szURL;
+  } /* if */
+  S_szRoot = P_szRoot;
+  S_szURL0 = P_szURL;
+} /* U_szRoot_URL */
 
 /*-----F_szURL --------------------------------------------------------
 *
@@ -194,13 +206,6 @@ function U_Show_Res(P_fDashboard=false)
           $DDJ.F_Window_open(Val_Sel);
           return;
     } break;
-//     case "text":    
-//     case "textarea":   
-//     case "HTML":  
-//     case "string": {
-//           $DDJ.F_Window_open(Val_Sel);
-//           return;
-//     } break;
     case "GPS" : {
          $Value.U_OpenStreetMap(Val_Sel);
          return;
@@ -235,27 +240,26 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
   var szServer;
   var szPath;
   var szExt;
+  var fDir = false;
 
-  G_DDJ = $DDJ.F_DDJ_Default();    // 09/08/2025
+  G_DDJ = $DDJ.F_DDJ_Default();
   szPath = (P_fDashboard)? "": XDB0.szNmColl;
   
   if (szPath == "DSK") {
-
      szPath = Val_Sel.substr(S_ch_Pfx.length);
   }
-  else if (XDB0.szNm_aFld == "aFld_Apps") {
+  else if (XDB0.szNm_aFld == "aFld_Apps") {   // (szNm_aFld0 == "aFld_FlDsc") || (szNm_aFld0 == "aFld_Disk") || (szNm_aFld0 == "aFld_Apps")
      szPath = Val_Sel;  
   }
   else { /* Get current directory Path */
-     szPath += (Val_Sel.indexOf(S_ch_Pfx) != 0)? Val_Sel: Val_Sel.substr(S_ch_Pfx.length);  /* Add filename or directory-name, as a leave, deleting prefix. */;
+     szPath += (Val_Sel.indexOf(S_ch_Pfx) != 0)? Val_Sel: Val_Sel.substr(S_ch_Pfx.length);  /* Add filename or directory-name, as a leave, deleting prefix. */
   } /* if */
 
   if (szPath[1] == ":") {
      /*
-     *  LOCAL XTG
+     *  LOCAL filesystem.
      */
-     szDNS = "localhost";
-     
+     szDNS = "localhost";     
      szServer = $NDU.F_szDir_Server(szDNS);  
   
      /* The address makes reference to a directory or a file on the local host. */
@@ -266,10 +270,9 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
         if (szPath[szPath.length -1] != "/") {
            szPath += "/";
         } /* if */
-        var CB_GetDir = (P_fImg)? U_CB_GetDir_2: U_CB_GetDir;
-        
-        G_DDJ.WwFlag0 = (C_WwFlag_fDisplay);          // 28/01/2026
-        U_Get_Dir(szDNS, szPath, CB_GetDir, false);   // 31/05/2025   <<<<<<
+        var CB_GetDir = (P_fImg)? U_CB_GetDir_Img: U_CB_GetDir;
+        G_DDJ.WwFlag0 = (C_WwFlag_fDisplay);
+        U_Get_Dir(szDNS, szPath, CB_GetDir, false);
         return;
      }
      else {
@@ -290,7 +293,7 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
           case "ols": {
                G_DDJ.szNmColl = szPath;
                G_DDJ.szNm_URL = $NDU.F_szURL_Mp_Cmd_Res(szDNS, "read", szPath); 
-               if (S_fPopUp && !G_fLocal) {
+               if (S_fPopUp && !G_Bag0.fLocal) {
                   U_IPC_SendBack();
                }
                else {
@@ -305,7 +308,7 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
           } break;
           default : {
                /* If the extension is unknown try to open the file in the browser. */
-               if (G_fLocal) {
+               if (G_Bag0.fLocal) {
                   $DDJ.F_Window_open("file:///" + szPath);
                }
                else {
@@ -325,7 +328,7 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
         if (szPath[szPath.length -1] != "/") {
            szPath += "/";
         } /* if */
-        var Dir0 = $IPCF.F_JSON_Get(".");
+        var Dir0 = $IPCF.F_JSON_Get(".");                 /* Get localstorage directory list. */
         var Dir1 = [];
         for (let Key in Dir0) {
             let Tmp0 = Dir0[Key];
@@ -334,6 +337,7 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
         var szTxt = JSON.stringify(Dir1);
         G_DDJ.szNmColl = szPath;
         G_DDJ.JKndTup0 = C_JKndTup_aRcd;
+        G_DDJ.WwFlag0 |= C_WwFlag_fDisplay;
         U_CB_GetDir(szTxt, G_DDJ);
         return;
      }
@@ -354,7 +358,7 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
         if (szPath[szPath.length -1] != "/") {
            szPath += "/";
         } /* if */
-        var Dir0 = $IPCF.F_JSON_Get(".", false);
+        var Dir0 = $IPCF.F_JSON_Get(".", false);            /* Get sessionstorage directory list. */
         var Dir1 = [];
         for (let Key in Dir0) {
             let Tmp0 = Dir0[Key];
@@ -363,6 +367,7 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
         var szTxt = JSON.stringify(Dir1);
         G_DDJ.szNmColl = szPath;
         G_DDJ.JKndTup0 = C_JKndTup_aRcd;
+        G_DDJ.WwFlag0 |= C_WwFlag_fDisplay;
         U_CB_GetDir(szTxt, G_DDJ);
         return;
      }
@@ -376,26 +381,55 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
 
   else {
      /*
-     *  REMOTE XTG
-     */
-     // szDNS = "canavesehub.altervista.org";
-     szDNS = S_szDNS;
+     *  REMOTE filesystem.
+     *
+     *  http://canavesehub.altervista.org/Big/LCD/irc/dir2.php/?iLvl=0&szdir=./topic
+     */ 
      debugger;
-     var szServer = $NDU.F_szDir_Server(szDNS);
+     // szDNS = "canavesehub.altervista.org";     
+     /* $ASSUME: szPath its an Absolute path. */
+     szPath = Val_Sel;
+     szDNS = F_szDNS_Mp_URL(szPath);
 
-     /* The address makes reference to a directory or a file on the local host. */
-     if (Tup0[C_jFlDsc_Dir] == "dir") {
-        /* Directory */
+     if (!$IPCF.F_fOnLine() && !DDJ.F_fActive_Debugger()) {        
+        $ACP.U_Open_Alert("The system is offline!");
+     } /* if */
+     
+     if (P_fDashboard) {
+        /* Dashboard */
+        var szRoot = $NDU.F_szDir_Root(szDNS);
+        var iPos = szPath.indexOf(szRoot);
+        szPath = szPath.substr(iPos + szRoot.length);
 
+       fDir = (szPath[szPath.length -1] == "/");
+     }
+     else {
+        /* XTG */
+        fDir = (Tup0[C_jFlDsc_Dir] == "dir");
+        if (szPath.indexOf(S_ch_Pfx) >= 0) {;
+           szPath = F_szURL() + szPath.substr(S_ch_Pfx.length);
+        }
+        else {
+        } /* if */
+     } /* if */
+     if (fDir) {
+        /* REMOTE Directory */
         if (szPath[szPath.length -1] != "/") {
            szPath += "/";
         } /* if */
 
-        U_Get_Dir(szDNS, szPath, U_CB_GetDir, false);   // 2025-09-20
-        return;     
+        G_DDJ.szNmColl = szPath;
+        G_DDJ.szNm_URL = $NDU.F_szURL_Mp_Cmd_Res(szDNS, "dir2", szPath);
+        G_DDJ.JKndTup0 = C_JKndTup_aRcd;
+        G_DDJ.WwFlag0  = (C_WwFlag_fDisplay);
+     
+        var CB_GetDir = (P_fImg)? U_CB_GetDir_2: U_CB_GetDir;        
+        U_Get_Dir(szDNS, szPath, CB_GetDir, false);
+        return;
      }
-     else {
-        /* file */
+     else {              // +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /* REMOTE File */
+
         szExt = szPath.substr(szPath.lastIndexOf(".") +1)
         szExt = szExt.toLowerCase();
      
@@ -410,24 +444,23 @@ function U_Open_XTG(P_fImg=false, P_fDashboard=false)
           case "csv":
           case "flr":
           case "ols": {
-               G_DDJ.szNmColl = szPath;
-               G_DDJ.szNm_URL = $NDU.F_szURL_Mp_Cmd_Res(szDNS, "read", szPath);
-               if (S_fPopUp && !G_fLocal) {
+               if (S_fPopUp && !G_Bag0.fLocal) {
                   U_IPC_SendBack();
                }
                else {
-                   $LdFile.U_DownLoad_URL(G_DDJ.szNm_URL, C_WwFlag_fDisplay);
+                  szURL = $NDU.F_szURL_Mp_Cmd_Res(szDNS, "read", Val_Sel); 
+                  $LdFile.U_DownLoad_URL(szURL, C_WwFlag_fDisplay);
+//                  $LdFile.U_DownLoad_URL("http://canavesehub.altervista.org/Big/LCD/irc/read.php/?szTopic=topic/test.aobj", C_WwFlag_fDisplay);
                } /* if */
           } break;
           default : {
                /* If the extension is unknown try to open the file in the browser. */
-               G_DDJ.szNmColl = szPath;
-               G_DDJ.szNm_URL = $NDU.F_szURL_Mp_szFlNm(szDNS, szPath); 
-               $DDJ.F_Window_open(G_DDJ.szNm_URL);
+                  szURL = Val_Sel;
+                  $DDJ.F_Window_open(szURL);
           } break;
         } /* switch */
         return;
-     } /* if */ 
+     } /* if */
   } /* if */ 
 } /* U_Open_XTG */
 
@@ -476,7 +509,7 @@ function U_Open_PATH_2(P_szPath, P_Tup0)
   var szExt;
   var szURL;
 
-  G_DDJ = $DDJ.F_DDJ_Default();    // 09/08/2025
+  G_DDJ = $DDJ.F_DDJ_Default();
   
   if (szPath[1] == ":") {
      /*
@@ -516,7 +549,7 @@ function U_Open_PATH_2(P_szPath, P_Tup0)
           case "ols": {
                G_DDJ.szNmColl = szPath; 
                G_DDJ.szNm_URL = $NDU.F_szURL_Mp_Cmd_Res(szDNS, "read", szPath);
-               if (S_fPopUp && !G_fLocal) {
+               if (S_fPopUp && !G_Bag0.fLocal) {
                   U_IPC_SendBack();
                }
                else {
@@ -531,7 +564,7 @@ function U_Open_PATH_2(P_szPath, P_Tup0)
           } break;
           default : {
                /* If the extension is unknown try to open the file in the browser. */
-               if (G_fLocal) {
+               if (G_Bag0.fLocal) {
                   $DDJ.F_Window_open("file:///" + szPath);
                }
                else {
@@ -554,14 +587,13 @@ function U_Open_PATH_2(P_szPath, P_Tup0)
      var szDNS = szTmp.substring(0, iPos1);     
      S_szDNS   = szDNS;
 
-//     szServer = $NDU.F_szDir_Server(szDNS);
      szServer = $NDU.F_szDNS_Server(szDNS);
      if (szServer) {
          szFlNm = P_szPath.substr(szServer.length);
      } /* if */
    
      /* The address makes reference to a directory or a file on the local host. */
-     if (Tup0[C_jFlDsc_Dir] == "dir") {
+     if ((Tup0 == "dir") || (Tup0 == null)) {
         /* Directory */
         /* $ASSUME: szPath is an absolute address. */
 
@@ -569,7 +601,7 @@ function U_Open_PATH_2(P_szPath, P_Tup0)
            szPath += "/";
         } /* if */
         szPath = szPath.substr(szServer.length);
-        U_Get_Dir(szDNS, szPath, U_CB_GetDir, false);   // 2025-09-20
+        U_Get_Dir_Remote(szDNS, szPath, U_CB_GetDir, false);
         return;     
      }
      else {
@@ -590,7 +622,7 @@ function U_Open_PATH_2(P_szPath, P_Tup0)
           case "ols": {
                G_DDJ.szNmColl = szPath;
                G_DDJ.szNm_URL = $NDU.F_szURL_Mp_Cmd_Res(szDNS, "read", szPath.substr(szServer.length)); 
-               if (S_fPopUp && !G_fLocal) {
+               if (S_fPopUp && !G_Bag0.fLocal) {
                   U_IPC_SendBack();
                }
                else {
@@ -607,6 +639,26 @@ function U_Open_PATH_2(P_szPath, P_Tup0)
   } /* if */ 
 
 } /* U_Open_PATH_2 */
+
+/*-----F_szDNS_Mp_URL --------------------------------------------------------
+*
+* Return Domain name.
+*/
+var S_szDNS_Prv = ""; 
+function F_szDNS_Mp_URL(P_szPath)
+{
+  var iPos0 = P_szPath.indexOf("//") +2;
+  var szTmp = P_szPath.substring(iPos0);
+  var iPos1 = szTmp.indexOf("/");
+  var szDNS = szTmp.substring(0, iPos1);
+  if (iPos0 < iPos1) {
+     S_szDNS_Prv = szDNS;
+  }
+  else {
+     szDNS = S_szDNS_Prv;
+  } /* if */    
+  return(szDNS);
+} /* F_szDNS_Mp_URL */
 
 /*-----U_IPC_SendBack --------------------------------------------------------
 *
@@ -651,10 +703,18 @@ function U_GetOS()
 *
 * Load directory list as a Table (aRcd).
 */
+
 function U_Get_Dir(P_szDNS, P_szURL, P_CB_GetDir=U_CB_GetDir, P_fInit= true)
 {
+  if (P_szDNS != "") {
+     S_szDNS_Remote = P_szDNS;
+  }
+  else {
+     P_szDNS = S_szDNS_Remote;
+  } /* if */
+ 
   if (P_fInit) {
-     G_DDJ = $DDJ.F_DDJ_Default();    // 09/08/2025
+     G_DDJ = $DDJ.F_DDJ_Default();
   } /* if */
 
   if (!P_szDNS) {
@@ -671,16 +731,53 @@ function U_Get_Dir(P_szDNS, P_szURL, P_CB_GetDir=U_CB_GetDir, P_fInit= true)
      P_szURL = "DSK";
   } /* if */ 
 
-  U_URL(P_szURL);  
+  U_szRoot_URL("", P_szURL);  
   G_DDJ.JKndTup0 = C_JKndTup_aRcd;
   G_DDJ.szNmColl = P_szURL;
   G_DDJ.WwFlag0  = (C_WwFlag_fDisplay);       // $LCD ripristinato 24/02/2026 - questa linea serve quando si clicca sul nome di una directory presente in un riassunto del sinottico
-//  G_DDJ.WwFlag0  = (C_WwFlag_Null);    // 28/01/2026
 
-  if (window.fLcdLcd) {   /* $VERSIONING */
-     $IPCF.U_GetFile(szURL, P_CB_GetDir, U_Null, false, G_DDJ);
-  } /* if */
+  $IPCF.U_GetFile(szURL, P_CB_GetDir, U_Null, false, G_DDJ);
 } /* U_Get_Dir */
+
+/*-----U_Get_Dir_Remote --------------------------------------------------------
+*
+* Load directory list as a Table (aRcd) from an external WebSite.
+*/
+var S_szDNS_Remote = "";
+function U_Get_Dir_Remote(P_szDNS, P_szURL, P_CB_GetDir=U_CB_GetDir, P_fInit= true)
+{
+  if (P_szDNS != "") {
+     S_szDNS_Remote = P_szDNS;
+  }
+  else {
+     P_szDNS = S_szDNS_Remote;
+  } /* if */
+
+  if (P_fInit) {
+     G_DDJ = $DDJ.F_DDJ_Default();
+  } /* if */
+
+  var szDir_Server = $NDU.F_szDir_Server(P_szDNS);
+  var szURL = "";
+
+  if (P_szURL) {
+     var szTmp = P_szURL.substr(12);
+     szURL = szDir_Server + "dir2.php/?iLvl=0&szdir=./" + szTmp;
+  }
+  else {
+     szURL = szDir_Server + "disk2.php";
+     P_szURL = "DSK";
+  } /* if */ 
+
+  U_szRoot_URL("", P_szURL);  
+  G_DDJ.JKndTup0 = C_JKndTup_aRcd;
+  G_DDJ.szNmColl = P_szURL;
+  G_DDJ.WwFlag0  = (C_WwFlag_fDisplay);       // $LCD ripristinato 24/02/2026 - questa linea serve quando si clicca sul nome di una directory presente in un riassunto del sinottico
+
+// http://canavesehub.altervista.org/Big/LCD/irc/dir2.php/?iLvl=0&szdir=./topic
+
+  $IPCF.U_GetFile(szURL, P_CB_GetDir, U_Null, false, G_DDJ);
+} /* U_Get_Dir_Remote */
 
 /*-----U_CB_GetDir --------------------------------------------------------
 *
@@ -703,11 +800,11 @@ function U_CB_GetDir(P_szTxt, R_DDJ)
       return;
   } /* try catch */
   if (R_DDJ.szNmColl == "DSK") {
-     var Tmp0 = $IPCF.F_JSON_Get(".", true);
+     var Tmp0 = $IPCF.F_JSON_Get(".", true);                /* Get localstorage directory list. */
      var szTmp0 = ["LocalStorage", ...Tmp0["."]];
      Coll0.push(szTmp0);
      
-     var Tmp1 = $IPCF.F_JSON_Get(".", false);
+     var Tmp1 = $IPCF.F_JSON_Get(".", false);               /* Get sessionstorage directory list. */
      var szTmp1 = ["SessionStorage", ...Tmp1["."]];
      Coll0.push(szTmp1);
   } /* if */
@@ -724,22 +821,26 @@ function U_CB_GetDir(P_szTxt, R_DDJ)
          } /* if */
          FlDsc0[C_jFlDsc_Icon] = szExt.toLowerCase();
          if (!F_fImage(szExt)) {
-             FlDsc0[C_jFlDsc_Preview] = "";   /* $NOTE: prevent attempt to load file as an image. */
+             FlDsc0[C_jFlDsc_Preview] = "";                 /* $NOTE: prevent attempt to load file as an image. */
          } /* if */
       }
       else {
 /*
 * $Trik:
-* Wanting directories and files to be treated as distinct sets we add a blank char at the left of directories names so directory and files names will appear separate after sorting.
+* Wanting directories and files to be treated as distinct sets we add a blank char at the left of directories names so directories and files names will appear separate after sorting.
 */
          FlDsc0[C_jFlDsc_Name] = S_ch_Pfx + FlDsc0[C_jFlDsc_Name];
          FlDsc0[C_jFlDsc_Ext]  = " /DIR";
          FlDsc0[C_jFlDsc_Icon] = "dir";
-         FlDsc0[C_jFlDsc_Preview] = "";       /* $NOTE: prevent attempt to load file as an image. */
+         FlDsc0[C_jFlDsc_Preview] = "";                     /* $NOTE: prevent attempt to load file as an image. */
       } /* if */
   } /* for */
+/*
+* $NOTE:
+* C_WwFlag_fszFldNm_1 forces FlDsc header  and suppress " \." in "localstorage" and "sessionstorage" directory lists.
+*/
  
-  var WwFlag0 = R_DDJ.WwFlag0 | (C_WwFlag_fOverWrite | C_WwFlag_fszFldNm_1 | C_WwFlag_fGetDir | C_WwFlag_fReadOnly);     // 31/05/2025
+  var WwFlag0 = R_DDJ.WwFlag0 | (C_WwFlag_fOverWrite | C_WwFlag_fszFldNm_1 | C_WwFlag_fGetDir | C_WwFlag_fReadOnly);
   WwFlag0 |= (R_DDJ.fMng_Undef)? C_WwFlag_fMng_Undef: 0;
   
   if (fAutoDetect) {
@@ -777,12 +878,12 @@ function F_fImage(P_szExt)
   } /* switch */
 } /* F_fImage */
 
-/*-----U_CB_GetDir_2 --------------------------------------------------------
+/*-----U_CB_GetDir_Img --------------------------------------------------------
 *
 * Called by $XTG.U_Show_DirImg();
-* U_CB_GetDir_2(); displays the images contained in the selected directory by inserting them into an HTML file.
+* U_CB_GetDir_Img(); displays the images contained in the selected directory by inserting them into an HTML file.
 */ 
-function U_CB_GetDir_2(P_szTxt, R_DDJ)
+function U_CB_GetDir_Img(P_szTxt, R_DDJ)
 {
   var Coll0;
   var fAutoDetect = false;
@@ -825,7 +926,7 @@ function U_CB_GetDir_2(P_szTxt, R_DDJ)
   R_DDJ.WwFlag0 |= C_WwFlag_fOverWrite;
   var UsrView0 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView(R_DDJ.szNmColl, true);
   $XTG.U_Show_Img0(UsrView0);
-} /* U_CB_GetDir_2 */
+} /* U_CB_GetDir_Img */
 
 /*-----U_Aspect_GetDir --------------------------------------------------------
 *
@@ -844,7 +945,16 @@ function U_Aspect_GetDir(P_WwFlag, UsrView0)
 */ 
 function U_Root()
 {
-  var szURL = F_szURL().substr(0, 3);
+debugger;
+  var szURL = F_szURL();
+  if (S_szDNS_Remote == "localhost") {
+     szURL = F_szURL().substr(0, 3);
+  }
+  else {
+     var iPos = szURL.indexOf("/");
+     szURL = szURL.substr(0, iPos) + "/";
+  } /* if */
+  
   U_Get_Dir("", szURL);
 } /* U_Root */
 

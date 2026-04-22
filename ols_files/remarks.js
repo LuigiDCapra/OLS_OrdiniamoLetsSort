@@ -5,7 +5,7 @@
 * File        : remarks.js
 * Function    : User remarks management.
 * FirstEdit   : 08/02/2025
-* LastEdit    : 11/01/2026
+* LastEdit    : 19/04/2026
 * Author      : Luigi D. Capra
 * Copyright(c): Luigi D. Capra 2006, 2026
 * System      : Mozilla FireFox 80+
@@ -104,7 +104,7 @@ function U_Ins_Rem()
         
                szFlNm_Remarks = UsrView0.F_szVal_CfgUV0("szURL_Remarks");
                if (!szFlNm_Remarks) {
-                  szFlNm_Remarks = $VConfig.F_ValSts_Get("szFlNm_Remarks");
+                  szFlNm_Remarks = szDir_Remarks + "remarks.OLS";
                } /* if */ 
                $LcdLcd.U_Write(szFlNm_Remarks, szTxt);
             } /* if */
@@ -123,27 +123,37 @@ function U_Ins_Rem()
         
                szFlNm_Remarks = UsrView0.F_szVal_CfgUV0("szURL_Remarks");
                if (!szFlNm_Remarks) {
-                  szFlNm_Remarks = $VConfig.F_ValSts_Get("szFlNm_Remarks");
+                  szFlNm_Remarks = szDir_Remarks + "alt-remarks.ols";
                } /* if */
-               szFlNm_Remarks = szFlNm_Remarks.replace("remarks", "alt-remarks"); 
+              // szFlNm_Remarks = szFlNm_Remarks.replace("remarks", "alt-remarks"); 
                $LcdLcd.U_Write(szFlNm_Remarks, szTxt);
       } break;
       case "Directories" : {
                var UsrView1 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView("dirs.as_", true);
                var Coll1 = UsrView1.XDB0.Coll0;
                var szTmp = szNmColl + szKey;         
-               Coll1[szRem] = szTmp.replace(" / ", "");        
-               szFlNm_Remarks = "d:/dbase/LCD/dirs.as_";      // $Versioning
-               szTxt = JSON.stringify(Coll1);
-               $LcdLcd.U_Write(szFlNm_Remarks, szTxt);      
+               Coll1[szRem] = szTmp.replace(" / ", "");    
+               UsrView1.U_Upd_aNdx();       // Remake index.
+               var szTxt = $OutData.F_szOLS_Mp_Coll(UsrView1, "dirs.as_", -1, false);
+        
+               szFlNm_Remarks = UsrView1.F_szVal_CfgUV0("szURL_Remarks");
+               if (!szFlNm_Remarks) {
+                  szFlNm_Remarks = szDir_Remarks + "dirs.as_";
+               } /* if */
+               $LcdLcd.U_Write(szFlNm_Remarks, szTxt);
       } break;
       case "Files" : {
                var UsrView1 = CL_UsrView0.F_UsrView_Mp_szNm_UsrView("files.as_", true);
                var Coll1 = UsrView1.XDB0.Coll0;
                var szTmp = szNmColl + szKey;         
-               Coll1[szRem] = szTmp.replace(" / ", "");        
-               szFlNm_Remarks = "d:/dbase/LCD/files.as_";      // $Versioning
-               szTxt = JSON.stringify(Coll1);
+               Coll1[szRem] = szTmp.replace(" / ", "");    
+               UsrView1.U_Upd_aNdx();       // Remake index.
+               var szTxt = $OutData.F_szOLS_Mp_Coll(UsrView1, "files.as_", -1, false);
+        
+               szFlNm_Remarks = UsrView1.F_szVal_CfgUV0("szURL_Remarks");
+               if (!szFlNm_Remarks) {
+                  szFlNm_Remarks = szDir_Remarks + "files.as_";
+               } /* if */
                $LcdLcd.U_Write(szFlNm_Remarks, szTxt);        
       } break;
       case "Finance" : {
@@ -154,7 +164,7 @@ function U_Ins_Rem()
                UsrView1.U_Upd_aNdx();       // Remake index.
                var szTxt = $OutData.F_szOLS_Mp_Coll(UsrView1, "fin-rem", -1, false);
         
-               szFlNm_Remarks = "d:/dbase/LCD/fin-rem.OLS";      // $Versioning
+               szFlNm_Remarks = szDir_Remarks + "fin-rem.OLS";
                $LcdLcd.U_Write(szFlNm_Remarks, szTxt);    
       } break;
       default : {
@@ -169,6 +179,7 @@ function U_Ins_Rem()
   var Coll0 = XDB0.Coll0;
   var szNmColl  = UsrView0.szNmColl;
   var Tup_Sel = XDB0.Tup_Sel;
+  var szDir_Remarks = $VConfig.F_ValSts_Get("szDir_Remarks");
   var szFlNm_Remarks;
 
   if (!Tup_Sel) {
@@ -240,11 +251,11 @@ img {width:100%;}
     </table>
   </body>
 <script>
-function U_Pippo(P_sz)
+function U_MyProc(P_sz)
 {
   debugger;
   open(P_sz, 'single');
-} /* U_Pippo */
+} /* U_MyProc */
 </script>
 </html>`;
   var szPfx = $NDU.F_szDir_Server("localhost") + "read.php/?szTopic=";
